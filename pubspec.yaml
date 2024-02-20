@@ -20,5 +20,5 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-   - assets/tiles/map.tmx
+   - assets/tiles/
    - assets/images/
