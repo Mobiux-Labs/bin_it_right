@@ -8,6 +8,7 @@ environment:
 
 dependencies:
   flame: ^1.16.0
+  flame_tiled: ^1.19.0
   flutter:
     sdk: flutter
 
@@ -18,3 +19,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+   - assets/tiles/map.tmx
+   - assets/images/
