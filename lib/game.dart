@@ -4,15 +4,26 @@ import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flame_tiled/flame_tiled.dart';
+import 'package:flutter/material.dart';
 
 class Reseacue extends FlameGame with ScaleDetector {
+  @override
+  bool debugMode = true;
+
   late TiledComponent mapComponent;
+  SpriteComponent boat = SpriteComponent();
+
+  static const double minZoom = 0.4;
+  static const double maxZoom = 5.0;
+  double startZoom = minZoom;
 
   @override
   Future<void> onLoad() async {
+    print(size);
+
     camera.viewfinder
       // Set 0.4 as default zoom level as this zoom level covers the entire map
-      ..zoom = 0.4
+      ..zoom = startZoom
       // Set camera's anchor point to top left of the screen
       ..anchor = Anchor.topLeft;
 
@@ -27,14 +38,20 @@ class Reseacue extends FlameGame with ScaleDetector {
     // Adding the map component to the world so that the camera finds the map
     // ( Camera can see and relate to the objects available in the world )
     world.add(mapComponent);
+
+    world.add(
+      boat
+        ..sprite = await loadSprite('boat.png')
+        ..size = Vector2.all(138)
+        ..position = Vector2(10, 200)
+        ..anchor = Anchor.center,
+    );
   }
 
   void clampZoom() {
     // Clamp the minimum and maximum zoom levels
     camera.viewfinder.zoom = camera.viewfinder.zoom.clamp(0.4, 5.0);
   }
-
-  late double startZoom;
 
   @override
   void onScaleStart(info) {
@@ -45,15 +62,70 @@ class Reseacue extends FlameGame with ScaleDetector {
   void onScaleUpdate(ScaleUpdateInfo info) {
     final currentScale = info.scale.global;
 
-    // Check if gesture is zoom or pan
-    if (!currentScale.isIdentity()) {
-      camera.viewfinder.zoom = startZoom * currentScale.y;
-      clampZoom();
+    if (currentScale.isIdentity()) {
+      processDrag(info);
     } else {
-      final delta = info.delta.global;
-
-      // Normalizing the delta by dividing the pan change with zoom level
-      camera.viewfinder.position -= (delta / camera.viewfinder.zoom);
+      processScale(info, currentScale);
     }
+  }
+
+  @override
+  void onScaleEnd(ScaleEndInfo info) {
+    checkScaleBorders();
+    checkDragBorders();
+  }
+
+  void checkScaleBorders() {
+    camera.viewfinder.zoom = camera.viewfinder.zoom.clamp(minZoom, maxZoom);
+  }
+
+  void checkDragBorders() {
+    final worldRect = camera.visibleWorldRect;
+
+    final currentPosition = camera.viewfinder.position;
+
+    final mapSize = Offset(mapComponent.width, mapComponent.height);
+
+    var xTranslate = 0.0;
+    var yTranslate = 0.0;
+
+    if (worldRect.topLeft.dx < 0.0) {
+      xTranslate = -worldRect.topLeft.dx;
+    } else if (worldRect.bottomRight.dx > mapSize.dx) {
+      xTranslate = mapSize.dx - worldRect.bottomRight.dx;
+    }
+
+    if (worldRect.topLeft.dy < 0.0) {
+      yTranslate = -worldRect.topLeft.dy;
+    } else if (worldRect.bottomRight.dy > mapSize.dy) {
+      yTranslate = mapSize.dy - worldRect.bottomRight.dy;
+    }
+
+    camera.viewfinder.position =
+        currentPosition.translated(xTranslate, yTranslate);
+  }
+
+  void processDrag(ScaleUpdateInfo info) {
+    final delta = info.delta.global;
+    final zoomDragFactor = 1.0 / startZoom;
+    final currentPosition = camera.viewfinder.position;
+
+    camera.viewfinder.position = currentPosition.translated(
+      -delta.x * zoomDragFactor,
+      -delta.y * zoomDragFactor,
+    );
+  }
+
+  void processScale(ScaleUpdateInfo info, Vector2 currentScale) {
+    final newZoom = startZoom * ((currentScale.y + currentScale.x) / 2.0);
+    camera.viewfinder.zoom = newZoom.clamp(minZoom, maxZoom);
+  }
+
+  @override
+  void update(double dt) {
+    if (boat.x < size.x) {
+      boat.x += 60 * dt;
+    }
+    super.update(dt);
   }
 }
