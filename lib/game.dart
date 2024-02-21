@@ -1,12 +1,38 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
+import 'package:flame/layers.dart' as layers;
 import 'package:flame_tiled/flame_tiled.dart';
+
+class GameLayer extends layers.DynamicLayer {
+  final Sprite playerSprite;
+  final Sprite playerSprite2;
+
+  GameLayer(this.playerSprite, this.playerSprite2) {
+    preProcessors.add(layers.ShadowProcessor());
+  }
+
+  @override
+  void drawLayer() {
+    playerSprite.render(
+      canvas,
+      position: Vector2.all(50),
+      size: Vector2.all(50),
+    );
+    playerSprite2.render(
+      canvas,
+      position: Vector2.all(100),
+      size: Vector2.all(50),
+    );
+  }
+}
 
 class Reseacue extends FlameGame with ScaleDetector {
   late TiledComponent mapComponent;
+  late layers.Layer gameLayer;
 
   @override
   Future<void> onLoad() async {
@@ -27,6 +53,11 @@ class Reseacue extends FlameGame with ScaleDetector {
     // Adding the map component to the world so that the camera finds the map
     // ( Camera can see and relate to the objects available in the world )
     world.add(mapComponent);
+
+    final playerSprite = Sprite(await images.load('player.png'));
+    final playerSprite2 = Sprite(await images.load('player.png'));
+
+    gameLayer = GameLayer(playerSprite, playerSprite2) as layers.Layer;
   }
 
   void clampZoom() {
@@ -38,6 +69,7 @@ class Reseacue extends FlameGame with ScaleDetector {
 
   @override
   void onScaleStart(info) {
+    print(info.eventPosition.global);
     startZoom = camera.viewfinder.zoom;
   }
 
@@ -55,5 +87,11 @@ class Reseacue extends FlameGame with ScaleDetector {
       // Normalizing the delta by dividing the pan change with zoom level
       camera.viewfinder.position -= (delta / camera.viewfinder.zoom);
     }
+  }
+
+  @override
+  void render(Canvas canvas) {
+    super.render(canvas);
+    gameLayer.render(canvas);
   }
 }
