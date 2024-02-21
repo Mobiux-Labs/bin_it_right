@@ -7,20 +7,20 @@ import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/material.dart';
 
 class Reseacue extends FlameGame with ScaleDetector {
+  // Enable this if hitbox boundary has to be seen
   @override
-  bool debugMode = true;
+  bool debugMode = false;
 
   late TiledComponent mapComponent;
-  SpriteComponent boat = SpriteComponent();
 
   static const double minZoom = 0.4;
   static const double maxZoom = 5.0;
+
+  // This variable will be used to calculate the difference between start zoom level and after scale gesture
   double startZoom = minZoom;
 
   @override
   Future<void> onLoad() async {
-    print(size);
-
     camera.viewfinder
       // Set 0.4 as default zoom level as this zoom level covers the entire map
       ..zoom = startZoom
@@ -31,26 +31,13 @@ class Reseacue extends FlameGame with ScaleDetector {
     mapComponent = await TiledComponent.load(
       // Make sure to add the map location in pubspec.yaml
       'map.tmx',
-      // This is the size of the indivudual tile in the map, which is 16px
+      // This is the size of the individual tile in the map, which is 16px
       Vector2.all(16),
     );
 
     // Adding the map component to the world so that the camera finds the map
     // ( Camera can see and relate to the objects available in the world )
     world.add(mapComponent);
-
-    world.add(
-      boat
-        ..sprite = await loadSprite('boat.png')
-        ..size = Vector2.all(138)
-        ..position = Vector2(10, 200)
-        ..anchor = Anchor.center,
-    );
-  }
-
-  void clampZoom() {
-    // Clamp the minimum and maximum zoom levels
-    camera.viewfinder.zoom = camera.viewfinder.zoom.clamp(0.4, 5.0);
   }
 
   @override
@@ -64,15 +51,11 @@ class Reseacue extends FlameGame with ScaleDetector {
 
     if (currentScale.isIdentity()) {
       processDrag(info);
+      checkDragBorders();
     } else {
       processScale(info, currentScale);
+      checkScaleBorders();
     }
-  }
-
-  @override
-  void onScaleEnd(ScaleEndInfo info) {
-    checkScaleBorders();
-    checkDragBorders();
   }
 
   void checkScaleBorders() {
@@ -119,13 +102,5 @@ class Reseacue extends FlameGame with ScaleDetector {
   void processScale(ScaleUpdateInfo info, Vector2 currentScale) {
     final newZoom = startZoom * ((currentScale.y + currentScale.x) / 2.0);
     camera.viewfinder.zoom = newZoom.clamp(minZoom, maxZoom);
-  }
-
-  @override
-  void update(double dt) {
-    if (boat.x < size.x) {
-      boat.x += 60 * dt;
-    }
-    super.update(dt);
   }
 }
