@@ -3,7 +3,9 @@ import 'dart:developer';
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:logging/logging.dart';
+import 'package:reseacue/app/app.dart';
 import 'package:reseacue/game.dart';
 
 Logger _log = Logger('main.dart');
@@ -26,13 +28,13 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
   _log.info('Going full screen');
-  Flame.device.fullScreen();
+  SystemChrome.setEnabledSystemUIMode(
+    SystemUiMode.immersiveSticky,
+  );
   _log.info('Setting portrait only');
   Flame.device.setPortraitUpOnly();
 
   runApp(
-    const GameWidget.controlled(
-      gameFactory: Reseacue.new,
-    ),
+    const App(),
   );
 }
