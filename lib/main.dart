@@ -8,7 +8,7 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
   Flame.device.fullScreen();
-  Flame.device.setPortraitDownOnly();
+  Flame.device.setPortraitUpOnly();
 
   runApp(
     const GameWidget.controlled(
