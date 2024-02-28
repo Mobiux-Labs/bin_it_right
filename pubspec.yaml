@@ -11,6 +11,7 @@ dependencies:
   flame_tiled: ^1.19.0
   flutter:
     sdk: flutter
+  get: ^4.6.6
   logging: ^1.2.0
 
 dev_dependencies:

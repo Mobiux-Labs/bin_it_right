@@ -1,12 +1,10 @@
 import 'dart:developer';
 
 import 'package:flame/flame.dart';
-import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:logging/logging.dart';
 import 'package:reseacue/app/app.dart';
-import 'package:reseacue/game.dart';
 
 Logger _log = Logger('main.dart');
 
