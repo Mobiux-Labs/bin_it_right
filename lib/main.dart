@@ -3,10 +3,14 @@ import 'dart:developer';
 import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:logging/logging.dart';
 import 'package:reseacue/app/app.dart';
+import 'package:reseacue/app/app_lifecycle/app_lifecycle.dart';
+import 'package:reseacue/app/controller/controller.dart';
+import 'package:reseacue/constants/constants.dart';
 
-Logger _log = Logger('main.dart');
+Logger _log = Logger(Constants.mainLoggerKey);
 
 void main() {
   // Subscribe to log messages.
@@ -32,7 +36,11 @@ void main() {
   _log.info('Setting portrait only');
   Flame.device.setPortraitUpOnly();
 
+  Get.put<AppLifecycleController>(AppLifecycleController());
+
   runApp(
-    const App(),
+    const AppLifecycleObserver(
+      child: App(),
+    ),
   );
 }
