@@ -19,7 +19,6 @@ class Reseacue extends FlameGame with ScaleDetector {
 
   @override
   Future<void> onLoad() async {
-    print(size);
 
     camera.viewfinder
       // Set 0.4 as default zoom level as this zoom level covers the entire map
@@ -46,6 +45,8 @@ class Reseacue extends FlameGame with ScaleDetector {
         ..position = Vector2(10, 200)
         ..anchor = Anchor.center,
     );
+
+    overlays.add('Modal');
   }
 
   void clampZoom() {
