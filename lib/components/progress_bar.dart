@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'dart:async';
@@ -10,6 +12,7 @@ class ReverseProgressBar extends StatefulWidget {
 }
 
 class _ReverseProgressBarState extends State<ReverseProgressBar> {
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -26,6 +29,7 @@ class _ReverseProgressBarState extends State<ReverseProgressBar> {
                 value: timeState.time,
                 totalValue: 60,
               ),
+
             ),
             const SizedBox(
               height: 10,

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:reseacue/components/progress_bar.dart';
 import 'package:reseacue/game.dart';
+import 'package:reseacue/splash_screen.dart';
 
 import 'components/modal.dart';
 
@@ -11,20 +12,9 @@ void main() {
   // This is to make sure everything is loaded and initialized before use
   WidgetsFlutterBinding.ensureInitialized();
 
-  Flame.device.fullScreen();
-
-
   runApp(
-      GameWidget.controlled(
-      gameFactory: Reseacue.new,
-overlayBuilderMap: {
-        'Modal' : (BuildContext context, Reseacue game){
-          return const Modal();
-        },
-        'ReverseProgressBar' : (BuildContext context, Reseacue game){
-          return const ReverseProgressBar();
-        }
-},
+    const MaterialApp(
+      home: SplashScreen(),
     ),
   );
 }
