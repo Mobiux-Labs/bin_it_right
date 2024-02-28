@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
 import 'package:logging/logging.dart';
-import 'package:reseacue/app/controller/controller.dart';
+import 'package:provider/provider.dart';
 import 'package:reseacue/constants/constants.dart';
 
 class AppLifecycleObserver extends StatefulWidget {
@@ -17,17 +16,21 @@ class _AppLifecycleObserverState extends State<AppLifecycleObserver>
     with WidgetsBindingObserver {
   static final Logger _log = Logger(Constants.appLifecycleObserverLoggerKey);
 
-  final AppLifecycleController lifecycleState = Get.find();
+  final ValueNotifier<AppLifecycleState> lifecycleListenable =
+      ValueNotifier(AppLifecycleState.inactive);
 
   @override
   Widget build(BuildContext context) {
-    return widget.child;
+    return InheritedProvider<ValueNotifier<AppLifecycleState>>.value(
+      value: lifecycleListenable,
+      child: widget.child,
+    );
   }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     _log.info(() => 'didChangeAppLifecycleState: $state');
-    lifecycleState.updateLifecycleState(state);
+    lifecycleListenable.value = state;
   }
 
   @override
