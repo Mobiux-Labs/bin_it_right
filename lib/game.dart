@@ -36,17 +36,13 @@ class Reseacue extends FlameGame with ScaleDetector {
 
     // Adding the map component to the world so that the camera finds the map
     // ( Camera can see and relate to the objects available in the world )
-    world.add(mapComponent);
 
-    world.add(
-      boat
-        ..sprite = await loadSprite('boat.png')
-        ..size = Vector2.all(138)
-        ..position = Vector2(10, 200)
-        ..anchor = Anchor.center,
-    );
+    // world.add(mapComponent);
 
-    overlays.add('Modal');
+    overlays.add('ReverseProgressBar');
+
+    // overlays.add('Modal');
+
   }
 
   void clampZoom() {

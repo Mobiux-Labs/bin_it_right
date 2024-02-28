@@ -2,6 +2,7 @@ import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:reseacue/components/progress_bar.dart';
 import 'package:reseacue/game.dart';
 
 import 'components/modal.dart';
@@ -11,7 +12,7 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
   Flame.device.fullScreen();
-  Flame.device.setLandscape();
+
 
   runApp(
       GameWidget.controlled(
@@ -19,6 +20,9 @@ void main() {
 overlayBuilderMap: {
         'Modal' : (BuildContext context, Reseacue game){
           return const Modal();
+        },
+        'ReverseProgressBar' : (BuildContext context, Reseacue game){
+          return const ReverseProgressBar();
         }
 },
     ),
