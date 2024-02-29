@@ -1,3 +1,5 @@
+export 'paths.dart';
+
 class Constants {
   Constants._();
 
@@ -7,4 +9,7 @@ class Constants {
   static const String audioControllerLoggerKey = 'AudioController';
 
   static const String mainMenuKey = 'main_menu';
+  static const String splashScreenKey = 'SplashScreen';
+  static const String homeScreenKey = 'HomeScreen';
+
 }

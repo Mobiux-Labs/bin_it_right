@@ -6,6 +6,7 @@ import 'package:reseacue/app/audio/audio_controller.dart';
 import 'package:reseacue/app/settings/persistence/settings_persistence.dart';
 import 'package:reseacue/app/settings/settings.dart';
 import 'package:reseacue/app/ui/main_menu.dart';
+import 'package:reseacue/app/ui/splash_screen.dart';
 import 'package:reseacue/constants/constants.dart';
 
 class App extends StatelessWidget {
@@ -18,13 +19,28 @@ class App extends StatelessWidget {
 
   static final _router = GoRouter(
     routes: [
+
       GoRoute(
-        path: '/',
-        builder: (context, state) => const MainMenu(
-          key: Key(Constants.mainMenuKey),
+        path: Path.root,
+        builder: (context, state) => const SplashScreen(
+          key: Key(Constants.splashScreenKey),
         ),
         routes: const [],
-      )
+      ),
+      GoRoute(
+        path: Path.mainMenu,
+        // builder: (context, state) => const MainMenu(
+        //   key: Key(Constants.mainMenuKey),
+        // ),
+        pageBuilder: (context, state) => CustomTransitionPage<void>(
+          key: state.pageKey,
+          child: const MainMenu(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+              FadeTransition(opacity: animation, child: child),
+        ),
+        routes: const [],
+      ),
+
     ],
   );
 
