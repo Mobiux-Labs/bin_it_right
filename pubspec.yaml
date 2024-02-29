@@ -7,14 +7,13 @@ environment:
   sdk: '>=3.3.0 <4.0.0'
 
 dependencies:
-  audioplayers: ^1.1.1
+  audioplayers: ^5.2.1
   flame: ^1.16.0
-  flame_tiled: ^1.19.0
   flutter:
     sdk: flutter
   go_router: ^13.2.0
   logging: ^1.2.0
-  provider: ^6.1.1
+  provider: ^6.1.2
   shared_preferences: ^2.2.2
 
 dev_dependencies:
