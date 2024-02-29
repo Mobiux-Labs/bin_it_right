@@ -1,6 +1,6 @@
 const Set<Song> songs = {
   // Filenames with whitespace break package:audioplayers on iOS
-  // (as of February 2022), so we use no whitespace.
+  // (as of February 2024), so we use no whitespace.
   Song('music1.mp3', 'bg_music_1'),
 };
 

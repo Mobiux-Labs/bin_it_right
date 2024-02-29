@@ -34,7 +34,9 @@ void main() {
   _log.info('Setting portrait only');
   Flame.device.setPortraitUpOnly();
 
-  runApp(App(
-    settingsPersistence: LocalStorageSettingsPersistence(),
-  ));
+  runApp(
+    App(
+      settingsPersistence: LocalStorageSettingsPersistence(),
+    ),
+  );
 }

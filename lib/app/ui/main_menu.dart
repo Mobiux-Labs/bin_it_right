@@ -11,14 +11,13 @@ class MainMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: GestureDetector(
-        child: Text('test'),
-        onTap: () {
-          final audioController = context.read<AudioController>();
-          audioController.playSfx(SfxType.coin);
-        },
-      ),
+    return GestureDetector(
+      child: const Text('test'),
+      onTap: () {
+        _log.info('Initiating sound from main menu');
+        final audioController = context.read<AudioController>();
+        audioController.playSfx(SfxType.coin);
+      },
     );
   }
 }
