@@ -7,6 +7,7 @@ import 'package:reseacue/game/game.dart';
 
 class MainMenu extends StatelessWidget {
   const MainMenu({super.key});
+  // ignore: unused_field
   static final Logger _log = Logger(Constants.mainMenuLoggerKey);
 
   @override
