@@ -1,10 +1,9 @@
+import 'package:flame/game.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
-import 'package:provider/provider.dart';
-import 'package:reseacue/app/audio/audio_controller.dart';
-import 'package:reseacue/app/audio/sounds.dart';
 import 'package:reseacue/constants/constants.dart';
+import 'package:reseacue/game/game.dart';
 
 class MainMenu extends StatelessWidget {
   const MainMenu({super.key});
@@ -12,14 +11,14 @@ class MainMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: GestureDetector(
-        child: const Text('test'),
-        onTap: () {
-          _log.info('Initiating sound from main menu');
-          final audioController = context.read<AudioController>();
-          audioController.playSfx(SfxType.coin);
-        },
+    return SizedBox(
+      width: 200,
+      height: 200,
+      child: Align(
+        alignment: Alignment.center,
+        child: GameWidget(
+          game: Reseacue(),
+        ),
       ),
     );
   }

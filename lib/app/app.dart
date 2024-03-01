@@ -19,7 +19,6 @@ class App extends StatelessWidget {
 
   static final _router = GoRouter(
     routes: [
-
       GoRoute(
         path: Path.root,
         builder: (context, state) => const SplashScreen(
@@ -29,9 +28,6 @@ class App extends StatelessWidget {
       ),
       GoRoute(
         path: Path.mainMenu,
-        // builder: (context, state) => const MainMenu(
-        //   key: Key(Constants.mainMenuKey),
-        // ),
         pageBuilder: (context, state) => CustomTransitionPage<void>(
           key: state.pageKey,
           child: const MainMenu(),
@@ -40,7 +36,6 @@ class App extends StatelessWidget {
         ),
         routes: const [],
       ),
-
     ],
   );
 
@@ -73,6 +68,7 @@ class App extends StatelessWidget {
         ],
         child: Builder(builder: (context) {
           return MaterialApp.router(
+            debugShowCheckedModeBanner: false,
             routeInformationProvider: _router.routeInformationProvider,
             routeInformationParser: _router.routeInformationParser,
             routerDelegate: _router.routerDelegate,
