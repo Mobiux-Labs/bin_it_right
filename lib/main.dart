@@ -25,9 +25,10 @@ class TrashTrek extends FlameGame {
       ],
       baseVelocity: Vector2(
         0,
-        100,
+        -100,
       ),
       repeat: ImageRepeat.repeatY,
+      fill: LayerFill.width
     );
     add(road);
   }
