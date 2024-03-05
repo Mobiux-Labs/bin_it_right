@@ -3,11 +3,28 @@ import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flame/parallax.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:reseacue/widgets/overlays/pause_button.dart';
+import 'package:reseacue/widgets/overlays/pause_menu.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Flame.device.fullScreen();
   runApp(
     GameWidget(
       game: TrashTrek(),
+      initialActiveOverlays: const [PauseButton.ID],
+      overlayBuilderMap: {
+        PauseButton.ID: (BuildContext context, TrashTrek gameRef) =>
+            PauseButton(
+              gameRef: gameRef,
+            ),
+        PauseMenu.ID: (BuildContext context, TrashTrek gameRef) =>
+            PauseMenu(
+              gameRef: gameRef,
+            ),
+      },
     ),
   );
 }
