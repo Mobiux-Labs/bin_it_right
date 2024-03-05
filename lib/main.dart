@@ -13,6 +13,9 @@ void main() {
 }
 
 class TrashTrek extends FlameGame {
+
+  @override
+  bool debugMode = true;
   @override
   Color backgroundColor() => const Color(0xFFE7DFC1);
 
@@ -20,11 +23,13 @@ class TrashTrek extends FlameGame {
   void onLoad() async {
     super.onLoad();
     //Load images to Flame image object
-    await Flame.images.load('road_background.png');
+    await Flame.images.loadAll(['road_background.png','grass_left_side.png','grass_right_side.png']);
 
     camera.viewfinder.anchor = Anchor.topLeft;
 
     final roadImage = Flame.images.fromCache('road_background.png');
+    final grassLeftImage = Flame.images.fromCache('grass_left_side.png');
+    final grassRightImage = Flame.images.fromCache('grass_right_side.png');
 
     Sprite road = Sprite(roadImage);
     SpriteComponent roadComponent = SpriteComponent(
@@ -45,7 +50,6 @@ class TrashTrek extends FlameGame {
           'road_stripes.png',
         ),
       ],
-
       position: Vector2(size.x / 2, 0),
       //Set velocity
       baseVelocity: Vector2(
@@ -54,7 +58,42 @@ class TrashTrek extends FlameGame {
       ),
       repeat: ImageRepeat.repeatY,
     );
-
     world.add(roadStripes);
+
+    ParallaxComponent leftGrassComponent = await loadParallaxComponent(
+      [
+        ParallaxImageData(
+          'grass_left_side.png',
+        ),
+      ],
+      //Set velocity
+      baseVelocity: Vector2(
+        0,
+        -100,
+      ),
+      repeat: ImageRepeat.repeatY,
+    );
+    world.add(leftGrassComponent);
+
+    ParallaxComponent rightGrassComponent = await loadParallaxComponent(
+      [
+        ParallaxImageData(
+          'grass_right_side.png',
+        ),
+      ],
+      position: Vector2(0, 0),
+      alignment: Alignment.topRight,
+      //Set velocity
+      baseVelocity: Vector2(
+        0,
+        -100,
+      ),
+      repeat: ImageRepeat.repeatY,
+    );
+    world.add(rightGrassComponent);
+
+
+
+
   }
 }
