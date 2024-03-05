@@ -3,7 +3,6 @@ import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flame/parallax.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 void main() {
   runApp(
@@ -15,34 +14,47 @@ void main() {
 
 class TrashTrek extends FlameGame {
   @override
+  Color backgroundColor() => const Color(0xFFE7DFC1);
+
+  @override
   void onLoad() async {
     super.onLoad();
-    //Load road image
-    ParallaxComponent road = await loadParallaxComponent([
-      ParallaxImageData(
-        'road.png',
-      ),
-    ],
-        //Set velocity
-        baseVelocity: Vector2(
-          0,
-          -100,
-        ),
-        repeat: ImageRepeat.repeatY,
-        fill: LayerFill.width);
-    add(road);
-    add(
-      SpriteComponent(
-        position: size/1.55,
-        anchor: Anchor.topCenter,
-        sprite: await loadSprite(
-          'mini_truck.png',
-          srcSize: Vector2(
-            350,
-            400,
-          ),
-        ),
+    //Load images to Flame image object
+    await Flame.images.load('road_background.png');
+
+    camera.viewfinder.anchor = Anchor.topLeft;
+
+    final roadImage = Flame.images.fromCache('road_background.png');
+
+    Sprite road = Sprite(roadImage);
+    SpriteComponent roadComponent = SpriteComponent(
+      sprite: road,
+      anchor: Anchor.topCenter,
+      position: Vector2(size.x / 2, 0), //road is rendered to center of the screen
+      size: Vector2(
+        (size.x * 41) / 100, //41% of screen is covered with road
+        size.y,
       ),
     );
+
+    world.add(roadComponent);
+
+    ParallaxComponent roadStripes = await loadParallaxComponent(
+      [
+        ParallaxImageData(
+          'road_stripes.png',
+        ),
+      ],
+
+      position: Vector2(size.x / 2, 0),
+      //Set velocity
+      baseVelocity: Vector2(
+        0,
+        -100,
+      ),
+      repeat: ImageRepeat.repeatY,
+    );
+
+    world.add(roadStripes);
   }
 }
