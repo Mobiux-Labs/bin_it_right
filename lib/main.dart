@@ -17,19 +17,32 @@ class TrashTrek extends FlameGame {
   @override
   void onLoad() async {
     super.onLoad();
-    ParallaxComponent road = await loadParallaxComponent(
-      [
-        ParallaxImageData(
-          'road.png',
-        ),
-      ],
-      baseVelocity: Vector2(
-        0,
-        -100,
+    //Load road image
+    ParallaxComponent road = await loadParallaxComponent([
+      ParallaxImageData(
+        'road.png',
       ),
-      repeat: ImageRepeat.repeatY,
-      fill: LayerFill.width
-    );
+    ],
+        //Set velocity
+        baseVelocity: Vector2(
+          0,
+          -100,
+        ),
+        repeat: ImageRepeat.repeatY,
+        fill: LayerFill.width);
     add(road);
+    add(
+      SpriteComponent(
+        position: size/1.55,
+        anchor: Anchor.topCenter,
+        sprite: await loadSprite(
+          'mini_truck.png',
+          srcSize: Vector2(
+            350,
+            400,
+          ),
+        ),
+      ),
+    );
   }
 }
