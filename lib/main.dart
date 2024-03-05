@@ -13,29 +13,35 @@ void main() {
 }
 
 class TrashTrek extends FlameGame {
-
-  @override
-  bool debugMode = true;
   @override
   Color backgroundColor() => const Color(0xFFE7DFC1);
+
+  final Vector2 baseVelocity = Vector2(
+    0,
+    -100,
+  );
 
   @override
   void onLoad() async {
     super.onLoad();
     //Load images to Flame image object
-    await Flame.images.loadAll(['road_background.png','grass_left_side.png','grass_right_side.png']);
+    await Flame.images.loadAll([
+      'road_background.png',
+      'grass_left_side.png',
+      'grass_right_side.png',
+      'auto.png'
+    ]);
 
     camera.viewfinder.anchor = Anchor.topLeft;
 
     final roadImage = Flame.images.fromCache('road_background.png');
-    final grassLeftImage = Flame.images.fromCache('grass_left_side.png');
-    final grassRightImage = Flame.images.fromCache('grass_right_side.png');
 
     Sprite road = Sprite(roadImage);
     SpriteComponent roadComponent = SpriteComponent(
       sprite: road,
       anchor: Anchor.topCenter,
-      position: Vector2(size.x / 2, 0), //road is rendered to center of the screen
+      position: Vector2(size.x / 2, 0),
+      //road is rendered to center of the screen
       size: Vector2(
         (size.x * 41) / 100, //41% of screen is covered with road
         size.y,
@@ -52,10 +58,7 @@ class TrashTrek extends FlameGame {
       ],
       position: Vector2(size.x / 2, 0),
       //Set velocity
-      baseVelocity: Vector2(
-        0,
-        -100,
-      ),
+      baseVelocity: baseVelocity,
       repeat: ImageRepeat.repeatY,
     );
     world.add(roadStripes);
@@ -67,10 +70,7 @@ class TrashTrek extends FlameGame {
         ),
       ],
       //Set velocity
-      baseVelocity: Vector2(
-        0,
-        -100,
-      ),
+      baseVelocity: baseVelocity,
       repeat: ImageRepeat.repeatY,
     );
     world.add(leftGrassComponent);
@@ -84,16 +84,23 @@ class TrashTrek extends FlameGame {
       position: Vector2(0, 0),
       alignment: Alignment.topRight,
       //Set velocity
-      baseVelocity: Vector2(
-        0,
-        -100,
-      ),
+      baseVelocity: baseVelocity,
       repeat: ImageRepeat.repeatY,
     );
     world.add(rightGrassComponent);
 
+    final autoImage = Flame.images.fromCache('auto.png');
 
+    Sprite auto = Sprite(autoImage);
+    SpriteComponent autoComponent = SpriteComponent(
+      sprite: auto,
+      anchor: Anchor.bottomCenter,
+      position: Vector2(
+        size.x / 2,
+        size.y,
+      ),
+    );
 
-
+    world.add(autoComponent);
   }
 }
