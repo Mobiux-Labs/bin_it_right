@@ -9,12 +9,16 @@ import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/components/building.dart';
 import 'package:flame/parallax.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:reseacue/game/components/vehicle.dart';
 import 'package:reseacue/utils/utils.dart';
 
 class Reseacue extends FlameGame {
   final Logger _log = Logger('Game');
 
   static double gameSpeed = 1.0;
+
+  double buildingScale = 0.35;
+  double vehicleScale = 0.6;
 
   Stopwatch elapsedTime = Stopwatch();
   Timer interval = Timer(
@@ -121,19 +125,25 @@ class Reseacue extends FlameGame {
     interval.onTick = () {
       Building buildingLeft = Building(
         position: leftSpawnPoint,
-        scale: Vector2.all(0.3),
+        scale: Vector2.all(buildingScale),
       );
 
       world.add(buildingLeft);
 
       Building buildingRight = Building(
         position: rightSpawnPoint,
-        scale: Vector2.all(0.3),
+        scale: Vector2.all(buildingScale),
         anchor: Anchor.topRight,
       );
 
       world.add(buildingRight);
     };
+
+    Vehicle vehicle = Vehicle(
+      position: Vector2(size.x / 2, size.y - (size.y / 12)),
+      scale: Vector2.all(vehicleScale),
+    );
+    world.add(vehicle);
   }
 
   void speedUpGameplay(updateGameSpeed) {
@@ -153,14 +163,14 @@ class Reseacue extends FlameGame {
     interval.onTick = () {
       Building buildingLeft = Building(
         position: leftSpawnPoint,
-        scale: Vector2.all(0.3),
+        scale: Vector2.all(buildingScale),
       );
 
       world.add(buildingLeft);
 
       Building buildingRight = Building(
         position: rightSpawnPoint,
-        scale: Vector2.all(0.3),
+        scale: Vector2.all(buildingScale),
         anchor: Anchor.topRight,
       );
 
@@ -171,16 +181,16 @@ class Reseacue extends FlameGame {
 
   @override
   void update(double dt) {
-    if (elapsedTime.elapsed.inSeconds == 10) {
+    if (elapsedTime.elapsed.inSeconds == 30) {
       speedUpGameplay(1.5);
     }
-    if (elapsedTime.elapsed.inSeconds == 20) {
+    if (elapsedTime.elapsed.inSeconds == 60) {
       speedUpGameplay(2.0);
     }
-    if (elapsedTime.elapsed.inSeconds == 30) {
+    if (elapsedTime.elapsed.inSeconds == 90) {
       speedUpGameplay(2.5);
     }
-    if (elapsedTime.elapsed.inSeconds == 40) {
+    if (elapsedTime.elapsed.inSeconds == 120) {
       speedUpGameplay(3.0);
     }
     interval.update(dt);

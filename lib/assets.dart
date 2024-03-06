@@ -16,10 +16,11 @@ const String building_15 = 'building_15.png';
 const String building_16 = 'building_16.png';
 const String building_17 = 'building_17.png';
 const String building_18 = 'building_18.png';
-const String grass_left_side = 'grass_left_side.png';
-const String grass_right_side = 'grass_right_side.png';
+const String grassLeftSide = 'grass_left_side.png';
+const String grassRightSide = 'grass_right_side.png';
 const String road = 'road.png';
-const String road_stripes = 'road_stripes.png';
+const String roadStripes = 'road_stripes.png';
+const String vehicle_1 = 'vehicle_1.png';
 
 const List<String> sprites = [
   building_1,
@@ -40,8 +41,9 @@ const List<String> sprites = [
   building_16,
   building_17,
   building_18,
-  grass_left_side,
-  grass_right_side,
+  grassLeftSide,
+  grassRightSide,
   road,
-  road_stripes,
+  roadStripes,
+  vehicle_1,
 ];
