@@ -26,4 +26,13 @@ class Waste extends SpriteComponent with HasGameRef<Reseacue> {
         Flame.images.fromCache(wetWaste ? 'wet_waste.png' : 'dry_waste.png'));
     anchor = Anchor.center;
   }
+
+  @override
+  void update(double dt) {
+    if (position.y > game.size.y + 100) {
+      removeFromParent();
+    }
+
+    super.update(dt);
+  }
 }
