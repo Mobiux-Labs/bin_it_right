@@ -21,6 +21,8 @@ const String grassRightSide = 'grass_right_side.png';
 const String road = 'road.png';
 const String roadStripes = 'road_stripes.png';
 const String vehicle_1 = 'vehicle_1.png';
+const String wetWaste = 'wet_waste.png';
+const String dryWaste = 'dry_waste.png';
 
 const List<String> sprites = [
   building_1,
@@ -46,4 +48,6 @@ const List<String> sprites = [
   road,
   roadStripes,
   vehicle_1,
+  wetWaste,
+  dryWaste,
 ];
