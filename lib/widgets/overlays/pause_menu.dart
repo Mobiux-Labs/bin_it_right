@@ -6,6 +6,7 @@ import '../../main.dart';
 class PauseMenu extends StatelessWidget {
   static const String ID = 'PauseMenu';
   final TrashTrek gameRef;
+
   const PauseMenu({super.key, required this.gameRef});
 
   @override
@@ -29,24 +30,25 @@ class PauseMenu extends StatelessWidget {
             ),
           ),
           SizedBox(
-            width: MediaQuery.of(context).size.width/3,
+            width: MediaQuery.of(context).size.width / 3,
             child: ElevatedButton(
-              onPressed: (){
+              onPressed: () {
                 gameRef.resumeEngine();
                 gameRef.overlays.remove(PauseMenu.ID);
                 gameRef.overlays.add(PauseButton.ID);
-              }, child: Text('Resume'),
+              },
+              child: Text('Resume'),
             ),
           ),
           SizedBox(
-            width: MediaQuery.of(context).size.width/3,
+            width: MediaQuery.of(context).size.width / 3,
             child: ElevatedButton(
-              onPressed: (){
-
-              }, child: Text('Exit'),
+              onPressed: () {
+                gameRef.overlays.remove(PauseMenu.ID);
+              },
+              child: Text('Exit'),
             ),
           ),
-
         ],
       ),
     );
