@@ -26,7 +26,7 @@ class Building extends SpriteComponent with HasGameRef<Reseacue> {
 
     Waste waste = Waste(
       position: Vector2(width / 2, height / 2),
-      scale: Vector2.all(2.0),
+      scale: Vector2.all(3.0),
     );
     add(waste);
   }

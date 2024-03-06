@@ -15,10 +15,10 @@ import 'package:reseacue/utils/utils.dart';
 class Reseacue extends FlameGame {
   final Logger _log = Logger('Game');
 
-  static double gameSpeed = 1.0;
+  static double gameSpeed = 0.5;
 
   double buildingScale = 0.35;
-  double vehicleScale = 0.6;
+  double vehicleScale = 0.8;
 
   Stopwatch elapsedTime = Stopwatch();
   Timer interval = Timer(
@@ -182,16 +182,16 @@ class Reseacue extends FlameGame {
   @override
   void update(double dt) {
     if (elapsedTime.elapsed.inSeconds == 30) {
-      speedUpGameplay(1.5);
+      speedUpGameplay(1.0);
     }
     if (elapsedTime.elapsed.inSeconds == 60) {
-      speedUpGameplay(2.0);
+      speedUpGameplay(1.5);
     }
     if (elapsedTime.elapsed.inSeconds == 90) {
-      speedUpGameplay(2.5);
+      speedUpGameplay(2.0);
     }
     if (elapsedTime.elapsed.inSeconds == 120) {
-      speedUpGameplay(3.0);
+      speedUpGameplay(2.5);
     }
     interval.update(dt);
     super.update(dt);
