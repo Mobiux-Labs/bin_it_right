@@ -3,6 +3,18 @@ export 'paths.dart';
 class Constants {
   Constants._();
 
+  static const double minimumBuildingSpawnArea = -400.0;
+  static const double maximumBuildingSpawnArea = -200.0;
+
+  static const double minimumGameSpeed = 1.0;
+  static const double maximumGameSpeed = 3.0;
+
+  static const double minimumVelocity = -117.65;
+  static const double maximumVelocity = -360;
+
+  static const double minimumBuildingSpawnRate = 1.3;
+  static const double maximumBuildingSpawnRate = 0.8;
+
   static const int buildingVariations = 18;
 
   static const String mainLoggerKey = 'main.dart';
