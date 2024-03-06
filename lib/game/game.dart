@@ -10,6 +10,7 @@ import 'package:reseacue/game/components/building.dart';
 import 'package:flame/parallax.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:reseacue/game/components/vehicle.dart';
+import 'package:reseacue/game/components/waste.dart';
 import 'package:reseacue/utils/utils.dart';
 
 class Reseacue extends FlameGame {
@@ -49,20 +50,6 @@ class Reseacue extends FlameGame {
   @override
   FutureOr<void> onLoad() async {
     await Flame.images.loadAll(sprites);
-    leftSpawnPoint = Vector2(
-      0.0,
-      getRandomDouble(
-        Constants.minimumBuildingSpawnArea,
-        Constants.maximumBuildingSpawnArea,
-      ),
-    );
-    rightSpawnPoint = Vector2(
-      size.x,
-      getRandomDouble(
-        Constants.minimumBuildingSpawnArea,
-        Constants.maximumBuildingSpawnArea,
-      ),
-    );
 
     elapsedTime.start();
     camera.viewfinder.anchor = Anchor.topLeft;
@@ -123,12 +110,25 @@ class Reseacue extends FlameGame {
     world.add(rightGrassComponent);
 
     interval.onTick = () {
+      leftSpawnPoint = Vector2(
+        0.0,
+        getRandomDouble(
+          Constants.minimumBuildingSpawnArea,
+          Constants.maximumBuildingSpawnArea,
+        ),
+      );
+      rightSpawnPoint = Vector2(
+        size.x,
+        getRandomDouble(
+          Constants.minimumBuildingSpawnArea,
+          Constants.maximumBuildingSpawnArea,
+        ),
+      );
+
       Building buildingLeft = Building(
         position: leftSpawnPoint,
         scale: Vector2.all(buildingScale),
       );
-
-      world.add(buildingLeft);
 
       Building buildingRight = Building(
         position: rightSpawnPoint,
@@ -136,7 +136,17 @@ class Reseacue extends FlameGame {
         anchor: Anchor.topRight,
       );
 
+      Waste leftWaste = Waste(
+        position: leftSpawnPoint + Vector2.all(30.0),
+      );
+      Waste rightWaste = Waste(
+        position: rightSpawnPoint + Vector2(-30.0, 30.0),
+      );
+
+      world.add(buildingLeft);
       world.add(buildingRight);
+      world.add(leftWaste);
+      world.add(rightWaste);
     };
 
     Vehicle vehicle = Vehicle(
@@ -161,12 +171,25 @@ class Reseacue extends FlameGame {
       repeat: true,
     );
     interval.onTick = () {
+      leftSpawnPoint = Vector2(
+        0.0,
+        getRandomDouble(
+          Constants.minimumBuildingSpawnArea,
+          Constants.maximumBuildingSpawnArea,
+        ),
+      );
+      rightSpawnPoint = Vector2(
+        size.x,
+        getRandomDouble(
+          Constants.minimumBuildingSpawnArea,
+          Constants.maximumBuildingSpawnArea,
+        ),
+      );
+
       Building buildingLeft = Building(
         position: leftSpawnPoint,
         scale: Vector2.all(buildingScale),
       );
-
-      world.add(buildingLeft);
 
       Building buildingRight = Building(
         position: rightSpawnPoint,
@@ -174,7 +197,17 @@ class Reseacue extends FlameGame {
         anchor: Anchor.topRight,
       );
 
+      Waste leftWaste = Waste(
+        position: leftSpawnPoint + Vector2.all(30.0),
+      );
+      Waste rightWaste = Waste(
+        position: rightSpawnPoint + Vector2(-30.0, 30.0),
+      );
+
+      world.add(buildingLeft);
       world.add(buildingRight);
+      world.add(leftWaste);
+      world.add(rightWaste);
     };
     interval.resume();
   }

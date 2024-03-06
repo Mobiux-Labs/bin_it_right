@@ -1,14 +1,15 @@
 import 'dart:async';
 
 import 'package:flame/components.dart';
+import 'package:flame/events.dart';
 import 'package:flame/flame.dart';
 import 'package:logging/logging.dart';
 import 'package:reseacue/constants/constants.dart';
-import 'package:reseacue/game/components/waste.dart';
 import 'package:reseacue/game/game.dart';
 import 'package:reseacue/utils/utils.dart';
 
-class Building extends SpriteComponent with HasGameRef<Reseacue> {
+class Building extends SpriteComponent
+    with HasGameRef<Reseacue>, DragCallbacks {
   final Logger _log = Logger('Building');
 
   Building({
@@ -17,18 +18,15 @@ class Building extends SpriteComponent with HasGameRef<Reseacue> {
     super.anchor,
   });
 
+  bool tapped = false;
+  double previousBuildingYPosition = 0.0;
+
   @override
   FutureOr<void> onLoad() {
     int randomInteger = getRandomIntegrer(Constants.buildingVariations + 1);
     final buildingNumber = randomInteger == 0 ? 1 : randomInteger;
 
     sprite = Sprite(Flame.images.fromCache('building_$buildingNumber.png'));
-
-    Waste waste = Waste(
-      position: Vector2(width / 2, height / 2),
-      scale: Vector2.all(3.0),
-    );
-    add(waste);
   }
 
   @override
