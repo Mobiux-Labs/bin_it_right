@@ -10,8 +10,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
-  static const splashImage = 'assets/images/splash_screen_image.jpg';
+  static const splashImage = 'assets/images/splash_screen.png';
 
   @override
   Widget build(BuildContext context) {
@@ -23,15 +22,14 @@ class _SplashScreenState extends State<SplashScreen> {
     });
     return Scaffold(
       body: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
         decoration: const BoxDecoration(
           color: Colors.white,
         ),
-        child: const Center(
-          child: Image(
-            image: AssetImage(
-              splashImage
-            ),
-          ),
+        child: const Image(
+          image: AssetImage(splashImage),
+          fit: BoxFit.cover,
         ),
       ),
     );
