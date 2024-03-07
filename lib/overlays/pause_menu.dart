@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:reseacue/game/game.dart';
+import 'package:reseacue/overlays/pause_button.dart';
 
 class PauseMenu extends StatelessWidget {
   static const String ID = 'PauseMenu';
@@ -45,10 +47,10 @@ class PauseMenu extends StatelessWidget {
                   blurRadius: 10.0,
                 ),
               ]),
-          child: const Column(
+          child:  Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(
                   top: 20.0,
                 ),
@@ -82,19 +84,26 @@ class PauseMenu extends StatelessWidget {
                     )),
               ),
               Padding(
-                padding: EdgeInsets.only(
+                padding: const EdgeInsets.only(
                   left: 10.0,
                   right: 10.0,
                   bottom: 30.0,
                 ),
                 child: Column(
                   children: [
-                    Image(
-                      image: AssetImage(
-                        'assets/images/play.png',
+                    GestureDetector(
+                      onTap: (){
+                        gameRef.resumeEngine();
+                        gameRef.overlays.remove(PauseMenu.ID);
+                        gameRef.overlays.add(PauseButton.ID);
+                      },
+                      child: const Image(
+                        image: AssetImage(
+                          'assets/images/play.png',
+                        ),
                       ),
                     ),
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.only(
                         top: 10.0,
                         left: 20,
