@@ -6,6 +6,9 @@ import 'package:flame/effects.dart';
 import 'package:flame/events.dart';
 import 'package:flame/flame.dart';
 import 'package:flutter/animation.dart';
+import 'package:logging/logging.dart';
+import 'package:reseacue/assets.dart';
+import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
 
 enum WasteType {
@@ -14,6 +17,8 @@ enum WasteType {
 }
 
 class Waste extends SpriteComponent with HasGameRef<Reseacue>, DragCallbacks {
+  final Logger _log = Logger(Constants.wasteLoggerKey);
+
   WasteType? type;
 
   Waste({
@@ -30,7 +35,9 @@ class Waste extends SpriteComponent with HasGameRef<Reseacue>, DragCallbacks {
 
     sprite = Sprite(
       Flame.images.fromCache(
-        type == WasteType.wet ? 'wet_waste.png' : 'dry_waste.png',
+        type == WasteType.wet
+            ? AssetConstants.wetWaste
+            : AssetConstants.dryWaste,
       ),
     );
     anchor = Anchor.center;
@@ -38,6 +45,7 @@ class Waste extends SpriteComponent with HasGameRef<Reseacue>, DragCallbacks {
 
   @override
   void onDragStart(DragStartEvent event) {
+    _log.info('Drag started at ${event.localPosition}');
     tapped = true;
     super.onDragStart(event);
   }
@@ -50,12 +58,14 @@ class Waste extends SpriteComponent with HasGameRef<Reseacue>, DragCallbacks {
 
   @override
   void onDragEnd(DragEndEvent event) {
+    _log.info('Drag ended');
     tapped = false;
+    // TODO: Drop logic yet to be added
     add(
       MoveEffect.to(
         spawnedPosition,
         EffectController(
-          duration: 0.1,
+          duration: Constants.wasteRepositionAnimationSpeed,
           curve: Curves.easeIn,
         ),
       ),
@@ -71,8 +81,10 @@ class Waste extends SpriteComponent with HasGameRef<Reseacue>, DragCallbacks {
 
     spawnedPosition.y += Reseacue.gameSpeed;
 
-    if ((position.y > game.size.y + 100) ||
-        (spawnedPosition.y > game.size.y + 100)) {
+    if ((position.y > game.size.y + Constants.outOfScreenDeltaToRemoveObject) ||
+        (spawnedPosition.y >
+            game.size.y + Constants.outOfScreenDeltaToRemoveObject)) {
+      _log.info('Removing waste from parent');
       removeFromParent();
     }
 
