@@ -34,6 +34,7 @@ class App extends StatelessWidget {
           key: state.pageKey,
           child: GameWidget<Reseacue>.controlled(
             gameFactory: Reseacue.new,
+            //TODO: Stop gameplay and resume on press of start button
             overlayBuilderMap: {
               'MainMenu': (_, game) => MainMenu(game: game),
             },
