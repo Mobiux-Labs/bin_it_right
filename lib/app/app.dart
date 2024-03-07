@@ -11,6 +11,7 @@ import 'package:reseacue/overlays/countdown.dart';
 import 'package:reseacue/overlays/main_menu.dart';
 import 'package:reseacue/app/ui/splash_screen.dart';
 import 'package:reseacue/constants/constants.dart';
+import 'package:reseacue/overlays/settings.dart';
 
 import '../overlays/pause_button.dart';
 import '../overlays/pause_menu.dart';
@@ -50,9 +51,10 @@ class App extends StatelessWidget {
                   PauseMenu(
                     gameRef: gameRef,
                   ),
+              'Settings': (_,game) => SettingsMenu(game:game),
             },
-            // initialActiveOverlays: const ['MainMenu'],
-            initialActiveOverlays: const [PauseButton.ID],
+            initialActiveOverlays: const ['MainMenu'],
+            // initialActiveOverlays: const [PauseButton.ID],
           ),
           transitionsBuilder: (context, animation, secondaryAnimation, child) =>
               FadeTransition(opacity: animation, child: child),

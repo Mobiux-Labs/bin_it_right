@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:reseacue/game/game.dart';
 import 'package:reseacue/overlays/gradient_overlay.dart';
 
@@ -21,31 +22,36 @@ class MainMenu extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Padding(
-            padding: EdgeInsets.all(
+           Padding(
+            padding: const EdgeInsets.all(
               10.0,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Image(
+                const Image(
                   image: AssetImage(
                     earthToken,
                   ),
                 ),
                 Row(
                   children: [
-                    Image(
+                    const Image(
                       image: AssetImage(
                         leaderboardIcon,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
-                    Image(
-                      image: AssetImage(
-                        settingsIcon,
+                    GestureDetector(
+                      onTap: (){
+                        game.overlays.add('Settings');
+                      },
+                      child: const Image(
+                        image: AssetImage(
+                          settingsIcon,
+                        ),
                       ),
                     ),
                   ],
