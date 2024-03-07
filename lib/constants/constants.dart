@@ -27,6 +27,12 @@ class Constants {
   static const double giftAnimationStepTime = 0.3;
   static const double giftAnimationScale = 0.5;
 
+  static const double idleVehicleAnimationStepTime = 0.3;
+  static const double idleVehicleAnimationScale = 0.5;
+
+  static const double movingVehicleAnimationStepTime = 0.3;
+  static const double movingVehicleAnimationScale = 1.0;
+
   static double buildingScale = 0.35;
   static double vehicleScale = 0.8;
 

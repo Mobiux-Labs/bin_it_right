@@ -133,7 +133,6 @@ class Reseacue extends FlameGame {
         size.x / 2,
         size.y - (size.y / Constants.vehicleSpawnDeltaFromBottom),
       ),
-      scale: Vector2.all(Constants.vehicleScale),
     );
     _log.info('Adding vehicle to world');
     world.add(vehicle);

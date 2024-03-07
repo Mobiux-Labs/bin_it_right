@@ -4,6 +4,15 @@ const List<String> vehicles = [
   AssetConstants.vehicleS,
 ];
 
+const List<String> idleVehicleS = [
+  AssetConstants.vehicleSIdle,
+];
+
+const List<String> movingVehicleS = [
+  AssetConstants.vehicleSMoving1,
+  AssetConstants.vehicleSMoving2,
+];
+
 const List<String> grassVariations = [
   AssetConstants.leftGrass,
   AssetConstants.rightGrass,
@@ -20,6 +29,8 @@ List<String> sprites = [
   ...getIdleGiftAnimationImages(),
   ...getOpeningGiftAnimationImages(),
   ...vehicles,
+  ...idleVehicleS,
+  ...movingVehicleS,
   ...grassVariations,
   ...wasteVariations,
   AssetConstants.road,
@@ -41,4 +52,7 @@ class AssetConstants {
   static const String roadStripes = 'road_stripes.png';
 
   static const String vehicleS = 'vehicle_1.png';
+  static const String vehicleSIdle = 'idle_vehicle.png';
+  static const String vehicleSMoving1 = 'moving_vehicle_1.png';
+  static const String vehicleSMoving2 = 'moving_vehicle_2.png';
 }
