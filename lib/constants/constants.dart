@@ -61,8 +61,8 @@ class Constants {
   static const int gameSpeedUpTimeLevel3 = 30;
   static const int gameSpeedUpTimeLevel4 = 40;
 
-  static const int gameSpeedLevel1 = 10;
-  static const int gameSpeedLevel2 = 20;
-  static const int gameSpeedLevel3 = 30;
-  static const int gameSpeedLevel4 = 40;
+  static const double gameSpeedLevel1 = 1.0;
+  static const double gameSpeedLevel2 = 1.5;
+  static const double gameSpeedLevel3 = 2.0;
+  static const double gameSpeedLevel4 = 2.5;
 }

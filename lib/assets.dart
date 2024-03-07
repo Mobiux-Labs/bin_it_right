@@ -34,8 +34,8 @@ class AssetConstants {
   static const String wetWaste = 'wet_waste.png';
   static const String dryWaste = 'dry_waste.png';
 
-  static const String leftGrass = 'left_side_grass.png';
-  static const String rightGrass = 'right_side_grass.png';
+  static const String leftGrass = 'grass_left_side.png';
+  static const String rightGrass = 'grass_right_side.png';
 
   static const String road = 'road.png';
   static const String roadStripes = 'road_stripes.png';

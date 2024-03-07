@@ -15,10 +15,9 @@ List<String> getDynamicRangeStringList(
           stringTemplate[0] + i.toString() + stringTemplate[1];
       resultList.add(formattedString);
     }
-    insertAtIndex++;
   }
   _log.info('Generated dynamic range string list successfully');
-  return resultList;
+  return [...resultList];
 }
 
 List<Sprite> getDynamicRangeSpriteList(
@@ -31,10 +30,9 @@ List<Sprite> getDynamicRangeSpriteList(
           .fromCache(stringTemplate[0] + i.toString() + stringTemplate[1]));
       resultList.add(sprite);
     }
-    insertAtIndex++;
   }
   _log.info('Generated dynamic range sprite list successfully');
-  return resultList;
+  return [...resultList];
 }
 
 List<String> getIdleGiftAnimationImages() {
@@ -45,7 +43,7 @@ List<String> getIdleGiftAnimationImages() {
   ];
   _log.info('Generated idle gift animation images list successfully');
 
-  return frames;
+  return [...frames];
 }
 
 List<Sprite> getIdleGiftAnimationSprites() {
@@ -56,27 +54,27 @@ List<Sprite> getIdleGiftAnimationSprites() {
   ];
   _log.info('Generated idle gift animation sprites list successfully');
 
-  return sprites;
+  return [...sprites];
 }
 
 List<String> getOpeningGiftAnimationImages() {
   _log.info('Generating opening gift animation images list');
   List<String> frames = [
-    ...getDynamicRangeStringList(147, 218, ['Comp 1_00', '.png'], 1),
+    ...getDynamicRangeStringList(147, 218, ['Comp_1_00', '.png'], 1),
   ];
   _log.info('Generated opening gift animation images list successfully');
 
-  return frames;
+  return [...frames];
 }
 
 List<Sprite> getOpeningGiftAnimationSprites() {
   _log.info('Generating opening gift animation sprites list');
   List<Sprite> sprites = [
-    ...getDynamicRangeSpriteList(147, 218, ['Comp 1_00', '.png'], 1),
+    ...getDynamicRangeSpriteList(147, 218, ['Comp_1_00', '.png'], 1),
   ];
   _log.info('Generated openinig gift animation sprites list successfully');
 
-  return sprites;
+  return [...sprites];
 }
 
 List<String> getBuildingVariationImages() {
@@ -87,5 +85,5 @@ List<String> getBuildingVariationImages() {
   ];
   _log.info('Generated building variation images list successfully');
 
-  return images;
+  return [...images];
 }
