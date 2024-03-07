@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:reseacue/overlays/overlay_container.dart';
+import 'package:reseacue/overlays/reset.dart';
 
 import '../game/game.dart';
 
@@ -57,7 +58,10 @@ class SettingsMenu extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    game.overlays.remove('Settings');
+                    game.overlays.add('Reset');
+                  },
                   child: const Image(
                     image: AssetImage(
                       'assets/images/reset.png',

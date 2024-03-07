@@ -11,6 +11,7 @@ import 'package:reseacue/overlays/countdown.dart';
 import 'package:reseacue/overlays/main_menu.dart';
 import 'package:reseacue/app/ui/splash_screen.dart';
 import 'package:reseacue/constants/constants.dart';
+import 'package:reseacue/overlays/reset.dart';
 import 'package:reseacue/overlays/settings.dart';
 
 import '../overlays/pause_button.dart';
@@ -52,6 +53,7 @@ class App extends StatelessWidget {
                     gameRef: gameRef,
                   ),
               'Settings': (_,game) => SettingsMenu(game:game),
+              'Reset': (_,game) => ResetOverlay(game:game),
             },
             initialActiveOverlays: const ['MainMenu'],
             // initialActiveOverlays: const [PauseButton.ID],
