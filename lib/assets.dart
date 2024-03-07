@@ -1,3 +1,4 @@
+const String splashScreen = 'splash_screen.png';
 const String building_1 = 'building_1.png';
 const String building_2 = 'building_2.png';
 const String building_3 = 'building_3.png';
