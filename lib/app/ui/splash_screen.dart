@@ -10,7 +10,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   static const splashImage = 'assets/images/splash_screen_image.jpg';
 
   @override
@@ -28,9 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
         ),
         child: const Center(
           child: Image(
-            image: AssetImage(
-              splashImage
-            ),
+            image: AssetImage(splashImage),
           ),
         ),
       ),

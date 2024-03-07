@@ -14,12 +14,9 @@ import 'package:reseacue/game/components/waste.dart';
 import 'package:reseacue/utils/utils.dart';
 
 class Reseacue extends FlameGame {
-  final Logger _log = Logger('Game');
+  final Logger _log = Logger(Constants.gameLoggerKey);
 
-  static double gameSpeed = 0.5;
-
-  double buildingScale = 0.35;
-  double vehicleScale = 0.8;
+  static double gameSpeed = Constants.initialGameSpeed;
 
   Stopwatch elapsedTime = Stopwatch();
   Timer interval = Timer(
@@ -37,7 +34,7 @@ class Reseacue extends FlameGame {
   bool debugMode = false;
 
   @override
-  Color backgroundColor() => const Color(0xFFE7DFC1);
+  Color backgroundColor() => Constants.backgroundColor;
 
   Vector2 baseVelocity = Vector2(
     0,
@@ -49,31 +46,42 @@ class Reseacue extends FlameGame {
 
   @override
   FutureOr<void> onLoad() async {
+    _log.info('Loading assets');
     await Flame.images.loadAll(sprites);
+    _log.info('Loaded all assets successfully');
 
+    _log.info('Starting elapsed time stopwatch');
     elapsedTime.start();
+
+    _log.info('Setting camera viewfinder to top left');
     camera.viewfinder.anchor = Anchor.topLeft;
 
-    final roadImage = Flame.images.fromCache('road.png');
+    _log.info('Loading road image');
+    final roadImage = Flame.images.fromCache(AssetConstants.road);
 
+    _log.info('Initializing road sprite');
     Sprite road = Sprite(roadImage);
+
+    _log.info('Initializing road sprite component');
     SpriteComponent roadComponent = SpriteComponent(
       sprite: road,
       anchor: Anchor.topCenter,
       position: Vector2(size.x / 2, 0),
       //road is rendered to center of the screen
       size: Vector2(
-        (size.x * 41) / 100, //41% of screen is covered with road
+        (size.x * Constants.roadRenderPercentage) / 100,
         size.y,
       ),
     );
 
+    _log.info('Assing road sprite component to world');
     world.add(roadComponent);
 
+    _log.info('Initializing road stripes parallax component');
     roadStripes = await loadParallaxComponent(
       [
         ParallaxImageData(
-          'road_stripes.png',
+          AssetConstants.roadStripes,
         ),
       ],
       position: Vector2(size.x / 2, 0),
@@ -81,24 +89,29 @@ class Reseacue extends FlameGame {
       baseVelocity: baseVelocity,
       repeat: ImageRepeat.repeatY,
     );
+
+    _log.info('Adding road stripes parallax component to world');
     world.add(roadStripes);
 
+    _log.info('Initializing left grass parallax component');
     leftGrassComponent = await loadParallaxComponent(
       [
         ParallaxImageData(
-          'grass_left_side.png',
+          AssetConstants.leftGrass,
         ),
       ],
       //Set velocity
       baseVelocity: baseVelocity,
       repeat: ImageRepeat.repeatY,
     );
+    _log.info('Adding left grass parallax component to world');
     world.add(leftGrassComponent);
 
+    _log.info('Initializing right grass parallax component');
     rightGrassComponent = await loadParallaxComponent(
       [
         ParallaxImageData(
-          'grass_right_side.png',
+          AssetConstants.rightGrass,
         ),
       ],
       position: Vector2(0, 0),
@@ -107,53 +120,67 @@ class Reseacue extends FlameGame {
       baseVelocity: baseVelocity,
       repeat: ImageRepeat.repeatY,
     );
+    _log.info('Adding right grass parallax component to world');
     world.add(rightGrassComponent);
 
     interval.onTick = () {
-      leftSpawnPoint = Vector2(
-        0.0,
-        getRandomDouble(
-          Constants.minimumBuildingSpawnArea,
-          Constants.maximumBuildingSpawnArea,
-        ),
-      );
-      rightSpawnPoint = Vector2(
-        size.x,
-        getRandomDouble(
-          Constants.minimumBuildingSpawnArea,
-          Constants.maximumBuildingSpawnArea,
-        ),
-      );
-
-      Building buildingLeft = Building(
-        position: leftSpawnPoint,
-        scale: Vector2.all(buildingScale),
-      );
-
-      Building buildingRight = Building(
-        position: rightSpawnPoint,
-        scale: Vector2.all(buildingScale),
-        anchor: Anchor.topRight,
-      );
-
-      Waste leftWaste = Waste(
-        position: leftSpawnPoint + Vector2.all(30.0),
-      );
-      Waste rightWaste = Waste(
-        position: rightSpawnPoint + Vector2(-30.0, 30.0),
-      );
-
-      world.add(buildingLeft);
-      world.add(buildingRight);
-      world.add(leftWaste);
-      world.add(rightWaste);
+      onUpdateOnTick();
     };
 
+    _log.info('Initializing vehicle');
     Vehicle vehicle = Vehicle(
-      position: Vector2(size.x / 2, size.y - (size.y / 12)),
-      scale: Vector2.all(vehicleScale),
+      position: Vector2(
+        size.x / 2,
+        size.y - (size.y / Constants.vehicleSpawnDeltaFromBottom),
+      ),
+      scale: Vector2.all(Constants.vehicleScale),
     );
+    _log.info('Adding vehicle to world');
     world.add(vehicle);
+  }
+
+  void onUpdateOnTick() {
+    leftSpawnPoint = Vector2(
+      0.0,
+      getRandomDouble(
+        Constants.minimumBuildingSpawnArea,
+        Constants.maximumBuildingSpawnArea,
+      ),
+    );
+    rightSpawnPoint = Vector2(
+      size.x,
+      getRandomDouble(
+        Constants.minimumBuildingSpawnArea,
+        Constants.maximumBuildingSpawnArea,
+      ),
+    );
+
+    Building buildingLeft = Building(
+      position: leftSpawnPoint,
+      scale: Vector2.all(Constants.buildingScale),
+    );
+
+    Building buildingRight = Building(
+      position: rightSpawnPoint,
+      scale: Vector2.all(Constants.buildingScale),
+      anchor: Anchor.topRight,
+    );
+
+    Waste leftWaste = Waste(
+      position: leftSpawnPoint + Constants.leftWasteSpawnDelta,
+    );
+    Waste rightWaste = Waste(
+      position: rightSpawnPoint + Constants.rightWasteSpawnDelta,
+    );
+
+    _log.info('Adding left building to world');
+    world.add(buildingLeft);
+    _log.info('Adding right building to world');
+    world.add(buildingRight);
+    _log.info('Adding left waste to world');
+    world.add(leftWaste);
+    _log.info('Adding right waste to world');
+    world.add(rightWaste);
   }
 
   void speedUpGameplay(updateGameSpeed) {
@@ -165,66 +192,38 @@ class Reseacue extends FlameGame {
     roadStripes.parallax?.baseVelocity = baseVelocity;
     leftGrassComponent.parallax?.baseVelocity = baseVelocity;
     rightGrassComponent.parallax?.baseVelocity = baseVelocity;
+    _log.info('Stopping interval timer');
     interval.stop();
+    _log.info('Stopped interval timer successfully');
+    _log.info('Resetting interval timer');
     interval = Timer(
       getBuildingSpawnRate(updateGameSpeed),
       repeat: true,
     );
     interval.onTick = () {
-      leftSpawnPoint = Vector2(
-        0.0,
-        getRandomDouble(
-          Constants.minimumBuildingSpawnArea,
-          Constants.maximumBuildingSpawnArea,
-        ),
-      );
-      rightSpawnPoint = Vector2(
-        size.x,
-        getRandomDouble(
-          Constants.minimumBuildingSpawnArea,
-          Constants.maximumBuildingSpawnArea,
-        ),
-      );
-
-      Building buildingLeft = Building(
-        position: leftSpawnPoint,
-        scale: Vector2.all(buildingScale),
-      );
-
-      Building buildingRight = Building(
-        position: rightSpawnPoint,
-        scale: Vector2.all(buildingScale),
-        anchor: Anchor.topRight,
-      );
-
-      Waste leftWaste = Waste(
-        position: leftSpawnPoint + Vector2.all(30.0),
-      );
-      Waste rightWaste = Waste(
-        position: rightSpawnPoint + Vector2(-30.0, 30.0),
-      );
-
-      world.add(buildingLeft);
-      world.add(buildingRight);
-      world.add(leftWaste);
-      world.add(rightWaste);
+      onUpdateOnTick();
     };
     interval.resume();
+    _log.info('Reset interval timer successfully');
   }
 
   @override
   void update(double dt) {
-    if (elapsedTime.elapsed.inSeconds == 30) {
-      speedUpGameplay(1.0);
+    if (elapsedTime.elapsed.inSeconds == Constants.gameSpeedUpTimeLevel1) {
+      _log.info('Increasing game speed to ${Constants.gameSpeedLevel1}');
+      speedUpGameplay(Constants.gameSpeedLevel1);
     }
-    if (elapsedTime.elapsed.inSeconds == 60) {
-      speedUpGameplay(1.5);
+    if (elapsedTime.elapsed.inSeconds == Constants.gameSpeedUpTimeLevel2) {
+      _log.info('Increasing game speed to ${Constants.gameSpeedLevel2}');
+      speedUpGameplay(Constants.gameSpeedLevel2);
     }
-    if (elapsedTime.elapsed.inSeconds == 90) {
-      speedUpGameplay(2.0);
+    if (elapsedTime.elapsed.inSeconds == Constants.gameSpeedUpTimeLevel3) {
+      _log.info('Increasing game speed to ${Constants.gameSpeedLevel3}');
+      speedUpGameplay(Constants.gameSpeedLevel3);
     }
-    if (elapsedTime.elapsed.inSeconds == 120) {
-      speedUpGameplay(2.5);
+    if (elapsedTime.elapsed.inSeconds == Constants.gameSpeedUpTimeLevel4) {
+      _log.info('Increasing game speed to ${Constants.gameSpeedLevel4}');
+      speedUpGameplay(Constants.gameSpeedLevel4);
     }
     interval.update(dt);
     super.update(dt);

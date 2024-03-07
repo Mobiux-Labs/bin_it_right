@@ -31,8 +31,11 @@ void main() {
   SystemChrome.setEnabledSystemUIMode(
     SystemUiMode.immersiveSticky,
   );
+  _log.info('Went full screen successfully');
+
   _log.info('Setting portrait only');
   Flame.device.setPortraitUpOnly();
+  _log.info('Setting portrait only successfully');
 
   runApp(
     App(

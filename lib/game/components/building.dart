@@ -10,6 +10,7 @@ import 'package:reseacue/utils/utils.dart';
 
 class Building extends SpriteComponent
     with HasGameRef<Reseacue>, DragCallbacks {
+  // ignore: unused_field
   final Logger _log = Logger('Building');
 
   Building({
@@ -33,7 +34,7 @@ class Building extends SpriteComponent
   void update(double dt) {
     position.y += Reseacue.gameSpeed;
 
-    if (position.y > game.size.y + 100) {
+    if (position.y > game.size.y + Constants.outOfScreenDeltaToRemoveObject) {
       removeFromParent();
     }
 
