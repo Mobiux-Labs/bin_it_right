@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:reseacue/game/game.dart';
+import 'package:reseacue/overlays/gradient_overlay.dart';
 
 class MainMenu extends StatelessWidget {
   // Reference to parent game.
@@ -14,39 +16,12 @@ class MainMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Color.fromRGBO(
-              53,
-              137,
-              60,
-              1,
-            ),
-            Color.fromRGBO(
-              255,
-              255,
-              255,
-              0,
-            ),
-            Color.fromRGBO(
-              53,
-              137,
-              60,
-              1,
-            ),
-          ],
-        ),
-      ),
-      child: const Column(
+
+    return GradientOverlay(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Padding(
+          const Padding(
             padding: EdgeInsets.all(
               10.0,
             ),
@@ -79,12 +54,18 @@ class MainMenu extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(
+            padding: const EdgeInsets.only(
               bottom: 80,
             ),
-            child: Image(
-              image: AssetImage(
-                startButton,
+            child: GestureDetector(
+              onTap: () {
+                game.overlays.remove('MainMenu');
+                game.overlays.add('Countdown');
+              },
+              child: const Image(
+                image: AssetImage(
+                  startButton,
+                ),
               ),
             ),
           ),

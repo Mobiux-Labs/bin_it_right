@@ -7,9 +7,13 @@ import 'package:reseacue/app/audio/audio_controller.dart';
 import 'package:reseacue/app/settings/persistence/settings_persistence.dart';
 import 'package:reseacue/app/settings/settings.dart';
 import 'package:reseacue/game/game.dart';
+import 'package:reseacue/overlays/countdown.dart';
 import 'package:reseacue/overlays/main_menu.dart';
 import 'package:reseacue/app/ui/splash_screen.dart';
 import 'package:reseacue/constants/constants.dart';
+
+import '../overlays/pause_button.dart';
+import '../overlays/pause_menu.dart';
 
 class App extends StatelessWidget {
   final SettingsPersistence settingsPersistence;
@@ -37,8 +41,18 @@ class App extends StatelessWidget {
             //TODO: Stop gameplay and resume on press of start button
             overlayBuilderMap: {
               'MainMenu': (_, game) => MainMenu(game: game),
+              'Countdown': (_, game) => CountDownOverlay(game: game),
+              PauseButton.ID: (BuildContext context, Reseacue gameRef) =>
+                  PauseButton(
+                    gameRef: gameRef,
+                  ),
+              PauseMenu.ID: (BuildContext context, Reseacue gameRef) =>
+                  PauseMenu(
+                    gameRef: gameRef,
+                  ),
             },
-            initialActiveOverlays: const ['MainMenu'],
+            // initialActiveOverlays: const ['MainMenu'],
+            initialActiveOverlays: const [PauseButton.ID],
           ),
           transitionsBuilder: (context, animation, secondaryAnimation, child) =>
               FadeTransition(opacity: animation, child: child),
