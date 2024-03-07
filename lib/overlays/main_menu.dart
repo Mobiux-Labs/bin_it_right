@@ -1,5 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:reseacue/game/game.dart';
+import 'package:reseacue/overlays/gradient_overlay.dart';
 
 class MainMenu extends StatelessWidget {
   // Reference to parent game.
@@ -14,63 +17,41 @@ class MainMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Color.fromRGBO(
-              53,
-              137,
-              60,
-              1,
-            ),
-            Color.fromRGBO(
-              255,
-              255,
-              255,
-              0,
-            ),
-            Color.fromRGBO(
-              53,
-              137,
-              60,
-              1,
-            ),
-          ],
-        ),
-      ),
-      child: const Column(
+
+    return GradientOverlay(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Padding(
-            padding: EdgeInsets.all(
+           Padding(
+            padding: const EdgeInsets.all(
               10.0,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Image(
+                const Image(
                   image: AssetImage(
                     earthToken,
                   ),
                 ),
                 Row(
                   children: [
-                    Image(
+                    const Image(
                       image: AssetImage(
                         leaderboardIcon,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
-                    Image(
-                      image: AssetImage(
-                        settingsIcon,
+                    GestureDetector(
+                      onTap: (){
+                        game.overlays.add('Settings');
+                      },
+                      child: const Image(
+                        image: AssetImage(
+                          settingsIcon,
+                        ),
                       ),
                     ),
                   ],
@@ -79,12 +60,18 @@ class MainMenu extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(
+            padding: const EdgeInsets.only(
               bottom: 80,
             ),
-            child: Image(
-              image: AssetImage(
-                startButton,
+            child: GestureDetector(
+              onTap: () {
+                game.overlays.remove('MainMenu');
+                game.overlays.add('Countdown');
+              },
+              child: const Image(
+                image: AssetImage(
+                  startButton,
+                ),
               ),
             ),
           ),

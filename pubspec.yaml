@@ -28,3 +28,7 @@ flutter:
     - assets/sfx/
     - assets/music/
     - assets/images/
+  fonts:
+    - family: Digitalt
+      fonts:
+        - asset: fonts/Digitalt.ttf

@@ -55,4 +55,9 @@ class AssetConstants {
   static const String vehicleSIdle = 'idle_vehicle.png';
   static const String vehicleSMoving1 = 'moving_vehicle_1.png';
   static const String vehicleSMoving2 = 'moving_vehicle_2.png';
+
+  static const String earthToken = 'earth_token_icon.png';
+  static const String leaderboard = 'leaderboard_icon.png';
+  static const String pause = 'pause_icon.png';
+  static const String settings = 'settings_icon.png';
 }
