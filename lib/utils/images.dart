@@ -87,3 +87,21 @@ List<String> getBuildingVariationImages() {
 
   return [...images];
 }
+
+List<Sprite> getIdleVehicleAnimationSprites() {
+  _log.info('Generating idle vehicle animation sprites list');
+  List<Sprite> sprites = [Sprite(Flame.images.fromCache('idle_vehicle.png'))];
+  _log.info('Generated idle vehicle animation sprites list successfully');
+
+  return [...sprites];
+}
+
+List<Sprite> getMovingVehicleAnimationSprites() {
+  _log.info('Generating moving vehicle animation sprites list');
+  List<Sprite> sprites = [
+    ...getDynamicRangeSpriteList(1, 2, ['moving_vehicle_', '.png'], 1),
+  ];
+  _log.info('Generated moving vehicle animation sprites list successfully');
+
+  return [...sprites];
+}
