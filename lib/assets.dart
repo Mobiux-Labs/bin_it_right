@@ -15,6 +15,7 @@ const List<String> wasteVariations = [
 ];
 
 List<String> sprites = [
+  AssetConstants.splashScreen,
   ...getBuildingVariationImages(),
   ...getIdleGiftAnimationImages(),
   ...getOpeningGiftAnimationImages(),
@@ -27,6 +28,8 @@ List<String> sprites = [
 
 class AssetConstants {
   AssetConstants._();
+
+  static const String splashScreen = 'splash_screen.png';
 
   static const String wetWaste = 'wet_waste.png';
   static const String dryWaste = 'dry_waste.png';

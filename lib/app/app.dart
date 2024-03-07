@@ -1,3 +1,4 @@
+import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -5,7 +6,8 @@ import 'package:reseacue/app/app_lifecycle/app_lifecycle.dart';
 import 'package:reseacue/app/audio/audio_controller.dart';
 import 'package:reseacue/app/settings/persistence/settings_persistence.dart';
 import 'package:reseacue/app/settings/settings.dart';
-import 'package:reseacue/app/ui/main_menu.dart';
+import 'package:reseacue/game/game.dart';
+import 'package:reseacue/overlays/main_menu.dart';
 import 'package:reseacue/app/ui/splash_screen.dart';
 import 'package:reseacue/constants/constants.dart';
 
@@ -30,7 +32,14 @@ class App extends StatelessWidget {
         path: Path.mainMenu,
         pageBuilder: (context, state) => CustomTransitionPage<void>(
           key: state.pageKey,
-          child: const MainMenu(),
+          child: GameWidget<Reseacue>.controlled(
+            gameFactory: Reseacue.new,
+            //TODO: Stop gameplay and resume on press of start button
+            overlayBuilderMap: {
+              'MainMenu': (_, game) => MainMenu(game: game),
+            },
+            initialActiveOverlays: const ['MainMenu'],
+          ),
           transitionsBuilder: (context, animation, secondaryAnimation, child) =>
               FadeTransition(opacity: animation, child: child),
         ),

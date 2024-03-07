@@ -36,7 +36,7 @@ class Constants {
   static const String utilsNumberLoggerKey = 'utils/number.dart';
   static const String utilsImagesLoggerKey = 'utils/images.dart';
   static const String appLifecycleObserverLoggerKey = 'AppLifecycleObserver';
-  static const String mainMenuLoggerKey = 'main_menu.dart';
+  static const String mainMenuLoggerKey = 'start_menu.dart';
   static const String audioControllerLoggerKey = 'AudioController';
   static const String wasteLoggerKey = 'Waste';
   static const String vehicleLoggerKey = 'Vehicle';
