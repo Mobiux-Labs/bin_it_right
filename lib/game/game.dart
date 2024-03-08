@@ -231,9 +231,9 @@ class Reseacue extends FlameGame {
     if (elapsedTime.elapsed.inSeconds == Constants.gameSpeedUpTimeLevel4) {
       _log.info('Increasing game speed to ${Constants.gameSpeedLevel4}');
       speedUpGameplay(Constants.gameSpeedLevel4);
-      // }
-      interval.update(dt);
-      super.update(dt);
     }
+
+    interval.update(dt);
+    super.update(dt);
   }
 }
