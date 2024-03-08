@@ -73,7 +73,7 @@ List<Sprite> getOpeningGiftAnimationSprites() {
   List<Sprite> sprites = [
     ...getDynamicRangeSpriteList(147, 218, ['Comp_1_00', '.png'], 1),
   ];
-  _log.info('Generated openinig gift animation sprites list successfully');
+  _log.info('Generated opening gift animation sprites list successfully');
 
   return [...sprites];
 }
@@ -130,6 +130,26 @@ List<Sprite> getIdleWasteAnimationSpritesByTypeAndCount(
     ...getDynamicRangeSpriteList(1, 2, [template, '$count.png'], 1),
   ];
   _log.info('Generated idle waste animation sprites list successfully');
+
+  return [...sprites];
+}
+
+List<String> getWasteDropAnimationImages() {
+  _log.info('Generating waste drop animation images list');
+  List<String> frames = [
+    ...getDynamicRangeStringList(1, 9, ['drop_', '.png'], 1),
+  ];
+  _log.info('Generated waste drop animation images list successfully');
+
+  return [...frames];
+}
+
+List<Sprite> getWasteDropAnimationSprites() {
+  _log.info('Generating waste drop animation sprites list');
+  List<Sprite> sprites = [
+    ...getDynamicRangeSpriteList(1, 9, ['drop_', '.png'], 1),
+  ];
+  _log.info('Generated waste drop animation sprites list successfully');
 
   return [...sprites];
 }

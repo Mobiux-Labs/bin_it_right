@@ -4,11 +4,13 @@ import 'dart:math';
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flame/events.dart';
+import 'package:flame/sprite.dart';
 import 'package:flutter/animation.dart';
 import 'package:logging/logging.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
 import 'package:reseacue/utils/images.dart';
+import 'package:reseacue/utils/utils.dart';
 
 enum WasteType {
   wet,
@@ -40,6 +42,8 @@ class Waste extends SpriteAnimationComponent
   late double dryWasteTopBound;
   late double dryWasteRightBound;
   late double dryWasteBottomBound;
+
+  late final SpriteAnimationTicker _animationTicker;
 
   @override
   FutureOr<void> onLoad() {
@@ -87,6 +91,18 @@ class Waste extends SpriteAnimationComponent
     super.onDragUpdate(event);
   }
 
+  void successfultDrop() {
+    animation = SpriteAnimation.spriteList(
+      getWasteDropAnimationSprites(),
+      stepTime: Constants.dropWasteAnimationStepTime,
+      loop: false,
+    );
+    _animationTicker = animation?.createTicker() as SpriteAnimationTicker;
+    _animationTicker.onComplete = () {
+      removeFromParent();
+    };
+  }
+
   @override
   void onDragEnd(DragEndEvent event) {
     _log.info('Drag ended');
@@ -98,7 +114,7 @@ class Waste extends SpriteAnimationComponent
           position.y > wetWasteTopBound &&
           position.x > wetWasteLeftBound &&
           position.y < wetWasteBottomBound) {
-        removeFromParent();
+        successfultDrop();
       } else {
         add(
           MoveEffect.to(
@@ -116,7 +132,7 @@ class Waste extends SpriteAnimationComponent
           position.y > dryWasteTopBound &&
           position.x > dryWasteLeftBound &&
           position.y < dryWasteBottomBound) {
-        removeFromParent();
+        successfultDrop();
       } else {
         add(
           MoveEffect.to(
@@ -148,6 +164,7 @@ class Waste extends SpriteAnimationComponent
       removeFromParent();
     }
 
+    _animationTicker.update(dt);
     super.update(dt);
   }
 }
