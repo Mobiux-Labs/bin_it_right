@@ -43,7 +43,7 @@ class Waste extends SpriteAnimationComponent
   late double dryWasteRightBound;
   late double dryWasteBottomBound;
 
-  late final SpriteAnimationTicker _animationTicker;
+  late SpriteAnimationTicker _animationTicker;
 
   @override
   FutureOr<void> onLoad() {
@@ -54,6 +54,8 @@ class Waste extends SpriteAnimationComponent
       stepTime: Constants.idleWasteAnimationStepTime,
       loop: true,
     );
+
+    _animationTicker = animation?.createTicker() as SpriteAnimationTicker;
 
     anchor = Anchor.center;
 
@@ -92,6 +94,7 @@ class Waste extends SpriteAnimationComponent
   }
 
   void successfultDrop() {
+    scale = Vector2.all(Constants.dropWasteAnimationScale);
     animation = SpriteAnimation.spriteList(
       getWasteDropAnimationSprites(),
       stepTime: Constants.dropWasteAnimationStepTime,
