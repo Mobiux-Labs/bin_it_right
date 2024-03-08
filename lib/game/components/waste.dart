@@ -4,27 +4,30 @@ import 'dart:math';
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flame/events.dart';
-import 'package:flame/flame.dart';
 import 'package:flutter/animation.dart';
 import 'package:logging/logging.dart';
-import 'package:reseacue/assets.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
+import 'package:reseacue/utils/images.dart';
+import 'package:reseacue/utils/number.dart';
 
 enum WasteType {
   wet,
   dry,
 }
 
-class Waste extends SpriteComponent with HasGameRef<Reseacue>, DragCallbacks {
+class Waste extends SpriteAnimationComponent
+    with HasGameRef<Reseacue>, DragCallbacks {
   final Logger _log = Logger(Constants.wasteLoggerKey);
 
   WasteType? type;
+  int count;
 
   Waste({
     required super.position,
     super.scale,
-  }) : type = Random().nextBool() ? WasteType.wet : WasteType.dry;
+  })  : type = Random().nextBool() ? WasteType.wet : WasteType.dry,
+        count = getRandomIntegrerInRange(1, 4);
 
   bool tapped = false;
   late Vector2 spawnedPosition;
@@ -33,13 +36,12 @@ class Waste extends SpriteComponent with HasGameRef<Reseacue>, DragCallbacks {
   FutureOr<void> onLoad() {
     spawnedPosition = position.clone();
 
-    sprite = Sprite(
-      Flame.images.fromCache(
-        type == WasteType.wet
-            ? AssetConstants.wetWaste
-            : AssetConstants.dryWaste,
-      ),
+    animation = SpriteAnimation.spriteList(
+      getIdleWasteAnimationSpritesByTypeAndCount(type as WasteType, count),
+      stepTime: Constants.movingVehicleAnimationStepTime,
+      loop: true,
     );
+
     anchor = Anchor.center;
   }
 

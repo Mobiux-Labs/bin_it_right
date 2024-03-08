@@ -19,6 +19,13 @@ double getRandomDouble(num start, num end) {
   return randomDouble;
 }
 
+int getRandomIntegrerInRange(int start, int end) {
+  _log.info('Generating random integer in range $start -> $end');
+  int randomInteger = (getRandomDouble(start, end)).toInt();
+  _log.info('Generated random integer successfully');
+  return randomInteger;
+}
+
 double getFromRange(
     input, inputMinimum, inputMaximum, outputMinimum, outputMaximum) {
   _log.info(
