@@ -6,6 +6,7 @@ import 'package:flame/game.dart';
 import 'package:logging/logging.dart';
 import 'package:reseacue/assets.dart';
 import 'package:reseacue/constants/constants.dart';
+import 'package:reseacue/game/components/arc.dart';
 import 'package:reseacue/game/components/building.dart';
 import 'package:flame/parallax.dart';
 import 'package:flutter/cupertino.dart';
@@ -48,6 +49,14 @@ class Reseacue extends FlameGame {
   late Vehicle vehicle;
 
   List<WasteType> wasteCollectedOrder = [];
+
+  ArcComponent arc = ArcComponent(
+    leftTop: Vector2.all(0.0),
+    rightTop: Vector2.all(0.0),
+    leftBottom: Vector2.all(0.0),
+    rightBottom: Vector2.all(0.0),
+    type: WasteType.wet,
+  );
 
   @override
   FutureOr<void> onLoad() async {
@@ -141,6 +150,23 @@ class Reseacue extends FlameGame {
     );
     _log.info('Adding vehicle to world');
     world.add(vehicle);
+  }
+
+  void drawPath(Vector2 leftTop, Vector2 rightTop, Vector2 leftBottom,
+      Vector2 rightBottom, WasteType type) {
+    arc = ArcComponent(
+      leftTop: leftTop,
+      rightTop: rightTop,
+      leftBottom: leftBottom,
+      rightBottom: rightBottom,
+      type: type,
+    );
+
+    world.add(arc);
+  }
+
+  void removeArc() {
+    arc.removeFromParent();
   }
 
   void onUpdateOnTick() {

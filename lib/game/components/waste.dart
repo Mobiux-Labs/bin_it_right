@@ -89,8 +89,36 @@ class Waste extends SpriteAnimationComponent
 
   @override
   void onDragUpdate(DragUpdateEvent event) {
-    position = position + event.localDelta;
-    super.onDragUpdate(event);
+    try {
+      if ((position.y >
+              game.size.y + (Constants.outOfScreenDeltaToRemoveObject / 2)) ||
+          (spawnedPosition.y >
+              game.size.y + (Constants.outOfScreenDeltaToRemoveObject / 2))) {
+        _log.info('Removing waste from parent');
+      }
+
+      position = position + event.localDelta;
+      game.removeArc();
+      game.drawPath(
+        Vector2(position.x - size.x / 4, position.y),
+        Vector2(position.x + size.x / 4, position.y),
+        Vector2(game.vehicle.x - game.vehicle.width / 3,
+            type == WasteType.wet ? wetWasteTopBound : dryWasteTopBound),
+        Vector2(game.vehicle.x + game.vehicle.width / 3,
+            type == WasteType.wet ? wetWasteTopBound : dryWasteTopBound),
+        type as WasteType,
+      );
+      super.onDragUpdate(event);
+    } catch (e) {
+      game.removeArc();
+      _log.info('Waste already removed');
+    }
+  }
+
+  @override
+  void onDragCancel(DragCancelEvent event) {
+    game.removeArc();
+    super.onDragCancel(event);
   }
 
   void successfultDrop(WasteType type) {
@@ -111,6 +139,8 @@ class Waste extends SpriteAnimationComponent
   void onDragEnd(DragEndEvent event) {
     _log.info('Drag ended');
     tapped = false;
+
+    game.removeArc();
 
     if (type == WasteType.wet) {
       if ((position.x - width) <
