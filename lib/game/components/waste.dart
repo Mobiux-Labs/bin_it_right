@@ -11,6 +11,7 @@ import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
 import 'package:reseacue/utils/images.dart';
 import 'package:reseacue/utils/utils.dart';
+import 'package:vibration/vibration.dart';
 
 enum WasteType {
   wet,
@@ -135,6 +136,12 @@ class Waste extends SpriteAnimationComponent
     };
   }
 
+  Future<void> vibrate() async {
+    if (game.hasVibration != null || game.hasVibration == true) {
+      Vibration.vibrate(pattern: [30, 100, 30, 100]);
+    }
+  }
+
   @override
   void onDragEnd(DragEndEvent event) {
     _log.info('Drag ended');
@@ -150,6 +157,7 @@ class Waste extends SpriteAnimationComponent
           position.y < wetWasteBottomBound) {
         successfultDrop(WasteType.wet);
       } else {
+        vibrate();
         add(
           MoveEffect.to(
             spawnedPosition,
@@ -168,6 +176,7 @@ class Waste extends SpriteAnimationComponent
           position.y < dryWasteBottomBound) {
         successfultDrop(WasteType.dry);
       } else {
+        vibrate();
         add(
           MoveEffect.to(
             spawnedPosition,
