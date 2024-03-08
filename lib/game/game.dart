@@ -13,6 +13,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:reseacue/game/components/vehicle.dart';
 import 'package:reseacue/game/components/waste.dart';
 import 'package:reseacue/utils/utils.dart';
+import 'package:vibration/vibration.dart';
 
 class Reseacue extends FlameGame {
   final Logger _log = Logger(Constants.gameLoggerKey);
@@ -58,11 +59,15 @@ class Reseacue extends FlameGame {
     type: WasteType.wet,
   );
 
+  late bool? hasVibration;
+
   @override
   FutureOr<void> onLoad() async {
     _log.info('Loading assets');
     await Flame.images.loadAll(sprites);
     _log.info('Loaded all assets successfully');
+
+    hasVibration = await Vibration.hasVibrator();
 
     _log.info('Starting elapsed time stopwatch');
     elapsedTime.start();
