@@ -114,7 +114,7 @@ class EarthTokens extends StatelessWidget {
                 ),
                 child: Text(
                   earthPoints.toString(),
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 27,
                     color: textColor,
                     fontFamily: 'Digitalt',
