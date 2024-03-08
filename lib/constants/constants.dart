@@ -22,7 +22,7 @@ class Constants {
   static const int buildingVariations = 18;
 
   static const double outOfScreenDeltaToRemoveObject = 100.0;
-  static const double wasteRepositionAnimationSpeed = 0.1;
+  static const double wasteRepositionAnimationSpeed = 0.2;
 
   static const double giftAnimationStepTime = 0.3;
   static const double giftAnimationScale = 0.5;
