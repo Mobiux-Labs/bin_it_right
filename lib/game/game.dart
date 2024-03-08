@@ -44,7 +44,10 @@ class Reseacue extends FlameGame {
   late Vector2 leftSpawnPoint;
   late Vector2 rightSpawnPoint;
 
+  VehicleState vehicleState = VehicleState.idle;
   late Vehicle vehicle;
+
+  List<WasteType> wasteCollectedOrder = [];
 
   @override
   FutureOr<void> onLoad() async {
@@ -188,6 +191,26 @@ class Reseacue extends FlameGame {
       _log.info('Adding right waste to world');
       world.add(rightWaste);
     }
+  }
+
+  void updateWasteCollectedSequence(WasteType type) {
+    if (wasteCollectedOrder.isEmpty) {
+      wasteCollectedOrder.add(type);
+      changeVehicleAnimation(type == WasteType.wet
+          ? VehicleState.wetWaste
+          : VehicleState.dryWaste);
+      return;
+    } else if (wasteCollectedOrder.length == 1) {
+      wasteCollectedOrder.add(type);
+      changeVehicleAnimation(VehicleState.bothWaste);
+      return;
+    } else {
+      return;
+    }
+  }
+
+  void changeVehicleAnimation(VehicleState state) {
+    vehicle.changeAnimationByState(state);
   }
 
   void speedUpGameplay(updateGameSpeed) {

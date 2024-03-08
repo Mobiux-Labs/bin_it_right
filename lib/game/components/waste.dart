@@ -93,7 +93,8 @@ class Waste extends SpriteAnimationComponent
     super.onDragUpdate(event);
   }
 
-  void successfultDrop() {
+  void successfultDrop(WasteType type) {
+    game.updateWasteCollectedSequence(type);
     scale = Vector2.all(Constants.dropWasteAnimationScale);
     animation = SpriteAnimation.spriteList(
       getWasteDropAnimationSprites(),
@@ -117,7 +118,7 @@ class Waste extends SpriteAnimationComponent
           position.y > wetWasteTopBound &&
           position.x > wetWasteLeftBound &&
           position.y < wetWasteBottomBound) {
-        successfultDrop();
+        successfultDrop(WasteType.wet);
       } else {
         add(
           MoveEffect.to(
@@ -135,7 +136,7 @@ class Waste extends SpriteAnimationComponent
           position.y > dryWasteTopBound &&
           position.x > dryWasteLeftBound &&
           position.y < dryWasteBottomBound) {
-        successfultDrop();
+        successfultDrop(WasteType.dry);
       } else {
         add(
           MoveEffect.to(
