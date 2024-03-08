@@ -26,8 +26,8 @@ class Waste extends SpriteAnimationComponent
   Waste({
     required super.position,
     super.scale,
-  })  : type = Random().nextBool() ? WasteType.wet : WasteType.dry,
-        count = getRandomIntegrerInRange(1, 4);
+    required this.count,
+  }) : type = Random().nextBool() ? WasteType.wet : WasteType.dry;
 
   bool tapped = false;
   late Vector2 spawnedPosition;

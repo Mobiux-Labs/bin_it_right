@@ -165,21 +165,27 @@ class Reseacue extends FlameGame {
       anchor: Anchor.topRight,
     );
 
-    Waste leftWaste = Waste(
-      position: leftSpawnPoint + Constants.leftWasteSpawnDelta,
-    );
-    Waste rightWaste = Waste(
-      position: rightSpawnPoint + Constants.rightWasteSpawnDelta,
-    );
-
     _log.info('Adding left building to world');
     world.add(buildingLeft);
     _log.info('Adding right building to world');
     world.add(buildingRight);
-    _log.info('Adding left waste to world');
-    world.add(leftWaste);
-    _log.info('Adding right waste to world');
-    world.add(rightWaste);
+
+    int count = getRandomIntegrerInRange(1, 4);
+
+    for (int countToRender = 1; countToRender <= count; countToRender++) {
+      Waste leftWaste = Waste(
+        position: leftSpawnPoint + Constants.leftWasteSpawnDelta,
+        count: countToRender,
+      );
+      Waste rightWaste = Waste(
+        position: rightSpawnPoint + Constants.rightWasteSpawnDelta,
+        count: countToRender,
+      );
+      _log.info('Adding left waste to world');
+      world.add(leftWaste);
+      _log.info('Adding right waste to world');
+      world.add(rightWaste);
+    }
   }
 
   void speedUpGameplay(updateGameSpeed) {
