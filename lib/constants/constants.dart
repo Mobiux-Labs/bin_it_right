@@ -17,7 +17,7 @@ class Constants {
   static const double maximumVelocity = -299.41;
 
   static const double minimumBuildingSpawnRate = 3.0;
-  static const double maximumBuildingSpawnRate = 0.6;
+  static const double maximumBuildingSpawnRate = 0.8;
 
   static const int buildingVariations = 18;
 

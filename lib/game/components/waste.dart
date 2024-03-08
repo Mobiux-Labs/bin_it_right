@@ -9,7 +9,6 @@ import 'package:logging/logging.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
 import 'package:reseacue/utils/images.dart';
-import 'package:reseacue/utils/number.dart';
 
 enum WasteType {
   wet,
