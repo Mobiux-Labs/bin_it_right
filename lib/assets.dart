@@ -18,11 +18,6 @@ const List<String> grassVariations = [
   AssetConstants.rightGrass,
 ];
 
-const List<String> wasteVariations = [
-  AssetConstants.wetWaste,
-  AssetConstants.dryWaste,
-];
-
 List<String> sprites = [
   AssetConstants.splashScreen,
   ...getBuildingVariationImages(),
@@ -32,7 +27,7 @@ List<String> sprites = [
   ...idleVehicleS,
   ...movingVehicleS,
   ...grassVariations,
-  ...wasteVariations,
+  ...getWasteVariationImages(),
   AssetConstants.road,
   AssetConstants.roadStripes,
 ];
