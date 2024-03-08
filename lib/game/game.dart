@@ -44,6 +44,8 @@ class Reseacue extends FlameGame {
   late Vector2 leftSpawnPoint;
   late Vector2 rightSpawnPoint;
 
+  late Vehicle vehicle;
+
   @override
   FutureOr<void> onLoad() async {
     _log.info('Loading assets');
@@ -128,7 +130,7 @@ class Reseacue extends FlameGame {
     };
 
     _log.info('Initializing vehicle');
-    Vehicle vehicle = Vehicle(
+    vehicle = Vehicle(
       position: Vector2(
         size.x / 2,
         size.y - (size.y / Constants.vehicleSpawnDeltaFromBottom),
@@ -229,8 +231,9 @@ class Reseacue extends FlameGame {
     if (elapsedTime.elapsed.inSeconds == Constants.gameSpeedUpTimeLevel4) {
       _log.info('Increasing game speed to ${Constants.gameSpeedLevel4}');
       speedUpGameplay(Constants.gameSpeedLevel4);
+      // }
+      interval.update(dt);
+      super.update(dt);
     }
-    interval.update(dt);
-    super.update(dt);
   }
 }
