@@ -30,7 +30,7 @@ class MainMenu extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 EarthTokens(
-                  earthPoints: 0,
+                  earthPoints: "0",
                 ),
                 Row(
                   children: [

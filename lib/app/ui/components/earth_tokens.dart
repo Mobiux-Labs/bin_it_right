@@ -8,7 +8,7 @@ class EarthTokens extends StatelessWidget {
     required this.earthPoints,
   });
 
-  int earthPoints = 0;
+  String earthPoints = "";
   static const double containerHeight = 50;
   static const double containerWidth = 130;
   static const double shadowContainerHeight = 44;
@@ -32,6 +32,8 @@ class EarthTokens extends StatelessWidget {
     255,
     1,
   );
+
+  static const Color shineColor = Color.fromRGBO(212, 175, 19, 0.5,);
 
   static BorderRadius borderRadius = BorderRadius.circular(
     10,
@@ -71,12 +73,26 @@ class EarthTokens extends StatelessWidget {
               ],
             ),
           ),
-          Container(
-            height: shadowContainerHeight,
-            width: shadowContainerWidth,
-            decoration: BoxDecoration(
-              borderRadius: borderRadius,
-              color: shadowContainerColor,
+          ClipPath(
+            clipper: ClipContainer(),
+            child: Container(
+              height: shadowContainerHeight,
+              width: shadowContainerWidth,
+              decoration: BoxDecoration(
+                borderRadius: borderRadius,
+                color: shadowContainerColor,
+              ),
+            ),
+          ),
+          ClipPath(
+            clipper: ClipContainer2(),
+            child: Container(
+              height: shadowContainerHeight,
+              width: shadowContainerWidth,
+              decoration: BoxDecoration(
+                borderRadius: borderRadius,
+                color: shineColor,
+              ),
             ),
           ),
           Row(
@@ -113,4 +129,39 @@ class EarthTokens extends StatelessWidget {
       ),
     );
   }
+}
+
+class ClipContainer2 extends CustomClipper<Path>{
+  @override
+  Path getClip(Size size) {
+    var path =Path();
+    path.lineTo(45.0, 0.0);
+    path.lineTo(60.0, size.height - 0.5);
+    path.lineTo(0.0, size.height - 0.5);
+    path.lineTo(0.0, 0.0);
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
+
+}
+
+class ClipContainer extends CustomClipper<Path>{
+  @override
+  Path getClip(Size size) {
+ var path =Path();
+ path.lineTo(45.0, 0.0);
+ path.lineTo(size.width, 0.0);
+ path.lineTo(size.width, size.height);
+ path.lineTo(0.0, size.height);
+ path.lineTo(0.0, 0.0);
+ path.close();
+ return path;
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
+  
 }
