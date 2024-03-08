@@ -21,6 +21,7 @@ const List<String> grassVariations = [
 List<String> sprites = [
   AssetConstants.splashScreen,
   ...getBuildingVariationImages(),
+  ...getWasteDropAnimationImages(),
   ...getIdleGiftAnimationImages(),
   ...getOpeningGiftAnimationImages(),
   ...vehicles,
