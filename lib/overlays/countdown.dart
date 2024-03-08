@@ -12,6 +12,6 @@ class CountDownOverlay extends StatelessWidget {
     return GradientOverlay(child: GestureDetector(onTap:(){
       game.overlays.remove('Countdown');
       //TODO: Add countdown animation here
-    },child: Center(child: Text('GO!'))));
+    },child: const Center(child: Text('GO!'))));
   }
 }

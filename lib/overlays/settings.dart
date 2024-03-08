@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:reseacue/overlays/overlay_container.dart';
-import 'package:reseacue/overlays/reset.dart';
 
 import '../game/game.dart';
 

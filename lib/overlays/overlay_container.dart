@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 
 class OverlayContainer extends StatelessWidget {
-  OverlayContainer({super.key, required this.child, required this.heading,required this.width, required this.height,});
-String heading;
+  OverlayContainer({
+    super.key,
+    required this.child,
+    required this.heading,
+    required this.width,
+    required this.height,
+  });
+
+  String heading;
   Widget child;
   double height;
   double width;
@@ -48,7 +55,7 @@ String heading;
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-               Padding(
+              Padding(
                 padding: const EdgeInsets.only(
                   top: 30.0,
                 ),
@@ -89,3 +96,5 @@ String heading;
     );
   }
 }
+
+//

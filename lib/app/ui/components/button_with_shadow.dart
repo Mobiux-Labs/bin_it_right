@@ -6,8 +6,10 @@ class ButtonWithShadow extends StatelessWidget {
   Color containerColor;
   Color shadowContainerColor;
   Color shineColor;
+  EdgeInsets padding;
 
-   ButtonWithShadow({super.key, required this.buttonText,required this.shadowContainerColor, required this.containerColor,required this.shineColor,});
+
+   ButtonWithShadow({super.key, required this.buttonText,required this.shadowContainerColor, required this.containerColor,required this.shineColor,required this.padding});
 
   static const Color textColor = Color.fromRGBO(
     255,
@@ -75,13 +77,10 @@ class ButtonWithShadow extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(
-            left: containerWidth/3.3,
-            top: 10,
-          ),
-          child: const Text(
-            'START',
-            style: TextStyle(
+          padding: padding,
+          child: Text(
+            buttonText,
+            style: const TextStyle(
               fontSize: 30,
               color: textColor,
               fontFamily: 'Digitalt',

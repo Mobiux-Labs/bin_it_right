@@ -1,8 +1,12 @@
+import 'dart:ffi';
+
+import 'package:flame/extensions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:reseacue/app/ui/components/button_with_shadow.dart';
 import 'package:reseacue/app/ui/components/earth_tokens.dart';
+import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
 import 'package:reseacue/overlays/gradient_overlay.dart';
 
@@ -69,23 +73,12 @@ class MainMenu extends StatelessWidget {
               },
               child: ButtonWithShadow(
                 buttonText: 'START',
-                shadowContainerColor: const Color.fromRGBO(
-                  255,
-                  91,
-                  36,
-                  1,
-                ),
-                containerColor: const Color.fromRGBO(
-                  204,
-                  37,
-                  0,
-                  1,
-                ),
-                shineColor: const Color.fromRGBO(
-                  204,
-                  37,
-                  0,
-                  0.5,
+                shadowContainerColor: Constants.redButtonShadowContainerColor,
+                containerColor: Constants.redButtonContainerColor,
+                shineColor: Constants.redButtonShineColor,
+                padding: EdgeInsets.only(
+                  left: 50,
+                  top: 10.0,
                 ),
               ),
             ),

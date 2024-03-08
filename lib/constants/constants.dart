@@ -71,4 +71,42 @@ class Constants {
   static const double gameSpeedLevel2 = 1.5;
   static const double gameSpeedLevel3 = 2.0;
   static const double gameSpeedLevel4 = 2.5;
+
+  static const Color greenButtonContainerColor = Color.fromRGBO(
+    147,
+    173,
+    43,
+    1,
+  );
+  static const Color greenButtonShadowContainerColor = Color.fromRGBO(
+    185,
+    195,
+    65,
+    1,
+  );
+  static const Color greenButtonShineColor = Color.fromRGBO(
+    147,
+    173,
+    43,
+    0.5,
+  );
+
+  static const Color redButtonContainerColor = Color.fromRGBO(
+    204,
+    37,
+    0,
+    1,
+  );
+  static const Color redButtonShadowContainerColor =  Color.fromRGBO(
+    255,
+    91,
+    36,
+    1,
+  );
+  static const Color redButtonShineColor = Color.fromRGBO(
+    204,
+    37,
+    0,
+    0.5,
+  );
 }
