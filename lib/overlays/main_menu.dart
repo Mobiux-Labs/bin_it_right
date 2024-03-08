@@ -76,7 +76,7 @@ class MainMenu extends StatelessWidget {
                 shadowContainerColor: Constants.redButtonShadowContainerColor,
                 containerColor: Constants.redButtonContainerColor,
                 shineColor: Constants.redButtonShineColor,
-                padding: EdgeInsets.only(
+                padding: const EdgeInsets.only(
                   left: 50,
                   top: 10.0,
                 ),
