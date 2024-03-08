@@ -137,7 +137,7 @@ List<Sprite> getIdleWasteAnimationSpritesByTypeAndCount(
 List<String> getWasteDropAnimationImages() {
   _log.info('Generating waste drop animation images list');
   List<String> frames = [
-    ...getDynamicRangeStringList(1, 9, ['drop_', '.png'], 1),
+    ...getDynamicRangeStringList(1, 9, ['trash_drop_', '.png'], 1),
   ];
   _log.info('Generated waste drop animation images list successfully');
 
@@ -147,7 +147,7 @@ List<String> getWasteDropAnimationImages() {
 List<Sprite> getWasteDropAnimationSprites() {
   _log.info('Generating waste drop animation sprites list');
   List<Sprite> sprites = [
-    ...getDynamicRangeSpriteList(1, 9, ['drop_', '.png'], 1),
+    ...getDynamicRangeSpriteList(1, 9, ['trash_drop_', '.png'], 1),
   ];
   _log.info('Generated waste drop animation sprites list successfully');
 
