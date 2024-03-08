@@ -38,7 +38,7 @@ class Waste extends SpriteAnimationComponent
 
     animation = SpriteAnimation.spriteList(
       getIdleWasteAnimationSpritesByTypeAndCount(type as WasteType, count),
-      stepTime: Constants.movingVehicleAnimationStepTime,
+      stepTime: Constants.idleWasteAnimationStepTime,
       loop: true,
     );
 
