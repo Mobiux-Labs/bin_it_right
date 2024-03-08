@@ -107,6 +107,36 @@ List<Sprite> getMovingVehicleAnimationSprites() {
   return [...sprites];
 }
 
+List<Sprite> getWetWasteMovingVehicleAnimationSprites() {
+  _log.info('Generating wet waste vehicle animation sprites list');
+  List<Sprite> sprites = [
+    ...getDynamicRangeSpriteList(1, 2, ['wet_waste_vehicle_', '.png'], 1),
+  ];
+  _log.info('Generated wet waste vehicle animation sprites list successfully');
+
+  return [...sprites];
+}
+
+List<Sprite> getDryWasteMovingVehicleAnimationSprites() {
+  _log.info('Generating dry waste vehicle animation sprites list');
+  List<Sprite> sprites = [
+    ...getDynamicRangeSpriteList(1, 2, ['dry_waste_vehicle_', '.png'], 1),
+  ];
+  _log.info('Generated dry waste vehicle animation sprites list successfully');
+
+  return [...sprites];
+}
+
+List<Sprite> getBothWasteMovingVehicleAnimationSprites() {
+  _log.info('Generating both waste vehicle animation sprites list');
+  List<Sprite> sprites = [
+    ...getDynamicRangeSpriteList(1, 2, ['both_waste_vehicle_', '.png'], 1),
+  ];
+  _log.info('Generated both waste vehicle animation sprites list successfully');
+
+  return [...sprites];
+}
+
 List<String> getWasteVariationImages() {
   _log.info('Generating waste variation images list');
   List<String> images = [
