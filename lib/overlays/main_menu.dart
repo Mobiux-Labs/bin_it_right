@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:reseacue/app/ui/components/earth_tokens.dart';
 import 'package:reseacue/game/game.dart';
 import 'package:reseacue/overlays/gradient_overlay.dart';
 
@@ -17,22 +18,19 @@ class MainMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return GradientOverlay(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-           Padding(
+          Padding(
             padding: const EdgeInsets.all(
               10.0,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Image(
-                  image: AssetImage(
-                    earthToken,
-                  ),
+                EarthTokens(
+                  earthPoints: 0,
                 ),
                 Row(
                   children: [
@@ -45,7 +43,7 @@ class MainMenu extends StatelessWidget {
                       width: 10,
                     ),
                     GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         game.overlays.add('Settings');
                       },
                       child: const Image(
