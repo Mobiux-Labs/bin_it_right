@@ -66,20 +66,16 @@ class MainMenu extends StatelessWidget {
             padding: const EdgeInsets.only(
               bottom: 80,
             ),
-            child: GestureDetector(
-              onTap: () {
-                game.overlays.remove('MainMenu');
-                game.overlays.add('Countdown');
-              },
-              child: ButtonWithShadow(
-                buttonText: 'START',
-                shadowContainerColor: Constants.redButtonShadowContainerColor,
-                containerColor: Constants.redButtonContainerColor,
-                shineColor: Constants.redButtonShineColor,
-                padding: const EdgeInsets.only(
-                  left: 50,
-                  top: 10.0,
-                ),
+            child: ButtonWithShadow(
+              screenSize: MediaQuery.of(context).size,
+              onTap: () {},
+              buttonText: 'START',
+              shadowContainerColor: Constants.redButtonShadowContainerColor,
+              containerColor: Constants.redButtonContainerColor,
+              shineColor: Constants.redButtonShineColor,
+              padding: const EdgeInsets.only(
+                left: 50,
+                top: 10.0,
               ),
             ),
           ),

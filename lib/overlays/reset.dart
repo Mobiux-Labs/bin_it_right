@@ -23,6 +23,8 @@ class ResetOverlay extends StatelessWidget {
         child: Column(
           children: [
             ButtonWithShadow(
+              screenSize: MediaQuery.of(context).size,
+              onTap: () {},
               buttonText: 'YES',
               shadowContainerColor: Constants.greenButtonShadowContainerColor,
               containerColor: Constants.greenButtonContainerColor,
@@ -36,6 +38,8 @@ class ResetOverlay extends StatelessWidget {
               height: 10,
             ),
             ButtonWithShadow(
+              screenSize: MediaQuery.of(context).size,
+              onTap: () {},
               buttonText: 'NO',
               shadowContainerColor: Constants.redButtonShadowContainerColor,
               containerColor: Constants.redButtonContainerColor,
