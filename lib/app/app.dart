@@ -56,7 +56,7 @@ class App extends StatelessWidget {
               ResetOverlay.id: (_, game) => ResetOverlay(game: game),
               GameOver.id: (_, game) => GameOver(game: game),
             },
-            initialActiveOverlays: const ['MainMenu'],
+            initialActiveOverlays: [MainMenu.id],
             // initialActiveOverlays: const [PauseButton.ID],
           ),
           transitionsBuilder: (context, animation, secondaryAnimation, child) =>
@@ -69,9 +69,9 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    precacheImage(AssetImage("assets/images/countdown_1.png"), context);
-    precacheImage(AssetImage("assets/images/countdown_2.png"), context);
-    precacheImage(AssetImage("assets/images/countdown_3.png"), context);
+    precacheImage(const AssetImage("assets/images/countdown_1.png"), context);
+    precacheImage(const AssetImage("assets/images/countdown_2.png"), context);
+    precacheImage(const AssetImage("assets/images/countdown_3.png"), context);
     return AppLifecycleObserver(
       child: MultiProvider(
         providers: [
