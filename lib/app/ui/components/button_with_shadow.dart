@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class ButtonWithShadow extends StatefulWidget {
   String buttonText;
@@ -42,6 +40,7 @@ class _ButtonWithShadowState extends State<ButtonWithShadow> {
   late double containerWidth;
   late double shadowContainerHeight;
   late double shadowContainerWidth;
+  late double position;
 
   @override
   void initState() {
@@ -49,6 +48,7 @@ class _ButtonWithShadowState extends State<ButtonWithShadow> {
     containerWidth = widget.screenSize.width / 2.2;
     shadowContainerHeight = widget.screenSize.height / 15;
     shadowContainerWidth = widget.screenSize.width / 2.2;
+    position = 10;
     super.initState();
   }
 
@@ -57,73 +57,79 @@ class _ButtonWithShadowState extends State<ButtonWithShadow> {
     return GestureDetector(
       onTapDown: (details) {
         setState(() {
-          containerHeight -= 10;
+          position = 0;
         });
       },
       onTapUp: (details) {
         setState(() {
-          containerHeight += 10;
+          position = 10;
         });
         widget.onTap();
       },
       child: Stack(
         children: [
-          AnimatedContainer(
+          Container(
             height: containerHeight,
             width: containerWidth,
-            duration: const Duration(milliseconds: 30),
             decoration: BoxDecoration(
               borderRadius: borderRadius,
-              color: widget.containerColor,
-              boxShadow: const [
-                BoxShadow(
-                  color: Color.fromRGBO(
-                    0,
-                    0,
-                    0,
-                    0.15,
-                  ),
-                  offset: Offset(
-                    0.0,
-                    1.0,
-                  ), //(x,y)
-                  blurRadius: 10.0,
+              gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  stops: const [
+                    0.2,
+                    0.8,
+                    1
+                  ],
+                  colors: [
+                    Colors.white.withOpacity(0.0),
+                    widget.containerColor,
+                    widget.containerColor
+                  ]),
+            ),
+          ),
+          AnimatedPositioned(
+            duration: const Duration(milliseconds: 30),
+            bottom: position,
+            child: ClipPath(
+              clipper: ClipContainer(),
+              child: Container(
+                height: shadowContainerHeight,
+                width: shadowContainerWidth,
+                decoration: BoxDecoration(
+                  borderRadius: borderRadius,
+                  color: widget.shadowContainerColor,
                 ),
-              ],
-            ),
-          ),
-          ClipPath(
-            clipper: ClipContainer(),
-            child: Container(
-              height: shadowContainerHeight,
-              width: shadowContainerWidth,
-              decoration: BoxDecoration(
-                borderRadius: borderRadius,
-                color: widget.shadowContainerColor,
               ),
             ),
           ),
-          ClipPath(
-            clipper: ClipContainer2(),
-            child: Container(
-              height: shadowContainerHeight,
-              width: shadowContainerWidth,
-              decoration: BoxDecoration(
-                borderRadius: borderRadius,
-                color: widget.shineColor,
+          AnimatedPositioned(
+            duration: const Duration(milliseconds: 30),
+            bottom: position,
+            child: ClipPath(
+              clipper: ClipContainer2(),
+              child: Container(
+                height: shadowContainerHeight,
+                width: shadowContainerWidth,
+                decoration: BoxDecoration(
+                  borderRadius: borderRadius,
+                  color: widget.shineColor,
+                ),
               ),
             ),
           ),
-          Padding(
-            padding: widget.padding,
-            child: Text(
-              widget.buttonText,
-              style: const TextStyle(
-                fontSize: 30,
-                color: textColor,
-                fontFamily: 'Digitalt',
-                fontWeight: FontWeight.w500,
-                decoration: TextDecoration.none,
+          Positioned.fill(
+            bottom: position,
+            child: Center(
+              child: Text(
+                widget.buttonText,
+                style: const TextStyle(
+                  fontSize: 30,
+                  color: textColor,
+                  fontFamily: 'Digitalt',
+                  fontWeight: FontWeight.w500,
+                  decoration: TextDecoration.none,
+                ),
               ),
             ),
           ),
