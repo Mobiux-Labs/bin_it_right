@@ -53,9 +53,9 @@ class App extends StatelessWidget {
                   PauseMenu(
                     gameRef: gameRef,
                   ),
-              'Settings': (_,game) => SettingsMenu(game:game),
-              'Reset': (_,game) => ResetOverlay(game:game),
-              'GameOver': (_,game) => GameOver(game:game),
+              'Settings': (_, game) => SettingsMenu(game: game),
+              'Reset': (_, game) => ResetOverlay(game: game),
+              'GameOver': (_, game) => GameOver(game: game),
             },
             initialActiveOverlays: const ['MainMenu'],
             // initialActiveOverlays: const [PauseButton.ID],
@@ -70,6 +70,9 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    precacheImage(AssetImage("assets/images/countdown_1.png"), context);
+    precacheImage(AssetImage("assets/images/countdown_2.png"), context);
+    precacheImage(AssetImage("assets/images/countdown_3.png"), context);
     return AppLifecycleObserver(
       child: MultiProvider(
         providers: [

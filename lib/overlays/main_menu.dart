@@ -68,7 +68,10 @@ class MainMenu extends StatelessWidget {
             ),
             child: ButtonWithShadow(
               screenSize: MediaQuery.of(context).size,
-              onTap: () {},
+              onTap: () {
+                game.overlays.remove('MainMenu');
+                game.overlays.add('Countdown');
+              },
               buttonText: 'START',
               shadowContainerColor: Constants.redButtonShadowContainerColor,
               containerColor: Constants.redButtonContainerColor,
