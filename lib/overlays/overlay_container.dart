@@ -16,71 +16,96 @@ class OverlayContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return Container(
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
+      decoration: BoxDecoration(
+        color: Colors.black.withOpacity(0.6),
+      ),
       child: Stack(
         children: [
-          Container(
-            height: height+6,
-            width: width,
-            decoration: BoxDecoration(
-              color: const Color.fromRGBO(212, 175, 19, 1,),
-              borderRadius: BorderRadius.circular(
-                10,
-              ),
+          Center(
+            child: Stack(
+              children: [
+                Container(
+                  height: height + 6,
+                  width: width,
+                  decoration: BoxDecoration(
+                    color: const Color.fromRGBO(
+                      212,
+                      175,
+                      19,
+                      1,
+                    ),
+                    borderRadius: BorderRadius.circular(
+                      10,
+                    ),
+                  ),
+                ),
+                Container(
+                  height: height,
+                  width: width,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(
+                      10,
+                    ),
+                    color: const Color.fromRGBO(
+                      251,
+                      206,
+                      19,
+                      1,
+                    ),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          top: 30.0,
+                        ),
+                        child: Text(heading,
+                            style: const TextStyle(
+                              decoration: TextDecoration.none,
+                              fontFamily: 'Digitalt',
+                              color: Color.fromRGBO(
+                                255,
+                                255,
+                                255,
+                                1,
+                              ),
+                              fontWeight: FontWeight.w500,
+                              shadows: [
+                                Shadow(
+                                  blurRadius: 10.0, // shadow blur
+                                  color: Color.fromRGBO(
+                                    0,
+                                    0,
+                                    0,
+                                    0.15,
+                                  ), // shadow color
+                                  offset: Offset(
+                                    2.0,
+                                    2.0,
+                                  ), // how much shadow will be shown
+                                ),
+                              ],
+                              fontSize: 50,
+                            )),
+                      ),
+                      child,
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
-          Container(
-            height: height,
-            width: width,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(
-                10,
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).size.height * 0.04,
               ),
-              color: const Color.fromRGBO(
-                251,
-                206,
-                19,
-                1,
-              ),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                    top: 30.0,
-                  ),
-                  child: Text(heading,
-                      style: const TextStyle(
-                        decoration: TextDecoration.none,
-                        fontFamily: 'Digitalt',
-                        color: Color.fromRGBO(
-                          255,
-                          255,
-                          255,
-                          1,
-                        ),
-                        fontWeight: FontWeight.w500,
-                        shadows: [
-                          Shadow(
-                            blurRadius: 10.0, // shadow blur
-                            color: Color.fromRGBO(
-                              0,
-                              0,
-                              0,
-                              0.15,
-                            ), // shadow color
-                            offset: Offset(
-                              2.0,
-                              2.0,
-                            ), // how much shadow will be shown
-                          ),
-                        ],
-                        fontSize: 50,
-                      )),
-                ),
-                child,
-              ],
+              child: Image.asset('assets/images/close_button.png'),
             ),
           ),
         ],
