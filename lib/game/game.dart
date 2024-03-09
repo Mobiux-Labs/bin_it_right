@@ -6,12 +6,14 @@ import 'package:flame/game.dart';
 import 'package:logging/logging.dart';
 import 'package:reseacue/assets.dart';
 import 'package:reseacue/constants/constants.dart';
+import 'package:reseacue/game/components/arc.dart';
 import 'package:reseacue/game/components/building.dart';
 import 'package:flame/parallax.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:reseacue/game/components/vehicle.dart';
 import 'package:reseacue/game/components/waste.dart';
 import 'package:reseacue/utils/utils.dart';
+import 'package:vibration/vibration.dart';
 
 class Reseacue extends FlameGame {
   final Logger _log = Logger(Constants.gameLoggerKey);
@@ -44,11 +46,28 @@ class Reseacue extends FlameGame {
   late Vector2 leftSpawnPoint;
   late Vector2 rightSpawnPoint;
 
+  VehicleState vehicleState = VehicleState.idle;
+  late Vehicle vehicle;
+
+  List<WasteType> wasteCollectedOrder = [];
+
+  ArcComponent arc = ArcComponent(
+    leftTop: Vector2.all(0.0),
+    rightTop: Vector2.all(0.0),
+    leftBottom: Vector2.all(0.0),
+    rightBottom: Vector2.all(0.0),
+    type: WasteType.wet,
+  );
+
+  late bool? hasVibration;
+
   @override
   FutureOr<void> onLoad() async {
     _log.info('Loading assets');
     await Flame.images.loadAll(sprites);
     _log.info('Loaded all assets successfully');
+
+    hasVibration = await Vibration.hasVibrator();
 
     _log.info('Starting elapsed time stopwatch');
     elapsedTime.start();
@@ -128,7 +147,7 @@ class Reseacue extends FlameGame {
     };
 
     _log.info('Initializing vehicle');
-    Vehicle vehicle = Vehicle(
+    vehicle = Vehicle(
       position: Vector2(
         size.x / 2,
         size.y - (size.y / Constants.vehicleSpawnDeltaFromBottom),
@@ -136,6 +155,23 @@ class Reseacue extends FlameGame {
     );
     _log.info('Adding vehicle to world');
     world.add(vehicle);
+  }
+
+  void drawPath(Vector2 leftTop, Vector2 rightTop, Vector2 leftBottom,
+      Vector2 rightBottom, WasteType type) {
+    arc = ArcComponent(
+      leftTop: leftTop,
+      rightTop: rightTop,
+      leftBottom: leftBottom,
+      rightBottom: rightBottom,
+      type: type,
+    );
+
+    world.add(arc);
+  }
+
+  void removeArc() {
+    arc.removeFromParent();
   }
 
   void onUpdateOnTick() {
@@ -165,21 +201,47 @@ class Reseacue extends FlameGame {
       anchor: Anchor.topRight,
     );
 
-    Waste leftWaste = Waste(
-      position: leftSpawnPoint + Constants.leftWasteSpawnDelta,
-    );
-    Waste rightWaste = Waste(
-      position: rightSpawnPoint + Constants.rightWasteSpawnDelta,
-    );
-
     _log.info('Adding left building to world');
     world.add(buildingLeft);
     _log.info('Adding right building to world');
     world.add(buildingRight);
-    _log.info('Adding left waste to world');
-    world.add(leftWaste);
-    _log.info('Adding right waste to world');
-    world.add(rightWaste);
+
+    int count = getRandomIntegrerInRange(1, 4);
+
+    for (int countToRender = 1; countToRender <= count; countToRender++) {
+      Waste leftWaste = Waste(
+        position: leftSpawnPoint + Constants.leftWasteSpawnDelta,
+        count: countToRender,
+      );
+      Waste rightWaste = Waste(
+        position: rightSpawnPoint + Constants.rightWasteSpawnDelta,
+        count: countToRender,
+      );
+      _log.info('Adding left waste to world');
+      world.add(leftWaste);
+      _log.info('Adding right waste to world');
+      world.add(rightWaste);
+    }
+  }
+
+  void updateWasteCollectedSequence(WasteType type) {
+    if (wasteCollectedOrder.isEmpty) {
+      wasteCollectedOrder.add(type);
+      changeVehicleAnimation(type == WasteType.wet
+          ? VehicleState.wetWaste
+          : VehicleState.dryWaste);
+      return;
+    } else if (wasteCollectedOrder.length == 1) {
+      wasteCollectedOrder.add(type);
+      changeVehicleAnimation(VehicleState.bothWaste);
+      return;
+    } else {
+      return;
+    }
+  }
+
+  void changeVehicleAnimation(VehicleState state) {
+    vehicle.changeAnimationByState(state);
   }
 
   void speedUpGameplay(updateGameSpeed) {
@@ -224,6 +286,7 @@ class Reseacue extends FlameGame {
       _log.info('Increasing game speed to ${Constants.gameSpeedLevel4}');
       speedUpGameplay(Constants.gameSpeedLevel4);
     }
+
     interval.update(dt);
     super.update(dt);
   }

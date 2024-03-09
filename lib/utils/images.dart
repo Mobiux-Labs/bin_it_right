@@ -2,6 +2,7 @@ import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
 import 'package:logging/logging.dart';
 import 'package:reseacue/constants/constants.dart';
+import 'package:reseacue/game/components/waste.dart';
 
 final Logger _log = Logger(Constants.utilsImagesLoggerKey);
 
@@ -72,7 +73,7 @@ List<Sprite> getOpeningGiftAnimationSprites() {
   List<Sprite> sprites = [
     ...getDynamicRangeSpriteList(147, 218, ['Comp_1_00', '.png'], 1),
   ];
-  _log.info('Generated openinig gift animation sprites list successfully');
+  _log.info('Generated opening gift animation sprites list successfully');
 
   return [...sprites];
 }
@@ -102,6 +103,83 @@ List<Sprite> getMovingVehicleAnimationSprites() {
     ...getDynamicRangeSpriteList(1, 2, ['moving_vehicle_', '.png'], 1),
   ];
   _log.info('Generated moving vehicle animation sprites list successfully');
+
+  return [...sprites];
+}
+
+List<Sprite> getWetWasteMovingVehicleAnimationSprites() {
+  _log.info('Generating wet waste vehicle animation sprites list');
+  List<Sprite> sprites = [
+    ...getDynamicRangeSpriteList(1, 2, ['wet_waste_vehicle_', '.png'], 1),
+  ];
+  _log.info('Generated wet waste vehicle animation sprites list successfully');
+
+  return [...sprites];
+}
+
+List<Sprite> getDryWasteMovingVehicleAnimationSprites() {
+  _log.info('Generating dry waste vehicle animation sprites list');
+  List<Sprite> sprites = [
+    ...getDynamicRangeSpriteList(1, 2, ['dry_waste_vehicle_', '.png'], 1),
+  ];
+  _log.info('Generated dry waste vehicle animation sprites list successfully');
+
+  return [...sprites];
+}
+
+List<Sprite> getBothWasteMovingVehicleAnimationSprites() {
+  _log.info('Generating both waste vehicle animation sprites list');
+  List<Sprite> sprites = [
+    ...getDynamicRangeSpriteList(1, 2, ['both_waste_vehicle_', '.png'], 1),
+  ];
+  _log.info('Generated both waste vehicle animation sprites list successfully');
+
+  return [...sprites];
+}
+
+List<String> getWasteVariationImages() {
+  _log.info('Generating waste variation images list');
+  List<String> images = [
+    ...getDynamicRangeStringList(11, 13, ['dry_waste_', '.png'], 1),
+    ...getDynamicRangeStringList(21, 23, ['dry_waste_', '.png'], 1),
+    ...getDynamicRangeStringList(11, 13, ['wet_waste_', '.png'], 1),
+    ...getDynamicRangeStringList(21, 23, ['wet_waste_', '.png'], 1),
+  ];
+  _log.info('Generated waste variation images list successfully');
+
+  return [...images];
+}
+
+List<Sprite> getIdleWasteAnimationSpritesByTypeAndCount(
+    WasteType type, int count) {
+  _log.info('Generating idle waste animation sprites list');
+
+  String template = type == WasteType.wet ? 'wet_waste_' : 'dry_waste_';
+
+  List<Sprite> sprites = [
+    ...getDynamicRangeSpriteList(1, 2, [template, '$count.png'], 1),
+  ];
+  _log.info('Generated idle waste animation sprites list successfully');
+
+  return [...sprites];
+}
+
+List<String> getWasteDropAnimationImages() {
+  _log.info('Generating waste drop animation images list');
+  List<String> frames = [
+    ...getDynamicRangeStringList(1, 9, ['trash_drop_', '.png'], 1),
+  ];
+  _log.info('Generated waste drop animation images list successfully');
+
+  return [...frames];
+}
+
+List<Sprite> getWasteDropAnimationSprites() {
+  _log.info('Generating waste drop animation sprites list');
+  List<Sprite> sprites = [
+    ...getDynamicRangeSpriteList(1, 9, ['trash_drop_', '.png'], 1),
+  ];
+  _log.info('Generated waste drop animation sprites list successfully');
 
   return [...sprites];
 }

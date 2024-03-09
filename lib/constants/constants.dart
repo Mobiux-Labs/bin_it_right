@@ -17,12 +17,12 @@ class Constants {
   static const double maximumVelocity = -299.41;
 
   static const double minimumBuildingSpawnRate = 3.0;
-  static const double maximumBuildingSpawnRate = 0.6;
+  static const double maximumBuildingSpawnRate = 0.8;
 
   static const int buildingVariations = 18;
 
   static const double outOfScreenDeltaToRemoveObject = 100.0;
-  static const double wasteRepositionAnimationSpeed = 0.1;
+  static const double wasteRepositionAnimationSpeed = 0.2;
 
   static const double giftAnimationStepTime = 0.3;
   static const double giftAnimationScale = 0.5;
@@ -32,6 +32,12 @@ class Constants {
 
   static const double movingVehicleAnimationStepTime = 0.3;
   static const double movingVehicleAnimationScale = 1.0;
+
+  static const double idleWasteAnimationStepTime = 0.3;
+  static const double idleWasteAnimationScale = 1.0;
+
+  static const double dropWasteAnimationStepTime = 0.03;
+  static const double dropWasteAnimationScale = 0.5;
 
   static double buildingScale = 0.35;
   static double vehicleScale = 0.8;
