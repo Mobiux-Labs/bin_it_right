@@ -17,7 +17,7 @@ class ResetOverlay extends StatelessWidget {
       game: game,
       id: id,
       heading: 'RESET?',
-      height: MediaQuery.of(context).size.height / 2.5,
+      height: MediaQuery.of(context).size.height / 2.8,
       width: MediaQuery.of(context).size.width / 1.2,
       child: Padding(
         padding: const EdgeInsets.only(
