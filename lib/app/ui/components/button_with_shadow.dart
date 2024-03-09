@@ -1,21 +1,32 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
-class ButtonWithShadow extends StatelessWidget {
+class ButtonWithShadow extends StatefulWidget {
   String buttonText;
   Color containerColor;
   Color shadowContainerColor;
   Color shineColor;
   EdgeInsets padding;
+  Function onTap;
+  Size screenSize;
 
-  ButtonWithShadow(
-      {super.key,
-      required this.buttonText,
-      required this.shadowContainerColor,
-      required this.containerColor,
-      required this.shineColor,
-      required this.padding});
+  ButtonWithShadow({
+    super.key,
+    required this.buttonText,
+    required this.shadowContainerColor,
+    required this.containerColor,
+    required this.shineColor,
+    required this.padding,
+    required this.onTap,
+    required this.screenSize,
+  });
 
+  @override
+  State<ButtonWithShadow> createState() => _ButtonWithShadowState();
+}
+
+class _ButtonWithShadowState extends State<ButtonWithShadow> {
   static const Color textColor = Color.fromRGBO(
     255,
     255,
@@ -27,73 +38,97 @@ class ButtonWithShadow extends StatelessWidget {
     10,
   );
 
+  late double containerHeight;
+  late double containerWidth;
+  late double shadowContainerHeight;
+  late double shadowContainerWidth;
+
+  @override
+  void initState() {
+    containerHeight = widget.screenSize.height / 13;
+    containerWidth = widget.screenSize.width / 2.2;
+    shadowContainerHeight = widget.screenSize.height / 15;
+    shadowContainerWidth = widget.screenSize.width / 2.2;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    double containerHeight = MediaQuery.of(context).size.height / 13;
-    double containerWidth = MediaQuery.of(context).size.width / 2.2;
-    double shadowContainerHeight = MediaQuery.of(context).size.height / 15;
-    double shadowContainerWidth = MediaQuery.of(context).size.width / 2.2;
-    return Stack(
-      children: [
-        Container(
-          height: containerHeight,
-          width: containerWidth,
-          decoration: BoxDecoration(
-            borderRadius: borderRadius,
-            color: containerColor,
-            boxShadow: const [
-              BoxShadow(
-                color: Color.fromRGBO(
-                  0,
-                  0,
-                  0,
-                  0.15,
+    return GestureDetector(
+      onTapDown: (details) {
+        setState(() {
+          containerHeight -= 10;
+        });
+      },
+      onTapUp: (details) {
+        setState(() {
+          containerHeight += 10;
+        });
+        widget.onTap();
+      },
+      child: Stack(
+        children: [
+          AnimatedContainer(
+            height: containerHeight,
+            width: containerWidth,
+            duration: const Duration(milliseconds: 30),
+            decoration: BoxDecoration(
+              borderRadius: borderRadius,
+              color: widget.containerColor,
+              boxShadow: const [
+                BoxShadow(
+                  color: Color.fromRGBO(
+                    0,
+                    0,
+                    0,
+                    0.15,
+                  ),
+                  offset: Offset(
+                    0.0,
+                    1.0,
+                  ), //(x,y)
+                  blurRadius: 10.0,
                 ),
-                offset: Offset(
-                  0.0,
-                  1.0,
-                ), //(x,y)
-                blurRadius: 10.0,
+              ],
+            ),
+          ),
+          ClipPath(
+            clipper: ClipContainer(),
+            child: Container(
+              height: shadowContainerHeight,
+              width: shadowContainerWidth,
+              decoration: BoxDecoration(
+                borderRadius: borderRadius,
+                color: widget.shadowContainerColor,
               ),
-            ],
-          ),
-        ),
-        ClipPath(
-          clipper: ClipContainer(),
-          child: Container(
-            height: shadowContainerHeight,
-            width: shadowContainerWidth,
-            decoration: BoxDecoration(
-              borderRadius: borderRadius,
-              color: shadowContainerColor,
             ),
           ),
-        ),
-        ClipPath(
-          clipper: ClipContainer2(),
-          child: Container(
-            height: shadowContainerHeight,
-            width: shadowContainerWidth,
-            decoration: BoxDecoration(
-              borderRadius: borderRadius,
-              color: shineColor,
+          ClipPath(
+            clipper: ClipContainer2(),
+            child: Container(
+              height: shadowContainerHeight,
+              width: shadowContainerWidth,
+              decoration: BoxDecoration(
+                borderRadius: borderRadius,
+                color: widget.shineColor,
+              ),
             ),
           ),
-        ),
-        Padding(
-          padding: padding,
-          child: Text(
-            buttonText,
-            style: const TextStyle(
-              fontSize: 30,
-              color: textColor,
-              fontFamily: 'Digitalt',
-              fontWeight: FontWeight.w500,
-              decoration: TextDecoration.none,
+          Padding(
+            padding: widget.padding,
+            child: Text(
+              widget.buttonText,
+              style: const TextStyle(
+                fontSize: 30,
+                color: textColor,
+                fontFamily: 'Digitalt',
+                fontWeight: FontWeight.w500,
+                decoration: TextDecoration.none,
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
