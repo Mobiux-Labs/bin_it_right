@@ -6,8 +6,15 @@ class ButtonWithShadow extends StatelessWidget {
   Color containerColor;
   Color shadowContainerColor;
   Color shineColor;
+  EdgeInsets padding;
 
-   ButtonWithShadow({super.key, required this.buttonText,required this.shadowContainerColor, required this.containerColor,required this.shineColor,});
+  ButtonWithShadow(
+      {super.key,
+      required this.buttonText,
+      required this.shadowContainerColor,
+      required this.containerColor,
+      required this.shineColor,
+      required this.padding});
 
   static const Color textColor = Color.fromRGBO(
     255,
@@ -22,7 +29,6 @@ class ButtonWithShadow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     double containerHeight = MediaQuery.of(context).size.height / 13;
     double containerWidth = MediaQuery.of(context).size.width / 2.2;
     double shadowContainerHeight = MediaQuery.of(context).size.height / 15;
@@ -75,13 +81,10 @@ class ButtonWithShadow extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(
-            left: containerWidth/3.3,
-            top: 10,
-          ),
-          child: const Text(
-            'START',
-            style: TextStyle(
+          padding: padding,
+          child: Text(
+            buttonText,
+            style: const TextStyle(
               fontSize: 30,
               color: textColor,
               fontFamily: 'Digitalt',
@@ -95,12 +98,12 @@ class ButtonWithShadow extends StatelessWidget {
   }
 }
 
-class ClipContainer2 extends CustomClipper<Path>{
+class ClipContainer2 extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
-    var path =Path();
-    path.lineTo((size.width/2)-25, 0.0);
-    path.lineTo((size.width/2)+15, size.height - 0.5);
+    var path = Path();
+    path.lineTo((size.width / 2) - 25, 0.0);
+    path.lineTo((size.width / 2) + 15, size.height - 0.5);
     path.lineTo(0.0, size.height - 0.5);
     path.lineTo(0.0, 0.0);
     path.close();
@@ -109,13 +112,12 @@ class ClipContainer2 extends CustomClipper<Path>{
 
   @override
   bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
-
 }
 
-class ClipContainer extends CustomClipper<Path>{
+class ClipContainer extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
-    var path =Path();
+    var path = Path();
     path.lineTo(45.0, 0.0);
     path.lineTo(size.width, 0.0);
     path.lineTo(size.width, size.height);
@@ -127,5 +129,4 @@ class ClipContainer extends CustomClipper<Path>{
 
   @override
   bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
-
 }
