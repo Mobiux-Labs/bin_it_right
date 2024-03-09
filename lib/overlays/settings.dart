@@ -1,14 +1,79 @@
 import 'package:flutter/material.dart';
+import 'package:logging/logging.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+import 'package:reseacue/app/ui/components/custom_animated_button.dart';
+import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/overlays/overlay_container.dart';
-import 'package:reseacue/overlays/reset.dart';
 
 import '../game/game.dart';
 
+class ButtonAndTextColumn extends StatelessWidget {
+  final String image;
+  final String text;
+
+  const ButtonAndTextColumn({
+    super.key,
+    required this.image,
+    required this.text,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        CustomAnimatedButton(
+          height: MediaQuery.of(context).size.height / 11,
+          width: MediaQuery.of(context).size.width / 5,
+          shadowHeight: MediaQuery.of(context).size.height / 13,
+          shadowWidth: MediaQuery.of(context).size.width / 5,
+          screenSize: MediaQuery.of(context).size,
+          onTap: () {},
+          imagePath: 'assets/images/$image.png',
+          shadowContainerColor: Constants.redButtonShadowContainerColor,
+          containerColor: Constants.redButtonContainerColor,
+          shineColor: Constants.redButtonShineColor,
+          padding: const EdgeInsets.only(
+            left: 67.0,
+            top: 10.0,
+          ),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Text(
+          text,
+          style: const TextStyle(
+            fontSize: 20,
+            color: Colors.white,
+            fontFamily: 'Digitalt',
+            fontWeight: FontWeight.w500,
+            decoration: TextDecoration.none,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
 class SettingsMenu extends StatelessWidget {
+  static final Logger _log = Logger('settings.dart');
+
   static const String id = 'Settings';
   const SettingsMenu({super.key, required this.game});
 
   final Reseacue game;
+
+  Future<String> getAppVersion() async {
+    try {
+      PackageInfo packageInfo = await PackageInfo.fromPlatform();
+      String installedAppVersion = packageInfo.version;
+      return 'Ver $installedAppVersion';
+    } catch (e) {
+      _log.warning(e);
+    }
+
+    return 'Ver 1.0.0';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,88 +90,78 @@ class SettingsMenu extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                GestureDetector(
-                  onTap: () {},
-                  child: const Image(
-                    image: AssetImage(
-                      'assets/images/sound_on.png',
-                    ),
-                  ),
+                ButtonAndTextColumn(
+                  image: 'sound_on',
+                  text: 'SFX',
                 ),
-                GestureDetector(
-                  onTap: () {},
-                  child: const Image(
-                    image: AssetImage(
-                      'assets/images/language.png',
-                    ),
-                  ),
+                ButtonAndTextColumn(
+                  image: 'vibration_on',
+                  text: 'Vibration',
                 ),
-                GestureDetector(
-                  onTap: () {},
-                  child: const Image(
-                    image: AssetImage(
-                      'assets/images/tutorial.png',
-                    ),
-                  ),
+                ButtonAndTextColumn(
+                  image: 'tutorial',
+                  text: 'Tutorial',
                 ),
               ],
             ),
             const SizedBox(
               height: 30.0,
             ),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                GestureDetector(
-                  onTap: () {
-                    game.overlays.remove(SettingsMenu.id);
-                    game.overlays.add(ResetOverlay.id);
-                  },
-                  child: const Image(
-                    image: AssetImage(
-                      'assets/images/reset.png',
-                    ),
-                  ),
+                ButtonAndTextColumn(
+                  image: 'reset',
+                  text: 'Reset',
                 ),
-                GestureDetector(
-                  onTap: () {},
-                  child: const Image(
-                    image: AssetImage(
-                      'assets/images/credits.png',
-                    ),
-                  ),
+                ButtonAndTextColumn(
+                  image: 'credits',
+                  text: 'Credits',
                 ),
-                GestureDetector(
-                  onTap: () {},
-                  child: const Image(
-                    image: AssetImage(
-                      'assets/images/support.png',
-                    ),
-                  ),
+                ButtonAndTextColumn(
+                  image: 'support',
+                  text: 'Support',
                 ),
               ],
             ),
             const SizedBox(
               height: 40.0,
             ),
-            const Padding(
-              padding: EdgeInsets.only(
-                bottom: 20.0,
-              ),
-              child: Text(
-                'Ver 1.11.17',
-                style: TextStyle(
-                  decoration: TextDecoration.none,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                  fontFamily: 'Digitalt',
-                  color: Color.fromRGBO(255, 255, 255, 1),
-                ),
-              ),
-            ),
+            FutureBuilder(
+                future: getAppVersion(),
+                initialData: null,
+                builder: (context, AsyncSnapshot<String?> snapshot) {
+                  if (!snapshot.hasData) {
+                    return const Text(
+                      'Ver 1.0.0',
+                      style: TextStyle(
+                        decoration: TextDecoration.none,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: 'Digitalt',
+                        color: Color.fromRGBO(255, 255, 255, 1),
+                      ),
+                    );
+                  }
+                  return Padding(
+                    padding: const EdgeInsets.only(
+                      bottom: 20.0,
+                    ),
+                    child: Text(
+                      snapshot.data as String,
+                      style: const TextStyle(
+                        decoration: TextDecoration.none,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: 'Digitalt',
+                        color: Color.fromRGBO(255, 255, 255, 1),
+                      ),
+                    ),
+                  );
+                }),
           ],
         ),
       ),

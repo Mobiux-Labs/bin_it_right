@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:reseacue/app/ui/components/custom_animated_button.dart';
+import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
+import 'package:reseacue/overlays/settings.dart';
 
 class OverlayContainer extends StatelessWidget {
   OverlayContainer({
@@ -110,11 +113,23 @@ class OverlayContainer extends StatelessWidget {
               padding: EdgeInsets.only(
                 bottom: MediaQuery.of(context).size.height * 0.04,
               ),
-              child: GestureDetector(
+              child: CustomAnimatedButton(
+                height: MediaQuery.of(context).size.height / 13,
+                width: MediaQuery.of(context).size.width / 6,
+                shadowHeight: MediaQuery.of(context).size.height / 15,
+                shadowWidth: MediaQuery.of(context).size.width / 6,
+                screenSize: MediaQuery.of(context).size,
                 onTap: () {
                   game.overlays.remove(id);
                 },
-                child: Image.asset('assets/images/close_button.png'),
+                imagePath: 'assets/images/close.png',
+                shadowContainerColor: Constants.redButtonShadowContainerColor,
+                containerColor: Constants.redButtonContainerColor,
+                shineColor: Constants.redButtonShineColor,
+                padding: const EdgeInsets.only(
+                  left: 67.0,
+                  top: 10.0,
+                ),
               ),
             ),
           ),

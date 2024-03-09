@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CustomAnimatedButton extends StatefulWidget {
-  String buttonText;
+  String? buttonText;
+  String? imagePath;
   Color containerColor;
   Color shadowContainerColor;
   Color shineColor;
@@ -15,7 +16,8 @@ class CustomAnimatedButton extends StatefulWidget {
 
   CustomAnimatedButton({
     super.key,
-    required this.buttonText,
+    this.buttonText,
+    this.imagePath,
     required this.shadowContainerColor,
     required this.containerColor,
     required this.shineColor,
@@ -121,16 +123,18 @@ class _CustomAnimatedButtonState extends State<CustomAnimatedButton> {
           Positioned.fill(
             bottom: position,
             child: Center(
-              child: Text(
-                widget.buttonText,
-                style: const TextStyle(
-                  fontSize: 30,
-                  color: textColor,
-                  fontFamily: 'Digitalt',
-                  fontWeight: FontWeight.w500,
-                  decoration: TextDecoration.none,
-                ),
-              ),
+              child: widget.imagePath != null
+                  ? Image.asset(widget.imagePath as String)
+                  : Text(
+                      widget.buttonText as String,
+                      style: const TextStyle(
+                        fontSize: 30,
+                        color: textColor,
+                        fontFamily: 'Digitalt',
+                        fontWeight: FontWeight.w500,
+                        decoration: TextDecoration.none,
+                      ),
+                    ),
             ),
           ),
         ],
