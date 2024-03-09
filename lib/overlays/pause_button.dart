@@ -1,26 +1,27 @@
-
 import 'package:flutter/material.dart';
 import 'package:reseacue/game/game.dart';
 import 'package:reseacue/overlays/pause_menu.dart';
 
-
 class PauseButton extends StatelessWidget {
-  static const String ID = 'PauseButton';
-  final Reseacue gameRef;
+  static const String id = 'PauseButton';
+  final Reseacue game;
 
-  const PauseButton({super.key, required this.gameRef});
+  const PauseButton({super.key, required this.game});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 15.0,top: 15.0,),
+      padding: const EdgeInsets.only(
+        right: 15.0,
+        top: 15.0,
+      ),
       child: Align(
           alignment: Alignment.topRight,
           child: GestureDetector(
             onTap: () {
-              gameRef.pauseEngine();
-              gameRef.overlays.add(PauseMenu.ID);
-              gameRef.overlays.remove(PauseButton.ID);
+              game.pauseEngine();
+              game.overlays.add(PauseMenu.id);
+              game.overlays.remove(PauseButton.id);
             },
             child: const Image(
               image: AssetImage(

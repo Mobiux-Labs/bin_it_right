@@ -43,19 +43,18 @@ class App extends StatelessWidget {
             gameFactory: Reseacue.new,
             //TODO: Stop gameplay and resume on press of start button
             overlayBuilderMap: {
-              'MainMenu': (_, game) => MainMenu(game: game),
-              'Countdown': (_, game) => CountDownOverlay(game: game),
-              PauseButton.ID: (BuildContext context, Reseacue gameRef) =>
+              MainMenu.id: (_, game) => MainMenu(game: game),
+              CountDownOverlay.id: (_, game) => CountDownOverlay(game: game),
+              PauseButton.id: (BuildContext context, Reseacue game) =>
                   PauseButton(
-                    gameRef: gameRef,
+                    game: game,
                   ),
-              PauseMenu.ID: (BuildContext context, Reseacue gameRef) =>
-                  PauseMenu(
-                    gameRef: gameRef,
+              PauseMenu.id: (BuildContext context, Reseacue game) => PauseMenu(
+                    game: game,
                   ),
-              'Settings': (_, game) => SettingsMenu(game: game),
-              'Reset': (_, game) => ResetOverlay(game: game),
-              'GameOver': (_, game) => GameOver(game: game),
+              SettingsMenu.id: (_, game) => SettingsMenu(game: game),
+              ResetOverlay.id: (_, game) => ResetOverlay(game: game),
+              GameOver.id: (_, game) => GameOver(game: game),
             },
             initialActiveOverlays: const ['MainMenu'],
             // initialActiveOverlays: const [PauseButton.ID],

@@ -6,14 +6,16 @@ import 'package:reseacue/overlays/overlay_container.dart';
 import 'package:reseacue/overlays/pause_button.dart';
 
 class PauseMenu extends StatelessWidget {
-  static const String ID = 'PauseMenu';
-  final Reseacue gameRef;
+  static const String id = 'PauseMenu';
+  final Reseacue game;
 
-  const PauseMenu({super.key, required this.gameRef});
+  const PauseMenu({super.key, required this.game});
 
   @override
   Widget build(BuildContext context) {
     return OverlayContainer(
+      game: game,
+      id: id,
       heading: 'PAUSED',
       height: MediaQuery.of(context).size.height / 2.5,
       width: MediaQuery.of(context).size.width / 1.2,
@@ -29,10 +31,10 @@ class PauseMenu extends StatelessWidget {
             child: Column(
               children: [
                 GestureDetector(
-                  onTap: (){
-                    gameRef.resumeEngine();
-                    gameRef.overlays.remove(PauseMenu.ID);
-                    gameRef.overlays.add(PauseButton.ID);
+                  onTap: () {
+                    game.resumeEngine();
+                    game.overlays.remove(PauseMenu.id);
+                    game.overlays.add(PauseButton.id);
                   },
                   child: const Image(
                     image: AssetImage(
@@ -40,7 +42,7 @@ class PauseMenu extends StatelessWidget {
                     ),
                   ),
                 ),
-                 Padding(
+                Padding(
                   padding: const EdgeInsets.only(
                     top: 10.0,
                     left: 20,
@@ -60,9 +62,9 @@ class PauseMenu extends StatelessWidget {
                         ),
                       ),
                       GestureDetector(
-                        onTap: (){
-                          gameRef.overlays.remove(PauseMenu.ID);
-                          gameRef.overlays.add('MainMenu');
+                        onTap: () {
+                          game.overlays.remove(PauseMenu.id);
+                          game.overlays.add('MainMenu');
                         },
                         child: const Image(
                           image: AssetImage(

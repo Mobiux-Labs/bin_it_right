@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:reseacue/game/game.dart';
 
 class OverlayContainer extends StatelessWidget {
   OverlayContainer({
@@ -7,12 +8,16 @@ class OverlayContainer extends StatelessWidget {
     required this.heading,
     required this.width,
     required this.height,
+    required this.id,
+    required this.game,
   });
 
   String heading;
   Widget child;
   double height;
   double width;
+  String id;
+  Reseacue game;
 
   @override
   Widget build(BuildContext context) {
@@ -105,7 +110,12 @@ class OverlayContainer extends StatelessWidget {
               padding: EdgeInsets.only(
                 bottom: MediaQuery.of(context).size.height * 0.04,
               ),
-              child: Image.asset('assets/images/close_button.png'),
+              child: GestureDetector(
+                onTap: () {
+                  game.overlays.remove(id);
+                },
+                child: Image.asset('assets/images/close_button.png'),
+              ),
             ),
           ),
         ],

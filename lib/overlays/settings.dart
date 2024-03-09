@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:reseacue/overlays/overlay_container.dart';
+import 'package:reseacue/overlays/reset.dart';
 
 import '../game/game.dart';
 
 class SettingsMenu extends StatelessWidget {
+  static const String id = 'Settings';
   const SettingsMenu({super.key, required this.game});
 
   final Reseacue game;
@@ -11,6 +13,8 @@ class SettingsMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OverlayContainer(
+      game: game,
+      id: id,
       heading: 'SETTINGS',
       height: MediaQuery.of(context).size.height / 1.8,
       width: MediaQuery.of(context).size.width / 1.15,
@@ -58,8 +62,8 @@ class SettingsMenu extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    game.overlays.remove('Settings');
-                    game.overlays.add('Reset');
+                    game.overlays.remove(SettingsMenu.id);
+                    game.overlays.add(ResetOverlay.id);
                   },
                   child: const Image(
                     image: AssetImage(

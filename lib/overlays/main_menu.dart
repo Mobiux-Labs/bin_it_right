@@ -8,9 +8,13 @@ import 'package:reseacue/app/ui/components/button_with_shadow.dart';
 import 'package:reseacue/app/ui/components/earth_tokens.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
+import 'package:reseacue/overlays/countdown.dart';
 import 'package:reseacue/overlays/gradient_overlay.dart';
+import 'package:reseacue/overlays/settings.dart';
 
 class MainMenu extends StatelessWidget {
+  static String id = 'MainMenu';
+
   // Reference to parent game.
   final Reseacue game;
 
@@ -49,7 +53,7 @@ class MainMenu extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        game.overlays.add('Settings');
+                        game.overlays.add(SettingsMenu.id);
                       },
                       child: const Image(
                         image: AssetImage(
@@ -69,8 +73,8 @@ class MainMenu extends StatelessWidget {
             child: ButtonWithShadow(
               screenSize: MediaQuery.of(context).size,
               onTap: () {
-                game.overlays.remove('MainMenu');
-                game.overlays.add('Countdown');
+                game.overlays.remove(MainMenu.id);
+                game.overlays.add(CountDownOverlay.id);
               },
               buttonText: 'START',
               shadowContainerColor: Constants.redButtonShadowContainerColor,
