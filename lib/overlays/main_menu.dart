@@ -71,6 +71,10 @@ class MainMenu extends StatelessWidget {
               bottom: 80,
             ),
             child: CustomAnimatedButton(
+              height: MediaQuery.of(context).size.height / 13,
+              width: MediaQuery.of(context).size.width / 2.2,
+              shadowHeight: MediaQuery.of(context).size.height / 15,
+              shadowWidth: MediaQuery.of(context).size.width / 2.2,
               screenSize: MediaQuery.of(context).size,
               onTap: () {
                 game.overlays.remove(MainMenu.id);

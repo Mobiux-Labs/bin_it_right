@@ -8,6 +8,10 @@ class CustomAnimatedButton extends StatefulWidget {
   EdgeInsets padding;
   Function onTap;
   Size screenSize;
+  double width;
+  double height;
+  double shadowWidth;
+  double shadowHeight;
 
   CustomAnimatedButton({
     super.key,
@@ -18,6 +22,10 @@ class CustomAnimatedButton extends StatefulWidget {
     required this.padding,
     required this.onTap,
     required this.screenSize,
+    this.height = 100,
+    this.width = 100,
+    this.shadowHeight = 100,
+    this.shadowWidth = 100,
   });
 
   @override
@@ -36,18 +44,10 @@ class _CustomAnimatedButtonState extends State<CustomAnimatedButton> {
     10,
   );
 
-  late double containerHeight;
-  late double containerWidth;
-  late double shadowContainerHeight;
-  late double shadowContainerWidth;
   late double position;
 
   @override
   void initState() {
-    containerHeight = widget.screenSize.height / 13;
-    containerWidth = widget.screenSize.width / 2.2;
-    shadowContainerHeight = widget.screenSize.height / 15;
-    shadowContainerWidth = widget.screenSize.width / 2.2;
     position = 10;
     super.initState();
   }
@@ -69,8 +69,8 @@ class _CustomAnimatedButtonState extends State<CustomAnimatedButton> {
       child: Stack(
         children: [
           Container(
-            height: containerHeight,
-            width: containerWidth,
+            height: widget.height,
+            width: widget.width,
             decoration: BoxDecoration(
               borderRadius: borderRadius,
               gradient: LinearGradient(
@@ -94,8 +94,8 @@ class _CustomAnimatedButtonState extends State<CustomAnimatedButton> {
             child: ClipPath(
               clipper: ClipContainer(),
               child: Container(
-                height: shadowContainerHeight,
-                width: shadowContainerWidth,
+                height: widget.shadowHeight,
+                width: widget.shadowWidth,
                 decoration: BoxDecoration(
                   borderRadius: borderRadius,
                   color: widget.shadowContainerColor,
@@ -109,8 +109,8 @@ class _CustomAnimatedButtonState extends State<CustomAnimatedButton> {
             child: ClipPath(
               clipper: ClipContainer2(),
               child: Container(
-                height: shadowContainerHeight,
-                width: shadowContainerWidth,
+                height: widget.shadowHeight,
+                width: widget.shadowWidth,
                 decoration: BoxDecoration(
                   borderRadius: borderRadius,
                   color: widget.shineColor,
