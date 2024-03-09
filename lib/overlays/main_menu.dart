@@ -43,22 +43,43 @@ class MainMenu extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    const Image(
-                      image: AssetImage(
-                        leaderboardIcon,
+                    CustomAnimatedButton(
+                      height: 50,
+                      width: 50,
+                      shadowHeight: 40,
+                      shadowWidth: 50,
+                      screenSize: MediaQuery.of(context).size,
+                      onTap: () {},
+                      imagePath: 'assets/images/leaderboard.png',
+                      shadowContainerColor:
+                          Constants.yellowButtonShadowContainerColor,
+                      containerColor: Constants.yellowButtonContainerColor,
+                      shineColor: Constants.yellowButtonShineColor,
+                      padding: const EdgeInsets.only(
+                        left: 50,
+                        top: 10.0,
                       ),
                     ),
                     const SizedBox(
                       width: 10,
                     ),
-                    GestureDetector(
+                    CustomAnimatedButton(
+                      height: 50,
+                      width: 50,
+                      shadowHeight: 40,
+                      shadowWidth: 50,
+                      screenSize: MediaQuery.of(context).size,
                       onTap: () {
                         game.overlays.add(SettingsMenu.id);
                       },
-                      child: const Image(
-                        image: AssetImage(
-                          settingsIcon,
-                        ),
+                      imagePath: 'assets/images/settings.png',
+                      shadowContainerColor:
+                          Constants.yellowButtonShadowContainerColor,
+                      containerColor: Constants.yellowButtonContainerColor,
+                      shineColor: Constants.yellowButtonShineColor,
+                      padding: const EdgeInsets.only(
+                        left: 50,
+                        top: 10.0,
                       ),
                     ),
                   ],
