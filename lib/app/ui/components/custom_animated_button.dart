@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ButtonWithShadow extends StatefulWidget {
+class CustomAnimatedButton extends StatefulWidget {
   String buttonText;
   Color containerColor;
   Color shadowContainerColor;
@@ -9,7 +9,7 @@ class ButtonWithShadow extends StatefulWidget {
   Function onTap;
   Size screenSize;
 
-  ButtonWithShadow({
+  CustomAnimatedButton({
     super.key,
     required this.buttonText,
     required this.shadowContainerColor,
@@ -21,10 +21,10 @@ class ButtonWithShadow extends StatefulWidget {
   });
 
   @override
-  State<ButtonWithShadow> createState() => _ButtonWithShadowState();
+  State<CustomAnimatedButton> createState() => _CustomAnimatedButtonState();
 }
 
-class _ButtonWithShadowState extends State<ButtonWithShadow> {
+class _CustomAnimatedButtonState extends State<CustomAnimatedButton> {
   static const Color textColor = Color.fromRGBO(
     255,
     255,

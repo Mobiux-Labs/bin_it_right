@@ -4,7 +4,7 @@ import 'package:flame/extensions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:reseacue/app/ui/components/button_with_shadow.dart';
+import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/app/ui/components/earth_tokens.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
@@ -70,7 +70,7 @@ class MainMenu extends StatelessWidget {
             padding: const EdgeInsets.only(
               bottom: 80,
             ),
-            child: ButtonWithShadow(
+            child: CustomAnimatedButton(
               screenSize: MediaQuery.of(context).size,
               onTap: () {
                 game.overlays.remove(MainMenu.id);

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:reseacue/app/ui/components/button_with_shadow.dart';
+import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/overlays/overlay_container.dart';
 
@@ -25,7 +25,7 @@ class ResetOverlay extends StatelessWidget {
         ),
         child: Column(
           children: [
-            ButtonWithShadow(
+            CustomAnimatedButton(
               screenSize: MediaQuery.of(context).size,
               onTap: () {},
               buttonText: 'YES',
@@ -40,7 +40,7 @@ class ResetOverlay extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            ButtonWithShadow(
+            CustomAnimatedButton(
               screenSize: MediaQuery.of(context).size,
               onTap: () {},
               buttonText: 'NO',
