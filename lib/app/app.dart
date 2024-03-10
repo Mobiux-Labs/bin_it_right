@@ -14,6 +14,7 @@ import 'package:reseacue/app/ui/splash_screen.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/overlays/reset.dart';
 import 'package:reseacue/overlays/settings.dart';
+import 'package:reseacue/overlays/tutorial_overlay.dart';
 
 import '../overlays/pause_button.dart';
 import '../overlays/pause_menu.dart';
@@ -41,8 +42,8 @@ class App extends StatelessWidget {
           key: state.pageKey,
           child: GameWidget<Reseacue>.controlled(
             gameFactory: Reseacue.new,
-            //TODO: Stop gameplay and resume on press of start button
             overlayBuilderMap: {
+              TutorialOverlay.id: (_, game) => TutorialOverlay(game: game),
               MainMenu.id: (_, game) => MainMenu(game: game),
               CountDownOverlay.id: (_, game) => CountDownOverlay(game: game),
               PauseButton.id: (BuildContext context, Reseacue game) =>
@@ -56,7 +57,7 @@ class App extends StatelessWidget {
               ResetOverlay.id: (_, game) => ResetOverlay(game: game),
               GameOver.id: (_, game) => GameOver(game: game),
             },
-            initialActiveOverlays: [MainMenu.id],
+            initialActiveOverlays: [TutorialOverlay.id],
           ),
           transitionsBuilder: (context, animation, secondaryAnimation, child) =>
               FadeTransition(opacity: animation, child: child),
@@ -68,9 +69,6 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    precacheImage(const AssetImage("assets/images/countdown_1.png"), context);
-    precacheImage(const AssetImage("assets/images/countdown_2.png"), context);
-    precacheImage(const AssetImage("assets/images/countdown_3.png"), context);
     return AppLifecycleObserver(
       child: MultiProvider(
         providers: [
