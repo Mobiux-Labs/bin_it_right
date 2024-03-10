@@ -5,6 +5,7 @@ import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flame/events.dart';
 import 'package:flame/sprite.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/animation.dart';
 import 'package:logging/logging.dart';
 import 'package:reseacue/constants/constants.dart';
@@ -47,7 +48,7 @@ class Waste extends SpriteAnimationComponent
   late SpriteAnimationTicker _animationTicker;
 
   @override
-  FutureOr<void> onLoad() {
+  FutureOr<void> onLoad() async {
     spawnedPosition = position.clone();
 
     animation = SpriteAnimation.spriteList(
@@ -85,6 +86,7 @@ class Waste extends SpriteAnimationComponent
   void onDragStart(DragStartEvent event) {
     _log.info('Drag started at ${event.localPosition}');
     tapped = true;
+    FlameAudio.play('sfx/tap.mp3');
     super.onDragStart(event);
   }
 
@@ -123,6 +125,8 @@ class Waste extends SpriteAnimationComponent
   }
 
   void successfultDrop(WasteType type) {
+    FlameAudio.play(
+        type == WasteType.wet ? 'sfx/wet_waste.mp3' : 'sfx/dry_waste.mp3');
     game.updateWasteCollectedSequence(type);
     scale = Vector2.all(Constants.dropWasteAnimationScale);
     animation = SpriteAnimation.spriteList(
@@ -140,6 +144,11 @@ class Waste extends SpriteAnimationComponent
     if (game.hasVibration != null || game.hasVibration == true) {
       Vibration.vibrate(pattern: [30, 100, 30, 100]);
     }
+  }
+
+  void wasteMissed() {
+    FlameAudio.play('sfx/miss.mp3');
+    vibrate();
   }
 
   @override
@@ -204,6 +213,11 @@ class Waste extends SpriteAnimationComponent
         (spawnedPosition.y >
             game.size.y + Constants.outOfScreenDeltaToRemoveObject)) {
       _log.info('Removing waste from parent');
+      try {
+        wasteMissed();
+      } catch (e) {
+        _log.warning(e);
+      }
       removeFromParent();
     }
 

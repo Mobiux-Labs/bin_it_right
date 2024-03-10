@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:logging/logging.dart';
 import 'package:reseacue/assets.dart';
 import 'package:reseacue/constants/constants.dart';

@@ -4,6 +4,9 @@ import 'package:flame/extensions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
+import 'package:reseacue/app/audio/audio_controller.dart';
+import 'package:reseacue/app/audio/sounds.dart';
 import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/app/ui/components/earth_tokens.dart';
 import 'package:reseacue/constants/constants.dart';
@@ -98,6 +101,8 @@ class MainMenu extends StatelessWidget {
               shadowWidth: MediaQuery.of(context).size.width / 2.2,
               screenSize: MediaQuery.of(context).size,
               onTap: () {
+                final audioController = context.read<AudioController>();
+                audioController.playSfx(SfxType.engineStart);
                 game.overlays.remove(MainMenu.id);
                 game.overlays.add(CountDownOverlay.id);
               },
