@@ -42,7 +42,6 @@ class _TutorialOverlayState extends State<TutorialOverlay> {
             });
           } else {
             widget.game.overlays.remove(TutorialOverlay.id);
-            widget.game.overlays.add(MainMenu.id);
           }
         },
         child: SizedBox(

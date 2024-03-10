@@ -4,17 +4,20 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/overlays/overlay_container.dart';
+import 'package:reseacue/overlays/tutorial_overlay.dart';
 
 import '../game/game.dart';
 
 class ButtonAndTextColumn extends StatelessWidget {
   final String image;
   final String text;
+  final Function onTap;
 
   const ButtonAndTextColumn({
     super.key,
     required this.image,
     required this.text,
+    required this.onTap,
   });
 
   @override
@@ -27,7 +30,9 @@ class ButtonAndTextColumn extends StatelessWidget {
           shadowHeight: MediaQuery.of(context).size.height / 13,
           shadowWidth: MediaQuery.of(context).size.width / 5,
           screenSize: MediaQuery.of(context).size,
-          onTap: () {},
+          onTap: () {
+            onTap();
+          },
           imagePath: 'assets/images/$image.png',
           shadowContainerColor: Constants.redButtonShadowContainerColor,
           containerColor: Constants.redButtonContainerColor,
@@ -91,40 +96,48 @@ class SettingsMenu extends StatelessWidget {
         ),
         child: Column(
           children: [
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ButtonAndTextColumn(
                   image: 'sound_on',
                   text: 'SFX',
+                  onTap: () {},
                 ),
                 ButtonAndTextColumn(
                   image: 'vibration_on',
                   text: 'Vibration',
+                  onTap: () {},
                 ),
                 ButtonAndTextColumn(
                   image: 'tutorial',
                   text: 'Tutorial',
+                  onTap: () {
+                    game.overlays.add(TutorialOverlay.id);
+                  },
                 ),
               ],
             ),
             const SizedBox(
               height: 30.0,
             ),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ButtonAndTextColumn(
                   image: 'reset',
                   text: 'Reset',
+                  onTap: () {},
                 ),
                 ButtonAndTextColumn(
                   image: 'credits',
                   text: 'Credits',
+                  onTap: () {},
                 ),
                 ButtonAndTextColumn(
                   image: 'support',
                   text: 'Support',
+                  onTap: () {},
                 ),
               ],
             ),

@@ -57,7 +57,7 @@ class App extends StatelessWidget {
               ResetOverlay.id: (_, game) => ResetOverlay(game: game),
               GameOver.id: (_, game) => GameOver(game: game),
             },
-            initialActiveOverlays: [TutorialOverlay.id],
+            initialActiveOverlays: [MainMenu.id, TutorialOverlay.id],
           ),
           transitionsBuilder: (context, animation, secondaryAnimation, child) =>
               FadeTransition(opacity: animation, child: child),
