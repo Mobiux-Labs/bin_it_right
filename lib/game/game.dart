@@ -3,14 +3,13 @@ import 'dart:async';
 import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
-import 'package:flame_audio/flame_audio.dart';
 import 'package:logging/logging.dart';
 import 'package:reseacue/assets.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/components/arc.dart';
 import 'package:reseacue/game/components/building.dart';
-import 'package:flame/parallax.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:reseacue/game/components/custom_parallax.dart';
 import 'package:reseacue/game/components/vehicle.dart';
 import 'package:reseacue/game/components/waste.dart';
 import 'package:reseacue/utils/utils.dart';
@@ -26,10 +25,6 @@ class Reseacue extends FlameGame {
     getBuildingSpawnRate(gameSpeed),
     repeat: true,
   );
-
-  late ParallaxComponent roadStripes;
-  late ParallaxComponent leftGrassComponent;
-  late ParallaxComponent rightGrassComponent;
 
   // Enable this if hitbox boundary has to be seen
   @override
@@ -98,50 +93,37 @@ class Reseacue extends FlameGame {
     world.add(roadComponent);
 
     _log.info('Initializing road stripes parallax component');
-    roadStripes = await loadParallaxComponent(
-      [
-        ParallaxImageData(
-          AssetConstants.roadStripes,
-        ),
-      ],
-      position: Vector2(size.x / 2, 0),
-      //Set velocity
-      baseVelocity: baseVelocity,
-      repeat: ImageRepeat.repeatY,
+    CustomParallax roadStripes = CustomParallax(
+      anchor: Anchor.topCenter,
+      sprite: Sprite(Flame.images.fromCache(AssetConstants.roadStripes)),
+      initialPosition: Vector2(size.x / 2, 0.0),
+      gameSize: size,
+      world: world,
     );
 
-    _log.info('Adding road stripes parallax component to world');
     world.add(roadStripes);
 
     _log.info('Initializing left grass parallax component');
-    leftGrassComponent = await loadParallaxComponent(
-      [
-        ParallaxImageData(
-          AssetConstants.leftGrass,
-        ),
-      ],
-      //Set velocity
-      baseVelocity: baseVelocity,
-      repeat: ImageRepeat.repeatY,
+    CustomParallax leftGrass = CustomParallax(
+      anchor: Anchor.topLeft,
+      sprite: Sprite(Flame.images.fromCache(AssetConstants.leftGrass)),
+      initialPosition: Vector2(0.0, 0.0),
+      gameSize: size,
+      world: world,
     );
-    _log.info('Adding left grass parallax component to world');
-    world.add(leftGrassComponent);
+
+    world.add(leftGrass);
 
     _log.info('Initializing right grass parallax component');
-    rightGrassComponent = await loadParallaxComponent(
-      [
-        ParallaxImageData(
-          AssetConstants.rightGrass,
-        ),
-      ],
-      position: Vector2(0, 0),
-      alignment: Alignment.topRight,
-      //Set velocity
-      baseVelocity: baseVelocity,
-      repeat: ImageRepeat.repeatY,
+    CustomParallax rightGrass = CustomParallax(
+      anchor: Anchor.topRight,
+      sprite: Sprite(Flame.images.fromCache(AssetConstants.rightGrass)),
+      initialPosition: Vector2(size.x, 0.0),
+      gameSize: size,
+      world: world,
     );
-    _log.info('Adding right grass parallax component to world');
-    world.add(rightGrassComponent);
+
+    world.add(rightGrass);
 
     interval.onTick = () {
       onUpdateOnTick();
@@ -207,7 +189,7 @@ class Reseacue extends FlameGame {
     _log.info('Adding right building to world');
     world.add(buildingRight);
 
-    int count = getRandomIntegrerInRange(1, 4);
+    int count = getRandomIntegrerInRange(1, getMaxCountByGameSpeed(gameSpeed));
 
     for (int countToRender = 1; countToRender <= count; countToRender++) {
       Waste leftWaste = Waste(
@@ -248,13 +230,6 @@ class Reseacue extends FlameGame {
 
   void speedUpGameplay(updateGameSpeed) {
     gameSpeed = updateGameSpeed;
-    baseVelocity = Vector2(
-      0,
-      getVelocity(updateGameSpeed),
-    );
-    roadStripes.parallax?.baseVelocity = baseVelocity;
-    leftGrassComponent.parallax?.baseVelocity = baseVelocity;
-    rightGrassComponent.parallax?.baseVelocity = baseVelocity;
     _log.info('Stopping interval timer');
     interval.stop();
     _log.info('Stopped interval timer successfully');
