@@ -232,7 +232,8 @@ class Reseacue extends FlameGame {
           ? VehicleState.wetWaste
           : VehicleState.dryWaste);
       return;
-    } else if (wasteCollectedOrder.length == 1) {
+    } else if (wasteCollectedOrder.length == 1 &&
+        !wasteCollectedOrder.contains(type)) {
       wasteCollectedOrder.add(type);
       changeVehicleAnimation(VehicleState.bothWaste);
       return;
