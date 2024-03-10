@@ -2,10 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:reseacue/overlays/gradient_overlay.dart';
+import 'package:reseacue/overlays/pause_button.dart';
 
 import '../game/game.dart';
 
 class CountDownOverlay extends StatefulWidget {
+  static String id = 'CountDown';
   final Reseacue game;
   const CountDownOverlay({super.key, required this.game});
 
@@ -27,7 +29,8 @@ class _CountDownOverlayState extends State<CountDownOverlay> {
         _index++;
       });
       if (_index == 3) {
-        widget.game.overlays.remove('Countdown');
+        widget.game.overlays.add(PauseButton.id);
+        widget.game.overlays.remove(CountDownOverlay.id);
       }
     });
   }
@@ -43,7 +46,7 @@ class _CountDownOverlayState extends State<CountDownOverlay> {
     return GradientOverlay(
       child: GestureDetector(
         onTap: () {
-          widget.game.overlays.remove('Countdown');
+          widget.game.overlays.remove(CountDownOverlay.id);
         },
         child: SizedBox(
           height: MediaQuery.of(context).size.height,

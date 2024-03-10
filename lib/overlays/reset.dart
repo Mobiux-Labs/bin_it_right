@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:reseacue/app/ui/components/button_with_shadow.dart';
+import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/overlays/overlay_container.dart';
 
 import '../game/game.dart';
 
 class ResetOverlay extends StatelessWidget {
+  static String id = 'Reset';
   const ResetOverlay({super.key, required this.game});
 
   final Reseacue game;
@@ -13,16 +14,23 @@ class ResetOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OverlayContainer(
+      game: game,
+      id: id,
       heading: 'RESET?',
-      height: MediaQuery.of(context).size.height / 2.5,
+      height: MediaQuery.of(context).size.height / 2.8,
       width: MediaQuery.of(context).size.width / 1.2,
+      onClose: () {},
       child: Padding(
         padding: const EdgeInsets.only(
           bottom: 25.0,
         ),
         child: Column(
           children: [
-            ButtonWithShadow(
+            CustomAnimatedButton(
+              height: MediaQuery.of(context).size.height / 13,
+              width: MediaQuery.of(context).size.width / 1.5,
+              shadowHeight: MediaQuery.of(context).size.height / 15,
+              shadowWidth: MediaQuery.of(context).size.width / 1.5,
               screenSize: MediaQuery.of(context).size,
               onTap: () {},
               buttonText: 'YES',
@@ -37,7 +45,11 @@ class ResetOverlay extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            ButtonWithShadow(
+            CustomAnimatedButton(
+              height: MediaQuery.of(context).size.height / 13,
+              width: MediaQuery.of(context).size.width / 1.5,
+              shadowHeight: MediaQuery.of(context).size.height / 15,
+              shadowWidth: MediaQuery.of(context).size.width / 1.5,
               screenSize: MediaQuery.of(context).size,
               onTap: () {},
               buttonText: 'NO',

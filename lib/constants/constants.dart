@@ -103,7 +103,7 @@ class Constants {
     0,
     1,
   );
-  static const Color redButtonShadowContainerColor =  Color.fromRGBO(
+  static const Color redButtonShadowContainerColor = Color.fromRGBO(
     255,
     91,
     36,
@@ -113,6 +113,25 @@ class Constants {
     204,
     37,
     0,
+    0.5,
+  );
+
+  static const Color yellowButtonContainerColor = Color.fromRGBO(
+    212,
+    175,
+    19,
+    1,
+  );
+  static const Color yellowButtonShadowContainerColor = Color.fromRGBO(
+    251,
+    206,
+    19,
+    1,
+  );
+  static const Color yellowButtonShineColor = Color.fromRGBO(
+    212,
+    175,
+    19,
     0.5,
   );
 }

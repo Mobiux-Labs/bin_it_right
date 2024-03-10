@@ -1,30 +1,40 @@
 import 'package:flutter/material.dart';
 
-class ButtonWithShadow extends StatefulWidget {
-  String buttonText;
+class CustomAnimatedButton extends StatefulWidget {
+  String? buttonText;
+  String? imagePath;
   Color containerColor;
   Color shadowContainerColor;
   Color shineColor;
   EdgeInsets padding;
   Function onTap;
   Size screenSize;
+  double width;
+  double height;
+  double shadowWidth;
+  double shadowHeight;
 
-  ButtonWithShadow({
+  CustomAnimatedButton({
     super.key,
-    required this.buttonText,
+    this.buttonText,
+    this.imagePath,
     required this.shadowContainerColor,
     required this.containerColor,
     required this.shineColor,
     required this.padding,
     required this.onTap,
     required this.screenSize,
+    this.height = 100,
+    this.width = 100,
+    this.shadowHeight = 100,
+    this.shadowWidth = 100,
   });
 
   @override
-  State<ButtonWithShadow> createState() => _ButtonWithShadowState();
+  State<CustomAnimatedButton> createState() => _CustomAnimatedButtonState();
 }
 
-class _ButtonWithShadowState extends State<ButtonWithShadow> {
+class _CustomAnimatedButtonState extends State<CustomAnimatedButton> {
   static const Color textColor = Color.fromRGBO(
     255,
     255,
@@ -36,18 +46,10 @@ class _ButtonWithShadowState extends State<ButtonWithShadow> {
     10,
   );
 
-  late double containerHeight;
-  late double containerWidth;
-  late double shadowContainerHeight;
-  late double shadowContainerWidth;
   late double position;
 
   @override
   void initState() {
-    containerHeight = widget.screenSize.height / 13;
-    containerWidth = widget.screenSize.width / 2.2;
-    shadowContainerHeight = widget.screenSize.height / 15;
-    shadowContainerWidth = widget.screenSize.width / 2.2;
     position = 10;
     super.initState();
   }
@@ -69,8 +71,8 @@ class _ButtonWithShadowState extends State<ButtonWithShadow> {
       child: Stack(
         children: [
           Container(
-            height: containerHeight,
-            width: containerWidth,
+            height: widget.height,
+            width: widget.width,
             decoration: BoxDecoration(
               borderRadius: borderRadius,
               gradient: LinearGradient(
@@ -94,8 +96,8 @@ class _ButtonWithShadowState extends State<ButtonWithShadow> {
             child: ClipPath(
               clipper: ClipContainer(),
               child: Container(
-                height: shadowContainerHeight,
-                width: shadowContainerWidth,
+                height: widget.shadowHeight,
+                width: widget.shadowWidth,
                 decoration: BoxDecoration(
                   borderRadius: borderRadius,
                   color: widget.shadowContainerColor,
@@ -109,8 +111,8 @@ class _ButtonWithShadowState extends State<ButtonWithShadow> {
             child: ClipPath(
               clipper: ClipContainer2(),
               child: Container(
-                height: shadowContainerHeight,
-                width: shadowContainerWidth,
+                height: widget.shadowHeight,
+                width: widget.shadowWidth,
                 decoration: BoxDecoration(
                   borderRadius: borderRadius,
                   color: widget.shineColor,
@@ -121,16 +123,38 @@ class _ButtonWithShadowState extends State<ButtonWithShadow> {
           Positioned.fill(
             bottom: position,
             child: Center(
-              child: Text(
-                widget.buttonText,
-                style: const TextStyle(
-                  fontSize: 30,
-                  color: textColor,
-                  fontFamily: 'Digitalt',
-                  fontWeight: FontWeight.w500,
-                  decoration: TextDecoration.none,
-                ),
-              ),
+              child: widget.imagePath != null && widget.buttonText == null
+                  ? Image.asset(widget.imagePath as String)
+                  : widget.imagePath == null && widget.buttonText != null
+                      ? Text(
+                          widget.buttonText as String,
+                          style: const TextStyle(
+                            fontSize: 30,
+                            color: textColor,
+                            fontFamily: 'Digitalt',
+                            fontWeight: FontWeight.w500,
+                            decoration: TextDecoration.none,
+                          ),
+                        )
+                      : Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(widget.imagePath as String),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              widget.buttonText as String,
+                              style: const TextStyle(
+                                fontSize: 30,
+                                color: textColor,
+                                fontFamily: 'Digitalt',
+                                fontWeight: FontWeight.w500,
+                                decoration: TextDecoration.none,
+                              ),
+                            )
+                          ],
+                        ),
             ),
           ),
         ],
