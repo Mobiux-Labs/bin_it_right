@@ -1,6 +1,3 @@
-import 'dart:ffi';
-
-import 'package:flame/extensions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -103,6 +100,7 @@ class MainMenu extends StatelessWidget {
               onTap: () {
                 final audioController = context.read<AudioController>();
                 audioController.playSfx(SfxType.engineStart);
+                game.start();
                 game.overlays.remove(MainMenu.id);
                 game.overlays.add(CountDownOverlay.id);
               },

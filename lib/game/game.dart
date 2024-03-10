@@ -18,7 +18,7 @@ import 'package:vibration/vibration.dart';
 class Reseacue extends FlameGame {
   final Logger _log = Logger(Constants.gameLoggerKey);
 
-  static double gameSpeed = Constants.initialGameSpeed;
+  static double gameSpeed = 0.0;
 
   Stopwatch elapsedTime = Stopwatch();
   Timer interval = Timer(
@@ -33,11 +33,6 @@ class Reseacue extends FlameGame {
 
   @override
   Color backgroundColor() => Constants.backgroundColor;
-
-  Vector2 baseVelocity = Vector2(
-    0,
-    getVelocity(gameSpeed),
-  );
 
   late Vector2 leftSpawnPoint;
   late Vector2 rightSpawnPoint;
@@ -57,16 +52,29 @@ class Reseacue extends FlameGame {
 
   late bool? hasVibration;
 
+  void start() {
+    gameSpeed = Constants.initialGameSpeed;
+
+    _log.info('Starting elapsed time stopwatch');
+    elapsedTime.start();
+
+    interval.onTick = () {
+      onUpdateOnTick();
+    };
+
+    vehicle.changeAnimationByState(VehicleState.moving);
+  }
+
   @override
   FutureOr<void> onLoad() async {
+    leftSpawnPoint = Vector2(0.0, 0.0);
+    rightSpawnPoint = Vector2(size.x, 0.0);
+
     _log.info('Loading assets');
     await Flame.images.loadAll(sprites);
     _log.info('Loaded all assets successfully');
 
     hasVibration = await Vibration.hasVibrator();
-
-    _log.info('Starting elapsed time stopwatch');
-    elapsedTime.start();
 
     _log.info('Setting camera viewfinder to top left');
     camera.viewfinder.anchor = Anchor.topLeft;
@@ -125,10 +133,6 @@ class Reseacue extends FlameGame {
 
     world.add(rightGrass);
 
-    interval.onTick = () {
-      onUpdateOnTick();
-    };
-
     _log.info('Initializing vehicle');
     vehicle = Vehicle(
       position: Vector2(
@@ -138,6 +142,9 @@ class Reseacue extends FlameGame {
     );
     _log.info('Adding vehicle to world');
     world.add(vehicle);
+
+    spawnBuildings();
+    spawnWastes();
   }
 
   void drawPath(Vector2 leftTop, Vector2 rightTop, Vector2 leftBottom,
@@ -157,22 +164,7 @@ class Reseacue extends FlameGame {
     arc.removeFromParent();
   }
 
-  void onUpdateOnTick() {
-    leftSpawnPoint = Vector2(
-      0.0,
-      getRandomDouble(
-        Constants.minimumBuildingSpawnArea,
-        Constants.maximumBuildingSpawnArea,
-      ),
-    );
-    rightSpawnPoint = Vector2(
-      size.x,
-      getRandomDouble(
-        Constants.minimumBuildingSpawnArea,
-        Constants.maximumBuildingSpawnArea,
-      ),
-    );
-
+  void spawnBuildings() {
     Building buildingLeft = Building(
       position: leftSpawnPoint,
       scale: Vector2.all(Constants.buildingScale),
@@ -188,7 +180,9 @@ class Reseacue extends FlameGame {
     world.add(buildingLeft);
     _log.info('Adding right building to world');
     world.add(buildingRight);
+  }
 
+  void spawnWastes() {
     int count = getRandomIntegrerInRange(1, getMaxCountByGameSpeed(gameSpeed));
 
     for (int countToRender = 1; countToRender <= count; countToRender++) {
@@ -205,6 +199,27 @@ class Reseacue extends FlameGame {
       _log.info('Adding right waste to world');
       world.add(rightWaste);
     }
+  }
+
+  void onUpdateOnTick() {
+    leftSpawnPoint = Vector2(
+      0.0,
+      getRandomDouble(
+        Constants.minimumBuildingSpawnArea,
+        Constants.maximumBuildingSpawnArea,
+      ),
+    );
+    rightSpawnPoint = Vector2(
+      size.x,
+      getRandomDouble(
+        Constants.minimumBuildingSpawnArea,
+        Constants.maximumBuildingSpawnArea,
+      ),
+    );
+
+    spawnBuildings();
+
+    spawnWastes();
   }
 
   void updateWasteCollectedSequence(WasteType type) {
