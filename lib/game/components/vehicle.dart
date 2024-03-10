@@ -63,7 +63,7 @@ class Vehicle extends SpriteAnimationComponent with HasGameRef<Reseacue> {
     );
 
     scale = Vector2.all(Constants.movingVehicleAnimationScale);
-    animation = _movingAnimation;
+    animation = _idleAnimation;
   }
 
   void changeAnimationByState(VehicleState state) {
