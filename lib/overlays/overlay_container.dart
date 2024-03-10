@@ -13,6 +13,7 @@ class OverlayContainer extends StatelessWidget {
     required this.height,
     required this.id,
     required this.game,
+    required this.onClose,
   });
 
   String heading;
@@ -21,6 +22,7 @@ class OverlayContainer extends StatelessWidget {
   double width;
   String id;
   Reseacue game;
+  Function onClose;
 
   @override
   Widget build(BuildContext context) {
@@ -120,6 +122,7 @@ class OverlayContainer extends StatelessWidget {
                 shadowWidth: MediaQuery.of(context).size.width / 6,
                 screenSize: MediaQuery.of(context).size,
                 onTap: () {
+                  onClose();
                   game.overlays.remove(id);
                 },
                 imagePath: 'assets/images/close.png',

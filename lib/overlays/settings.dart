@@ -83,6 +83,7 @@ class SettingsMenu extends StatelessWidget {
       heading: 'SETTINGS',
       height: MediaQuery.of(context).size.height / 1.8,
       width: MediaQuery.of(context).size.width / 1.15,
+      onClose: () {},
       child: Padding(
         padding: const EdgeInsets.only(
           left: 35.0,

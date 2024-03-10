@@ -57,7 +57,6 @@ class App extends StatelessWidget {
               GameOver.id: (_, game) => GameOver(game: game),
             },
             initialActiveOverlays: [MainMenu.id],
-            // initialActiveOverlays: const [PauseButton.ID],
           ),
           transitionsBuilder: (context, animation, secondaryAnimation, child) =>
               FadeTransition(opacity: animation, child: child),

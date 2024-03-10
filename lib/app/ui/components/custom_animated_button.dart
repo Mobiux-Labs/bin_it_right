@@ -123,18 +123,38 @@ class _CustomAnimatedButtonState extends State<CustomAnimatedButton> {
           Positioned.fill(
             bottom: position,
             child: Center(
-              child: widget.imagePath != null
+              child: widget.imagePath != null && widget.buttonText == null
                   ? Image.asset(widget.imagePath as String)
-                  : Text(
-                      widget.buttonText as String,
-                      style: const TextStyle(
-                        fontSize: 30,
-                        color: textColor,
-                        fontFamily: 'Digitalt',
-                        fontWeight: FontWeight.w500,
-                        decoration: TextDecoration.none,
-                      ),
-                    ),
+                  : widget.imagePath == null && widget.buttonText != null
+                      ? Text(
+                          widget.buttonText as String,
+                          style: const TextStyle(
+                            fontSize: 30,
+                            color: textColor,
+                            fontFamily: 'Digitalt',
+                            fontWeight: FontWeight.w500,
+                            decoration: TextDecoration.none,
+                          ),
+                        )
+                      : Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(widget.imagePath as String),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              widget.buttonText as String,
+                              style: const TextStyle(
+                                fontSize: 30,
+                                color: textColor,
+                                fontFamily: 'Digitalt',
+                                fontWeight: FontWeight.w500,
+                                decoration: TextDecoration.none,
+                              ),
+                            )
+                          ],
+                        ),
             ),
           ),
         ],

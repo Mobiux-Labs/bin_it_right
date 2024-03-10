@@ -19,6 +19,7 @@ class ResetOverlay extends StatelessWidget {
       heading: 'RESET?',
       height: MediaQuery.of(context).size.height / 2.8,
       width: MediaQuery.of(context).size.width / 1.2,
+      onClose: () {},
       child: Padding(
         padding: const EdgeInsets.only(
           bottom: 25.0,

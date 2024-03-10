@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:reseacue/overlays/gradient_overlay.dart';
+import 'package:reseacue/overlays/pause_button.dart';
 
 import '../game/game.dart';
 
@@ -28,6 +29,7 @@ class _CountDownOverlayState extends State<CountDownOverlay> {
         _index++;
       });
       if (_index == 3) {
+        widget.game.overlays.add(PauseButton.id);
         widget.game.overlays.remove(CountDownOverlay.id);
       }
     });
