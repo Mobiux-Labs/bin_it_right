@@ -8,7 +8,7 @@ class Constants {
   Constants._();
 
   static const double minimumBuildingSpawnArea = -400.0;
-  static const double maximumBuildingSpawnArea = -300.0;
+  static const double maximumBuildingSpawnArea = -350.0;
 
   static const double minimumGameSpeed = 0.5;
   static const double maximumGameSpeed = 2.5;
@@ -16,8 +16,8 @@ class Constants {
   static const double minimumVelocity = -60;
   static const double maximumVelocity = -299.41;
 
-  static const double minimumBuildingSpawnRate = 3.0;
-  static const double maximumBuildingSpawnRate = 0.8;
+  static const double minimumBuildingSpawnRate = 5.0;
+  static const double maximumBuildingSpawnRate = 3;
 
   static const int buildingVariations = 18;
 
@@ -74,9 +74,9 @@ class Constants {
   static const int gameSpeedUpTimeLevel4 = 40;
 
   static const double gameSpeedLevel1 = 1.0;
-  static const double gameSpeedLevel2 = 1.5;
-  static const double gameSpeedLevel3 = 2.0;
-  static const double gameSpeedLevel4 = 2.5;
+  static const double gameSpeedLevel2 = 1.2;
+  static const double gameSpeedLevel3 = 1.4;
+  static const double gameSpeedLevel4 = 1.6;
 
   static const Color greenButtonContainerColor = Color.fromRGBO(
     147,

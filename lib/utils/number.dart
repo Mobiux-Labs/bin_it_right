@@ -37,6 +37,18 @@ double getFromRange(
   return output;
 }
 
+int getMaxCountByGameSpeed(double gameSpeed) {
+  if (gameSpeed == Constants.gameSpeedLevel2) {
+    return 3;
+  } else if (gameSpeed == Constants.gameSpeedLevel3) {
+    return 4;
+  } else if (gameSpeed == Constants.gameSpeedLevel4) {
+    return 4;
+  }
+
+  return 2;
+}
+
 double getBuildingSpawnRate(double gameSpeed) {
   _log.info('Generating building spawn rate');
   double rate = getFromRange(
