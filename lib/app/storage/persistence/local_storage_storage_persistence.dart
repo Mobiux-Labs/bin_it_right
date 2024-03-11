@@ -31,4 +31,16 @@ class LocalStorageStoragePersistence extends StoragePersistence {
     final prefs = await instanceFuture;
     await prefs.setInt('highscore', value);
   }
+
+  @override
+  Future<bool> getTutorialWatched({required bool defaultValue}) async {
+    final prefs = await instanceFuture;
+    return prefs.getBool('tutorial') ?? defaultValue;
+  }
+
+  @override
+  Future<void> saveTutorialWatched(bool value) async {
+    final prefs = await instanceFuture;
+    await prefs.setBool('tutorial', value);
+  }
 }

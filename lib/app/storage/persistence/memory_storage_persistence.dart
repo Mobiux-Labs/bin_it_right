@@ -5,6 +5,7 @@ import 'storage_persistence.dart';
 class MemoryOnlyStoragePersistence implements StoragePersistence {
   int score = 0;
   int highscore = 0;
+  bool tutorialWatched = false;
 
   @override
   Future<int> getScore({required int defaultValue}) async => score;
@@ -17,4 +18,11 @@ class MemoryOnlyStoragePersistence implements StoragePersistence {
 
   @override
   Future<void> saveHighScore(int value) async => highscore = value;
+
+  @override
+  Future<bool> getTutorialWatched({required bool defaultValue}) async =>
+      tutorialWatched;
+
+  @override
+  Future<void> saveTutorialWatched(bool value) async => tutorialWatched = value;
 }

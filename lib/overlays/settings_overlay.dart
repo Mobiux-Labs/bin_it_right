@@ -3,6 +3,7 @@ import 'package:logging/logging.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:reseacue/app/settings/settings.dart';
+import 'package:reseacue/app/storage/storage.dart';
 import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/overlays/overlays.dart';
@@ -93,6 +94,7 @@ class SettingsOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final settingsController = context.watch<SettingsController>();
+    final storageController = context.watch<StorageController>();
 
     return OverlayContainer(
       game: game,
@@ -137,6 +139,7 @@ class SettingsOverlay extends StatelessWidget {
                   image: 'tutorial',
                   text: 'Tutorial',
                   onTap: () {
+                    storageController.resetTutorial();
                     game.overlays.add(TutorialOverlay.id);
                   },
                 ),

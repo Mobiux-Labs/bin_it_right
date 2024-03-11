@@ -8,6 +8,7 @@ class StorageController {
 
   ValueNotifier<int> score = ValueNotifier(0);
   ValueNotifier<int> highscore = ValueNotifier(0);
+  ValueNotifier<bool> tutorialWatched = ValueNotifier(false);
 
   /// Creates a new instance of [StorageController] backed by [persistence].
   StorageController({required StoragePersistence persistence})
@@ -22,6 +23,9 @@ class StorageController {
       _persistence
           .getHighScore(defaultValue: 0)
           .then((value) => highscore.value = value),
+      _persistence
+          .getTutorialWatched(defaultValue: false)
+          .then((value) => tutorialWatched.value = value),
     ]);
   }
 
@@ -31,5 +35,15 @@ class StorageController {
     if (score.value > highscore.value) {
       _persistence.saveHighScore(score.value);
     }
+  }
+
+  void watchedTutorial() {
+    tutorialWatched.value = true;
+    _persistence.saveTutorialWatched(tutorialWatched.value);
+  }
+
+  void resetTutorial() {
+    tutorialWatched.value = false;
+    _persistence.saveTutorialWatched(tutorialWatched.value);
   }
 }

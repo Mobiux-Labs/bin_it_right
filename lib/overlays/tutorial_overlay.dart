@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:reseacue/app/storage/storage.dart';
 import 'package:reseacue/overlays/overlays.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -33,6 +35,14 @@ class _TutorialOverlayState extends State<TutorialOverlay> {
 
   @override
   Widget build(BuildContext context) {
+    StorageController storageController = context.watch<StorageController>();
+
+    if (storageController.tutorialWatched.value == true) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        widget.game.overlays.remove(TutorialOverlay.id);
+      });
+    }
+
     return GradientOverlay(
       child: GestureDetector(
         onTap: () {
@@ -41,6 +51,7 @@ class _TutorialOverlayState extends State<TutorialOverlay> {
               _index += 1;
             });
           } else {
+            storageController.watchedTutorial();
             widget.game.overlays.remove(TutorialOverlay.id);
           }
         },

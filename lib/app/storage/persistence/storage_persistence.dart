@@ -6,4 +6,8 @@ abstract class StoragePersistence {
   Future<int> getHighScore({required int defaultValue});
 
   Future<void> saveHighScore(int value);
+
+  Future<bool> getTutorialWatched({required bool defaultValue});
+
+  Future<void> saveTutorialWatched(bool value);
 }
