@@ -81,6 +81,7 @@ class Reseacue extends FlameGame {
   late bool? hasVibration;
 
   final ValueNotifier<int> lives = ValueNotifier<int>(3);
+  final ValueNotifier<int> score = ValueNotifier<int>(0);
 
   bool powerUpMode = false;
 
@@ -103,6 +104,7 @@ class Reseacue extends FlameGame {
     lives.value = 3;
     powerUpMode = false;
     previousGameSpeed = 0.0;
+    score.value = 0;
 
     for (Building building in buildingsGenerated) {
       if (removedBuildings.contains(building.id)) {
@@ -137,7 +139,7 @@ class Reseacue extends FlameGame {
   void reduceLife() {
     lives.value -= 1;
 
-    if (lives.value < 0) {
+    if (lives.value <= 0) {
       pauseEngine();
       overlays.add(GameOverOverlay.id);
     }
@@ -162,7 +164,7 @@ class Reseacue extends FlameGame {
   }
 
   void updateScore() {
-    storageController.updateScore();
+    score.value += Constants.tokensPerWaste;
   }
 
   void start() {

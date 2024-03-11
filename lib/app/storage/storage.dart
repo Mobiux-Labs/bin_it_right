@@ -29,12 +29,13 @@ class StorageController {
     ]);
   }
 
-  void updateScore() {
-    score.value += Constants.tokensPerWaste;
-    _persistence.saveScore(score.value);
+  void updateScore(int scoreToUpdate) {
     if (score.value > highscore.value) {
-      _persistence.saveHighScore(score.value);
+      highscore.value = score.value;
+      _persistence.saveHighScore(highscore.value);
     }
+    score.value += scoreToUpdate;
+    _persistence.saveScore(score.value);
   }
 
   void watchedTutorial() {

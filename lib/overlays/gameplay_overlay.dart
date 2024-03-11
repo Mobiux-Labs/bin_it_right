@@ -16,7 +16,6 @@ class GamePlayOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    StorageController storageController = context.watch<StorageController>();
     return Padding(
       padding: const EdgeInsets.only(
         right: 15.0,
@@ -26,7 +25,7 @@ class GamePlayOverlay extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           ValueListenableBuilder(
-              valueListenable: storageController.score,
+              valueListenable: game.score,
               builder: (context, int value, child) {
                 return EarthTokens(
                   earthPoints: value,
