@@ -40,7 +40,6 @@ flutter:
     - assets/sfx/
     - assets/music/
     - assets/images/
-    - assets/audio/sfx/
   fonts:
     - family: Digitalt
       fonts:

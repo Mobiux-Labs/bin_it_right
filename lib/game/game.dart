@@ -5,6 +5,7 @@ import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
+import 'package:reseacue/app/audio/audio_controller.dart';
 import 'package:reseacue/app/settings/settings.dart';
 import 'package:reseacue/app/storage/storage.dart';
 import 'package:reseacue/assets.dart';
@@ -24,10 +25,12 @@ import 'package:vibration/vibration.dart';
 class Reseacue extends FlameGame {
   SettingsController settingsController;
   StorageController storageController;
+  AudioController audioController;
 
   Reseacue({
     required this.settingsController,
     required this.storageController,
+    required this.audioController,
   });
 
   final Logger _log = Logger(Constants.gameLoggerKey);
@@ -317,11 +320,13 @@ class Reseacue extends FlameGame {
         position: leftSpawnPoint + Constants.leftWasteSpawnDelta,
         count: countToRender,
         settingsController: settingsController,
+        audioController: audioController,
       );
       Waste rightWaste = Waste(
         position: rightSpawnPoint + Constants.rightWasteSpawnDelta,
         count: countToRender,
         settingsController: settingsController,
+        audioController: audioController,
       );
 
       wasteGenerated.add(leftWaste);

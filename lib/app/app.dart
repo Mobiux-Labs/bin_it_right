@@ -76,6 +76,7 @@ class _AppState extends State<App> {
               gameFactory: () => Reseacue(
                 settingsController: Provider.of<SettingsController>(context),
                 storageController: Provider.of<StorageController>(context),
+                audioController: Provider.of<AudioController>(context),
               ),
               overlayBuilderMap: {
                 TutorialOverlay.id: (_, game) => TutorialOverlay(game: game),

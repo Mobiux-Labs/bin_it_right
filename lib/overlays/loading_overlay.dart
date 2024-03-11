@@ -35,7 +35,6 @@ class _LoadingOverlayState extends State<LoadingOverlay> {
         _index++;
       });
       if (_index == 44) {
-        widget.game.overlays.add(StartGameOverlay.id);
         widget.game.overlays.remove(LoadingOverlay.id);
       }
     });
