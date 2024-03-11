@@ -46,7 +46,7 @@ class _SplashScreenState extends State<SplashScreen> {
           builder: (context, AsyncSnapshot<bool> snapshot) {
             if (snapshot.data == true) {
               WidgetsBinding.instance.addPostFrameCallback((_) {
-                GoRouter.of(context).replace(Path.StartGameOverlay);
+                GoRouter.of(context).replace(Path.startGameOverlay);
               });
             }
             return Container(

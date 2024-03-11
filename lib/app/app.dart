@@ -29,7 +29,7 @@ class App extends StatelessWidget {
         routes: const [],
       ),
       GoRoute(
-        path: Path.StartGameOverlay,
+        path: Path.startGameOverlay,
         pageBuilder: (context, state) => CustomTransitionPage<void>(
           key: state.pageKey,
           child: GameWidget<Reseacue>.controlled(
