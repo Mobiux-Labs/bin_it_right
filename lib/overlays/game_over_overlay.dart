@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:reseacue/app/storage/storage.dart';
 import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/app/ui/components/score_card.dart';
 import 'package:reseacue/constants/constants.dart';
@@ -17,6 +19,7 @@ class GameOverOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    StorageController storageController = context.watch<StorageController>();
     return OverlayContainer(
       game: game,
       id: id,
@@ -32,15 +35,15 @@ class GameOverOverlay extends StatelessWidget {
           children: [
             ScoreCard(
               imagePath: 'assets/images/earth_token.png',
-              score: game.score.value.toString(),
+              score: storageController.score.value.toString(),
               label: 'SCORE',
             ),
             const SizedBox(
               height: 30.0,
             ),
-            const ScoreCard(
+            ScoreCard(
               imagePath: 'assets/images/earth_token.png',
-              score: '0',
+              score: storageController.score.value.toString(),
               fontSize: 40,
               imageSize: 30,
               label: 'BEST',

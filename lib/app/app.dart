@@ -8,6 +8,8 @@ import 'package:reseacue/app/app_lifecycle/app_lifecycle.dart';
 import 'package:reseacue/app/audio/audio_controller.dart';
 import 'package:reseacue/app/settings/persistence/settings_persistence.dart';
 import 'package:reseacue/app/settings/settings.dart';
+import 'package:reseacue/app/storage/persistence/storage_persistence.dart';
+import 'package:reseacue/app/storage/storage.dart';
 import 'package:reseacue/assets.dart';
 import 'package:reseacue/game/game.dart';
 import 'package:reseacue/overlays/overlays.dart';
@@ -18,9 +20,11 @@ import 'package:transparent_image/transparent_image.dart';
 
 class App extends StatefulWidget {
   final SettingsPersistence settingsPersistence;
+  final StoragePersistence storagePersistence;
 
   const App({
     required this.settingsPersistence,
+    required this.storagePersistence,
     super.key,
   });
 
@@ -71,6 +75,7 @@ class _AppState extends State<App> {
             child: GameWidget<Reseacue>.controlled(
               gameFactory: () => Reseacue(
                 settingsController: Provider.of<SettingsController>(context),
+                storageController: Provider.of<StorageController>(context),
               ),
               overlayBuilderMap: {
                 TutorialOverlay.id: (_, game) => TutorialOverlay(game: game),
@@ -171,6 +176,12 @@ class _AppState extends State<App> {
             lazy: false,
             create: (context) => SettingsController(
               persistence: widget.settingsPersistence,
+            )..loadStateFromPersistence(),
+          ),
+          Provider<StorageController>(
+            lazy: false,
+            create: (context) => StorageController(
+              persistence: widget.storagePersistence,
             )..loadStateFromPersistence(),
           ),
           ProxyProvider2<SettingsController, ValueNotifier<AppLifecycleState>,

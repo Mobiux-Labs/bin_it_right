@@ -6,6 +6,7 @@ import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 import 'package:reseacue/app/settings/settings.dart';
+import 'package:reseacue/app/storage/storage.dart';
 import 'package:reseacue/assets.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/components/arc.dart';
@@ -22,9 +23,11 @@ import 'package:vibration/vibration.dart';
 
 class Reseacue extends FlameGame {
   SettingsController settingsController;
+  StorageController storageController;
 
   Reseacue({
     required this.settingsController,
+    required this.storageController,
   });
 
   final Logger _log = Logger(Constants.gameLoggerKey);
@@ -77,7 +80,6 @@ class Reseacue extends FlameGame {
 
   late bool? hasVibration;
 
-  final ValueNotifier<int> score = ValueNotifier<int>(0);
   final ValueNotifier<int> lives = ValueNotifier<int>(3);
 
   bool powerUpMode = false;
@@ -160,7 +162,7 @@ class Reseacue extends FlameGame {
   }
 
   void updateScore() {
-    score.value += Constants.tokensPerWaste;
+    storageController.updateScore();
   }
 
   void start() {

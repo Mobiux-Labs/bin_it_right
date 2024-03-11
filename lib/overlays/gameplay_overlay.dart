@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:reseacue/app/storage/storage.dart';
 import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/app/ui/components/earth_tokens.dart';
 import 'package:reseacue/app/ui/components/lives_container.dart';
@@ -14,6 +16,7 @@ class GamePlayOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    StorageController storageController = context.watch<StorageController>();
     return Padding(
       padding: const EdgeInsets.only(
         right: 15.0,
@@ -23,7 +26,7 @@ class GamePlayOverlay extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           ValueListenableBuilder(
-              valueListenable: game.score,
+              valueListenable: storageController.score,
               builder: (context, int value, child) {
                 return EarthTokens(
                   earthPoints: value,

@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:logging/logging.dart';
 import 'package:reseacue/app/app.dart';
 import 'package:reseacue/app/settings/persistence/local_storage_settings_persistence.dart';
+import 'package:reseacue/app/storage/persistence/local_storage_storage_persistence.dart';
 import 'package:reseacue/constants/constants.dart';
 
 Logger _log = Logger(Constants.mainLoggerKey);
@@ -40,6 +41,7 @@ void main() {
   runApp(
     App(
       settingsPersistence: LocalStorageSettingsPersistence(),
+      storagePersistence: LocalStorageStoragePersistence(),
     ),
   );
 }
