@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:reseacue/game/game.dart';
-import 'package:reseacue/overlays/overlays.dart';
 
 class LoadingOverlay extends StatefulWidget {
   static const String id = 'Loading';
