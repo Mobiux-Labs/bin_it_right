@@ -15,18 +15,19 @@ class Constants {
   static const double maximumBuildingSpawnArea = -350.0;
 
   static const double minimumGameSpeed = 0.5;
-  static const double maximumGameSpeed = 2.5;
+  static const double maximumGameSpeed = 5.0;
 
   static const double minimumVelocity = -60;
   static const double maximumVelocity = -299.41;
 
   static const double minimumBuildingSpawnRate = 5.0;
-  static const double maximumBuildingSpawnRate = 3;
+  static const double maximumBuildingSpawnRate = 0.8;
 
   static const int buildingVariations = 18;
 
   static const double outOfScreenDeltaToRemoveObject = 100.0;
   static const double wasteRepositionAnimationSpeed = 0.2;
+  static const double wasteRepositionAnimationSpeedOnMagnet = 0.4;
 
   static const double giftAnimationStepTime = 0.3;
   static const double giftAnimationScale = 0.5;
@@ -138,4 +139,9 @@ class Constants {
     19,
     0.5,
   );
+
+  static const double powerUpInterval = 30.0;
+  static const double powerUpAvailableTimeInSeconds = 3.0;
+  static const double defaultPowerUpLifespan = 5.0;
+  static const double powerUpGameSpeed = 5.0;
 }

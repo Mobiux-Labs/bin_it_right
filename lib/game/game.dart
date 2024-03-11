@@ -11,6 +11,8 @@ import 'package:reseacue/game/components/arc.dart';
 import 'package:reseacue/game/components/building.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:reseacue/game/components/custom_parallax.dart';
+import 'package:reseacue/game/components/magnetic_field.dart';
+import 'package:reseacue/game/components/powerup.dart';
 import 'package:reseacue/game/components/vehicle.dart';
 import 'package:reseacue/game/components/waste.dart';
 import 'package:reseacue/utils/utils.dart';
@@ -22,8 +24,14 @@ class Reseacue extends FlameGame {
   static double gameSpeed = 0.0;
 
   Stopwatch elapsedTime = Stopwatch();
+  Stopwatch powerUpTime = Stopwatch();
   Timer interval = Timer(
     getBuildingSpawnRate(gameSpeed),
+    repeat: true,
+  );
+
+  Timer powerUpInterval = Timer(
+    Constants.powerUpInterval,
     repeat: true,
   );
 
@@ -55,18 +63,47 @@ class Reseacue extends FlameGame {
 
   final ValueNotifier<int> score = ValueNotifier<int>(0);
 
+  bool powerUpMode = false;
+
+  double previousGameSpeed = 0.0;
+
+  late final magneticField;
+
+  void powerUp() {
+    powerUpMode = true;
+    world.add(magneticField);
+    previousGameSpeed = gameSpeed;
+    speedUpGameplay(Constants.powerUpGameSpeed);
+    _log.info('Turning on power up');
+    powerUpTime.start();
+  }
+
+  void powerDown() {
+    speedUpGameplay(previousGameSpeed);
+    _log.info('Turning off power up');
+    powerUpMode = false;
+    powerUpTime.stop();
+    powerUpTime.reset();
+    magneticField.removeFromParent();
+  }
+
   void updateScore() {
     score.value += Constants.tokensPerWaste;
   }
 
   void start() {
     gameSpeed = Constants.initialGameSpeed;
+    previousGameSpeed = gameSpeed;
 
     _log.info('Starting elapsed time stopwatch');
     elapsedTime.start();
 
     interval.onTick = () {
       onUpdateOnTick();
+    };
+
+    powerUpInterval.onTick = () {
+      onTickPowerUpTimer();
     };
 
     vehicle.changeAnimationByState(VehicleState.moving);
@@ -139,6 +176,10 @@ class Reseacue extends FlameGame {
     );
 
     world.add(rightGrass);
+
+    magneticField = MagneticField(
+      position: Vector2(size.x / 2, size.y * 0.7),
+    );
 
     _log.info('Initializing vehicle');
     vehicle = Vehicle(
@@ -229,6 +270,17 @@ class Reseacue extends FlameGame {
     spawnWastes();
   }
 
+  void spawnPowerup() {
+    Powerup magnet = Powerup();
+
+    _log.info('Adding magnet');
+    world.add(magnet);
+  }
+
+  void onTickPowerUpTimer() {
+    spawnPowerup();
+  }
+
   void updateWasteCollectedSequence(WasteType type) {
     if (wasteCollectedOrder.isEmpty) {
       wasteCollectedOrder.add(type);
@@ -286,7 +338,13 @@ class Reseacue extends FlameGame {
       speedUpGameplay(Constants.gameSpeedLevel4);
     }
 
+    if (powerUpTime.elapsed.inSeconds >=
+        Constants.powerUpAvailableTimeInSeconds) {
+      powerDown();
+    }
+
     interval.update(dt);
+    powerUpInterval.update(dt);
     super.update(dt);
   }
 }

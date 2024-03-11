@@ -48,6 +48,8 @@ class Waste extends SpriteAnimationComponent
 
   late SpriteAnimationTicker _animationTicker;
 
+  bool attracted = false;
+
   @override
   FutureOr<void> onLoad() async {
     spawnedPosition = position.clone();
@@ -212,6 +214,45 @@ class Waste extends SpriteAnimationComponent
   void update(double dt) {
     if (!tapped) {
       position.y += Reseacue.gameSpeed;
+    }
+
+    if (position.y >= game.size.y / 3 &&
+        position.y <= game.size.y &&
+        attracted == false &&
+        game.powerUpMode == true) {
+      attracted = true;
+      final moveEffect = MoveEffect.to(
+        Vector2(game.size.x / 2, game.size.y - 200),
+        EffectController(
+          duration: Constants.wasteRepositionAnimationSpeed,
+          curve: Curves.easeIn,
+        ),
+      );
+
+      final scaleEffect = ScaleEffect.to(
+        Vector2.all(0.7),
+        EffectController(
+          duration: Constants.wasteRepositionAnimationSpeed,
+          curve: Curves.easeIn,
+        ),
+      );
+
+      final opacityEffect = OpacityEffect.to(
+        0.3,
+        EffectController(
+          duration: Constants.wasteRepositionAnimationSpeed,
+          curve: Curves.easeIn,
+        ),
+      );
+
+      moveEffect.onComplete = () {
+        game.updateScore();
+        removeFromParent();
+      };
+
+      add(opacityEffect);
+      add(scaleEffect);
+      add(moveEffect);
     }
 
     spawnedPosition.y += Reseacue.gameSpeed;
