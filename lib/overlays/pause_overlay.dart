@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
+import 'package:reseacue/app/settings/settings.dart';
 import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
@@ -18,6 +20,8 @@ class PauseOverlay extends StatelessWidget {
     double containerHeight = 60;
     double shadowContainerHeight = 50;
 
+    SettingsController settingsController = context.watch<SettingsController>();
+
     return OverlayContainer(
       game: game,
       id: id,
@@ -26,7 +30,6 @@ class PauseOverlay extends StatelessWidget {
       width: MediaQuery.of(context).size.width / 1.2,
       onClose: () {
         game.resumeEngine();
-        game.overlays.add(GamePlayOverlay.id);
       },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -75,7 +78,9 @@ class PauseOverlay extends StatelessWidget {
                         shadowHeight: shadowContainerHeight,
                         shadowWidth: containerWidth,
                         screenSize: MediaQuery.of(context).size,
-                        onTap: () {},
+                        onTap: () {
+                          game.overlays.add(SettingsOverlay.id);
+                        },
                         imagePath: 'assets/images/settings.png',
                         shadowContainerColor:
                             Constants.redButtonShadowContainerColor,
@@ -86,39 +91,58 @@ class PauseOverlay extends StatelessWidget {
                           top: 10.0,
                         ),
                       ),
-                      CustomAnimatedButton(
-                        height: containerHeight,
-                        width: containerWidth,
-                        shadowHeight: shadowContainerHeight,
-                        shadowWidth: containerWidth,
-                        screenSize: MediaQuery.of(context).size,
-                        onTap: () {},
-                        imagePath: 'assets/images/sound_on.png',
-                        shadowContainerColor:
-                            Constants.redButtonShadowContainerColor,
-                        containerColor: Constants.redButtonContainerColor,
-                        shineColor: Constants.redButtonShineColor,
-                        padding: const EdgeInsets.only(
-                          left: 67.0,
-                          top: 10.0,
-                        ),
+                      ValueListenableBuilder(
+                        valueListenable: settingsController.muted,
+                        builder: (context, muted, child) {
+                          return CustomAnimatedButton(
+                            height: containerHeight,
+                            width: containerWidth,
+                            shadowHeight: shadowContainerHeight,
+                            shadowWidth: containerWidth,
+                            screenSize: MediaQuery.of(context).size,
+                            onTap: () {
+                              settingsController.toggleMuted();
+                            },
+                            imagePath: settingsController.muted.value == true
+                                ? 'assets/images/sound_off.png'
+                                : 'assets/images/sound_on.png',
+                            shadowContainerColor:
+                                Constants.redButtonShadowContainerColor,
+                            containerColor: Constants.redButtonContainerColor,
+                            shineColor: Constants.redButtonShineColor,
+                            padding: const EdgeInsets.only(
+                              left: 67.0,
+                              top: 10.0,
+                            ),
+                          );
+                        },
                       ),
-                      CustomAnimatedButton(
-                        height: containerHeight,
-                        width: containerWidth,
-                        shadowHeight: shadowContainerHeight,
-                        shadowWidth: containerWidth,
-                        screenSize: MediaQuery.of(context).size,
-                        onTap: () {},
-                        imagePath: 'assets/images/vibration_on.png',
-                        shadowContainerColor:
-                            Constants.redButtonShadowContainerColor,
-                        containerColor: Constants.redButtonContainerColor,
-                        shineColor: Constants.redButtonShineColor,
-                        padding: const EdgeInsets.only(
-                          left: 67.0,
-                          top: 10.0,
-                        ),
+                      ValueListenableBuilder(
+                        valueListenable: settingsController.vibrationOn,
+                        builder: (context, vibrationOn, child) {
+                          return CustomAnimatedButton(
+                            height: containerHeight,
+                            width: containerWidth,
+                            shadowHeight: shadowContainerHeight,
+                            shadowWidth: containerWidth,
+                            screenSize: MediaQuery.of(context).size,
+                            onTap: () {
+                              settingsController.toggleVibration();
+                            },
+                            imagePath:
+                                settingsController.vibrationOn.value == true
+                                    ? 'assets/images/vibration_on.png'
+                                    : 'assets/images/vibration_off.png',
+                            shadowContainerColor:
+                                Constants.redButtonShadowContainerColor,
+                            containerColor: Constants.redButtonContainerColor,
+                            shineColor: Constants.redButtonShineColor,
+                            padding: const EdgeInsets.only(
+                              left: 67.0,
+                              top: 10.0,
+                            ),
+                          );
+                        },
                       ),
                       CustomAnimatedButton(
                         height: containerHeight,

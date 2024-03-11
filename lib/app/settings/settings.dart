@@ -10,10 +10,7 @@ class SettingsController {
   /// Whether or not the sound is on at all. This overrides both music
   /// and sound.
   ValueNotifier<bool> muted = ValueNotifier(false);
-
-  ValueNotifier<bool> soundsOn = ValueNotifier(false);
-
-  ValueNotifier<bool> musicOn = ValueNotifier(false);
+  ValueNotifier<bool> vibrationOn = ValueNotifier(true);
 
   /// Creates a new instance of [SettingsController] backed by [persistence].
   SettingsController({required SettingsPersistence persistence})
@@ -28,14 +25,10 @@ class SettingsController {
           // On any other platform, we start unmuted.
           .getMuted(defaultValue: kIsWeb)
           .then((value) => muted.value = value),
-      _persistence.getSoundsOn().then((value) => soundsOn.value = value),
-      _persistence.getMusicOn().then((value) => musicOn.value = value),
+      _persistence
+          .getVibrationOn(defaultValue: true)
+          .then((value) => vibrationOn.value = value),
     ]);
-  }
-
-  void toggleMusicOn() {
-    musicOn.value = !musicOn.value;
-    _persistence.saveMusicOn(musicOn.value);
   }
 
   void toggleMuted() {
@@ -43,8 +36,15 @@ class SettingsController {
     _persistence.saveMuted(muted.value);
   }
 
-  void toggleSoundsOn() {
-    soundsOn.value = !soundsOn.value;
-    _persistence.saveSoundsOn(soundsOn.value);
+  void toggleVibration() {
+    vibrationOn.value = !vibrationOn.value;
+    _persistence.saveVibrationOn(vibrationOn.value);
+  }
+
+  void reset() {
+    muted.value = false;
+    _persistence.saveMuted(muted.value);
+    vibrationOn.value = true;
+    _persistence.saveVibrationOn(vibrationOn.value);
   }
 }

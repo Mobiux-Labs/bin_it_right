@@ -5,6 +5,8 @@ import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
+import 'package:reseacue/app/settings/settings.dart';
+import 'package:reseacue/app/storage/storage.dart';
 import 'package:reseacue/assets.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/components/arc.dart';
@@ -20,6 +22,14 @@ import 'package:reseacue/utils/utils.dart';
 import 'package:vibration/vibration.dart';
 
 class Reseacue extends FlameGame {
+  SettingsController settingsController;
+  StorageController storageController;
+
+  Reseacue({
+    required this.settingsController,
+    required this.storageController,
+  });
+
   final Logger _log = Logger(Constants.gameLoggerKey);
 
   static double gameSpeed = 0.0;
@@ -70,8 +80,8 @@ class Reseacue extends FlameGame {
 
   late bool? hasVibration;
 
-  final ValueNotifier<int> score = ValueNotifier<int>(0);
   final ValueNotifier<int> lives = ValueNotifier<int>(3);
+  final ValueNotifier<int> score = ValueNotifier<int>(0);
 
   bool powerUpMode = false;
 
@@ -94,6 +104,7 @@ class Reseacue extends FlameGame {
     lives.value = 3;
     powerUpMode = false;
     previousGameSpeed = 0.0;
+    score.value = 0;
 
     for (Building building in buildingsGenerated) {
       if (removedBuildings.contains(building.id)) {
@@ -128,7 +139,7 @@ class Reseacue extends FlameGame {
   void reduceLife() {
     lives.value -= 1;
 
-    if (lives.value < 0) {
+    if (lives.value <= 0) {
       pauseEngine();
       overlays.add(GameOverOverlay.id);
     }
@@ -305,10 +316,12 @@ class Reseacue extends FlameGame {
       Waste leftWaste = Waste(
         position: leftSpawnPoint + Constants.leftWasteSpawnDelta,
         count: countToRender,
+        settingsController: settingsController,
       );
       Waste rightWaste = Waste(
         position: rightSpawnPoint + Constants.rightWasteSpawnDelta,
         count: countToRender,
+        settingsController: settingsController,
       );
 
       wasteGenerated.add(leftWaste);

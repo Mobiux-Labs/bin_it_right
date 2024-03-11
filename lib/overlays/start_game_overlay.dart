@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:reseacue/app/audio/audio_controller.dart';
 import 'package:reseacue/app/audio/sounds.dart';
+import 'package:reseacue/app/storage/storage.dart';
 import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/app/ui/components/earth_tokens.dart';
 import 'package:reseacue/constants/constants.dart';
@@ -25,6 +26,8 @@ class StartGameOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    StorageController storageController = context.watch<StorageController>();
+
     return GradientOverlay(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -37,7 +40,7 @@ class StartGameOverlay extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 EarthTokens(
-                  earthPoints: game.score.value,
+                  earthPoints: storageController.score.value,
                 ),
                 Row(
                   children: [
