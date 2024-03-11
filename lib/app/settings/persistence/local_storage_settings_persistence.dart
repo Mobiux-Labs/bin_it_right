@@ -31,4 +31,16 @@ class LocalStorageSettingsPersistence extends SettingsPersistence {
     final prefs = await instanceFuture;
     await prefs.setBool('vibrationOn', value);
   }
+
+  @override
+  Future<String> getLocale({required String defaultValue}) async {
+    final prefs = await instanceFuture;
+    return prefs.getString('locale') ?? defaultValue;
+  }
+
+  @override
+  Future<void> saveLocale(String value) async {
+    final prefs = await instanceFuture;
+    await prefs.setString('locale', value);
+  }
 }

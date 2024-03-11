@@ -1,0 +1,20 @@
+{
+  "@@locale": "es",
+  "start": "INICIAR",
+  "settings": "CONFIGURACIÓN",
+  "sfx": "EFECTOS DE SONIDO",
+  "vibration": "VIBRACIÓN",
+  "tutorial": "TUTORIAL",
+  "reset": "REINICIAR",
+  "support": "SOPORTE",
+  "credits": "DESARROLLADO POR - MOBIUX LABS",
+  "paused": "EN PAUSA",
+  "play": "JUGAR",
+  "binBoss": "¡JEFE DE LA BASURA!",
+  "score": "PUNTUACIÓN",
+  "best": "MEJOR",
+  "continueString": "CONTINUAR",
+  "resetQuestion": "¿REINICIAR?",
+  "yes": "SÍ",
+  "no": "NO"
+}

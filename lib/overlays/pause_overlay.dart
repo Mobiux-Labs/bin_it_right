@@ -7,6 +7,7 @@ import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
 import 'package:reseacue/overlays/overlays.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PauseOverlay extends StatelessWidget {
   static const String id = 'pause_overlay';
@@ -25,7 +26,7 @@ class PauseOverlay extends StatelessWidget {
     return OverlayContainer(
       game: game,
       id: id,
-      heading: 'PAUSED',
+      heading: AppLocalizations.of(context)!.paused,
       height: MediaQuery.of(context).size.height / 2.7,
       width: MediaQuery.of(context).size.width / 1.2,
       onClose: () {
@@ -53,7 +54,7 @@ class PauseOverlay extends StatelessWidget {
                     game.overlays.remove(PauseOverlay.id);
                     game.overlays.add(GamePlayOverlay.id);
                   },
-                  buttonText: 'PLAY',
+                  buttonText: AppLocalizations.of(context)!.play,
                   imagePath: 'assets/images/play.png',
                   shadowContainerColor: Constants.redButtonShadowContainerColor,
                   containerColor: Constants.redButtonContainerColor,

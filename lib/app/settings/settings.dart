@@ -11,6 +11,7 @@ class SettingsController {
   /// and sound.
   ValueNotifier<bool> muted = ValueNotifier(false);
   ValueNotifier<bool> vibrationOn = ValueNotifier(true);
+  ValueNotifier<String> locale = ValueNotifier('en');
 
   /// Creates a new instance of [SettingsController] backed by [persistence].
   SettingsController({required SettingsPersistence persistence})
@@ -28,6 +29,9 @@ class SettingsController {
       _persistence
           .getVibrationOn(defaultValue: true)
           .then((value) => vibrationOn.value = value),
+      _persistence
+          .getLocale(defaultValue: 'en')
+          .then((value) => locale.value = value),
     ]);
   }
 
@@ -46,5 +50,10 @@ class SettingsController {
     _persistence.saveMuted(muted.value);
     vibrationOn.value = true;
     _persistence.saveVibrationOn(vibrationOn.value);
+  }
+
+  void changeLocale(String localeToUpdate) {
+    locale.value = localeToUpdate;
+    _persistence.saveLocale(locale.value);
   }
 }

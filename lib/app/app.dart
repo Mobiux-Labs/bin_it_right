@@ -17,6 +17,7 @@ import 'package:reseacue/app/ui/splash_screen.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/utils/images.dart';
 import 'package:transparent_image/transparent_image.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class App extends StatefulWidget {
   final SettingsPersistence settingsPersistence;
@@ -202,12 +203,23 @@ class _AppState extends State<App> {
           ),
         ],
         child: Builder(builder: (context) {
-          return MaterialApp.router(
-            debugShowCheckedModeBanner: false,
-            routeInformationProvider: router.routeInformationProvider,
-            routeInformationParser: router.routeInformationParser,
-            routerDelegate: router.routerDelegate,
-          );
+          SettingsController settingsController =
+              context.watch<SettingsController>();
+
+          return ValueListenableBuilder(
+              valueListenable: settingsController.locale,
+              builder: (context, locale, child) {
+                return MaterialApp.router(
+                  locale: Locale(locale),
+                  localizationsDelegates:
+                      AppLocalizations.localizationsDelegates,
+                  supportedLocales: AppLocalizations.supportedLocales,
+                  debugShowCheckedModeBanner: false,
+                  routeInformationProvider: router.routeInformationProvider,
+                  routeInformationParser: router.routeInformationParser,
+                  routerDelegate: router.routerDelegate,
+                );
+              });
         }),
       ),
     );
