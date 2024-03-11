@@ -128,6 +128,7 @@ class PauseMenu extends StatelessWidget {
                         shadowWidth: containerWidth,
                         screenSize: MediaQuery.of(context).size,
                         onTap: () {
+                          game.restart();
                           game.overlays.remove(PauseMenu.id);
                           game.overlays.add('MainMenu');
                         },

@@ -7,9 +7,11 @@ import 'package:logging/logging.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
 import 'package:reseacue/utils/utils.dart';
+import 'package:uuid/uuid.dart';
 
 class Building extends SpriteComponent
     with HasGameRef<Reseacue>, DragCallbacks {
+  String id = const Uuid().v4();
   // ignore: unused_field
   final Logger _log = Logger('Building');
 
@@ -35,6 +37,7 @@ class Building extends SpriteComponent
     position.y += Reseacue.gameSpeed;
 
     if (position.y > game.size.y + Constants.outOfScreenDeltaToRemoveObject) {
+      game.removedBuildings.add(id);
       removeFromParent();
     }
 

@@ -13,6 +13,7 @@ import 'package:reseacue/game/components/token.dart';
 import 'package:reseacue/game/game.dart';
 import 'package:reseacue/utils/images.dart';
 import 'package:reseacue/utils/utils.dart';
+import 'package:uuid/uuid.dart';
 import 'package:vibration/vibration.dart';
 
 enum WasteType {
@@ -23,6 +24,8 @@ enum WasteType {
 class Waste extends SpriteAnimationComponent
     with HasGameRef<Reseacue>, DragCallbacks {
   final Logger _log = Logger(Constants.wasteLoggerKey);
+
+  String id = const Uuid().v4();
 
   WasteType? type;
   int count;
@@ -145,6 +148,7 @@ class Waste extends SpriteAnimationComponent
     );
     _animationTicker = animation?.createTicker() as SpriteAnimationTicker;
     _animationTicker.onComplete = () {
+      game.removedWastes.add(id);
       removeFromParent();
     };
   }
@@ -248,6 +252,7 @@ class Waste extends SpriteAnimationComponent
 
       moveEffect.onComplete = () {
         game.updateScore();
+        game.removedWastes.add(id);
         removeFromParent();
       };
 
@@ -267,6 +272,7 @@ class Waste extends SpriteAnimationComponent
       } catch (e) {
         _log.warning(e);
       }
+      game.removedWastes.add(id);
       removeFromParent();
     }
 

@@ -8,8 +8,10 @@ import 'package:reseacue/assets.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
 import 'package:reseacue/utils/number.dart';
+import 'package:uuid/uuid.dart';
 
 class Powerup extends SpriteComponent with HasGameRef<Reseacue>, TapCallbacks {
+  String id = const Uuid().v4();
   Stopwatch elapsedTime = Stopwatch();
 
   @override
@@ -29,6 +31,7 @@ class Powerup extends SpriteComponent with HasGameRef<Reseacue>, TapCallbacks {
   @override
   void onTapUp(TapUpEvent event) {
     game.powerUp();
+    game.removedPowerups.add(id);
     removeFromParent();
     super.onTapUp(event);
   }
@@ -37,6 +40,7 @@ class Powerup extends SpriteComponent with HasGameRef<Reseacue>, TapCallbacks {
   void update(double dt) {
     if (elapsedTime.elapsed.inSeconds >=
         Constants.powerUpAvailableTimeInSeconds) {
+      game.removedPowerups.add(id);
       removeFromParent();
     }
     super.update(dt);
