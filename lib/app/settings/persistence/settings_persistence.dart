@@ -6,4 +6,8 @@ abstract class SettingsPersistence {
   Future<bool> getMuted({required bool defaultValue});
 
   Future<void> saveMuted(bool value);
+
+  Future<bool> getVibrationOn({required bool defaultValue});
+
+  Future<void> saveVibrationOn(bool value);
 }

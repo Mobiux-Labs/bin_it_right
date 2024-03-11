@@ -122,11 +122,17 @@ class SettingsOverlay extends StatelessWidget {
                         },
                       );
                     }),
-                ButtonAndTextColumn(
-                  image: 'vibration_on',
-                  text: 'Vibration',
-                  onTap: () {},
-                ),
+                ValueListenableBuilder(
+                    valueListenable: settingsController.vibrationOn,
+                    builder: (context, vibrationOn, child) {
+                      return ButtonAndTextColumn(
+                        image: vibrationOn ? 'vibration_on' : 'vibration_off',
+                        text: 'Vibration',
+                        onTap: () {
+                          settingsController.toggleVibration();
+                        },
+                      );
+                    }),
                 ButtonAndTextColumn(
                   image: 'tutorial',
                   text: 'Tutorial',

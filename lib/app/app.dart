@@ -69,7 +69,9 @@ class _AppState extends State<App> {
           pageBuilder: (context, state) => CustomTransitionPage<void>(
             key: state.pageKey,
             child: GameWidget<Reseacue>.controlled(
-              gameFactory: Reseacue.new,
+              gameFactory: () => Reseacue(
+                settingsController: Provider.of<SettingsController>(context),
+              ),
               overlayBuilderMap: {
                 TutorialOverlay.id: (_, game) => TutorialOverlay(game: game),
                 StartGameOverlay.id: (_, game) => StartGameOverlay(game: game),

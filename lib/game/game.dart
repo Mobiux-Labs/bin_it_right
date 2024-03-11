@@ -5,6 +5,7 @@ import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
+import 'package:reseacue/app/settings/settings.dart';
 import 'package:reseacue/assets.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/components/arc.dart';
@@ -20,6 +21,12 @@ import 'package:reseacue/utils/utils.dart';
 import 'package:vibration/vibration.dart';
 
 class Reseacue extends FlameGame {
+  SettingsController settingsController;
+
+  Reseacue({
+    required this.settingsController,
+  });
+
   final Logger _log = Logger(Constants.gameLoggerKey);
 
   static double gameSpeed = 0.0;
@@ -305,10 +312,12 @@ class Reseacue extends FlameGame {
       Waste leftWaste = Waste(
         position: leftSpawnPoint + Constants.leftWasteSpawnDelta,
         count: countToRender,
+        settingsController: settingsController,
       );
       Waste rightWaste = Waste(
         position: rightSpawnPoint + Constants.rightWasteSpawnDelta,
         count: countToRender,
+        settingsController: settingsController,
       );
 
       wasteGenerated.add(leftWaste);

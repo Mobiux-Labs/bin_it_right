@@ -19,4 +19,16 @@ class LocalStorageSettingsPersistence extends SettingsPersistence {
     final prefs = await instanceFuture;
     await prefs.setBool('mute', value);
   }
+
+  @override
+  Future<bool> getVibrationOn({required bool defaultValue}) async {
+    final prefs = await instanceFuture;
+    return prefs.getBool('vibrationOn') ?? defaultValue;
+  }
+
+  @override
+  Future<void> saveVibrationOn(bool value) async {
+    final prefs = await instanceFuture;
+    await prefs.setBool('vibrationOn', value);
+  }
 }
