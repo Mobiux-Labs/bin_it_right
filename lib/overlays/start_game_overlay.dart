@@ -8,9 +8,7 @@ import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/app/ui/components/earth_tokens.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
-import 'package:reseacue/overlays/countdown_overlay.dart';
-import 'package:reseacue/overlays/gradient_overlay.dart';
-import 'package:reseacue/overlays/settings_overlay.dart';
+import 'package:reseacue/overlays/overlays.dart';
 
 class StartGameOverlay extends StatelessWidget {
   static String id = 'start_game_overlay';

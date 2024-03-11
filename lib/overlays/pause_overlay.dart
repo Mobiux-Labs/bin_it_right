@@ -4,8 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
-import 'package:reseacue/overlays/overlay_container.dart';
-import 'package:reseacue/overlays/gameplay_overlay.dart';
+import 'package:reseacue/overlays/overlays.dart';
 
 class PauseOverlay extends StatelessWidget {
   static const String id = 'pause_overlay';

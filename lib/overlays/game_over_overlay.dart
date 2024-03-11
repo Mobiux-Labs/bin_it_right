@@ -3,9 +3,7 @@ import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/app/ui/components/score_card.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
-import 'package:reseacue/overlays/start_game_overlay.dart';
-import 'package:reseacue/overlays/overlay_container.dart';
-import 'package:reseacue/overlays/gameplay_overlay.dart';
+import 'package:reseacue/overlays/overlays.dart';
 
 class GameOverOverlay extends StatelessWidget {
   static String id = 'game_over_overlay';

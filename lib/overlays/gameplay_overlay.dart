@@ -4,7 +4,7 @@ import 'package:reseacue/app/ui/components/earth_tokens.dart';
 import 'package:reseacue/app/ui/components/lives_container.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
-import 'package:reseacue/overlays/pause_overlay.dart';
+import 'package:reseacue/overlays/overlays.dart';
 
 class GamePlayOverlay extends StatelessWidget {
   static const String id = 'gameplay_overlay';

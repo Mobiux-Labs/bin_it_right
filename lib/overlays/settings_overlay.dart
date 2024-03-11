@@ -3,8 +3,7 @@ import 'package:logging/logging.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/constants/constants.dart';
-import 'package:reseacue/overlays/overlay_container.dart';
-import 'package:reseacue/overlays/tutorial_overlay.dart';
+import 'package:reseacue/overlays/overlays.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../game/game.dart';

@@ -7,17 +7,9 @@ import 'package:reseacue/app/audio/audio_controller.dart';
 import 'package:reseacue/app/settings/persistence/settings_persistence.dart';
 import 'package:reseacue/app/settings/settings.dart';
 import 'package:reseacue/game/game.dart';
-import 'package:reseacue/overlays/countdown_overlay.dart';
-import 'package:reseacue/overlays/game_over_overlay.dart';
-import 'package:reseacue/overlays/exit_confirmation_overlay.dart';
-import 'package:reseacue/overlays/start_game_overlay.dart';
+import 'package:reseacue/overlays/overlays.dart';
 import 'package:reseacue/app/ui/splash_screen.dart';
 import 'package:reseacue/constants/constants.dart';
-import 'package:reseacue/overlays/reset_settings_overlay.dart';
-import 'package:reseacue/overlays/settings_overlay.dart';
-import 'package:reseacue/overlays/tutorial_overlay.dart';
-import 'package:reseacue/overlays/gameplay_overlay.dart';
-import 'package:reseacue/overlays/pause_overlay.dart';
 
 class App extends StatelessWidget {
   final SettingsPersistence settingsPersistence;
