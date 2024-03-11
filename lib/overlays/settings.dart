@@ -5,6 +5,7 @@ import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/overlays/overlay_container.dart';
 import 'package:reseacue/overlays/tutorial_overlay.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../game/game.dart';
 
@@ -80,6 +81,13 @@ class SettingsMenu extends StatelessWidget {
     return 'Ver 1.0.0';
   }
 
+  Future<void> _launchUrl() async {
+    final Uri url = Uri.parse(Constants.mobiuxUrl);
+    if (!await launchUrl(url)) {
+      _log.warning('Could not launch $url');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return OverlayContainer(
@@ -137,7 +145,9 @@ class SettingsMenu extends StatelessWidget {
                 ButtonAndTextColumn(
                   image: 'support',
                   text: 'Support',
-                  onTap: () {},
+                  onTap: () {
+                    _launchUrl();
+                  },
                 ),
               ],
             ),

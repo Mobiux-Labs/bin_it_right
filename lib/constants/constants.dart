@@ -7,6 +7,8 @@ export 'paths.dart';
 class Constants {
   Constants._();
 
+  static const String mobiuxUrl = 'https://mobiux.in';
+
   static const double minimumBuildingSpawnArea = -400.0;
   static const double maximumBuildingSpawnArea = -350.0;
 
