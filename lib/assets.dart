@@ -49,6 +49,7 @@ List<String> sprites = [
   ...getWasteVariationImages(),
   AssetConstants.road,
   AssetConstants.roadStripes,
+  AssetConstants.earthToken,
 ];
 
 class AssetConstants {

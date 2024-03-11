@@ -9,6 +9,7 @@ import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/animation.dart';
 import 'package:logging/logging.dart';
 import 'package:reseacue/constants/constants.dart';
+import 'package:reseacue/game/components/token.dart';
 import 'package:reseacue/game/game.dart';
 import 'package:reseacue/utils/images.dart';
 import 'package:reseacue/utils/utils.dart';
@@ -124,7 +125,12 @@ class Waste extends SpriteAnimationComponent
     super.onDragCancel(event);
   }
 
-  void successfultDrop(WasteType type) {
+  void successfultDrop(WasteType type, Vector2 position) {
+    for (int i = 0; i <= Constants.tokensPerWaste; i++) {
+      game.world.add(
+        Token(position: position - Vector2(30.0 * (i + 1), 30.0 * (i + 1))),
+      );
+    }
     FlameAudio.play(
         type == WasteType.wet ? 'sfx/wet_waste.mp3' : 'sfx/dry_waste.mp3');
     game.updateWasteCollectedSequence(type);
@@ -165,7 +171,7 @@ class Waste extends SpriteAnimationComponent
           position.y > wetWasteTopBound &&
           position.x > wetWasteLeftBound &&
           position.y < wetWasteBottomBound) {
-        successfultDrop(WasteType.wet);
+        successfultDrop(WasteType.wet, position);
       } else {
         vibrate();
         add(
@@ -184,7 +190,7 @@ class Waste extends SpriteAnimationComponent
           position.y > dryWasteTopBound &&
           position.x > dryWasteLeftBound &&
           position.y < dryWasteBottomBound) {
-        successfultDrop(WasteType.dry);
+        successfultDrop(WasteType.dry, position);
       } else {
         vibrate();
         add(
