@@ -26,13 +26,11 @@ class Waste extends SpriteAnimationComponent
 
   WasteType? type;
   int count;
-  bool attractable;
 
   Waste({
     required super.position,
     super.scale,
     required this.count,
-    this.attractable = false,
   }) : type = Random().nextBool() ? WasteType.wet : WasteType.dry;
 
   bool tapped = false;
@@ -219,8 +217,9 @@ class Waste extends SpriteAnimationComponent
     }
 
     if (position.y >= game.size.y / 3 &&
+        position.y <= game.size.y &&
         attracted == false &&
-        attractable == true) {
+        game.powerUpMode == true) {
       attracted = true;
       final moveEffect = MoveEffect.to(
         Vector2(game.size.x / 2, game.size.y - 200),

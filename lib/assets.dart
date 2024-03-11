@@ -51,6 +51,7 @@ List<String> sprites = [
   AssetConstants.roadStripes,
   AssetConstants.earthToken,
   AssetConstants.magneticField,
+  AssetConstants.magnet,
 ];
 
 class AssetConstants {
@@ -84,4 +85,5 @@ class AssetConstants {
   static const String settings = 'settings_icon.png';
 
   static const String magneticField = 'magnetic_field.png';
+  static const String magnet = 'magnet.png';
 }
