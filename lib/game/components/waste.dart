@@ -128,6 +128,7 @@ class Waste extends SpriteAnimationComponent
     FlameAudio.play(
         type == WasteType.wet ? 'sfx/wet_waste.mp3' : 'sfx/dry_waste.mp3');
     game.updateWasteCollectedSequence(type);
+    game.updateScore();
     scale = Vector2.all(Constants.dropWasteAnimationScale);
     animation = SpriteAnimation.spriteList(
       getWasteDropAnimationSprites(),

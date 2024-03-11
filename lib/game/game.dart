@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
+import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 import 'package:reseacue/assets.dart';
 import 'package:reseacue/constants/constants.dart';
@@ -51,6 +52,12 @@ class Reseacue extends FlameGame {
   );
 
   late bool? hasVibration;
+
+  final ValueNotifier<int> score = ValueNotifier<int>(0);
+
+  void updateScore() {
+    score.value += Constants.tokensPerWaste;
+  }
 
   void start() {
     gameSpeed = Constants.initialGameSpeed;
