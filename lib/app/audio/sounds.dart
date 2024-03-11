@@ -47,8 +47,8 @@ List<String> soundTypeToFilename(SfxType type) {
 double soundTypeToVolume(SfxType type) {
   switch (type) {
     case SfxType.engineStart:
-      return 0.7;
     case SfxType.coin:
+      return 0.7;
     case SfxType.dryWaste:
     case SfxType.gameComplete:
     case SfxType.giftOpen:

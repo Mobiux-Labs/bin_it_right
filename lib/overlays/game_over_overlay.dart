@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:reseacue/app/audio/audio_controller.dart';
+import 'package:reseacue/app/audio/sounds.dart';
 import 'package:reseacue/app/storage/storage.dart';
 import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/app/ui/components/score_card.dart';
@@ -20,6 +22,12 @@ class GameOverOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     StorageController storageController = context.watch<StorageController>();
+    AudioController audioController = context.watch<AudioController>();
+
+    if (game.score.value > storageController.highscore.value) {
+      audioController.playSfx(SfxType.highScore);
+    }
+
     return OverlayContainer(
       game: game,
       id: id,

@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/flame.dart';
+import 'package:reseacue/app/audio/audio_controller.dart';
+import 'package:reseacue/app/audio/sounds.dart';
 import 'package:reseacue/assets.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
@@ -12,6 +14,12 @@ import 'package:uuid/uuid.dart';
 class Powerup extends SpriteComponent with HasGameRef<Reseacue>, TapCallbacks {
   String id = const Uuid().v4();
   Stopwatch elapsedTime = Stopwatch();
+
+  final AudioController audioController;
+
+  Powerup({
+    required this.audioController,
+  });
 
   @override
   FutureOr<void> onLoad() {
@@ -29,6 +37,7 @@ class Powerup extends SpriteComponent with HasGameRef<Reseacue>, TapCallbacks {
 
   @override
   void onTapUp(TapUpEvent event) {
+    audioController.playSfx(SfxType.rareItem);
     game.powerUp();
     game.removedPowerups.add(id);
     removeFromParent();

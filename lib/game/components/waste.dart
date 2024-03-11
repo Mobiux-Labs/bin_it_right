@@ -136,7 +136,7 @@ class Waste extends SpriteAnimationComponent
     super.onDragCancel(event);
   }
 
-  void successfultDrop(WasteType type, Vector2 position) {
+  void successfulDrop(WasteType type, Vector2 position) {
     for (int i = 0; i <= Constants.tokensPerWaste; i++) {
       game.world.add(
         Token(position: position - Vector2(30.0 * (i + 1), 30.0 * (i + 1))),
@@ -144,6 +144,9 @@ class Waste extends SpriteAnimationComponent
     }
     audioController
         .playSfx(type == WasteType.wet ? SfxType.wetWaste : SfxType.dryWaste);
+    audioController.playSfx(SfxType.coin);
+    audioController.playSfx(SfxType.coin);
+    audioController.playSfx(SfxType.coin);
     game.updateWasteCollectedSequence(type);
     game.updateScore();
     scale = Vector2.all(Constants.dropWasteAnimationScale);
@@ -185,7 +188,7 @@ class Waste extends SpriteAnimationComponent
           position.y > wetWasteTopBound &&
           position.x > wetWasteLeftBound &&
           position.y < wetWasteBottomBound) {
-        successfultDrop(WasteType.wet, position);
+        successfulDrop(WasteType.wet, position);
       } else {
         vibrate();
         add(
@@ -204,7 +207,7 @@ class Waste extends SpriteAnimationComponent
           position.y > dryWasteTopBound &&
           position.x > dryWasteLeftBound &&
           position.y < dryWasteBottomBound) {
-        successfultDrop(WasteType.dry, position);
+        successfulDrop(WasteType.dry, position);
       } else {
         vibrate();
         add(

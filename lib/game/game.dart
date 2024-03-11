@@ -361,7 +361,7 @@ class Reseacue extends FlameGame {
   }
 
   void spawnPowerup() {
-    Powerup magnet = Powerup();
+    Powerup magnet = Powerup(audioController: audioController);
 
     powerupsGenerated.add(magnet);
 
