@@ -39,7 +39,7 @@ class MainMenu extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 EarthTokens(
-                  earthPoints: "0",
+                  earthPoints: game.score.value,
                 ),
                 Row(
                   children: [

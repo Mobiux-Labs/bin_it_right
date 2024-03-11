@@ -9,6 +9,8 @@ class Constants {
 
   static const String mobiuxUrl = 'https://mobiux.in';
 
+  static const int tokensPerWaste = 3;
+
   static const double minimumBuildingSpawnArea = -400.0;
   static const double maximumBuildingSpawnArea = -350.0;
 
