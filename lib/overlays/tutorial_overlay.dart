@@ -25,7 +25,7 @@ class _TutorialOverlayState extends State<TutorialOverlay> {
   void initState() {
     super.initState();
     for (int tutorialImageIndex = 1;
-        tutorialImageIndex <= 6;
+        tutorialImageIndex <= 7;
         tutorialImageIndex++) {
       values.add(tutorialImageIndex.toString());
     }
@@ -36,7 +36,7 @@ class _TutorialOverlayState extends State<TutorialOverlay> {
     return GradientOverlay(
       child: GestureDetector(
         onTap: () {
-          if (_index < 5) {
+          if (_index < 6) {
             setState(() {
               _index += 1;
             });

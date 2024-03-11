@@ -129,7 +129,7 @@ class PauseOverlay extends StatelessWidget {
                         onTap: () {
                           game.restart();
                           game.overlays.remove(PauseOverlay.id);
-                          game.overlays.add('StartGameOverlay');
+                          game.overlays.add(StartGameOverlay.id);
                         },
                         imagePath: 'assets/images/home.png',
                         shadowContainerColor:
