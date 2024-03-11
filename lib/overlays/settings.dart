@@ -5,6 +5,7 @@ import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/overlays/overlay_container.dart';
 import 'package:reseacue/overlays/tutorial_overlay.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../game/game.dart';
 
@@ -80,6 +81,13 @@ class SettingsMenu extends StatelessWidget {
     return 'Ver 1.0.0';
   }
 
+  Future<void> _launchUrl() async {
+    final Uri url = Uri.parse(Constants.mobiuxUrl);
+    if (!await launchUrl(url)) {
+      _log.warning('Could not launch $url');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return OverlayContainer(
@@ -130,19 +138,34 @@ class SettingsMenu extends StatelessWidget {
                   onTap: () {},
                 ),
                 ButtonAndTextColumn(
-                  image: 'credits',
-                  text: 'Credits',
+                  image: 'english',
+                  text: 'ENGLISH',
                   onTap: () {},
                 ),
                 ButtonAndTextColumn(
                   image: 'support',
                   text: 'Support',
-                  onTap: () {},
+                  onTap: () {
+                    _launchUrl();
+                  },
                 ),
               ],
             ),
             const SizedBox(
               height: 40.0,
+            ),
+            const Text(
+              'DEVELOPED BY - MOBIUX LABS',
+              style: TextStyle(
+                decoration: TextDecoration.none,
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+                fontFamily: 'Digitalt',
+                color: Color.fromRGBO(255, 255, 255, 1),
+              ),
+            ),
+            const SizedBox(
+              height: 10.0,
             ),
             FutureBuilder(
                 future: getAppVersion(),
