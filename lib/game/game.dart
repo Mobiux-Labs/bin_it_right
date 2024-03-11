@@ -17,7 +17,6 @@ import 'package:reseacue/game/components/vehicle.dart';
 import 'package:reseacue/game/components/waste.dart';
 import 'package:reseacue/overlays/game_over.dart';
 import 'package:reseacue/utils/utils.dart';
-import 'package:uuid/uuid.dart';
 import 'package:vibration/vibration.dart';
 
 class Reseacue extends FlameGame {
@@ -78,7 +77,7 @@ class Reseacue extends FlameGame {
 
   double previousGameSpeed = 0.0;
 
-  late final magneticField;
+  late final MagneticField magneticField;
 
   void restart() {
     gameSpeed = 0.0;

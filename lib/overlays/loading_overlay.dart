@@ -7,9 +7,9 @@ import 'package:reseacue/overlays/main_menu.dart';
 class LoadingOverlay extends StatefulWidget {
   static const String id = 'Loading';
 
-  Reseacue game;
+  final Reseacue game;
 
-  LoadingOverlay({
+  const LoadingOverlay({
     super.key,
     required this.game,
   });

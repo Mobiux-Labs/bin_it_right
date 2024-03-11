@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
 class CustomAnimatedButton extends StatefulWidget {
-  String? buttonText;
-  String? imagePath;
-  Color containerColor;
-  Color shadowContainerColor;
-  Color shineColor;
-  EdgeInsets padding;
-  Function onTap;
-  Size screenSize;
-  double width;
-  double height;
-  double shadowWidth;
-  double shadowHeight;
+  final String? buttonText;
+  final String? imagePath;
+  final Color containerColor;
+  final Color shadowContainerColor;
+  final Color shineColor;
+  final EdgeInsets padding;
+  final Function onTap;
+  final Size screenSize;
+  final double width;
+  final double height;
+  final double shadowWidth;
+  final double shadowHeight;
 
-  CustomAnimatedButton({
+  const CustomAnimatedButton({
     super.key,
     this.buttonText,
     this.imagePath,

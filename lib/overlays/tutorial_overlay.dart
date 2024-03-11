@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:reseacue/overlays/gradient_overlay.dart';
-import 'package:reseacue/overlays/main_menu.dart';
 
 import '../game/game.dart';
 

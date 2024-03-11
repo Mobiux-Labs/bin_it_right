@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
-import 'package:reseacue/overlays/settings.dart';
 
 class OverlayContainer extends StatelessWidget {
-  OverlayContainer({
+  const OverlayContainer({
     super.key,
     required this.child,
     required this.heading,
@@ -16,13 +15,13 @@ class OverlayContainer extends StatelessWidget {
     required this.onClose,
   });
 
-  String heading;
-  Widget child;
-  double height;
-  double width;
-  String id;
-  Reseacue game;
-  Function onClose;
+  final String heading;
+  final Widget child;
+  final double height;
+  final double width;
+  final String id;
+  final Reseacue game;
+  final Function onClose;
 
   @override
   Widget build(BuildContext context) {

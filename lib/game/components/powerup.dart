@@ -1,4 +1,3 @@
-// TODO: Extend to be multiple types
 import 'dart:async';
 
 import 'package:flame/components.dart';

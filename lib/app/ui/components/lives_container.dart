@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class LivesContainer extends StatelessWidget {
-  LivesContainer({
+  const LivesContainer({
     super.key,
     required this.lives,
   });
 
-  int lives;
-  static const double containerHeight = 50;
-  static const double containerWidth = 140;
-  static const double shadowContainerHeight = 44;
-  static const double shadowContainerWidth = 140;
+  final int lives;
+  final double containerHeight = 50;
+  final double containerWidth = 140;
+  final double shadowContainerHeight = 44;
+  final double shadowContainerWidth = 140;
 
   static const Color containerColor = Color.fromRGBO(
     212,

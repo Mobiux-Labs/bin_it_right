@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
 class GradientOverlay extends StatelessWidget {
-   GradientOverlay({super.key, required this.child});
-  Widget child;
+  const GradientOverlay({
+    super.key,
+    required this.child,
+  });
+
+  final Widget child;
+
   @override
   Widget build(BuildContext context) {
     return Container(
