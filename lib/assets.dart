@@ -63,8 +63,6 @@ class AssetConstants {
   AssetConstants._();
 
   static const String splashScreen = 'splash_screen.png';
-  static const String wetWaste = 'wet_waste.png';
-  static const String dryWaste = 'dry_waste.png';
   static const String leftGrass = 'grass_left_side.png';
   static const String rightGrass = 'grass_right_side.png';
   static const String road = 'road.png';
@@ -80,9 +78,6 @@ class AssetConstants {
   static const String bothWasteVehicleMoving1 = 'both_waste_vehicle_1.png';
   static const String bothWasteVehicleMoving2 = 'both_waste_vehicle_2.png';
   static const String earthToken = 'earth_token.png';
-  static const String leaderboard = 'leaderboard_icon.png';
-  static const String pause = 'pause_icon.png';
-  static const String settings = 'settings_icon.png';
   static const String magneticField = 'magnetic_field.png';
   static const String magnet = 'magnet.png';
   static const String alive = 'alive.png';
@@ -100,8 +95,6 @@ class AssetConstants {
 
   static const List<String> assets = [
     splashScreen,
-    wetWaste,
-    dryWaste,
     leftGrass,
     rightGrass,
     road,
@@ -117,9 +110,6 @@ class AssetConstants {
     bothWasteVehicleMoving1,
     bothWasteVehicleMoving2,
     earthToken,
-    leaderboard,
-    pause,
-    settings,
     magneticField,
     magnet,
     alive,
