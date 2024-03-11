@@ -3,9 +3,9 @@ import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/app/ui/components/score_card.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
-import 'package:reseacue/overlays/main_menu.dart';
+import 'package:reseacue/overlays/start_game_overlay.dart';
 import 'package:reseacue/overlays/overlay_container.dart';
-import 'package:reseacue/overlays/pause_button.dart';
+import 'package:reseacue/overlays/gameplay_overlay.dart';
 
 class GameOverOverlay extends StatelessWidget {
   static String id = 'game_over_overlay';
@@ -67,7 +67,7 @@ class GameOverOverlay extends StatelessWidget {
                     game.restart();
                     game.overlays.remove(id);
                     game.overlays.remove(GamePlayOverlay.id);
-                    game.overlays.add(MainMenuOverlay.id);
+                    game.overlays.add(StartGameOverlay.id);
                   },
                   buttonText: 'CONTINUE',
                   shadowContainerColor:

@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:reseacue/overlays/gradient_overlay.dart';
-import 'package:reseacue/overlays/pause_button.dart';
+import 'package:reseacue/overlays/gameplay_overlay.dart';
 
 import '../game/game.dart';
 

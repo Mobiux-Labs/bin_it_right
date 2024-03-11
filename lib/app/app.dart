@@ -7,17 +7,17 @@ import 'package:reseacue/app/audio/audio_controller.dart';
 import 'package:reseacue/app/settings/persistence/settings_persistence.dart';
 import 'package:reseacue/app/settings/settings.dart';
 import 'package:reseacue/game/game.dart';
-import 'package:reseacue/overlays/countdown.dart';
-import 'package:reseacue/overlays/game_over.dart';
-import 'package:reseacue/overlays/leaving_confirmation_overlay.dart';
-import 'package:reseacue/overlays/main_menu.dart';
+import 'package:reseacue/overlays/countdown_overlay.dart';
+import 'package:reseacue/overlays/game_over_overlay.dart';
+import 'package:reseacue/overlays/exit_confirmation_overlay.dart';
+import 'package:reseacue/overlays/start_game_overlay.dart';
 import 'package:reseacue/app/ui/splash_screen.dart';
 import 'package:reseacue/constants/constants.dart';
-import 'package:reseacue/overlays/reset.dart';
-import 'package:reseacue/overlays/settings.dart';
+import 'package:reseacue/overlays/reset_settings_overlay.dart';
+import 'package:reseacue/overlays/settings_overlay.dart';
 import 'package:reseacue/overlays/tutorial_overlay.dart';
-import 'package:reseacue/overlays/pause_button.dart';
-import 'package:reseacue/overlays/pause_menu.dart';
+import 'package:reseacue/overlays/gameplay_overlay.dart';
+import 'package:reseacue/overlays/pause_overlay.dart';
 
 class App extends StatelessWidget {
   final SettingsPersistence settingsPersistence;
@@ -37,14 +37,14 @@ class App extends StatelessWidget {
         routes: const [],
       ),
       GoRoute(
-        path: Path.MainMenuOverlay,
+        path: Path.StartGameOverlay,
         pageBuilder: (context, state) => CustomTransitionPage<void>(
           key: state.pageKey,
           child: GameWidget<Reseacue>.controlled(
             gameFactory: Reseacue.new,
             overlayBuilderMap: {
               TutorialOverlay.id: (_, game) => TutorialOverlay(game: game),
-              MainMenuOverlay.id: (_, game) => MainMenuOverlay(game: game),
+              StartGameOverlay.id: (_, game) => StartGameOverlay(game: game),
               CountDownOverlay.id: (_, game) => CountDownOverlay(game: game),
               GamePlayOverlay.id: (BuildContext context, Reseacue game) =>
                   GamePlayOverlay(
@@ -55,13 +55,14 @@ class App extends StatelessWidget {
                     game: game,
                   ),
               SettingsOverlay.id: (_, game) => SettingsOverlay(game: game),
-              ResetOverlay.id: (_, game) => ResetOverlay(game: game),
+              ResetSettingsOverlay.id: (_, game) =>
+                  ResetSettingsOverlay(game: game),
               GameOverOverlay.id: (_, game) => GameOverOverlay(game: game),
               ExitConfirmationOverlay.id: (_, game) =>
                   ExitConfirmationOverlay(game: game),
             },
             initialActiveOverlays: [
-              MainMenuOverlay.id,
+              StartGameOverlay.id,
               TutorialOverlay.id,
             ],
           ),

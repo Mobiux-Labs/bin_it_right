@@ -8,17 +8,17 @@ import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/app/ui/components/earth_tokens.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
-import 'package:reseacue/overlays/countdown.dart';
+import 'package:reseacue/overlays/countdown_overlay.dart';
 import 'package:reseacue/overlays/gradient_overlay.dart';
-import 'package:reseacue/overlays/settings.dart';
+import 'package:reseacue/overlays/settings_overlay.dart';
 
-class MainMenuOverlay extends StatelessWidget {
-  static String id = 'main_menu_overlay';
+class StartGameOverlay extends StatelessWidget {
+  static String id = 'start_game_overlay';
 
   // Reference to parent game.
   final Reseacue game;
 
-  const MainMenuOverlay({super.key, required this.game});
+  const StartGameOverlay({super.key, required this.game});
 
   static const startButton = 'assets/images/start_button.png';
   static const settingsIcon = 'assets/images/settings.png';
@@ -101,7 +101,7 @@ class MainMenuOverlay extends StatelessWidget {
                 final audioController = context.read<AudioController>();
                 audioController.playSfx(SfxType.engineStart);
                 game.start();
-                game.overlays.remove(MainMenuOverlay.id);
+                game.overlays.remove(StartGameOverlay.id);
                 game.overlays.add(CountDownOverlay.id);
               },
               buttonText: 'START',

@@ -15,7 +15,7 @@ import 'package:reseacue/game/components/magnetic_field.dart';
 import 'package:reseacue/game/components/powerup.dart';
 import 'package:reseacue/game/components/vehicle.dart';
 import 'package:reseacue/game/components/waste.dart';
-import 'package:reseacue/overlays/game_over.dart';
+import 'package:reseacue/overlays/game_over_overlay.dart';
 import 'package:reseacue/utils/utils.dart';
 import 'package:vibration/vibration.dart';
 

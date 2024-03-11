@@ -5,7 +5,7 @@ import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
 import 'package:reseacue/overlays/overlay_container.dart';
-import 'package:reseacue/overlays/pause_button.dart';
+import 'package:reseacue/overlays/gameplay_overlay.dart';
 
 class PauseOverlay extends StatelessWidget {
   static const String id = 'pause_overlay';
@@ -130,7 +130,7 @@ class PauseOverlay extends StatelessWidget {
                         onTap: () {
                           game.restart();
                           game.overlays.remove(PauseOverlay.id);
-                          game.overlays.add('MainMenuOverlay');
+                          game.overlays.add('StartGameOverlay');
                         },
                         imagePath: 'assets/images/home.png',
                         shadowContainerColor:
