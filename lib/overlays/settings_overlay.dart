@@ -151,7 +151,9 @@ class SettingsOverlay extends StatelessWidget {
                 ButtonAndTextColumn(
                   image: 'reset',
                   text: 'Reset',
-                  onTap: () {},
+                  onTap: () {
+                    settingsController.reset();
+                  },
                 ),
                 ButtonAndTextColumn(
                   image: 'english',

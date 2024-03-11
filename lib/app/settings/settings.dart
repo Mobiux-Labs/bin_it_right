@@ -40,4 +40,11 @@ class SettingsController {
     vibrationOn.value = !vibrationOn.value;
     _persistence.saveVibrationOn(vibrationOn.value);
   }
+
+  void reset() {
+    muted.value = false;
+    _persistence.saveMuted(muted.value);
+    vibrationOn.value = true;
+    _persistence.saveVibrationOn(vibrationOn.value);
+  }
 }
