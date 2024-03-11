@@ -61,11 +61,12 @@ class ButtonAndTextColumn extends StatelessWidget {
   }
 }
 
-class SettingsMenu extends StatelessWidget {
+class SettingsOverlay extends StatelessWidget {
+  static const String id = 'settings_overlay';
+
   static final Logger _log = Logger('settings.dart');
 
-  static const String id = 'Settings';
-  const SettingsMenu({super.key, required this.game});
+  const SettingsOverlay({super.key, required this.game});
 
   final Reseacue game;
 

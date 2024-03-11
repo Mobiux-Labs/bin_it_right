@@ -7,9 +7,9 @@ import 'package:reseacue/overlays/overlay_container.dart';
 
 import '../game/game.dart';
 
-class LeavingConfirmationOverlay extends StatelessWidget {
-  static String id = 'LeavingConfirmation';
-  const LeavingConfirmationOverlay({super.key, required this.game});
+class ExitConfirmationOverlay extends StatelessWidget {
+  static String id = 'exit_confirmation_overlay';
+  const ExitConfirmationOverlay({super.key, required this.game});
 
   final Reseacue game;
 

@@ -7,9 +7,9 @@ import 'package:reseacue/overlays/main_menu.dart';
 import 'package:reseacue/overlays/overlay_container.dart';
 import 'package:reseacue/overlays/pause_button.dart';
 
-class GameOver extends StatelessWidget {
-  static String id = 'GameOver';
-  const GameOver({super.key, required this.game});
+class GameOverOverlay extends StatelessWidget {
+  static String id = 'game_over_overlay';
+  const GameOverOverlay({super.key, required this.game});
 
   final Reseacue game;
 
@@ -66,8 +66,8 @@ class GameOver extends StatelessWidget {
                   onTap: () {
                     game.restart();
                     game.overlays.remove(id);
-                    game.overlays.remove(PauseButton.id);
-                    game.overlays.add(MainMenu.id);
+                    game.overlays.remove(GamePlayOverlay.id);
+                    game.overlays.add(MainMenuOverlay.id);
                   },
                   buttonText: 'CONTINUE',
                   shadowContainerColor:

@@ -6,7 +6,7 @@ import 'package:reseacue/overlays/overlay_container.dart';
 import '../game/game.dart';
 
 class ResetOverlay extends StatelessWidget {
-  static String id = 'Reset';
+  static String id = 'reset_overlay';
   const ResetOverlay({super.key, required this.game});
 
   final Reseacue game;

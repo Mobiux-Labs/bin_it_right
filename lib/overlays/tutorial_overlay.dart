@@ -6,7 +6,7 @@ import 'package:reseacue/overlays/gradient_overlay.dart';
 import '../game/game.dart';
 
 class TutorialOverlay extends StatefulWidget {
-  static String id = 'Tutorial';
+  static String id = 'tutorial_overlay';
   final Reseacue game;
   const TutorialOverlay({super.key, required this.game});
 

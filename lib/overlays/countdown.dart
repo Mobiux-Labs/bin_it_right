@@ -7,7 +7,7 @@ import 'package:reseacue/overlays/pause_button.dart';
 import '../game/game.dart';
 
 class CountDownOverlay extends StatefulWidget {
-  static String id = 'CountDown';
+  static String id = 'countdown_overlay';
   final Reseacue game;
   const CountDownOverlay({super.key, required this.game});
 
@@ -29,7 +29,7 @@ class _CountDownOverlayState extends State<CountDownOverlay> {
         _index++;
       });
       if (_index == 3) {
-        widget.game.overlays.add(PauseButton.id);
+        widget.game.overlays.add(GamePlayOverlay.id);
         widget.game.overlays.remove(CountDownOverlay.id);
       }
     });
@@ -46,7 +46,7 @@ class _CountDownOverlayState extends State<CountDownOverlay> {
     return GradientOverlay(
       child: GestureDetector(
         onTap: () {
-          widget.game.overlays.add(PauseButton.id);
+          widget.game.overlays.add(GamePlayOverlay.id);
           widget.game.overlays.remove(CountDownOverlay.id);
         },
         child: SizedBox(

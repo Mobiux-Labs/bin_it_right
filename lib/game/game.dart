@@ -130,7 +130,7 @@ class Reseacue extends FlameGame {
 
     if (lives.value < 0) {
       pauseEngine();
-      overlays.add(GameOver.id);
+      overlays.add(GameOverOverlay.id);
     }
   }
 

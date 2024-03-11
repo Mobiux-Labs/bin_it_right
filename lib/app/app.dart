@@ -16,9 +16,8 @@ import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/overlays/reset.dart';
 import 'package:reseacue/overlays/settings.dart';
 import 'package:reseacue/overlays/tutorial_overlay.dart';
-
-import '../overlays/pause_button.dart';
-import '../overlays/pause_menu.dart';
+import 'package:reseacue/overlays/pause_button.dart';
+import 'package:reseacue/overlays/pause_menu.dart';
 
 class App extends StatelessWidget {
   final SettingsPersistence settingsPersistence;
@@ -38,30 +37,31 @@ class App extends StatelessWidget {
         routes: const [],
       ),
       GoRoute(
-        path: Path.mainMenu,
+        path: Path.MainMenuOverlay,
         pageBuilder: (context, state) => CustomTransitionPage<void>(
           key: state.pageKey,
           child: GameWidget<Reseacue>.controlled(
             gameFactory: Reseacue.new,
             overlayBuilderMap: {
               TutorialOverlay.id: (_, game) => TutorialOverlay(game: game),
-              MainMenu.id: (_, game) => MainMenu(game: game),
+              MainMenuOverlay.id: (_, game) => MainMenuOverlay(game: game),
               CountDownOverlay.id: (_, game) => CountDownOverlay(game: game),
-              PauseButton.id: (BuildContext context, Reseacue game) =>
-                  PauseButton(
+              GamePlayOverlay.id: (BuildContext context, Reseacue game) =>
+                  GamePlayOverlay(
                     game: game,
                   ),
-              PauseMenu.id: (BuildContext context, Reseacue game) => PauseMenu(
+              PauseOverlay.id: (BuildContext context, Reseacue game) =>
+                  PauseOverlay(
                     game: game,
                   ),
-              SettingsMenu.id: (_, game) => SettingsMenu(game: game),
+              SettingsOverlay.id: (_, game) => SettingsOverlay(game: game),
               ResetOverlay.id: (_, game) => ResetOverlay(game: game),
-              GameOver.id: (_, game) => GameOver(game: game),
-              LeavingConfirmationOverlay.id: (_, game) =>
-                  LeavingConfirmationOverlay(game: game),
+              GameOverOverlay.id: (_, game) => GameOverOverlay(game: game),
+              ExitConfirmationOverlay.id: (_, game) =>
+                  ExitConfirmationOverlay(game: game),
             },
             initialActiveOverlays: [
-              MainMenu.id,
+              MainMenuOverlay.id,
               TutorialOverlay.id,
             ],
           ),
