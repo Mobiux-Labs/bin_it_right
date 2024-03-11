@@ -26,11 +26,13 @@ class Waste extends SpriteAnimationComponent
 
   WasteType? type;
   int count;
+  bool attractable;
 
   Waste({
     required super.position,
     super.scale,
     required this.count,
+    this.attractable = false,
   }) : type = Random().nextBool() ? WasteType.wet : WasteType.dry;
 
   bool tapped = false;
@@ -47,6 +49,8 @@ class Waste extends SpriteAnimationComponent
   late double dryWasteBottomBound;
 
   late SpriteAnimationTicker _animationTicker;
+
+  bool attracted = false;
 
   @override
   FutureOr<void> onLoad() async {
@@ -212,6 +216,24 @@ class Waste extends SpriteAnimationComponent
   void update(double dt) {
     if (!tapped) {
       position.y += Reseacue.gameSpeed;
+    }
+
+    if (position.y >= 10.0 && attracted == false && attractable == true) {
+      attracted = true;
+      final moveEffect = MoveEffect.to(
+        Vector2(game.size.x / 2, game.size.y - 200),
+        EffectController(
+          duration: Constants.wasteRepositionAnimationSpeed,
+          curve: Curves.easeIn,
+        ),
+      );
+
+      moveEffect.onComplete = () {
+        game.updateScore();
+        removeFromParent();
+      };
+
+      add(moveEffect);
     }
 
     spawnedPosition.y += Reseacue.gameSpeed;
