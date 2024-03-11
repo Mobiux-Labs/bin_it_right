@@ -30,7 +30,7 @@ class Powerup extends SpriteComponent with HasGameRef<Reseacue>, TapCallbacks {
     );
 
     position.x = getRandomDouble(width, game.size.x - width);
-    position.y = getRandomDouble(0.0, game.size.y / 2);
+    position.y = getRandomDouble(height * 2, game.size.y / 2);
 
     return super.onLoad();
   }
