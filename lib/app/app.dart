@@ -9,6 +9,7 @@ import 'package:reseacue/app/settings/settings.dart';
 import 'package:reseacue/game/game.dart';
 import 'package:reseacue/overlays/countdown.dart';
 import 'package:reseacue/overlays/game_over.dart';
+import 'package:reseacue/overlays/leaving_confirmation_overlay.dart';
 import 'package:reseacue/overlays/main_menu.dart';
 import 'package:reseacue/app/ui/splash_screen.dart';
 import 'package:reseacue/constants/constants.dart';
@@ -56,8 +57,13 @@ class App extends StatelessWidget {
               SettingsMenu.id: (_, game) => SettingsMenu(game: game),
               ResetOverlay.id: (_, game) => ResetOverlay(game: game),
               GameOver.id: (_, game) => GameOver(game: game),
+              LeavingConfirmationOverlay.id: (_, game) =>
+                  LeavingConfirmationOverlay(game: game),
             },
-            initialActiveOverlays: [MainMenu.id, TutorialOverlay.id],
+            initialActiveOverlays: [
+              MainMenu.id,
+              TutorialOverlay.id,
+            ],
           ),
           transitionsBuilder: (context, animation, secondaryAnimation, child) =>
               FadeTransition(opacity: animation, child: child),
