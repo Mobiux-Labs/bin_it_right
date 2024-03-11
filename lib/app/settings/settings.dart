@@ -11,10 +11,6 @@ class SettingsController {
   /// and sound.
   ValueNotifier<bool> muted = ValueNotifier(false);
 
-  ValueNotifier<bool> soundsOn = ValueNotifier(false);
-
-  ValueNotifier<bool> musicOn = ValueNotifier(false);
-
   /// Creates a new instance of [SettingsController] backed by [persistence].
   SettingsController({required SettingsPersistence persistence})
       : _persistence = persistence;
@@ -28,23 +24,11 @@ class SettingsController {
           // On any other platform, we start unmuted.
           .getMuted(defaultValue: kIsWeb)
           .then((value) => muted.value = value),
-      _persistence.getSoundsOn().then((value) => soundsOn.value = value),
-      _persistence.getMusicOn().then((value) => musicOn.value = value),
     ]);
-  }
-
-  void toggleMusicOn() {
-    musicOn.value = !musicOn.value;
-    _persistence.saveMusicOn(musicOn.value);
   }
 
   void toggleMuted() {
     muted.value = !muted.value;
     _persistence.saveMuted(muted.value);
-  }
-
-  void toggleSoundsOn() {
-    soundsOn.value = !soundsOn.value;
-    _persistence.saveSoundsOn(soundsOn.value);
   }
 }

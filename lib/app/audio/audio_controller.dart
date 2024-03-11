@@ -73,18 +73,14 @@ class AudioController {
     final oldSettings = _settings;
     if (oldSettings != null) {
       oldSettings.muted.removeListener(_mutedHandler);
-      oldSettings.musicOn.removeListener(_musicOnHandler);
-      oldSettings.soundsOn.removeListener(_soundsOnHandler);
     }
 
     _settings = settingsController;
 
     // Add handlers to the new settings controller
     settingsController.muted.addListener(_mutedHandler);
-    settingsController.musicOn.addListener(_musicOnHandler);
-    settingsController.soundsOn.addListener(_soundsOnHandler);
 
-    if (!settingsController.muted.value && settingsController.musicOn.value) {
+    if (!settingsController.muted.value && !settingsController.muted.value) {
       _startMusic();
     }
   }
@@ -121,8 +117,8 @@ class AudioController {
       _log.info(() => 'Ignoring playing sound ($type) because audio is muted.');
       return;
     }
-    final soundsOn = _settings?.soundsOn.value ?? false;
-    if (!soundsOn) {
+    final soundsOn = _settings?.muted.value ?? false;
+    if (soundsOn) {
       _log.info(() =>
           'Ignoring playing sound ($type) because sounds are turned off.');
       return;
@@ -154,7 +150,7 @@ class AudioController {
       case AppLifecycleState.hidden:
         _stopAllSound();
       case AppLifecycleState.resumed:
-        if (!_settings!.muted.value && _settings!.musicOn.value) {
+        if (!_settings!.muted.value && !_settings!.muted.value) {
           _resumeMusic();
         }
       case AppLifecycleState.inactive:
@@ -163,27 +159,12 @@ class AudioController {
     }
   }
 
-  void _musicOnHandler() {
-    if (_settings!.musicOn.value) {
-      // Music got turned on.
-      if (!_settings!.muted.value) {
-        _resumeMusic();
-      }
-    } else {
-      // Music got turned off.
-      _stopMusic();
-    }
-  }
-
   void _mutedHandler() {
     if (_settings!.muted.value) {
       // All sound just got muted.
       _stopAllSound();
     } else {
-      // All sound just got un-muted.
-      if (_settings!.musicOn.value) {
-        _resumeMusic();
-      }
+      _resumeMusic();
     }
   }
 
@@ -222,14 +203,6 @@ class AudioController {
     }
   }
 
-  void _soundsOnHandler() {
-    for (final player in _sfxPlayers) {
-      if (player.state == PlayerState.playing) {
-        player.stop();
-      }
-    }
-  }
-
   void _startMusic() {
     _log.info('starting music');
     _playFirstSongInPlaylist();
@@ -241,13 +214,6 @@ class AudioController {
     }
     for (final player in _sfxPlayers) {
       player.stop();
-    }
-  }
-
-  void _stopMusic() {
-    _log.info('Stopping music');
-    if (_musicPlayer.state == PlayerState.playing) {
-      _musicPlayer.pause();
     }
   }
 }

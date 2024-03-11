@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:provider/provider.dart';
+import 'package:reseacue/app/settings/settings.dart';
 import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/overlays/overlays.dart';
@@ -90,6 +92,8 @@ class SettingsOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final settingsController = context.watch<SettingsController>();
+
     return OverlayContainer(
       game: game,
       id: id,
@@ -107,11 +111,17 @@ class SettingsOverlay extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                ButtonAndTextColumn(
-                  image: 'sound_on',
-                  text: 'SFX',
-                  onTap: () {},
-                ),
+                ValueListenableBuilder(
+                    valueListenable: settingsController.muted,
+                    builder: (context, muted, child) {
+                      return ButtonAndTextColumn(
+                        image: muted ? 'sound_off' : 'sound_on',
+                        text: 'SFX',
+                        onTap: () {
+                          settingsController.toggleMuted();
+                        },
+                      );
+                    }),
                 ButtonAndTextColumn(
                   image: 'vibration_on',
                   text: 'Vibration',
