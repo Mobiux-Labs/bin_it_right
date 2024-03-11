@@ -130,8 +130,8 @@ class SettingsMenu extends StatelessWidget {
                   onTap: () {},
                 ),
                 ButtonAndTextColumn(
-                  image: 'credits',
-                  text: 'Credits',
+                  image: 'english',
+                  text: 'ENGLISH',
                   onTap: () {},
                 ),
                 ButtonAndTextColumn(
@@ -143,6 +143,19 @@ class SettingsMenu extends StatelessWidget {
             ),
             const SizedBox(
               height: 40.0,
+            ),
+            const Text(
+              'DEVELOPED BY - MOBIUX LABS',
+              style: TextStyle(
+                decoration: TextDecoration.none,
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+                fontFamily: 'Digitalt',
+                color: Color.fromRGBO(255, 255, 255, 1),
+              ),
+            ),
+            const SizedBox(
+              height: 10.0,
             ),
             FutureBuilder(
                 future: getAppVersion(),
