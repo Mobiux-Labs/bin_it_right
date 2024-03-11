@@ -4,13 +4,13 @@ import 'package:reseacue/app/ui/components/earth_tokens.dart';
 import 'package:reseacue/app/ui/components/lives_container.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
-import 'package:reseacue/overlays/pause_menu.dart';
+import 'package:reseacue/overlays/overlays.dart';
 
-class PauseButton extends StatelessWidget {
-  static const String id = 'PauseButton';
+class GamePlayOverlay extends StatelessWidget {
+  static const String id = 'gameplay_overlay';
   final Reseacue game;
 
-  const PauseButton({super.key, required this.game});
+  const GamePlayOverlay({super.key, required this.game});
 
   @override
   Widget build(BuildContext context) {
@@ -42,8 +42,8 @@ class PauseButton extends StatelessWidget {
             screenSize: MediaQuery.of(context).size,
             onTap: () {
               game.pauseEngine();
-              game.overlays.add(PauseMenu.id);
-              game.overlays.remove(PauseButton.id);
+              game.overlays.add(PauseOverlay.id);
+              game.overlays.remove(GamePlayOverlay.id);
             },
             imagePath: 'assets/images/pause.png',
             shadowContainerColor: Constants.yellowButtonShadowContainerColor,

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/constants/constants.dart';
-import 'package:reseacue/overlays/overlay_container.dart';
+import 'package:reseacue/overlays/overlays.dart';
 
 import '../game/game.dart';
 
-class ResetOverlay extends StatelessWidget {
-  static String id = 'Reset';
-  const ResetOverlay({super.key, required this.game});
+class ResetSettingsOverlay extends StatelessWidget {
+  static String id = 'reset_overlay';
+  const ResetSettingsOverlay({super.key, required this.game});
 
   final Reseacue game;
 

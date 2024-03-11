@@ -15,9 +15,8 @@ import 'package:reseacue/game/components/magnetic_field.dart';
 import 'package:reseacue/game/components/powerup.dart';
 import 'package:reseacue/game/components/vehicle.dart';
 import 'package:reseacue/game/components/waste.dart';
-import 'package:reseacue/overlays/game_over.dart';
+import 'package:reseacue/overlays/overlays.dart';
 import 'package:reseacue/utils/utils.dart';
-import 'package:uuid/uuid.dart';
 import 'package:vibration/vibration.dart';
 
 class Reseacue extends FlameGame {
@@ -78,7 +77,7 @@ class Reseacue extends FlameGame {
 
   double previousGameSpeed = 0.0;
 
-  late final magneticField;
+  late final MagneticField magneticField;
 
   void restart() {
     gameSpeed = 0.0;
@@ -131,7 +130,7 @@ class Reseacue extends FlameGame {
 
     if (lives.value < 0) {
       pauseEngine();
-      overlays.add(GameOver.id);
+      overlays.add(GameOverOverlay.id);
     }
   }
 

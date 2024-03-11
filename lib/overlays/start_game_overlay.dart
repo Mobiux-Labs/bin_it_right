@@ -8,17 +8,15 @@ import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/app/ui/components/earth_tokens.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
-import 'package:reseacue/overlays/countdown.dart';
-import 'package:reseacue/overlays/gradient_overlay.dart';
-import 'package:reseacue/overlays/settings.dart';
+import 'package:reseacue/overlays/overlays.dart';
 
-class MainMenu extends StatelessWidget {
-  static String id = 'MainMenu';
+class StartGameOverlay extends StatelessWidget {
+  static String id = 'start_game_overlay';
 
   // Reference to parent game.
   final Reseacue game;
 
-  const MainMenu({super.key, required this.game});
+  const StartGameOverlay({super.key, required this.game});
 
   static const startButton = 'assets/images/start_button.png';
   static const settingsIcon = 'assets/images/settings.png';
@@ -70,7 +68,7 @@ class MainMenu extends StatelessWidget {
                       shadowWidth: 50,
                       screenSize: MediaQuery.of(context).size,
                       onTap: () {
-                        game.overlays.add(SettingsMenu.id);
+                        game.overlays.add(SettingsOverlay.id);
                       },
                       imagePath: 'assets/images/settings.png',
                       shadowContainerColor:
@@ -101,7 +99,7 @@ class MainMenu extends StatelessWidget {
                 final audioController = context.read<AudioController>();
                 audioController.playSfx(SfxType.engineStart);
                 game.start();
-                game.overlays.remove(MainMenu.id);
+                game.overlays.remove(StartGameOverlay.id);
                 game.overlays.add(CountDownOverlay.id);
               },
               buttonText: 'START',

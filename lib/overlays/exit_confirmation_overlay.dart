@@ -3,13 +3,13 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/constants/constants.dart';
-import 'package:reseacue/overlays/overlay_container.dart';
+import 'package:reseacue/overlays/overlays.dart';
 
 import '../game/game.dart';
 
-class LeavingConfirmationOverlay extends StatelessWidget {
-  static String id = 'LeavingConfirmation';
-  const LeavingConfirmationOverlay({super.key, required this.game});
+class ExitConfirmationOverlay extends StatelessWidget {
+  static String id = 'exit_confirmation_overlay';
+  const ExitConfirmationOverlay({super.key, required this.game});
 
   final Reseacue game;
 

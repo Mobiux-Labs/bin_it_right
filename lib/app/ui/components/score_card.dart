@@ -4,14 +4,14 @@ class ScoreCard extends StatelessWidget {
   final String imagePath;
   final String score;
   final String label;
-  double fontSize;
-  double imageSize;
-  double labelFontSize;
-  double yOffset;
-  double heightFactor;
-  double padding;
+  final double fontSize;
+  final double imageSize;
+  final double labelFontSize;
+  final double yOffset;
+  final double heightFactor;
+  final double padding;
 
-  ScoreCard({
+  const ScoreCard({
     super.key,
     required this.imagePath,
     required this.score,

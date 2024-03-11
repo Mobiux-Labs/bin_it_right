@@ -1,13 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:reseacue/overlays/gradient_overlay.dart';
-import 'package:reseacue/overlays/main_menu.dart';
+import 'package:reseacue/overlays/overlays.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 import '../game/game.dart';
 
 class TutorialOverlay extends StatefulWidget {
-  static String id = 'Tutorial';
+  static String id = 'tutorial_overlay';
   final Reseacue game;
   const TutorialOverlay({super.key, required this.game});
 
@@ -47,9 +47,15 @@ class _TutorialOverlayState extends State<TutorialOverlay> {
         child: SizedBox(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          child: Image(
-            image: AssetImage(
-                'assets/images/tutorial_${values[_index % values.length]}.png'),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.black.withOpacity(0.6),
+            ),
+            child: FadeInImage(
+              placeholder: MemoryImage(kTransparentImage),
+              image: AssetImage(
+                  'assets/images/tutorial_${values[_index % values.length]}.png'),
+            ),
           ),
         ),
       ),

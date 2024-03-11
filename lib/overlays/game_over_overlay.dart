@@ -3,19 +3,17 @@ import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/app/ui/components/score_card.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
-import 'package:reseacue/overlays/main_menu.dart';
-import 'package:reseacue/overlays/overlay_container.dart';
-import 'package:reseacue/overlays/pause_button.dart';
+import 'package:reseacue/overlays/overlays.dart';
 
-class GameOver extends StatelessWidget {
-  static String id = 'GameOver';
-  GameOver({super.key, required this.game});
+class GameOverOverlay extends StatelessWidget {
+  static String id = 'game_over_overlay';
+  const GameOverOverlay({super.key, required this.game});
 
   final Reseacue game;
 
-  double containerWidth = 60;
-  double containerHeight = 60;
-  double shadowContainerHeight = 50;
+  final double containerWidth = 60;
+  final double containerHeight = 60;
+  final double shadowContainerHeight = 50;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +38,7 @@ class GameOver extends StatelessWidget {
             const SizedBox(
               height: 30.0,
             ),
-            ScoreCard(
+            const ScoreCard(
               imagePath: 'assets/images/earth_token.png',
               score: '0',
               fontSize: 40,
@@ -66,8 +64,8 @@ class GameOver extends StatelessWidget {
                   onTap: () {
                     game.restart();
                     game.overlays.remove(id);
-                    game.overlays.remove(PauseButton.id);
-                    game.overlays.add(MainMenu.id);
+                    game.overlays.remove(GamePlayOverlay.id);
+                    game.overlays.add(StartGameOverlay.id);
                   },
                   buttonText: 'CONTINUE',
                   shadowContainerColor:

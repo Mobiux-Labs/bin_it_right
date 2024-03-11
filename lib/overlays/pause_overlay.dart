@@ -4,14 +4,13 @@ import 'package:flutter/widgets.dart';
 import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
-import 'package:reseacue/overlays/overlay_container.dart';
-import 'package:reseacue/overlays/pause_button.dart';
+import 'package:reseacue/overlays/overlays.dart';
 
-class PauseMenu extends StatelessWidget {
-  static const String id = 'PauseMenu';
+class PauseOverlay extends StatelessWidget {
+  static const String id = 'pause_overlay';
   final Reseacue game;
 
-  const PauseMenu({super.key, required this.game});
+  const PauseOverlay({super.key, required this.game});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +26,7 @@ class PauseMenu extends StatelessWidget {
       width: MediaQuery.of(context).size.width / 1.2,
       onClose: () {
         game.resumeEngine();
-        game.overlays.add(PauseButton.id);
+        game.overlays.add(GamePlayOverlay.id);
       },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -48,8 +47,8 @@ class PauseMenu extends StatelessWidget {
                   screenSize: MediaQuery.of(context).size,
                   onTap: () {
                     game.resumeEngine();
-                    game.overlays.remove(PauseMenu.id);
-                    game.overlays.add(PauseButton.id);
+                    game.overlays.remove(PauseOverlay.id);
+                    game.overlays.add(GamePlayOverlay.id);
                   },
                   buttonText: 'PLAY',
                   imagePath: 'assets/images/play.png',
@@ -129,8 +128,8 @@ class PauseMenu extends StatelessWidget {
                         screenSize: MediaQuery.of(context).size,
                         onTap: () {
                           game.restart();
-                          game.overlays.remove(PauseMenu.id);
-                          game.overlays.add('MainMenu');
+                          game.overlays.remove(PauseOverlay.id);
+                          game.overlays.add('StartGameOverlay');
                         },
                         imagePath: 'assets/images/home.png',
                         shadowContainerColor:

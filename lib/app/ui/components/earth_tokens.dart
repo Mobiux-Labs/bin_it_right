@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class EarthTokens extends StatelessWidget {
-  EarthTokens({
+  const EarthTokens({
     super.key,
     required this.earthPoints,
   });
 
-  int earthPoints = 0;
-  static const double containerHeight = 50;
-  static const double containerWidth = 130;
-  static const double shadowContainerHeight = 44;
-  static const double shadowContainerWidth = 130;
+  final int earthPoints;
+  final double containerHeight = 50;
+  final double containerWidth = 130;
+  final double shadowContainerHeight = 44;
+  final double shadowContainerWidth = 130;
 
   static const Color containerColor = Color.fromRGBO(
     212,
