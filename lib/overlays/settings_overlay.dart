@@ -7,7 +7,9 @@ import 'package:reseacue/app/storage/storage.dart';
 import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/overlays/overlays.dart';
+import 'package:reseacue/utils/utils.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../game/game.dart';
 
@@ -49,7 +51,7 @@ class ButtonAndTextColumn extends StatelessWidget {
           height: 10,
         ),
         Text(
-          text,
+          truncateText(text, 10),
           style: const TextStyle(
             fontSize: 20,
             color: Colors.white,
@@ -96,10 +98,55 @@ class SettingsOverlay extends StatelessWidget {
     final settingsController = context.watch<SettingsController>();
     final storageController = context.watch<StorageController>();
 
+    String getImageByLocale(locale) {
+      switch (locale) {
+        case 'en':
+          return 'english';
+        case 'de':
+          return 'german';
+        case 'es':
+          return 'spanish';
+        case 'fr':
+          return 'french';
+      }
+
+      return 'english.png';
+    }
+
+    String getTextByLocale(locale) {
+      switch (locale) {
+        case 'en':
+          return 'ENGLISH';
+        case 'de':
+          return 'GERMAN';
+        case 'es':
+          return 'SPANISH';
+        case 'fr':
+          return 'FRENCH';
+      }
+
+      return 'english.png';
+    }
+
+    String getLocaleToUpdate(locale) {
+      switch (locale) {
+        case 'en':
+          return 'de';
+        case 'de':
+          return 'es';
+        case 'es':
+          return 'fr';
+        case 'fr':
+          return 'en';
+      }
+
+      return 'english.png';
+    }
+
     return OverlayContainer(
       game: game,
       id: id,
-      heading: 'SETTINGS',
+      heading: AppLocalizations.of(context)!.settings,
       height: MediaQuery.of(context).size.height / 1.8,
       width: MediaQuery.of(context).size.width / 1.15,
       onClose: () {},
@@ -118,7 +165,7 @@ class SettingsOverlay extends StatelessWidget {
                     builder: (context, muted, child) {
                       return ButtonAndTextColumn(
                         image: muted ? 'sound_off' : 'sound_on',
-                        text: 'SFX',
+                        text: AppLocalizations.of(context)!.sfx,
                         onTap: () {
                           settingsController.toggleMuted();
                         },
@@ -129,7 +176,7 @@ class SettingsOverlay extends StatelessWidget {
                     builder: (context, vibrationOn, child) {
                       return ButtonAndTextColumn(
                         image: vibrationOn ? 'vibration_on' : 'vibration_off',
-                        text: 'Vibration',
+                        text: AppLocalizations.of(context)!.vibration,
                         onTap: () {
                           settingsController.toggleVibration();
                         },
@@ -137,7 +184,7 @@ class SettingsOverlay extends StatelessWidget {
                     }),
                 ButtonAndTextColumn(
                   image: 'tutorial',
-                  text: 'Tutorial',
+                  text: AppLocalizations.of(context)!.tutorial,
                   onTap: () {
                     storageController.resetTutorial();
                     game.overlays.add(TutorialOverlay.id);
@@ -153,19 +200,27 @@ class SettingsOverlay extends StatelessWidget {
               children: [
                 ButtonAndTextColumn(
                   image: 'reset',
-                  text: 'Reset',
+                  text: AppLocalizations.of(context)!.reset,
                   onTap: () {
                     settingsController.reset();
                   },
                 ),
-                ButtonAndTextColumn(
-                  image: 'english',
-                  text: 'ENGLISH',
-                  onTap: () {},
+                ValueListenableBuilder(
+                  valueListenable: settingsController.locale,
+                  builder: (context, locale, child) {
+                    return ButtonAndTextColumn(
+                      image: getImageByLocale(settingsController.locale.value),
+                      text: getTextByLocale(settingsController.locale.value),
+                      onTap: () {
+                        settingsController.changeLocale(
+                            getLocaleToUpdate(settingsController.locale.value));
+                      },
+                    );
+                  },
                 ),
                 ButtonAndTextColumn(
                   image: 'support',
-                  text: 'Support',
+                  text: AppLocalizations.of(context)!.support,
                   onTap: () {
                     _launchUrl();
                   },
@@ -175,9 +230,9 @@ class SettingsOverlay extends StatelessWidget {
             const SizedBox(
               height: 40.0,
             ),
-            const Text(
-              'DEVELOPED BY - MOBIUX LABS',
-              style: TextStyle(
+            Text(
+              truncateText(AppLocalizations.of(context)!.credits, 26),
+              style: const TextStyle(
                 decoration: TextDecoration.none,
                 fontSize: 20,
                 fontWeight: FontWeight.w500,

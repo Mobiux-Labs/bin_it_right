@@ -7,6 +7,8 @@ class MemoryOnlySettingsPersistence implements SettingsPersistence {
 
   bool vibrationOn = true;
 
+  String locale = 'en';
+
   @override
   Future<bool> getMuted({required bool defaultValue}) async => muted;
 
@@ -19,4 +21,10 @@ class MemoryOnlySettingsPersistence implements SettingsPersistence {
 
   @override
   Future<void> saveVibrationOn(bool value) async => vibrationOn = value;
+
+  @override
+  Future<String> getLocale({required String defaultValue}) async => locale;
+
+  @override
+  Future<void> saveLocale(String value) async => locale = value;
 }

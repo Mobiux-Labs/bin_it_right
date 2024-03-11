@@ -1,0 +1,20 @@
+{
+  "@@locale": "fr",
+  "start": "DÉMARRER",
+  "settings": "PARAMÈTRES",
+  "sfx": "EFFETS SONORES",
+  "vibration": "VIBRATION",
+  "tutorial": "TUTORIEL",
+  "reset": "RÉINITIALISER",
+  "support": "SUPPORT",
+  "credits": "DÉVELOPPÉ PAR - MOBIUX LABS",
+  "paused": "PAUSE",
+  "play": "JOUER",
+  "binBoss": "CHEF DE LA POUBELLE !",
+  "score": "SCORE",
+  "best": "MEILLEUR",
+  "continueString": "CONTINUER",
+  "resetQuestion": "RÉINITIALISER ?",
+  "yes": "OUI",
+  "no": "NON"
+}

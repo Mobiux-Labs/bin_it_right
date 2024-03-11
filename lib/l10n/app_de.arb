@@ -1,0 +1,20 @@
+{
+  "@@locale": "de",
+  "start": "START",
+  "settings": "EINSTELLUNGEN",
+  "sfx": "SFX",
+  "vibration": "VIBRATION",
+  "tutorial": "ANLEITUNG",
+  "reset": "ZURÜCKSETZEN",
+  "support": "UNTERSTÜTZUNG",
+  "credits": "ENTWICKELT VON - MOBIUX LABS",
+  "paused": "ANGEHALTEN",
+  "play": "SPIELEN",
+  "binBoss": "MÜLLEIMER BOSS!",
+  "score": "WERTUNG",
+  "best": "BESTE",
+  "continueString": "WEITER",
+  "resetQuestion": "ZURÜCKSETZEN?",
+  "yes": "JA",
+  "no": "NEIN"
+}

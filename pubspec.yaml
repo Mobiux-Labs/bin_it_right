@@ -12,7 +12,10 @@ dependencies:
   flame_behaviors: ^1.1.0
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   go_router: ^13.2.0
+  intl: any
   logging: ^1.2.0
   package_info_plus: ^4.2.0
   provider: ^6.1.2
@@ -34,6 +37,7 @@ flutter_launcher_icons:
   min_sdk_android: 21
 
 flutter:
+  generate: true
   uses-material-design: true
   assets:
     - assets/sfx/

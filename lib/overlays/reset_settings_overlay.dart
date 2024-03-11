@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/overlays/overlays.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../game/game.dart';
 
@@ -16,7 +17,7 @@ class ResetSettingsOverlay extends StatelessWidget {
     return OverlayContainer(
       game: game,
       id: id,
-      heading: 'RESET?',
+      heading: AppLocalizations.of(context)!.resetQuestion,
       height: MediaQuery.of(context).size.height / 2.8,
       width: MediaQuery.of(context).size.width / 1.2,
       onClose: () {},
@@ -33,7 +34,7 @@ class ResetSettingsOverlay extends StatelessWidget {
               shadowWidth: MediaQuery.of(context).size.width / 1.5,
               screenSize: MediaQuery.of(context).size,
               onTap: () {},
-              buttonText: 'YES',
+              buttonText: AppLocalizations.of(context)!.yes,
               shadowContainerColor: Constants.greenButtonShadowContainerColor,
               containerColor: Constants.greenButtonContainerColor,
               shineColor: Constants.greenButtonShineColor,
@@ -52,7 +53,7 @@ class ResetSettingsOverlay extends StatelessWidget {
               shadowWidth: MediaQuery.of(context).size.width / 1.5,
               screenSize: MediaQuery.of(context).size,
               onTap: () {},
-              buttonText: 'NO',
+              buttonText: AppLocalizations.of(context)!.no,
               shadowContainerColor: Constants.redButtonShadowContainerColor,
               containerColor: Constants.redButtonContainerColor,
               shineColor: Constants.redButtonShineColor,

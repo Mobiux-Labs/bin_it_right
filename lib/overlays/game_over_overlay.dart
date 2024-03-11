@@ -8,6 +8,8 @@ import 'package:reseacue/app/ui/components/score_card.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
 import 'package:reseacue/overlays/overlays.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:reseacue/utils/utils.dart';
 
 class GameOverOverlay extends StatelessWidget {
   static String id = 'game_over_overlay';
@@ -31,7 +33,7 @@ class GameOverOverlay extends StatelessWidget {
     return OverlayContainer(
       game: game,
       id: id,
-      heading: 'BIN BOSS!',
+      heading: truncateText(AppLocalizations.of(context)!.binBoss, 10),
       height: MediaQuery.of(context).size.height / 1.8,
       width: MediaQuery.of(context).size.width / 1.15,
       onClose: () {},
@@ -44,7 +46,7 @@ class GameOverOverlay extends StatelessWidget {
             ScoreCard(
               imagePath: 'assets/images/earth_token.png',
               score: game.score.value.toString(),
-              label: 'SCORE',
+              label: AppLocalizations.of(context)!.score,
             ),
             const SizedBox(
               height: 30.0,
@@ -56,7 +58,7 @@ class GameOverOverlay extends StatelessWidget {
                   : storageController.highscore.value.toString(),
               fontSize: 40,
               imageSize: 30,
-              label: 'BEST',
+              label: AppLocalizations.of(context)!.best,
               labelFontSize: 20,
               yOffset: 10,
               heightFactor: 11,
@@ -81,7 +83,7 @@ class GameOverOverlay extends StatelessWidget {
                     game.overlays.remove(GamePlayOverlay.id);
                     game.overlays.add(StartGameOverlay.id);
                   },
-                  buttonText: 'CONTINUE',
+                  buttonText: AppLocalizations.of(context)!.continueString,
                   shadowContainerColor:
                       Constants.greenButtonShadowContainerColor,
                   containerColor: Constants.greenButtonContainerColor,

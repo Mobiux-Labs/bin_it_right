@@ -10,6 +10,7 @@ import 'package:reseacue/app/ui/components/earth_tokens.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
 import 'package:reseacue/overlays/overlays.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class StartGameOverlay extends StatelessWidget {
   static String id = 'start_game_overlay';
@@ -105,7 +106,7 @@ class StartGameOverlay extends StatelessWidget {
                 game.overlays.remove(StartGameOverlay.id);
                 game.overlays.add(CountDownOverlay.id);
               },
-              buttonText: 'START',
+              buttonText: AppLocalizations.of(context)!.start,
               shadowContainerColor: Constants.redButtonShadowContainerColor,
               containerColor: Constants.redButtonContainerColor,
               shineColor: Constants.redButtonShineColor,

@@ -10,4 +10,8 @@ abstract class SettingsPersistence {
   Future<bool> getVibrationOn({required bool defaultValue});
 
   Future<void> saveVibrationOn(bool value);
+
+  Future<String> getLocale({required String defaultValue});
+
+  Future<void> saveLocale(String value);
 }

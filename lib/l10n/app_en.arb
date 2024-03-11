@@ -1,0 +1,20 @@
+{
+  "@@locale": "en", 
+  "start": "START",
+  "settings": "SETTINGS",
+  "sfx": "SFX",
+  "vibration": "VIBRATION",
+  "tutorial": "TUTORIAL",
+  "reset": "RESET",
+  "support": "SUPPORT",
+  "credits": "DEVELOPED BY - MOBIUX LABS",
+  "paused": "PAUSED",
+  "play": "PLAY",
+  "binBoss": "BIN BOSS!",
+  "score": "SCORE",
+  "best": "BEST",
+  "continueString": "CONTINUE",
+  "resetQuestion": "RESET?",
+  "yes": "YES",
+  "no": "NO"
+}
