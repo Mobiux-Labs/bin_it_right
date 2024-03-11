@@ -158,6 +158,7 @@ class Waste extends SpriteAnimationComponent
   void wasteMissed() {
     FlameAudio.play('sfx/miss.mp3');
     vibrate();
+    game.reduceLife();
   }
 
   @override

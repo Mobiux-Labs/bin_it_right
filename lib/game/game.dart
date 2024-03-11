@@ -15,6 +15,7 @@ import 'package:reseacue/game/components/magnetic_field.dart';
 import 'package:reseacue/game/components/powerup.dart';
 import 'package:reseacue/game/components/vehicle.dart';
 import 'package:reseacue/game/components/waste.dart';
+import 'package:reseacue/overlays/game_over.dart';
 import 'package:reseacue/utils/utils.dart';
 import 'package:vibration/vibration.dart';
 
@@ -62,12 +63,22 @@ class Reseacue extends FlameGame {
   late bool? hasVibration;
 
   final ValueNotifier<int> score = ValueNotifier<int>(0);
+  final ValueNotifier<int> lives = ValueNotifier<int>(3);
 
   bool powerUpMode = false;
 
   double previousGameSpeed = 0.0;
 
   late final magneticField;
+
+  void reduceLife() {
+    lives.value -= 1;
+
+    if (lives.value < 0) {
+      pauseEngine();
+      overlays.add(GameOver.id);
+    }
+  }
 
   void powerUp() {
     powerUpMode = true;

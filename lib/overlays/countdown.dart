@@ -46,6 +46,7 @@ class _CountDownOverlayState extends State<CountDownOverlay> {
     return GradientOverlay(
       child: GestureDetector(
         onTap: () {
+          widget.game.overlays.add(PauseButton.id);
           widget.game.overlays.remove(CountDownOverlay.id);
         },
         child: SizedBox(

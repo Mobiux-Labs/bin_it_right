@@ -32,7 +32,7 @@ class GameOver extends StatelessWidget {
           children: [
             ScoreCard(
               imagePath: 'assets/images/earth_token.png',
-              score: '0',
+              score: game.score.value.toString(),
               label: 'SCORE',
             ),
             const SizedBox(
@@ -78,8 +78,7 @@ class GameOver extends StatelessWidget {
                   shadowWidth: MediaQuery.of(context).size.width / 1.7,
                   screenSize: MediaQuery.of(context).size,
                   onTap: () {},
-                  buttonText: 'REPLAY',
-                  imagePath: 'assets/images/reset.png',
+                  buttonText: 'CONTINUE',
                   shadowContainerColor:
                       Constants.greenButtonShadowContainerColor,
                   containerColor: Constants.greenButtonContainerColor,

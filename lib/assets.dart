@@ -33,6 +33,11 @@ const List<String> grassVariations = [
   AssetConstants.rightGrass,
 ];
 
+const List<String> lifeStates = [
+  AssetConstants.alive,
+  AssetConstants.lifeOver,
+];
+
 List<String> sprites = [
   AssetConstants.splashScreen,
   ...getBuildingVariationImages(),
@@ -86,4 +91,7 @@ class AssetConstants {
 
   static const String magneticField = 'magnetic_field.png';
   static const String magnet = 'magnet.png';
+
+  static const String alive = 'alive.png';
+  static const String lifeOver = 'life_over.png';
 }
