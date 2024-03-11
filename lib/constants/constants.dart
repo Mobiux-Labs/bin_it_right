@@ -144,4 +144,17 @@ class Constants {
   static const double powerUpAvailableTimeInSeconds = 3.0;
   static const double defaultPowerUpLifespan = 5.0;
   static const double powerUpGameSpeed = 5.0;
+
+  List<String> recyclingFacts = [
+    "Recycling one ton of paper saves 17 trees, 7,000 gallons of water, and 380 gallons of oil.",
+    "Plastic bottles can take up to 450 years to decompose in a landfill, but recycling them can save energy equivalent to powering a house for 6 months.",
+    "Aluminum cans can be recycled infinitely without losing quality, and recycling one can saves enough energy to power a TV for 3 hours.",
+    "Recycling glass reduces air pollution by 20% and water pollution by 50% compared to manufacturing new glass.",
+    "E-waste contains valuable materials like gold and silver, and recycling one million laptops saves the energy equivalent to the electricity used by 3,500 homes in a year.",
+    "In the United States, recycling and composting prevent the emission of over 186 million metric tons of carbon dioxide equivalent, equivalent to removing 40 million cars from the road annually.",
+    "Producing new plastic from recycled material uses only two-thirds of the energy required to manufacture it from raw materials.",
+    "The energy saved from recycling one plastic bottle can power a computer for 25 minutes.",
+    "Recycling aluminum saves 95% of the energy needed to produce new aluminum from raw materials.",
+    "Paper can decompose in a landfill, but it releases methane, a potent greenhouse gas; recycling paper reduces methane emissions and conserves landfill space."
+  ];
 }
