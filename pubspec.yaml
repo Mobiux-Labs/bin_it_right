@@ -19,6 +19,7 @@ dependencies:
   provider: ^6.1.2
   shared_preferences: ^2.2.2
   url_launcher: ^6.2.5
+  uuid: ^4.3.3
   vibration: ^1.8.4
 
 dev_dependencies:

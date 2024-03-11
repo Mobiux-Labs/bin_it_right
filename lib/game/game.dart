@@ -17,6 +17,7 @@ import 'package:reseacue/game/components/vehicle.dart';
 import 'package:reseacue/game/components/waste.dart';
 import 'package:reseacue/overlays/game_over.dart';
 import 'package:reseacue/utils/utils.dart';
+import 'package:uuid/uuid.dart';
 import 'package:vibration/vibration.dart';
 
 class Reseacue extends FlameGame {
@@ -52,6 +53,14 @@ class Reseacue extends FlameGame {
 
   List<WasteType> wasteCollectedOrder = [];
 
+  List<String> removedBuildings = [];
+  List<String> removedWastes = [];
+  List<String> removedPowerups = [];
+
+  List<Waste> wasteGenerated = [];
+  List<Building> buildingsGenerated = [];
+  List<Powerup> powerupsGenerated = [];
+
   ArcComponent arc = ArcComponent(
     leftTop: Vector2.all(0.0),
     rightTop: Vector2.all(0.0),
@@ -70,6 +79,53 @@ class Reseacue extends FlameGame {
   double previousGameSpeed = 0.0;
 
   late final magneticField;
+
+  void restart() {
+    gameSpeed = 0.0;
+    elapsedTime.stop();
+    elapsedTime.reset();
+    powerUpTime.stop();
+    powerUpTime.reset();
+    interval.stop();
+    interval.reset();
+    powerUpInterval.stop();
+    powerUpInterval.reset();
+    vehicle.changeAnimationByState(VehicleState.idle);
+    wasteCollectedOrder = [];
+    score.value = 0;
+    lives.value = 3;
+    powerUpMode = false;
+    previousGameSpeed = 0.0;
+
+    for (Building building in buildingsGenerated) {
+      if (removedBuildings.contains(building.id)) {
+        continue;
+      }
+      world.remove(building);
+    }
+
+    for (Waste waste in wasteGenerated) {
+      if (removedWastes.contains(waste.id)) {
+        continue;
+      }
+      world.remove(waste);
+    }
+
+    for (Powerup powerup in powerupsGenerated) {
+      if (removedPowerups.contains(powerup.id)) {
+        continue;
+      }
+      world.remove(powerup);
+    }
+
+    removedBuildings = [];
+    removedWastes = [];
+    buildingsGenerated = [];
+    wasteGenerated = [];
+    powerupsGenerated = [];
+
+    resumeEngine();
+  }
 
   void reduceLife() {
     lives.value -= 1;
@@ -235,6 +291,9 @@ class Reseacue extends FlameGame {
       anchor: Anchor.topRight,
     );
 
+    buildingsGenerated.add(buildingRight);
+    buildingsGenerated.add(buildingLeft);
+
     _log.info('Adding left building to world');
     world.add(buildingLeft);
     _log.info('Adding right building to world');
@@ -253,6 +312,10 @@ class Reseacue extends FlameGame {
         position: rightSpawnPoint + Constants.rightWasteSpawnDelta,
         count: countToRender,
       );
+
+      wasteGenerated.add(leftWaste);
+      wasteGenerated.add(rightWaste);
+
       _log.info('Adding left waste to world');
       world.add(leftWaste);
       _log.info('Adding right waste to world');
@@ -283,6 +346,8 @@ class Reseacue extends FlameGame {
 
   void spawnPowerup() {
     Powerup magnet = Powerup();
+
+    powerupsGenerated.add(magnet);
 
     _log.info('Adding magnet');
     world.add(magnet);
