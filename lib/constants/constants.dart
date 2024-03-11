@@ -53,14 +53,14 @@ class Constants {
   static const String utilsNumberLoggerKey = 'utils/number.dart';
   static const String utilsImagesLoggerKey = 'utils/images.dart';
   static const String appLifecycleObserverLoggerKey = 'AppLifecycleObserver';
-  static const String StartGameOverlayLoggerKey = 'start_menu.dart';
+  static const String startGameOverlayLoggerKey = 'start_menu.dart';
   static const String audioControllerLoggerKey = 'AudioController';
   static const String wasteLoggerKey = 'Waste';
   static const String vehicleLoggerKey = 'Vehicle';
   static const String giftLoggerKey = 'Gift';
   static const String gameLoggerKey = 'Game';
 
-  static const String StartGameOverlayKey = 'main_menu';
+  static const String startGameOverlayKey = 'main_menu';
   static const String splashScreenKey = 'SplashScreen';
   static const String homeScreenKey = 'HomeScreen';
 
