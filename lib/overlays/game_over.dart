@@ -3,7 +3,9 @@ import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/app/ui/components/score_card.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
+import 'package:reseacue/overlays/main_menu.dart';
 import 'package:reseacue/overlays/overlay_container.dart';
+import 'package:reseacue/overlays/pause_button.dart';
 
 class GameOver extends StatelessWidget {
   static String id = 'GameOver';
@@ -57,27 +59,16 @@ class GameOver extends StatelessWidget {
               children: [
                 CustomAnimatedButton(
                   height: containerHeight,
-                  width: containerWidth,
-                  shadowHeight: shadowContainerHeight,
-                  shadowWidth: containerWidth,
-                  screenSize: MediaQuery.of(context).size,
-                  onTap: () {},
-                  imagePath: 'assets/images/home.png',
-                  shadowContainerColor: Constants.redButtonShadowContainerColor,
-                  containerColor: Constants.redButtonContainerColor,
-                  shineColor: Constants.redButtonShineColor,
-                  padding: const EdgeInsets.only(
-                    left: 67.0,
-                    top: 10.0,
-                  ),
-                ),
-                CustomAnimatedButton(
-                  height: containerHeight,
                   width: MediaQuery.of(context).size.width / 1.7,
                   shadowHeight: shadowContainerHeight,
                   shadowWidth: MediaQuery.of(context).size.width / 1.7,
                   screenSize: MediaQuery.of(context).size,
-                  onTap: () {},
+                  onTap: () {
+                    game.restart();
+                    game.overlays.remove(id);
+                    game.overlays.remove(PauseButton.id);
+                    game.overlays.add(MainMenu.id);
+                  },
                   buttonText: 'CONTINUE',
                   shadowContainerColor:
                       Constants.greenButtonShadowContainerColor,

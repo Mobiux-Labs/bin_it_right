@@ -110,19 +110,19 @@ class LivesContainer extends StatelessWidget {
                 children: [
                   Image(
                     image: AssetImage(
-                      lives >= 0 ? aliveImage : lifeOverImage,
+                      lives > 0 ? aliveImage : lifeOverImage,
                     ),
                     fit: BoxFit.fill,
                   ),
                   Image(
                     image: AssetImage(
-                      lives >= 1 ? aliveImage : lifeOverImage,
+                      lives > 1 ? aliveImage : lifeOverImage,
                     ),
                     fit: BoxFit.fill,
                   ),
                   Image(
                     image: AssetImage(
-                      lives >= 2 ? aliveImage : lifeOverImage,
+                      lives > 2 ? aliveImage : lifeOverImage,
                     ),
                     fit: BoxFit.fill,
                   ),
