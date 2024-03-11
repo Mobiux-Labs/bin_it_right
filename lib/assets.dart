@@ -63,16 +63,12 @@ class AssetConstants {
   AssetConstants._();
 
   static const String splashScreen = 'splash_screen.png';
-
   static const String wetWaste = 'wet_waste.png';
   static const String dryWaste = 'dry_waste.png';
-
   static const String leftGrass = 'grass_left_side.png';
   static const String rightGrass = 'grass_right_side.png';
-
   static const String road = 'road.png';
   static const String roadStripes = 'road_stripes.png';
-
   static const String vehicleS = 'vehicle_1.png';
   static const String vehicleSIdle = 'idle_vehicle.png';
   static const String vehicleSMoving1 = 'moving_vehicle_1.png';
@@ -83,15 +79,60 @@ class AssetConstants {
   static const String dryWasteVehicleMoving2 = 'dry_waste_vehicle_2.png';
   static const String bothWasteVehicleMoving1 = 'both_waste_vehicle_1.png';
   static const String bothWasteVehicleMoving2 = 'both_waste_vehicle_2.png';
-
   static const String earthToken = 'earth_token.png';
   static const String leaderboard = 'leaderboard_icon.png';
   static const String pause = 'pause_icon.png';
   static const String settings = 'settings_icon.png';
-
   static const String magneticField = 'magnetic_field.png';
   static const String magnet = 'magnet.png';
-
   static const String alive = 'alive.png';
   static const String lifeOver = 'life_over.png';
+  static const String countdownFirst = 'countdown_1.png';
+  static const String countdownSecond = 'countdown_2.png';
+  static const String countdownThird = 'countdown_3.png';
+  static const String liveover = 'life_over.png';
+  static const String tutorialFirst = 'tutorial_1.png';
+  static const String tutorialSecond = 'tutorial_2.png';
+  static const String tutorialThird = 'tutorial_3.png';
+  static const String tutorialFourth = 'tutorial_4.png';
+  static const String tutorialFifth = 'tutorial_5.png';
+  static const String tutorialSixth = 'tutorial_6.png';
+
+  static const List<String> assets = [
+    splashScreen,
+    wetWaste,
+    dryWaste,
+    leftGrass,
+    rightGrass,
+    road,
+    roadStripes,
+    vehicleS,
+    vehicleSIdle,
+    vehicleSMoving1,
+    vehicleSMoving2,
+    wetWasteVehicleMoving1,
+    wetWasteVehicleMoving2,
+    dryWasteVehicleMoving1,
+    dryWasteVehicleMoving2,
+    bothWasteVehicleMoving1,
+    bothWasteVehicleMoving2,
+    earthToken,
+    leaderboard,
+    pause,
+    settings,
+    magneticField,
+    magnet,
+    alive,
+    lifeOver,
+    countdownFirst,
+    countdownSecond,
+    countdownThird,
+    liveover,
+    tutorialFirst,
+    tutorialSecond,
+    tutorialThird,
+    tutorialFourth,
+    tutorialFifth,
+    tutorialSixth,
+  ];
 }

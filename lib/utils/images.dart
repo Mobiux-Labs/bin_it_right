@@ -183,3 +183,7 @@ List<Sprite> getWasteDropAnimationSprites() {
 
   return [...sprites];
 }
+
+String getPathFromAssetString(String asset) {
+  return 'assets/images/$asset';
+}
