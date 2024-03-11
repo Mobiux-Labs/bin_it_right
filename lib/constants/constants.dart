@@ -27,6 +27,7 @@ class Constants {
 
   static const double outOfScreenDeltaToRemoveObject = 100.0;
   static const double wasteRepositionAnimationSpeed = 0.2;
+  static const double wasteRepositionAnimationSpeedOnMagnet = 0.4;
 
   static const double giftAnimationStepTime = 0.3;
   static const double giftAnimationScale = 0.5;

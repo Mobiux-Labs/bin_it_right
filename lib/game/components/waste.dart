@@ -218,10 +218,28 @@ class Waste extends SpriteAnimationComponent
       position.y += Reseacue.gameSpeed;
     }
 
-    if (position.y >= 10.0 && attracted == false && attractable == true) {
+    if (position.y >= game.size.y / 3 &&
+        attracted == false &&
+        attractable == true) {
       attracted = true;
       final moveEffect = MoveEffect.to(
         Vector2(game.size.x / 2, game.size.y - 200),
+        EffectController(
+          duration: Constants.wasteRepositionAnimationSpeed,
+          curve: Curves.easeIn,
+        ),
+      );
+
+      final scaleEffect = ScaleEffect.to(
+        Vector2.all(0.7),
+        EffectController(
+          duration: Constants.wasteRepositionAnimationSpeed,
+          curve: Curves.easeIn,
+        ),
+      );
+
+      final opacityEffect = OpacityEffect.to(
+        0.3,
         EffectController(
           duration: Constants.wasteRepositionAnimationSpeed,
           curve: Curves.easeIn,
@@ -233,6 +251,8 @@ class Waste extends SpriteAnimationComponent
         removeFromParent();
       };
 
+      add(opacityEffect);
+      add(scaleEffect);
       add(moveEffect);
     }
 
