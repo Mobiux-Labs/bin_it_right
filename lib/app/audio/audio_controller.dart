@@ -80,7 +80,7 @@ class AudioController {
     // Add handlers to the new settings controller
     settingsController.muted.addListener(_mutedHandler);
 
-    if (!settingsController.muted.value && !settingsController.muted.value) {
+    if (!settingsController.muted.value) {
       _startMusic();
     }
   }
@@ -150,7 +150,7 @@ class AudioController {
       case AppLifecycleState.hidden:
         _stopAllSound();
       case AppLifecycleState.resumed:
-        if (!_settings!.muted.value && !_settings!.muted.value) {
+        if (!_settings!.muted.value) {
           _resumeMusic();
         }
       case AppLifecycleState.inactive:

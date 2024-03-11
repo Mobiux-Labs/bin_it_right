@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:reseacue/game/game.dart';
-import 'package:reseacue/overlays/overlays.dart';
 
 class LoadingOverlay extends StatefulWidget {
   static const String id = 'Loading';
@@ -35,7 +34,6 @@ class _LoadingOverlayState extends State<LoadingOverlay> {
         _index++;
       });
       if (_index == 44) {
-        widget.game.overlays.add(StartGameOverlay.id);
         widget.game.overlays.remove(LoadingOverlay.id);
       }
     });

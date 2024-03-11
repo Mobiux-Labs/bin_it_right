@@ -5,9 +5,10 @@ import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flame/events.dart';
 import 'package:flame/sprite.dart';
-import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/animation.dart';
 import 'package:logging/logging.dart';
+import 'package:reseacue/app/audio/audio_controller.dart';
+import 'package:reseacue/app/audio/sounds.dart';
 import 'package:reseacue/app/settings/settings.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/components/token.dart';
@@ -31,12 +32,14 @@ class Waste extends SpriteAnimationComponent
   WasteType? type;
   int count;
   SettingsController settingsController;
+  AudioController audioController;
 
   Waste({
     required super.position,
     super.scale,
     required this.count,
     required this.settingsController,
+    required this.audioController,
   }) : type = Random().nextBool() ? WasteType.wet : WasteType.dry;
 
   bool tapped = false;
@@ -95,7 +98,7 @@ class Waste extends SpriteAnimationComponent
   void onDragStart(DragStartEvent event) {
     _log.info('Drag started at ${event.localPosition}');
     tapped = true;
-    FlameAudio.play('sfx/tap.mp3');
+    audioController.playSfx(SfxType.tap);
     super.onDragStart(event);
   }
 
@@ -139,8 +142,8 @@ class Waste extends SpriteAnimationComponent
         Token(position: position - Vector2(30.0 * (i + 1), 30.0 * (i + 1))),
       );
     }
-    FlameAudio.play(
-        type == WasteType.wet ? 'sfx/wet_waste.mp3' : 'sfx/dry_waste.mp3');
+    audioController
+        .playSfx(type == WasteType.wet ? SfxType.wetWaste : SfxType.dryWaste);
     game.updateWasteCollectedSequence(type);
     game.updateScore();
     scale = Vector2.all(Constants.dropWasteAnimationScale);
@@ -164,7 +167,7 @@ class Waste extends SpriteAnimationComponent
   }
 
   void wasteMissed() {
-    FlameAudio.play('sfx/miss.mp3');
+    audioController.playSfx(SfxType.miss);
     vibrate();
     game.reduceLife();
   }
