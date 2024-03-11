@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/app/ui/components/earth_tokens.dart';
+import 'package:reseacue/app/ui/components/lives_container.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
 import 'package:reseacue/overlays/pause_menu.dart';
@@ -27,6 +28,11 @@ class PauseButton extends StatelessWidget {
                 return EarthTokens(
                   earthPoints: value,
                 );
+              }),
+          ValueListenableBuilder(
+              valueListenable: game.lives,
+              builder: (context, int value, child) {
+                return LivesContainer(lives: value);
               }),
           CustomAnimatedButton(
             height: 50,

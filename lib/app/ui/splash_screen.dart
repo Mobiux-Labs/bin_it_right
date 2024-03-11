@@ -20,6 +20,9 @@ class _SplashScreenState extends State<SplashScreen> {
     await precacheImage(
         const AssetImage("assets/images/countdown_3.png"), context);
     await precacheImage(
+        const AssetImage("assets/images/life_over.png"), context);
+    await precacheImage(const AssetImage("assets/images/alive.png"), context);
+    await precacheImage(
         const AssetImage("assets/images/tutorial_1.png"), context);
     await precacheImage(
         const AssetImage("assets/images/tutorial_2.png"), context);
