@@ -48,7 +48,7 @@ double soundTypeToVolume(SfxType type) {
   switch (type) {
     case SfxType.engineStart:
     case SfxType.coin:
-      return 0.7;
+      return 0.1;
     case SfxType.dryWaste:
     case SfxType.gameComplete:
     case SfxType.giftOpen:
@@ -57,7 +57,7 @@ double soundTypeToVolume(SfxType type) {
     case SfxType.rareItem:
     case SfxType.tap:
     case SfxType.wetWaste:
-      return 1.0;
+      return 0.5;
   }
 }
 
