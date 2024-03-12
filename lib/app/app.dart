@@ -12,6 +12,7 @@ import 'package:reseacue/app/storage/persistence/storage_persistence.dart';
 import 'package:reseacue/app/storage/storage.dart';
 import 'package:reseacue/assets.dart';
 import 'package:reseacue/game/game.dart';
+import 'package:reseacue/overlays/gift_opening_overlay.dart';
 import 'package:reseacue/overlays/overlays.dart';
 import 'package:reseacue/app/ui/splash_screen.dart';
 import 'package:reseacue/constants/constants.dart';
@@ -103,6 +104,8 @@ class _AppState extends State<App> {
                       storageController:
                           Provider.of<StorageController>(context),
                     ),
+                GiftOpeningOverlay.id: (_, game) =>
+                    GiftOpeningOverlay(mainGame: game),
               },
               initialActiveOverlays: [
                 StartGameOverlay.id,

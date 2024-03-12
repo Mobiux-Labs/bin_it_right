@@ -29,7 +29,7 @@ class Constants {
   static const double wasteRepositionAnimationSpeed = 0.2;
   static const double wasteRepositionAnimationSpeedOnMagnet = 0.4;
 
-  static const double giftAnimationStepTime = 0.3;
+  static const double giftAnimationStepTime = 0.03;
   static const double giftAnimationScale = 0.5;
 
   static const double idleVehicleAnimationStepTime = 0.3;
@@ -139,6 +139,8 @@ class Constants {
     19,
     0.5,
   );
+
+  static const double giftSpawnInterval = 5.0;
 
   static const double powerUpInterval = 5.0;
   static const double powerUpAvailableTimeInSeconds = 3.0;
