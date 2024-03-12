@@ -97,40 +97,44 @@ List<Sprite> getIdleVehicleAnimationSprites() {
   return [...sprites];
 }
 
-List<Sprite> getMovingVehicleAnimationSprites() {
+List<Sprite> getMovingVehicleAnimationSprites(int skin) {
   _log.info('Generating moving vehicle animation sprites list');
   List<Sprite> sprites = [
-    ...getDynamicRangeSpriteList(1, 2, ['moving_vehicle_', '.png'], 1),
+    ...getDynamicRangeSpriteList(
+        1, 2, ['moving_vehicle_skin_${skin}_', '.png'], 1),
   ];
   _log.info('Generated moving vehicle animation sprites list successfully');
 
   return [...sprites];
 }
 
-List<Sprite> getWetWasteMovingVehicleAnimationSprites() {
+List<Sprite> getWetWasteMovingVehicleAnimationSprites(int skin) {
   _log.info('Generating wet waste vehicle animation sprites list');
   List<Sprite> sprites = [
-    ...getDynamicRangeSpriteList(1, 2, ['wet_waste_vehicle_', '.png'], 1),
+    ...getDynamicRangeSpriteList(
+        1, 2, ['wet_waste_vehicle_skin_${skin}_', '.png'], 1),
   ];
   _log.info('Generated wet waste vehicle animation sprites list successfully');
 
   return [...sprites];
 }
 
-List<Sprite> getDryWasteMovingVehicleAnimationSprites() {
+List<Sprite> getDryWasteMovingVehicleAnimationSprites(int skin) {
   _log.info('Generating dry waste vehicle animation sprites list');
   List<Sprite> sprites = [
-    ...getDynamicRangeSpriteList(1, 2, ['dry_waste_vehicle_', '.png'], 1),
+    ...getDynamicRangeSpriteList(
+        1, 2, ['dry_waste_vehicle_skin_${skin}_', '.png'], 1),
   ];
   _log.info('Generated dry waste vehicle animation sprites list successfully');
 
   return [...sprites];
 }
 
-List<Sprite> getBothWasteMovingVehicleAnimationSprites() {
+List<Sprite> getBothWasteMovingVehicleAnimationSprites(int skin) {
   _log.info('Generating both waste vehicle animation sprites list');
   List<Sprite> sprites = [
-    ...getDynamicRangeSpriteList(1, 2, ['both_waste_vehicle_', '.png'], 1),
+    ...getDynamicRangeSpriteList(
+        1, 2, ['both_waste_vehicle_skin_${skin}_', '.png'], 1),
   ];
   _log.info('Generated both waste vehicle animation sprites list successfully');
 

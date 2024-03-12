@@ -8,6 +8,7 @@ class StorageController {
   ValueNotifier<int> score = ValueNotifier(0);
   ValueNotifier<int> highscore = ValueNotifier(0);
   ValueNotifier<bool> tutorialWatched = ValueNotifier(false);
+  ValueNotifier<int> vehicleSkin = ValueNotifier(1);
 
   /// Creates a new instance of [StorageController] backed by [persistence].
   StorageController({required StoragePersistence persistence})
@@ -25,7 +26,15 @@ class StorageController {
       _persistence
           .getTutorialWatched(defaultValue: false)
           .then((value) => tutorialWatched.value = value),
+      _persistence
+          .getVehicleSkin(defaultValue: 1)
+          .then((value) => vehicleSkin.value = value),
     ]);
+  }
+
+  void updateVehicleSkin(int skin) {
+    vehicleSkin.value = skin;
+    _persistence.saveVehicleSkin(vehicleSkin.value);
   }
 
   void updateScore(int scoreToUpdate) {

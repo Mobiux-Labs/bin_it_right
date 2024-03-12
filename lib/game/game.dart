@@ -177,6 +177,16 @@ class Reseacue extends FlameGame {
     _log.info('Starting elapsed time stopwatch');
     elapsedTime.start();
 
+    interval = Timer(
+      getBuildingSpawnRate(gameSpeed),
+      repeat: true,
+    );
+
+    powerUpInterval = Timer(
+      Constants.powerUpInterval,
+      repeat: true,
+    );
+
     interval.onTick = () {
       onUpdateOnTick();
     };
@@ -392,6 +402,19 @@ class Reseacue extends FlameGame {
 
   void changeVehicleAnimation(VehicleState state) {
     vehicle.changeAnimationByState(state);
+  }
+
+  void updateVehicle() {
+    world.remove(vehicle);
+
+    vehicle = Vehicle(
+      position: Vector2(
+        size.x / 2,
+        size.y - (size.y / Constants.vehicleSpawnDeltaFromBottom),
+      ),
+    );
+    _log.info('Adding vehicle to world');
+    world.add(vehicle);
   }
 
   void speedUpGameplay(updateGameSpeed) {

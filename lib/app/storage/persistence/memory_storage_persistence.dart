@@ -6,6 +6,7 @@ class MemoryOnlyStoragePersistence implements StoragePersistence {
   int score = 0;
   int highscore = 0;
   bool tutorialWatched = false;
+  int vehicleSkin = 1;
 
   @override
   Future<int> getScore({required int defaultValue}) async => score;
@@ -25,4 +26,10 @@ class MemoryOnlyStoragePersistence implements StoragePersistence {
 
   @override
   Future<void> saveTutorialWatched(bool value) async => tutorialWatched = value;
+
+  @override
+  Future<int> getVehicleSkin({required int defaultValue}) async => vehicleSkin;
+
+  @override
+  Future<void> saveVehicleSkin(int value) async => vehicleSkin = value;
 }

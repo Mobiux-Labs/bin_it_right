@@ -39,25 +39,29 @@ class Vehicle extends SpriteAnimationComponent with HasGameRef<Reseacue> {
     );
 
     _movingAnimation = SpriteAnimation.spriteList(
-      getMovingVehicleAnimationSprites(),
+      getMovingVehicleAnimationSprites(
+          game.storageController.vehicleSkin.value),
       stepTime: Constants.movingVehicleAnimationStepTime,
       loop: true,
     );
 
     _wetWasteMovingAnimation = SpriteAnimation.spriteList(
-      getWetWasteMovingVehicleAnimationSprites(),
+      getWetWasteMovingVehicleAnimationSprites(
+          game.storageController.vehicleSkin.value),
       stepTime: Constants.movingVehicleAnimationStepTime,
       loop: true,
     );
 
     _dryWasteMovingAnimation = SpriteAnimation.spriteList(
-      getDryWasteMovingVehicleAnimationSprites(),
+      getDryWasteMovingVehicleAnimationSprites(
+          game.storageController.vehicleSkin.value),
       stepTime: Constants.movingVehicleAnimationStepTime,
       loop: true,
     );
 
     _bothWasteMovingAnimation = SpriteAnimation.spriteList(
-      getBothWasteMovingVehicleAnimationSprites(),
+      getBothWasteMovingVehicleAnimationSprites(
+          game.storageController.vehicleSkin.value),
       stepTime: Constants.movingVehicleAnimationStepTime,
       loop: true,
     );

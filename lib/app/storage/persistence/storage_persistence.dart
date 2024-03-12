@@ -10,4 +10,8 @@ abstract class StoragePersistence {
   Future<bool> getTutorialWatched({required bool defaultValue});
 
   Future<void> saveTutorialWatched(bool value);
+
+  Future<int> getVehicleSkin({required int defaultValue});
+
+  Future<void> saveVehicleSkin(int value);
 }

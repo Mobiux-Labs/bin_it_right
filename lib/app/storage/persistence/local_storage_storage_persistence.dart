@@ -43,4 +43,16 @@ class LocalStorageStoragePersistence extends StoragePersistence {
     final prefs = await instanceFuture;
     await prefs.setBool('tutorial', value);
   }
+
+  @override
+  Future<int> getVehicleSkin({required int defaultValue}) async {
+    final prefs = await instanceFuture;
+    return prefs.getInt('vehicleSkin') ?? defaultValue;
+  }
+
+  @override
+  Future<void> saveVehicleSkin(int value) async {
+    final prefs = await instanceFuture;
+    await prefs.setInt('vehicleSkin', value);
+  }
 }
