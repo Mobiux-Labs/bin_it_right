@@ -15,6 +15,7 @@ import 'package:reseacue/game/game.dart';
 import 'package:reseacue/overlays/overlays.dart';
 import 'package:reseacue/app/ui/splash_screen.dart';
 import 'package:reseacue/constants/constants.dart';
+import 'package:reseacue/overlays/upgrade_overlay.dart';
 import 'package:reseacue/utils/images.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -97,6 +98,11 @@ class _AppState extends State<App> {
                 GameOverOverlay.id: (_, game) => GameOverOverlay(game: game),
                 ExitConfirmationOverlay.id: (_, game) =>
                     ExitConfirmationOverlay(game: game),
+                UpgradeOverlay.id: (_, game) => UpgradeOverlay(
+                      game: game,
+                      storageController:
+                          Provider.of<StorageController>(context),
+                    ),
               },
               initialActiveOverlays: [
                 StartGameOverlay.id,

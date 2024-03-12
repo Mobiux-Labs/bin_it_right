@@ -11,6 +11,7 @@ import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
 import 'package:reseacue/overlays/overlays.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:reseacue/overlays/upgrade_overlay.dart';
 
 class StartGameOverlay extends StatelessWidget {
   static String id = 'start_game_overlay';
@@ -45,6 +46,28 @@ class StartGameOverlay extends StatelessWidget {
                 ),
                 Row(
                   children: [
+                    CustomAnimatedButton(
+                      height: 50,
+                      width: 50,
+                      shadowHeight: 40,
+                      shadowWidth: 50,
+                      screenSize: MediaQuery.of(context).size,
+                      onTap: () {
+                        game.overlays.add(UpgradeOverlay.id);
+                      },
+                      imagePath: 'assets/images/upgrade.png',
+                      shadowContainerColor:
+                          Constants.yellowButtonShadowContainerColor,
+                      containerColor: Constants.yellowButtonContainerColor,
+                      shineColor: Constants.yellowButtonShineColor,
+                      padding: const EdgeInsets.only(
+                        left: 50,
+                        top: 10.0,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
                     CustomAnimatedButton(
                       height: 50,
                       width: 50,

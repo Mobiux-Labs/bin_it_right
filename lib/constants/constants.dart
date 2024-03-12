@@ -140,7 +140,7 @@ class Constants {
     0.5,
   );
 
-  static const double powerUpInterval = 30.0;
+  static const double powerUpInterval = 5.0;
   static const double powerUpAvailableTimeInSeconds = 3.0;
   static const double defaultPowerUpLifespan = 5.0;
   static const double powerUpGameSpeed = 5.0;

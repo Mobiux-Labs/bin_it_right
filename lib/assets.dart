@@ -1,31 +1,11 @@
 import 'package:reseacue/utils/utils.dart';
 
 const List<String> vehicles = [
-  AssetConstants.vehicleS,
+  AssetConstants.vehicleSkin1,
 ];
 
 const List<String> idleVehicleS = [
-  AssetConstants.vehicleSIdle,
-];
-
-const List<String> movingVehicleS = [
-  AssetConstants.vehicleSMoving1,
-  AssetConstants.vehicleSMoving2,
-];
-
-const List<String> wetWasteMovingVehicle = [
-  AssetConstants.wetWasteVehicleMoving1,
-  AssetConstants.wetWasteVehicleMoving2,
-];
-
-const List<String> dryWasteMovingVehicle = [
-  AssetConstants.dryWasteVehicleMoving1,
-  AssetConstants.dryWasteVehicleMoving2,
-];
-
-const List<String> bothWasteMovingVehicle = [
-  AssetConstants.bothWasteVehicleMoving1,
-  AssetConstants.bothWasteVehicleMoving2,
+  AssetConstants.idleVehicleSkin1,
 ];
 
 const List<String> grassVariations = [
@@ -44,12 +24,8 @@ List<String> sprites = [
   ...getWasteDropAnimationImages(),
   ...getIdleGiftAnimationImages(),
   ...getOpeningGiftAnimationImages(),
-  ...wetWasteMovingVehicle,
-  ...dryWasteMovingVehicle,
-  ...bothWasteMovingVehicle,
   ...vehicles,
   ...idleVehicleS,
-  ...movingVehicleS,
   ...grassVariations,
   ...getWasteVariationImages(),
   AssetConstants.road,
@@ -57,6 +33,54 @@ List<String> sprites = [
   AssetConstants.earthToken,
   AssetConstants.magneticField,
   AssetConstants.magnet,
+  AssetConstants.movingVehicleSkin11,
+  AssetConstants.movingVehicleSkin12,
+  AssetConstants.wetWasteVehicleSkin11,
+  AssetConstants.wetWasteVehicleSkin12,
+  AssetConstants.dryWasteVehicleSkin11,
+  AssetConstants.dryWasteVehicleSkin12,
+  AssetConstants.bothWasteVehicleSkin11,
+  AssetConstants.bothWasteVehicleSkin12,
+  AssetConstants.movingVehicleSkin21,
+  AssetConstants.movingVehicleSkin22,
+  AssetConstants.wetWasteVehicleSkin21,
+  AssetConstants.wetWasteVehicleSkin22,
+  AssetConstants.dryWasteVehicleSkin21,
+  AssetConstants.dryWasteVehicleSkin22,
+  AssetConstants.bothWasteVehicleSkin21,
+  AssetConstants.bothWasteVehicleSkin22,
+  AssetConstants.movingVehicleSkin31,
+  AssetConstants.movingVehicleSkin32,
+  AssetConstants.wetWasteVehicleSkin31,
+  AssetConstants.wetWasteVehicleSkin32,
+  AssetConstants.dryWasteVehicleSkin31,
+  AssetConstants.dryWasteVehicleSkin32,
+  AssetConstants.bothWasteVehicleSkin31,
+  AssetConstants.bothWasteVehicleSkin32,
+  AssetConstants.movingVehicleSkin41,
+  AssetConstants.movingVehicleSkin42,
+  AssetConstants.wetWasteVehicleSkin41,
+  AssetConstants.wetWasteVehicleSkin42,
+  AssetConstants.dryWasteVehicleSkin41,
+  AssetConstants.dryWasteVehicleSkin42,
+  AssetConstants.bothWasteVehicleSkin41,
+  AssetConstants.bothWasteVehicleSkin42,
+  AssetConstants.movingVehicleSkin51,
+  AssetConstants.movingVehicleSkin52,
+  AssetConstants.wetWasteVehicleSkin51,
+  AssetConstants.wetWasteVehicleSkin52,
+  AssetConstants.dryWasteVehicleSkin51,
+  AssetConstants.dryWasteVehicleSkin52,
+  AssetConstants.bothWasteVehicleSkin51,
+  AssetConstants.bothWasteVehicleSkin52,
+  AssetConstants.movingVehicleSkin61,
+  AssetConstants.movingVehicleSkin62,
+  AssetConstants.wetWasteVehicleSkin61,
+  AssetConstants.wetWasteVehicleSkin62,
+  AssetConstants.dryWasteVehicleSkin61,
+  AssetConstants.dryWasteVehicleSkin62,
+  AssetConstants.bothWasteVehicleSkin61,
+  AssetConstants.bothWasteVehicleSkin62,
 ];
 
 class AssetConstants {
@@ -67,16 +91,75 @@ class AssetConstants {
   static const String rightGrass = 'grass_right_side.png';
   static const String road = 'road.png';
   static const String roadStripes = 'road_stripes.png';
-  static const String vehicleS = 'vehicle_1.png';
-  static const String vehicleSIdle = 'idle_vehicle.png';
-  static const String vehicleSMoving1 = 'moving_vehicle_1.png';
-  static const String vehicleSMoving2 = 'moving_vehicle_2.png';
-  static const String wetWasteVehicleMoving1 = 'wet_waste_vehicle_1.png';
-  static const String wetWasteVehicleMoving2 = 'wet_waste_vehicle_2.png';
-  static const String dryWasteVehicleMoving1 = 'dry_waste_vehicle_1.png';
-  static const String dryWasteVehicleMoving2 = 'dry_waste_vehicle_2.png';
-  static const String bothWasteVehicleMoving1 = 'both_waste_vehicle_1.png';
-  static const String bothWasteVehicleMoving2 = 'both_waste_vehicle_2.png';
+  static const String vehicleSkin1 = 'vehicle_1.png';
+  static const String idleVehicleSkin1 = 'idle_vehicle.png';
+
+  static const String movingVehicleSkin11 = 'moving_vehicle_skin_1_1.png';
+  static const String movingVehicleSkin12 = 'moving_vehicle_skin_1_2.png';
+  static const String wetWasteVehicleSkin11 = 'wet_waste_vehicle_skin_1_1.png';
+  static const String wetWasteVehicleSkin12 = 'wet_waste_vehicle_skin_1_2.png';
+  static const String dryWasteVehicleSkin11 = 'dry_waste_vehicle_skin_1_1.png';
+  static const String dryWasteVehicleSkin12 = 'dry_waste_vehicle_skin_1_2.png';
+  static const String bothWasteVehicleSkin11 =
+      'both_waste_vehicle_skin_1_1.png';
+  static const String bothWasteVehicleSkin12 =
+      'both_waste_vehicle_skin_1_2.png';
+
+  static const String movingVehicleSkin21 = 'moving_vehicle_skin_2_1.png';
+  static const String movingVehicleSkin22 = 'moving_vehicle_skin_2_2.png';
+  static const String wetWasteVehicleSkin21 = 'wet_waste_vehicle_skin_2_1.png';
+  static const String wetWasteVehicleSkin22 = 'wet_waste_vehicle_skin_2_2.png';
+  static const String dryWasteVehicleSkin21 = 'dry_waste_vehicle_skin_2_1.png';
+  static const String dryWasteVehicleSkin22 = 'dry_waste_vehicle_skin_2_2.png';
+  static const String bothWasteVehicleSkin21 =
+      'both_waste_vehicle_skin_2_1.png';
+  static const String bothWasteVehicleSkin22 =
+      'both_waste_vehicle_skin_2_2.png';
+
+  static const String movingVehicleSkin31 = 'moving_vehicle_skin_3_1.png';
+  static const String movingVehicleSkin32 = 'moving_vehicle_skin_3_2.png';
+  static const String wetWasteVehicleSkin31 = 'wet_waste_vehicle_skin_3_1.png';
+  static const String wetWasteVehicleSkin32 = 'wet_waste_vehicle_skin_3_2.png';
+  static const String dryWasteVehicleSkin31 = 'dry_waste_vehicle_skin_3_1.png';
+  static const String dryWasteVehicleSkin32 = 'dry_waste_vehicle_skin_3_2.png';
+  static const String bothWasteVehicleSkin31 =
+      'both_waste_vehicle_skin_3_1.png';
+  static const String bothWasteVehicleSkin32 =
+      'both_waste_vehicle_skin_3_2.png';
+
+  static const String movingVehicleSkin41 = 'moving_vehicle_skin_4_1.png';
+  static const String movingVehicleSkin42 = 'moving_vehicle_skin_4_2.png';
+  static const String wetWasteVehicleSkin41 = 'wet_waste_vehicle_skin_4_1.png';
+  static const String wetWasteVehicleSkin42 = 'wet_waste_vehicle_skin_4_2.png';
+  static const String dryWasteVehicleSkin41 = 'dry_waste_vehicle_skin_4_1.png';
+  static const String dryWasteVehicleSkin42 = 'dry_waste_vehicle_skin_4_2.png';
+  static const String bothWasteVehicleSkin41 =
+      'both_waste_vehicle_skin_4_1.png';
+  static const String bothWasteVehicleSkin42 =
+      'both_waste_vehicle_skin_4_2.png';
+
+  static const String movingVehicleSkin51 = 'moving_vehicle_skin_5_1.png';
+  static const String movingVehicleSkin52 = 'moving_vehicle_skin_5_2.png';
+  static const String wetWasteVehicleSkin51 = 'wet_waste_vehicle_skin_5_1.png';
+  static const String wetWasteVehicleSkin52 = 'wet_waste_vehicle_skin_5_2.png';
+  static const String dryWasteVehicleSkin51 = 'dry_waste_vehicle_skin_5_1.png';
+  static const String dryWasteVehicleSkin52 = 'dry_waste_vehicle_skin_5_2.png';
+  static const String bothWasteVehicleSkin51 =
+      'both_waste_vehicle_skin_5_1.png';
+  static const String bothWasteVehicleSkin52 =
+      'both_waste_vehicle_skin_5_2.png';
+
+  static const String movingVehicleSkin61 = 'moving_vehicle_skin_6_1.png';
+  static const String movingVehicleSkin62 = 'moving_vehicle_skin_6_2.png';
+  static const String wetWasteVehicleSkin61 = 'wet_waste_vehicle_skin_6_1.png';
+  static const String wetWasteVehicleSkin62 = 'wet_waste_vehicle_skin_6_2.png';
+  static const String dryWasteVehicleSkin61 = 'dry_waste_vehicle_skin_6_1.png';
+  static const String dryWasteVehicleSkin62 = 'dry_waste_vehicle_skin_6_2.png';
+  static const String bothWasteVehicleSkin61 =
+      'both_waste_vehicle_skin_6_1.png';
+  static const String bothWasteVehicleSkin62 =
+      'both_waste_vehicle_skin_6_2.png';
+
   static const String earthToken = 'earth_token.png';
   static const String magneticField = 'magnetic_field.png';
   static const String magnet = 'magnet.png';
@@ -141,6 +224,17 @@ class AssetConstants {
 
   static const String splashLoading = 'splash_loading.png';
 
+  static const String vehicleSkinOne = 'vehicle_skin_1.png';
+  static const String vehicleSkinTwo = 'vehicle_skin_2.png';
+  static const String vehicleSkinThree = 'vehicle_skin_3.png';
+  static const String vehicleSkinFour = 'vehicle_skin_4.png';
+  static const String vehicleSkinFive = 'vehicle_skin_5.png';
+  static const String vehicleSkinSix = 'vehicle_skin_6.png';
+
+  static const String glow = 'glow.png';
+
+  static const String upgrade = 'upgrade.png';
+
   static const List<String> treeAnimationFrames = [
     treeAnimationFirstFrame,
     treeAnimationSecondFrame,
@@ -195,16 +289,56 @@ class AssetConstants {
     rightGrass,
     road,
     roadStripes,
-    vehicleS,
-    vehicleSIdle,
-    vehicleSMoving1,
-    vehicleSMoving2,
-    wetWasteVehicleMoving1,
-    wetWasteVehicleMoving2,
-    dryWasteVehicleMoving1,
-    dryWasteVehicleMoving2,
-    bothWasteVehicleMoving1,
-    bothWasteVehicleMoving2,
+    vehicleSkin1,
+    idleVehicleSkin1,
+    movingVehicleSkin11,
+    movingVehicleSkin12,
+    wetWasteVehicleSkin11,
+    wetWasteVehicleSkin12,
+    dryWasteVehicleSkin11,
+    dryWasteVehicleSkin12,
+    bothWasteVehicleSkin11,
+    bothWasteVehicleSkin12,
+    movingVehicleSkin21,
+    movingVehicleSkin22,
+    wetWasteVehicleSkin21,
+    wetWasteVehicleSkin22,
+    dryWasteVehicleSkin21,
+    dryWasteVehicleSkin22,
+    bothWasteVehicleSkin21,
+    bothWasteVehicleSkin22,
+    movingVehicleSkin31,
+    movingVehicleSkin32,
+    wetWasteVehicleSkin31,
+    wetWasteVehicleSkin32,
+    dryWasteVehicleSkin31,
+    dryWasteVehicleSkin32,
+    bothWasteVehicleSkin31,
+    bothWasteVehicleSkin32,
+    movingVehicleSkin41,
+    movingVehicleSkin42,
+    wetWasteVehicleSkin41,
+    wetWasteVehicleSkin42,
+    dryWasteVehicleSkin41,
+    dryWasteVehicleSkin42,
+    bothWasteVehicleSkin41,
+    bothWasteVehicleSkin42,
+    movingVehicleSkin51,
+    movingVehicleSkin52,
+    wetWasteVehicleSkin51,
+    wetWasteVehicleSkin52,
+    dryWasteVehicleSkin51,
+    dryWasteVehicleSkin52,
+    bothWasteVehicleSkin51,
+    bothWasteVehicleSkin52,
+    movingVehicleSkin61,
+    movingVehicleSkin62,
+    wetWasteVehicleSkin61,
+    wetWasteVehicleSkin62,
+    dryWasteVehicleSkin61,
+    dryWasteVehicleSkin62,
+    bothWasteVehicleSkin61,
+    bothWasteVehicleSkin62,
     earthToken,
     magneticField,
     magnet,
@@ -266,5 +400,13 @@ class AssetConstants {
     treeAnimationFortyFourthFrame,
     treeAnimationFortyFifthFrame,
     splashLoading,
+    vehicleSkinOne,
+    vehicleSkinTwo,
+    vehicleSkinThree,
+    vehicleSkinFour,
+    vehicleSkinFive,
+    vehicleSkinSix,
+    glow,
+    upgrade,
   ];
 }
