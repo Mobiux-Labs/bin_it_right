@@ -55,4 +55,16 @@ class LocalStorageStoragePersistence extends StoragePersistence {
     final prefs = await instanceFuture;
     await prefs.setInt('vehicleSkin', value);
   }
+
+  @override
+  Future<double> getMagnetPowerDuration({required double defaultValue}) async {
+    final prefs = await instanceFuture;
+    return prefs.getDouble('magnetPowerDuration') ?? defaultValue;
+  }
+
+  @override
+  Future<void> saveMagnetPowerDuration(double value) async {
+    final prefs = await instanceFuture;
+    await prefs.setDouble('magnetPowerDuration', value);
+  }
 }

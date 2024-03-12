@@ -81,6 +81,7 @@ List<String> sprites = [
   AssetConstants.dryWasteVehicleSkin62,
   AssetConstants.bothWasteVehicleSkin61,
   AssetConstants.bothWasteVehicleSkin62,
+  AssetConstants.magnet2x,
 ];
 
 class AssetConstants {
@@ -163,6 +164,7 @@ class AssetConstants {
   static const String earthToken = 'earth_token.png';
   static const String magneticField = 'magnetic_field.png';
   static const String magnet = 'magnet.png';
+  static const String magnet2x = 'magnet_2x.png';
   static const String alive = 'alive.png';
   static const String lifeOver = 'life_over.png';
   static const String countdownFirst = 'countdown_1.png';
@@ -408,5 +410,6 @@ class AssetConstants {
     vehicleSkinSix,
     glow,
     upgrade,
+    magnet2x,
   ];
 }

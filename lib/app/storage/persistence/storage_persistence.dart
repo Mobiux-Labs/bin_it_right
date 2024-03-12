@@ -14,4 +14,8 @@ abstract class StoragePersistence {
   Future<int> getVehicleSkin({required int defaultValue});
 
   Future<void> saveVehicleSkin(int value);
+
+  Future<double> getMagnetPowerDuration({required double defaultValue});
+
+  Future<void> saveMagnetPowerDuration(double value);
 }
