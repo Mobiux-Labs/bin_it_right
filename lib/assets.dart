@@ -82,6 +82,16 @@ List<String> sprites = [
   AssetConstants.bothWasteVehicleSkin61,
   AssetConstants.bothWasteVehicleSkin62,
   AssetConstants.magnet2x,
+  AssetConstants.magnetProgress100,
+  AssetConstants.magnetProgress90,
+  AssetConstants.magnetProgress80,
+  AssetConstants.magnetProgress70,
+  AssetConstants.magnetProgress60,
+  AssetConstants.magnetProgress50,
+  AssetConstants.magnetProgress40,
+  AssetConstants.magnetProgress30,
+  AssetConstants.magnetProgress20,
+  AssetConstants.magnetProgress10,
 ];
 
 class AssetConstants {
@@ -236,6 +246,17 @@ class AssetConstants {
   static const String glow = 'glow.png';
 
   static const String upgrade = 'upgrade.png';
+
+  static const String magnetProgress100 = 'magnet_progress_100.png';
+  static const String magnetProgress90 = 'magnet_progress_90.png';
+  static const String magnetProgress80 = 'magnet_progress_80.png';
+  static const String magnetProgress70 = 'magnet_progress_70.png';
+  static const String magnetProgress60 = 'magnet_progress_60.png';
+  static const String magnetProgress50 = 'magnet_progress_50.png';
+  static const String magnetProgress40 = 'magnet_progress_40.png';
+  static const String magnetProgress30 = 'magnet_progress_30.png';
+  static const String magnetProgress20 = 'magnet_progress_20.png';
+  static const String magnetProgress10 = 'magnet_progress_10.png';
 
   static const List<String> treeAnimationFrames = [
     treeAnimationFirstFrame,
@@ -411,5 +432,15 @@ class AssetConstants {
     glow,
     upgrade,
     magnet2x,
+    magnetProgress100,
+    magnetProgress90,
+    magnetProgress80,
+    magnetProgress70,
+    magnetProgress60,
+    magnetProgress50,
+    magnetProgress40,
+    magnetProgress30,
+    magnetProgress20,
+    magnetProgress10,
   ];
 }
