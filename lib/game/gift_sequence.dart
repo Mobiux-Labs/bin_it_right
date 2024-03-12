@@ -6,18 +6,30 @@ import 'package:flame/game.dart';
 import 'package:reseacue/assets.dart';
 import 'package:reseacue/game/components/gift.dart';
 import 'package:reseacue/game/components/gift_animation.dart';
-import 'package:reseacue/utils/images.dart';
+import 'package:reseacue/game/game.dart';
+import 'package:reseacue/utils/number.dart';
 
 class GiftSequence extends FlameGame {
   List<GiftType> gifts;
+  final Reseacue mainGame;
 
-  GiftSequence({required this.gifts});
+  late GiftType currentType;
+
+  GiftSequence({
+    required this.gifts,
+    required this.mainGame,
+  });
+
+  late GiftAnimation giftAnimation;
+
+  void updateScoreOnRecycle() {
+    mainGame.storageController
+        .updateScoreForGreenWins(getTokensByGiftType(currentType));
+  }
 
   @override
   FutureOr<void> onLoad() async {
-    await Flame.images.loadAll(getIdleGiftAnimationImages());
-    await Flame.images.loadAll(getOpeningGiftAnimationImages());
-    await Flame.images.load(AssetConstants.gradientBackground);
+    currentType = gifts[0];
 
     SpriteComponent gradientBackground = SpriteComponent(
       sprite: Sprite(
@@ -28,7 +40,8 @@ class GiftSequence extends FlameGame {
 
     world.add(gradientBackground);
 
-    GiftAnimation giftAnimation = GiftAnimation(position: Vector2.all(0.0));
+    giftAnimation =
+        GiftAnimation(position: Vector2.all(0.0), type: currentType);
 
     world.add(giftAnimation);
     return super.onLoad();

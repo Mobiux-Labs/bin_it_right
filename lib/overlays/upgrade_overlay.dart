@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:reseacue/app/storage/storage.dart';
 import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/assets.dart';
@@ -65,12 +64,14 @@ class UpgradeOverlay extends StatefulWidget {
 class _UpgradeOverlayState extends State<UpgradeOverlay> {
   int selectedSkinIndex = 1;
   int selectedTab = 1;
+  int appliedSkin = 1;
   double magnetPowerDuration = 5.0;
 
   @override
   void initState() {
     setState(() {
       selectedSkinIndex = widget.storageController.vehicleSkin.value;
+      appliedSkin = selectedSkinIndex;
       magnetPowerDuration = widget.storageController.magnetPowerDuration.value;
     });
     super.initState();
@@ -176,7 +177,7 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Padding(
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
                     child: Row(
                       children: renderDurations(),
                     ),
@@ -326,12 +327,15 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
           width: MediaQuery.of(context).size.width / 1.7,
           shadowHeight: 50,
           shadowWidth: MediaQuery.of(context).size.width / 1.7,
-          buttonText: 'SELECT',
+          buttonText: appliedSkin == selectedSkinIndex ? 'SELECTED' : 'SELECT',
           shadowContainerColor: Constants.greenButtonShadowContainerColor,
           containerColor: Constants.greenButtonContainerColor,
           shineColor: Constants.greenButtonShineColor,
           padding: const EdgeInsets.all(10.0),
           onTap: () {
+            setState(() {
+              appliedSkin = selectedSkinIndex;
+            });
             widget.storageController.updateVehicleSkin(selectedSkinIndex);
             widget.game.updateVehicle();
           },

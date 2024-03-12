@@ -72,23 +72,6 @@ class StartGameOverlay extends StatelessWidget {
                     const SizedBox(
                       width: 10,
                     ),
-                    CustomAnimatedButton(
-                      height: 50,
-                      width: 50,
-                      shadowHeight: 40,
-                      shadowWidth: 50,
-                      screenSize: MediaQuery.of(context).size,
-                      onTap: () {},
-                      imagePath: 'assets/images/leaderboard.png',
-                      shadowContainerColor:
-                          Constants.yellowButtonShadowContainerColor,
-                      containerColor: Constants.yellowButtonContainerColor,
-                      shineColor: Constants.yellowButtonShineColor,
-                      padding: const EdgeInsets.only(
-                        left: 50,
-                        top: 10.0,
-                      ),
-                    ),
                     const SizedBox(
                       width: 10,
                     ),

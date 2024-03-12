@@ -58,22 +58,44 @@ List<Sprite> getIdleGiftAnimationSprites() {
   return [...sprites];
 }
 
-List<String> getOpeningGiftAnimationImages() {
-  _log.info('Generating opening gift animation images list');
+List<String> getBatteryOpeningGiftAnimationImages() {
+  _log.info('Generating battery opening gift animation images list');
   List<String> frames = [
-    ...getDynamicRangeStringList(147, 218, ['Comp_1_00', '.png'], 1),
+    ...getDynamicRangeStringList(147, 232, ['Battery_00', '.png'], 1),
   ];
-  _log.info('Generated opening gift animation images list successfully');
+  _log.info(
+      'Generated battery opening gift animation images list successfully');
 
   return [...frames];
 }
 
-List<Sprite> getOpeningGiftAnimationSprites() {
-  _log.info('Generating opening gift animation sprites list');
+List<Sprite> getBatteryOpeningGiftAnimationSprites() {
+  _log.info('Generating battery opening gift animation sprites list');
   List<Sprite> sprites = [
-    ...getDynamicRangeSpriteList(147, 218, ['Comp_1_00', '.png'], 1),
+    ...getDynamicRangeSpriteList(147, 232, ['Battery_00', '.png'], 1),
   ];
-  _log.info('Generated opening gift animation sprites list successfully');
+  _log.info(
+      'Generated battery opening gift animation sprites list successfully');
+
+  return [...sprites];
+}
+
+List<String> getPhoneOpeningGiftAnimationImages() {
+  _log.info('Generating phone opening gift animation images list');
+  List<String> frames = [
+    ...getDynamicRangeStringList(147, 232, ['Comp 1_00', '.png'], 1),
+  ];
+  _log.info('Generated phone opening gift animation images list successfully');
+
+  return [...frames];
+}
+
+List<Sprite> getPhoneOpeningGiftAnimationSprites() {
+  _log.info('Generating phone opening gift animation sprites list');
+  List<Sprite> sprites = [
+    ...getDynamicRangeSpriteList(147, 232, ['Comp 1_00', '.png'], 1),
+  ];
+  _log.info('Generated phone opening gift animation sprites list successfully');
 
   return [...sprites];
 }

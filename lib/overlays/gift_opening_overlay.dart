@@ -19,10 +19,12 @@ class GiftOpeningOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GameWidget<GiftSequence>.controlled(
-      gameFactory: () => GiftSequence(gifts: mainGame.giftsCollectedOrder),
+      gameFactory: () =>
+          GiftSequence(gifts: mainGame.giftsCollectedOrder, mainGame: mainGame),
       overlayBuilderMap: {
         SettingsOverlay.id: (_, game) => SettingsOverlay(game: mainGame),
-        GiftOpenOverlay.id: (_, game) => GiftOpenOverlay(game: mainGame),
+        GiftOpenOverlay.id: (_, game) =>
+            GiftOpenOverlay(mainGame: mainGame, game: game),
         GiftCollectOverlay.id: (_, game) =>
             GiftCollectOverlay(game: game, mainGame: mainGame),
       },

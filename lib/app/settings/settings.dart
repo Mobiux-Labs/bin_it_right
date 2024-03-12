@@ -9,7 +9,7 @@ class SettingsController {
 
   /// Whether or not the sound is on at all. This overrides both music
   /// and sound.
-  ValueNotifier<bool> muted = ValueNotifier(false);
+  ValueNotifier<bool> muted = ValueNotifier(true);
   ValueNotifier<bool> vibrationOn = ValueNotifier(true);
   ValueNotifier<String> locale = ValueNotifier('en');
 
@@ -24,7 +24,7 @@ class SettingsController {
           // On the web, sound can only start after user interaction, so
           // we start muted there.
           // On any other platform, we start unmuted.
-          .getMuted(defaultValue: kIsWeb)
+          .getMuted(defaultValue: true)
           .then((value) => muted.value = value),
       _persistence
           .getVibrationOn(defaultValue: true)

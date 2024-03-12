@@ -36,30 +36,6 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  late Timer timer;
-
-  final values = [];
-  final ValueNotifier<int> _index = ValueNotifier<int>(0);
-
-  @override
-  void initState() {
-    super.initState();
-    for (int treeAnimationFrameIndex = 1;
-        treeAnimationFrameIndex <= 45;
-        treeAnimationFrameIndex++) {
-      values.add(treeAnimationFrameIndex.toString());
-    }
-    timer = Timer.periodic(const Duration(milliseconds: 200), (timer) {
-      _index.value += 1;
-    });
-  }
-
-  @override
-  void dispose() {
-    timer.cancel();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     final router = GoRouter(
@@ -140,17 +116,12 @@ class _AppState extends State<App> {
                             Padding(
                               padding:
                                   const EdgeInsets.only(left: 20, right: 20),
-                              child: ValueListenableBuilder(
-                                valueListenable: _index,
-                                builder: (context, data, child) {
-                                  return FadeInImage(
-                                    placeholder: MemoryImage(kTransparentImage),
-                                    image: AssetImage(
-                                      getPathFromAssetString(
-                                          'Tree animation_${values[data % values.length]}.png'),
-                                    ),
-                                  );
-                                },
+                              child: FadeInImage(
+                                placeholder: MemoryImage(kTransparentImage),
+                                image: AssetImage(
+                                  getPathFromAssetString(AssetConstants
+                                      .treeAnimationFortyFifthFrame),
+                                ),
                               ),
                             ),
                             const Text(

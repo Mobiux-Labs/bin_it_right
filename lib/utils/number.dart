@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:logging/logging.dart';
 import 'package:reseacue/constants/constants.dart';
+import 'package:reseacue/game/components/gift.dart';
 
 final Logger _log = Logger(Constants.utilsNumberLoggerKey);
 
@@ -80,4 +81,13 @@ double getVelocity(double gameSpeed) {
   _log.info('Generated velocity successfully');
 
   return velocity;
+}
+
+int getTokensByGiftType(GiftType type) {
+  switch (type) {
+    case GiftType.battery:
+      return 1000;
+    case GiftType.mobile:
+      return 8000;
+  }
 }

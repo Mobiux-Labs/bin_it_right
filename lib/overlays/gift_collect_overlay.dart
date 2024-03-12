@@ -6,7 +6,6 @@ import 'package:reseacue/game/game.dart';
 import 'package:reseacue/game/gift_sequence.dart';
 import 'package:reseacue/overlays/gift_opening_overlay.dart';
 import 'package:reseacue/overlays/settings_overlay.dart';
-import 'package:reseacue/overlays/start_game_overlay.dart';
 
 class GiftCollectOverlay extends StatelessWidget {
   const GiftCollectOverlay({
@@ -71,7 +70,7 @@ class GiftCollectOverlay extends StatelessWidget {
                   shadowWidth: MediaQuery.of(context).size.width / 1.7,
                   screenSize: MediaQuery.of(context).size,
                   onTap: () {
-                    mainGame.storageController.updateScore(200);
+                    game.updateScoreOnRecycle();
                     game.overlays.remove(id);
                     mainGame.overlays.remove(GiftOpeningOverlay.id);
                   },

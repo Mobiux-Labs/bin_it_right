@@ -13,17 +13,17 @@ Logger _log = Logger(Constants.mainLoggerKey);
 
 void main() {
   // Subscribe to log messages.
-  Logger.root.onRecord.listen((record) {
-    log(
-      record.message,
-      time: record.time,
-      level: record.level.value,
-      name: record.loggerName,
-      zone: record.zone,
-      error: record.error,
-      stackTrace: record.stackTrace,
-    );
-  });
+  // Logger.root.onRecord.listen((record) {
+  //   log(
+  //     record.message,
+  //     time: record.time,
+  //     level: record.level.value,
+  //     name: record.loggerName,
+  //     zone: record.zone,
+  //     error: record.error,
+  //     stackTrace: record.stackTrace,
+  //   );
+  // });
 
   // This is to make sure everything is loaded and initialized before use
   WidgetsFlutterBinding.ensureInitialized();

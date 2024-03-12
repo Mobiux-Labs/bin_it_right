@@ -100,6 +100,8 @@ class Reseacue extends FlameGame {
 
   bool powerUpMode = false;
 
+  bool giftCollected = false;
+
   double previousGameSpeed = 0.0;
 
   late final MagneticField magneticField;
@@ -118,8 +120,10 @@ class Reseacue extends FlameGame {
     powerUpInterval.reset();
     vehicle.changeAnimationByState(VehicleState.idle);
     wasteCollectedOrder = [];
+    giftsCollectedOrder = [];
     lives.value = 3;
     powerUpMode = false;
+    giftCollected = false;
     previousGameSpeed = 0.0;
     score.value = 0;
 
@@ -425,12 +429,18 @@ class Reseacue extends FlameGame {
   }
 
   void spawnGift() {
+    if (giftCollected == true) {
+      return;
+    }
+
     Gift gift = Gift();
 
     giftsGenerated.add(gift);
 
     _log.info('Adding gift');
     world.add(gift);
+
+    giftCollected = true;
   }
 
   void onTickGiftTimer() {
