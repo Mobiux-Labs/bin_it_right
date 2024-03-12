@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:reseacue/app/storage/storage.dart';
 import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/assets.dart';
@@ -63,6 +64,7 @@ class UpgradeOverlay extends StatefulWidget {
 
 class _UpgradeOverlayState extends State<UpgradeOverlay> {
   int selectedSkinIndex = 1;
+  int selectedTab = 1;
 
   @override
   void initState() {
@@ -70,6 +72,125 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
       selectedSkinIndex = widget.storageController.vehicleSkin.value;
     });
     super.initState();
+  }
+
+  Widget renderPowerupUpgradeLayout() {
+    return Column();
+  }
+
+  Widget renderTruckUpgradeLayout() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        SizedBox(
+          height: 250,
+          child: Stack(
+            children: [
+              Align(
+                alignment: Alignment.center,
+                child: Image(
+                  image: AssetImage(
+                    getPathFromAssetString(AssetConstants.glow),
+                  ),
+                ),
+              ),
+              Align(
+                alignment: Alignment.center,
+                child: Image(
+                  image: AssetImage(
+                    getPathFromAssetString(
+                        'vehicle_skin_$selectedSkinIndex.png'),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Skin(
+              skinNumber: 1,
+              onTap: () {
+                setState(() {
+                  selectedSkinIndex = 1;
+                });
+              },
+              selectedSkinIndex: selectedSkinIndex,
+              color: const Color(0xFFFFD217),
+            ),
+            Skin(
+                skinNumber: 2,
+                onTap: () {
+                  setState(() {
+                    selectedSkinIndex = 2;
+                  });
+                },
+                selectedSkinIndex: selectedSkinIndex,
+                color: const Color(0xFFFF6B00)),
+            Skin(
+              skinNumber: 3,
+              onTap: () {
+                setState(() {
+                  selectedSkinIndex = 3;
+                });
+              },
+              selectedSkinIndex: selectedSkinIndex,
+              color: const Color(0xFF0039CC),
+            ),
+            Skin(
+              skinNumber: 4,
+              onTap: () {
+                setState(() {
+                  selectedSkinIndex = 4;
+                });
+              },
+              selectedSkinIndex: selectedSkinIndex,
+              color: const Color(0xFF7200CC),
+            ),
+            Skin(
+              skinNumber: 5,
+              onTap: () {
+                setState(() {
+                  selectedSkinIndex = 5;
+                });
+              },
+              selectedSkinIndex: selectedSkinIndex,
+              color: const Color(0xFFFF4E8C),
+            ),
+            Skin(
+              skinNumber: 6,
+              onTap: () {
+                setState(() {
+                  selectedSkinIndex = 6;
+                });
+              },
+              selectedSkinIndex: selectedSkinIndex,
+              color: const Color(0xFFFF2E00),
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 40,
+        ),
+        CustomAnimatedButton(
+          height: 60,
+          width: MediaQuery.of(context).size.width / 1.7,
+          shadowHeight: 50,
+          shadowWidth: MediaQuery.of(context).size.width / 1.7,
+          buttonText: 'SELECT',
+          shadowContainerColor: Constants.greenButtonShadowContainerColor,
+          containerColor: Constants.greenButtonContainerColor,
+          shineColor: Constants.greenButtonShineColor,
+          padding: const EdgeInsets.all(10.0),
+          onTap: () {
+            widget.storageController.updateVehicleSkin(selectedSkinIndex);
+            widget.game.updateVehicle();
+          },
+          screenSize: MediaQuery.of(context).size,
+        ),
+      ],
+    );
   }
 
   @override
@@ -120,57 +241,74 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
                         children: [
                           Expanded(
                             child: Container(
-                              height: 60,
-                              decoration: const BoxDecoration(
-                                color: Color(0xFFFFD217),
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(10),
-                                ),
-                                border: Border(
-                                  bottom: BorderSide(
-                                    color: Color(0xFFD5AF10),
-                                    width: 4.0,
+                                height: 60,
+                                decoration: BoxDecoration(
+                                  color: selectedTab == 1
+                                      ? const Color(0xFFFFD217)
+                                      : const Color(0xFFD4AF13),
+                                  borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(10),
+                                  ),
+                                  border: const Border(
+                                    bottom: BorderSide(
+                                      color: Color(0xFFD5AF10),
+                                      width: 4.0,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              child: const Center(
-                                child: Text(
-                                  'TRUCK',
-                                  style: TextStyle(
-                                    fontSize: 27,
-                                    color: Colors.white,
-                                    fontFamily: 'Digitalt',
-                                    fontWeight: FontWeight.w500,
-                                    decoration: TextDecoration.none,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      selectedTab = 1;
+                                    });
+                                  },
+                                  child: const Center(
+                                    child: Text(
+                                      'TRUCK',
+                                      style: TextStyle(
+                                        fontSize: 27,
+                                        color: Colors.white,
+                                        fontFamily: 'Digitalt',
+                                        fontWeight: FontWeight.w500,
+                                        decoration: TextDecoration.none,
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
-                            ),
+                                )),
                           ),
                           Expanded(
                             child: Container(
                               height: 60,
-                              decoration: const BoxDecoration(
-                                color: Color(0xFFD4AF13),
-                                borderRadius: BorderRadius.only(
+                              decoration: BoxDecoration(
+                                color: selectedTab == 2
+                                    ? const Color(0xFFFFD217)
+                                    : const Color(0xFFD4AF13),
+                                borderRadius: const BorderRadius.only(
                                   topRight: Radius.circular(10),
                                 ),
-                                border: Border(
+                                border: const Border(
                                   bottom: BorderSide(
                                     color: Color(0xFFD5AF10),
                                     width: 4.0,
                                   ),
                                 ),
                               ),
-                              child: const Center(
-                                child: Text(
-                                  'UPGRADES',
-                                  style: TextStyle(
-                                    fontSize: 27,
-                                    color: Colors.white,
-                                    fontFamily: 'Digitalt',
-                                    fontWeight: FontWeight.w500,
-                                    decoration: TextDecoration.none,
+                              child: GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    selectedTab = 2;
+                                  });
+                                },
+                                child: const Center(
+                                  child: Text(
+                                    'UPGRADES',
+                                    style: TextStyle(
+                                      fontSize: 27,
+                                      color: Colors.white,
+                                      fontFamily: 'Digitalt',
+                                      fontWeight: FontWeight.w500,
+                                      decoration: TextDecoration.none,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -181,122 +319,9 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
                       const SizedBox(
                         height: 20,
                       ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          SizedBox(
-                            height: 250,
-                            child: Stack(
-                              children: [
-                                Align(
-                                  alignment: Alignment.center,
-                                  child: Image(
-                                    image: AssetImage(
-                                      getPathFromAssetString(
-                                          AssetConstants.glow),
-                                    ),
-                                  ),
-                                ),
-                                Align(
-                                  alignment: Alignment.center,
-                                  child: Image(
-                                    image: AssetImage(
-                                      getPathFromAssetString(
-                                          'vehicle_skin_$selectedSkinIndex.png'),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Skin(
-                                skinNumber: 1,
-                                onTap: () {
-                                  setState(() {
-                                    selectedSkinIndex = 1;
-                                  });
-                                },
-                                selectedSkinIndex: selectedSkinIndex,
-                                color: const Color(0xFFFFD217),
-                              ),
-                              Skin(
-                                  skinNumber: 2,
-                                  onTap: () {
-                                    setState(() {
-                                      selectedSkinIndex = 2;
-                                    });
-                                  },
-                                  selectedSkinIndex: selectedSkinIndex,
-                                  color: const Color(0xFFFF6B00)),
-                              Skin(
-                                skinNumber: 3,
-                                onTap: () {
-                                  setState(() {
-                                    selectedSkinIndex = 3;
-                                  });
-                                },
-                                selectedSkinIndex: selectedSkinIndex,
-                                color: const Color(0xFF0039CC),
-                              ),
-                              Skin(
-                                skinNumber: 4,
-                                onTap: () {
-                                  setState(() {
-                                    selectedSkinIndex = 4;
-                                  });
-                                },
-                                selectedSkinIndex: selectedSkinIndex,
-                                color: const Color(0xFF7200CC),
-                              ),
-                              Skin(
-                                skinNumber: 5,
-                                onTap: () {
-                                  setState(() {
-                                    selectedSkinIndex = 5;
-                                  });
-                                },
-                                selectedSkinIndex: selectedSkinIndex,
-                                color: const Color(0xFFFF4E8C),
-                              ),
-                              Skin(
-                                skinNumber: 6,
-                                onTap: () {
-                                  setState(() {
-                                    selectedSkinIndex = 6;
-                                  });
-                                },
-                                selectedSkinIndex: selectedSkinIndex,
-                                color: const Color(0xFFFF2E00),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 40,
-                          ),
-                          CustomAnimatedButton(
-                            height: 60,
-                            width: MediaQuery.of(context).size.width / 1.7,
-                            shadowHeight: 50,
-                            shadowWidth:
-                                MediaQuery.of(context).size.width / 1.7,
-                            buttonText: 'SELECT',
-                            shadowContainerColor:
-                                Constants.greenButtonShadowContainerColor,
-                            containerColor: Constants.greenButtonContainerColor,
-                            shineColor: Constants.greenButtonShineColor,
-                            padding: const EdgeInsets.all(10.0),
-                            onTap: () {
-                              widget.storageController
-                                  .updateVehicleSkin(selectedSkinIndex);
-                              widget.game.updateVehicle();
-                            },
-                            screenSize: MediaQuery.of(context).size,
-                          ),
-                        ],
-                      )
+                      selectedTab == 1
+                          ? renderTruckUpgradeLayout()
+                          : renderPowerupUpgradeLayout()
                     ],
                   ),
                 ),
