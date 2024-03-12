@@ -14,11 +14,13 @@ import 'package:reseacue/game/components/arc.dart';
 import 'package:reseacue/game/components/building.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:reseacue/game/components/custom_parallax.dart';
+import 'package:reseacue/game/components/gift.dart';
 import 'package:reseacue/game/components/magnet_progress.dart';
 import 'package:reseacue/game/components/magnetic_field.dart';
 import 'package:reseacue/game/components/powerup.dart';
 import 'package:reseacue/game/components/vehicle.dart';
 import 'package:reseacue/game/components/waste.dart';
+import 'package:reseacue/overlays/gift_opening_overlay.dart';
 import 'package:reseacue/overlays/overlays.dart';
 import 'package:reseacue/utils/utils.dart';
 import 'package:vibration/vibration.dart';
@@ -40,6 +42,7 @@ class Reseacue extends FlameGame {
 
   Stopwatch elapsedTime = Stopwatch();
   Stopwatch powerUpTime = Stopwatch();
+
   Timer interval = Timer(
     getBuildingSpawnRate(gameSpeed),
     repeat: true,
@@ -47,6 +50,11 @@ class Reseacue extends FlameGame {
 
   Timer powerUpInterval = Timer(
     Constants.powerUpInterval,
+    repeat: true,
+  );
+
+  Timer giftSpawnInterval = Timer(
+    Constants.giftSpawnInterval,
     repeat: true,
   );
 
@@ -65,14 +73,17 @@ class Reseacue extends FlameGame {
   late Vehicle vehicle;
 
   List<WasteType> wasteCollectedOrder = [];
+  List<GiftType> giftsCollectedOrder = [];
 
   List<String> removedBuildings = [];
   List<String> removedWastes = [];
   List<String> removedPowerups = [];
+  List<String> removedGifts = [];
 
   List<Waste> wasteGenerated = [];
   List<Building> buildingsGenerated = [];
   List<Powerup> powerupsGenerated = [];
+  List<Gift> giftsGenerated = [];
 
   ArcComponent arc = ArcComponent(
     leftTop: Vector2.all(0.0),
@@ -99,6 +110,8 @@ class Reseacue extends FlameGame {
     elapsedTime.reset();
     powerUpTime.stop();
     powerUpTime.reset();
+    giftSpawnInterval.stop();
+    giftSpawnInterval.reset();
     interval.stop();
     interval.reset();
     powerUpInterval.stop();
@@ -131,13 +144,25 @@ class Reseacue extends FlameGame {
       world.remove(powerup);
     }
 
+    for (Gift gift in giftsGenerated) {
+      if (removedGifts.contains(gift.id)) {
+        continue;
+      }
+      world.remove(gift);
+    }
+
     removedBuildings = [];
     removedWastes = [];
     buildingsGenerated = [];
     wasteGenerated = [];
     powerupsGenerated = [];
+    giftsGenerated = [];
 
     resumeEngine();
+  }
+
+  bool wereGiftsCollected() {
+    return giftsCollectedOrder.isNotEmpty;
   }
 
   void reduceLife() {
@@ -145,7 +170,12 @@ class Reseacue extends FlameGame {
 
     if (lives.value <= 0) {
       pauseEngine();
+
       overlays.add(GameOverOverlay.id);
+
+      if (wereGiftsCollected()) {
+        overlays.add(GiftOpeningOverlay.id);
+      }
     }
   }
 
@@ -189,12 +219,21 @@ class Reseacue extends FlameGame {
       repeat: true,
     );
 
+    giftSpawnInterval = Timer(
+      Constants.giftSpawnInterval,
+      repeat: true,
+    );
+
     interval.onTick = () {
       onUpdateOnTick();
     };
 
     powerUpInterval.onTick = () {
       onTickPowerUpTimer();
+    };
+
+    giftSpawnInterval.onTick = () {
+      onTickGiftTimer();
     };
 
     vehicle.changeAnimationByState(VehicleState.moving);
@@ -385,6 +424,19 @@ class Reseacue extends FlameGame {
     spawnPowerup();
   }
 
+  void spawnGift() {
+    Gift gift = Gift();
+
+    giftsGenerated.add(gift);
+
+    _log.info('Adding gift');
+    world.add(gift);
+  }
+
+  void onTickGiftTimer() {
+    spawnGift();
+  }
+
   void updateWasteCollectedSequence(WasteType type) {
     if (wasteCollectedOrder.isEmpty) {
       wasteCollectedOrder.add(type);
@@ -400,6 +452,10 @@ class Reseacue extends FlameGame {
     } else {
       return;
     }
+  }
+
+  void updateGiftCollectedSequence(GiftType type) {
+    giftsCollectedOrder.add(type);
   }
 
   void changeVehicleAnimation(VehicleState state) {
@@ -464,6 +520,7 @@ class Reseacue extends FlameGame {
 
     interval.update(dt);
     powerUpInterval.update(dt);
+    giftSpawnInterval.update(dt);
     super.update(dt);
   }
 }

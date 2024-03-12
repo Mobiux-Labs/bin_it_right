@@ -92,6 +92,8 @@ List<String> sprites = [
   AssetConstants.magnetProgress30,
   AssetConstants.magnetProgress20,
   AssetConstants.magnetProgress10,
+  AssetConstants.greenWins,
+  AssetConstants.gradientBackground,
 ];
 
 class AssetConstants {
@@ -257,6 +259,10 @@ class AssetConstants {
   static const String magnetProgress30 = 'magnet_progress_30.png';
   static const String magnetProgress20 = 'magnet_progress_20.png';
   static const String magnetProgress10 = 'magnet_progress_10.png';
+
+  static const String greenWins = 'green_win.png';
+
+  static const String gradientBackground = 'gradient_background.png';
 
   static const List<String> treeAnimationFrames = [
     treeAnimationFirstFrame,
@@ -442,5 +448,6 @@ class AssetConstants {
     magnetProgress30,
     magnetProgress20,
     magnetProgress10,
+    gradientBackground,
   ];
 }
