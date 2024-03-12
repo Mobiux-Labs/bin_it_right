@@ -13,6 +13,7 @@ class CustomAnimatedButton extends StatefulWidget {
   final double height;
   final double shadowWidth;
   final double shadowHeight;
+  final Color textColor;
 
   const CustomAnimatedButton({
     super.key,
@@ -28,6 +29,7 @@ class CustomAnimatedButton extends StatefulWidget {
     this.width = 100,
     this.shadowHeight = 100,
     this.shadowWidth = 100,
+    this.textColor = Colors.white,
   });
 
   @override
@@ -35,13 +37,6 @@ class CustomAnimatedButton extends StatefulWidget {
 }
 
 class _CustomAnimatedButtonState extends State<CustomAnimatedButton> {
-  static const Color textColor = Color.fromRGBO(
-    255,
-    255,
-    255,
-    1,
-  );
-
   static BorderRadius borderRadius = BorderRadius.circular(
     10,
   );
@@ -128,9 +123,9 @@ class _CustomAnimatedButtonState extends State<CustomAnimatedButton> {
                   : widget.imagePath == null && widget.buttonText != null
                       ? Text(
                           widget.buttonText as String,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 30,
-                            color: textColor,
+                            color: widget.textColor,
                             fontFamily: 'Digitalt',
                             fontWeight: FontWeight.w500,
                             decoration: TextDecoration.none,
@@ -145,9 +140,9 @@ class _CustomAnimatedButtonState extends State<CustomAnimatedButton> {
                             ),
                             Text(
                               widget.buttonText as String,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 30,
-                                color: textColor,
+                                color: widget.textColor,
                                 fontFamily: 'Digitalt',
                                 fontWeight: FontWeight.w500,
                                 decoration: TextDecoration.none,

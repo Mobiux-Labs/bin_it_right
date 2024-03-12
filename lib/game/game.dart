@@ -14,6 +14,7 @@ import 'package:reseacue/game/components/arc.dart';
 import 'package:reseacue/game/components/building.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:reseacue/game/components/custom_parallax.dart';
+import 'package:reseacue/game/components/magnet_progress.dart';
 import 'package:reseacue/game/components/magnetic_field.dart';
 import 'package:reseacue/game/components/powerup.dart';
 import 'package:reseacue/game/components/vehicle.dart';
@@ -151,6 +152,7 @@ class Reseacue extends FlameGame {
   void powerUp() {
     powerUpMode = true;
     world.add(magneticField);
+    world.add(MagnetProgress(position: vehicle.position));
     previousGameSpeed = gameSpeed;
     speedUpGameplay(Constants.powerUpGameSpeed);
     _log.info('Turning on power up');
@@ -436,25 +438,27 @@ class Reseacue extends FlameGame {
 
   @override
   void update(double dt) {
-    if (elapsedTime.elapsed.inSeconds == Constants.gameSpeedUpTimeLevel1) {
-      _log.info('Increasing game speed to ${Constants.gameSpeedLevel1}');
-      speedUpGameplay(Constants.gameSpeedLevel1);
-    }
-    if (elapsedTime.elapsed.inSeconds == Constants.gameSpeedUpTimeLevel2) {
-      _log.info('Increasing game speed to ${Constants.gameSpeedLevel2}');
-      speedUpGameplay(Constants.gameSpeedLevel2);
-    }
-    if (elapsedTime.elapsed.inSeconds == Constants.gameSpeedUpTimeLevel3) {
-      _log.info('Increasing game speed to ${Constants.gameSpeedLevel3}');
-      speedUpGameplay(Constants.gameSpeedLevel3);
-    }
-    if (elapsedTime.elapsed.inSeconds == Constants.gameSpeedUpTimeLevel4) {
-      _log.info('Increasing game speed to ${Constants.gameSpeedLevel4}');
-      speedUpGameplay(Constants.gameSpeedLevel4);
+    if (!powerUpMode) {
+      if (elapsedTime.elapsed.inSeconds == Constants.gameSpeedUpTimeLevel1) {
+        _log.info('Increasing game speed to ${Constants.gameSpeedLevel1}');
+        speedUpGameplay(Constants.gameSpeedLevel1);
+      }
+      if (elapsedTime.elapsed.inSeconds == Constants.gameSpeedUpTimeLevel2) {
+        _log.info('Increasing game speed to ${Constants.gameSpeedLevel2}');
+        speedUpGameplay(Constants.gameSpeedLevel2);
+      }
+      if (elapsedTime.elapsed.inSeconds == Constants.gameSpeedUpTimeLevel3) {
+        _log.info('Increasing game speed to ${Constants.gameSpeedLevel3}');
+        speedUpGameplay(Constants.gameSpeedLevel3);
+      }
+      if (elapsedTime.elapsed.inSeconds == Constants.gameSpeedUpTimeLevel4) {
+        _log.info('Increasing game speed to ${Constants.gameSpeedLevel4}');
+        speedUpGameplay(Constants.gameSpeedLevel4);
+      }
     }
 
     if (powerUpTime.elapsed.inSeconds >=
-        Constants.powerUpAvailableTimeInSeconds) {
+        storageController.magnetPowerDuration.value) {
       powerDown();
     }
 

@@ -41,9 +41,13 @@ class StartGameOverlay extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                EarthTokens(
-                  earthPoints: storageController.score.value,
-                ),
+                ValueListenableBuilder(
+                    valueListenable: storageController.score,
+                    builder: (context, score, child) {
+                      return EarthTokens(
+                        earthPoints: score,
+                      );
+                    }),
                 Row(
                   children: [
                     CustomAnimatedButton(

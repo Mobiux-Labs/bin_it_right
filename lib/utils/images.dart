@@ -141,6 +141,19 @@ List<Sprite> getBothWasteMovingVehicleAnimationSprites(int skin) {
   return [...sprites];
 }
 
+List<Sprite> getMagnetProgressAnimationSprites() {
+  _log.info('Generating magnet progress sprites list');
+  List<Sprite> sprites = [];
+
+  for (int i = 100; i >= 10; i -= 10) {
+    sprites.add(Sprite(Flame.images.fromCache('magnet_progress_$i.png')));
+  }
+
+  _log.info('Generated magnet progress animation sprites list successfully');
+
+  return [...sprites];
+}
+
 List<String> getWasteVariationImages() {
   _log.info('Generating waste variation images list');
   List<String> images = [
