@@ -118,6 +118,7 @@ class Reseacue extends FlameGame {
     powerUpInterval.reset();
     vehicle.changeAnimationByState(VehicleState.idle);
     wasteCollectedOrder = [];
+    giftsCollectedOrder = [];
     lives.value = 3;
     powerUpMode = false;
     previousGameSpeed = 0.0;
