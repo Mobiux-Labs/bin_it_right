@@ -60,6 +60,11 @@ class StorageController {
     _persistence.saveScore(score.value);
   }
 
+  void updateScoreForGreenWins(int scoreToUpdate) {
+    score.value += scoreToUpdate;
+    _persistence.saveScore(score.value);
+  }
+
   void watchedTutorial() {
     tutorialWatched.value = true;
     _persistence.saveTutorialWatched(tutorialWatched.value);
