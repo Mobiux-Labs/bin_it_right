@@ -6,7 +6,6 @@ import 'package:flame/game.dart';
 import 'package:reseacue/assets.dart';
 import 'package:reseacue/game/components/gift.dart';
 import 'package:reseacue/game/components/gift_animation.dart';
-import 'package:reseacue/utils/images.dart';
 
 class GiftSequence extends FlameGame {
   List<GiftType> gifts;
@@ -15,10 +14,6 @@ class GiftSequence extends FlameGame {
 
   @override
   FutureOr<void> onLoad() async {
-    await Flame.images.loadAll(getIdleGiftAnimationImages());
-    await Flame.images.loadAll(getOpeningGiftAnimationImages());
-    await Flame.images.load(AssetConstants.gradientBackground);
-
     SpriteComponent gradientBackground = SpriteComponent(
       sprite: Sprite(
         Flame.images.fromCache(AssetConstants.gradientBackground),
@@ -28,7 +23,8 @@ class GiftSequence extends FlameGame {
 
     world.add(gradientBackground);
 
-    GiftAnimation giftAnimation = GiftAnimation(position: Vector2.all(0.0));
+    GiftAnimation giftAnimation =
+        GiftAnimation(position: Vector2.all(0.0), type: gifts[0]);
 
     world.add(giftAnimation);
     return super.onLoad();
