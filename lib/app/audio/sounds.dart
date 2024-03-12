@@ -2,7 +2,7 @@ List<String> soundTypeToFilename(SfxType type) {
   switch (type) {
     case SfxType.coin:
       return const [
-        'coin_collection.mp3',
+        'coin.mp3',
       ];
     case SfxType.dryWaste:
       return const [
@@ -40,6 +40,18 @@ List<String> soundTypeToFilename(SfxType type) {
       return const [
         'wet_waste.mp3',
       ];
+    case SfxType.boxOpen:
+      return const [
+        'gift_open.mp3',
+      ];
+    case SfxType.boxCollect:
+      return const [
+        'box_collect.mp3',
+      ];
+    case SfxType.powerup:
+      return const [
+        'powerup.mp3',
+      ];
   }
 }
 
@@ -57,6 +69,9 @@ double soundTypeToVolume(SfxType type) {
     case SfxType.rareItem:
     case SfxType.tap:
     case SfxType.wetWaste:
+    case SfxType.powerup:
+    case SfxType.boxCollect:
+    case SfxType.boxOpen:
       return 0.5;
   }
 }
@@ -71,5 +86,9 @@ enum SfxType {
   miss,
   rareItem,
   tap,
-  wetWaste
+  wetWaste,
+//
+  boxCollect,
+  boxOpen,
+  powerup
 }

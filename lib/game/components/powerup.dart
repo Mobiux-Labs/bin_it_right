@@ -37,7 +37,7 @@ class Powerup extends SpriteComponent with HasGameRef<Reseacue>, TapCallbacks {
 
   @override
   void onTapUp(TapUpEvent event) {
-    audioController.playSfx(SfxType.rareItem);
+    audioController.playSfx(SfxType.boxCollect);
     game.powerUp();
     game.removedPowerups.add(id);
     removeFromParent();

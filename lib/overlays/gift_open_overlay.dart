@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:reseacue/app/audio/sounds.dart';
 import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/app/ui/components/earth_tokens.dart';
 import 'package:reseacue/constants/constants.dart';
@@ -69,6 +70,7 @@ class GiftOpenOverlay extends StatelessWidget {
                   shadowWidth: MediaQuery.of(context).size.width / 1.7,
                   screenSize: MediaQuery.of(context).size,
                   onTap: () {
+                    mainGame.audioController.playSfx(SfxType.boxOpen);
                     game.giftAnimation.openGift();
                     game.overlays.remove(id);
                   },
