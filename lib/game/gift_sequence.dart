@@ -20,6 +20,8 @@ class GiftSequence extends FlameGame {
     required this.mainGame,
   });
 
+  late GiftAnimation giftAnimation;
+
   void updateScoreOnRecycle() {
     mainGame.storageController
         .updateScoreForGreenWins(getTokensByGiftType(currentType));
@@ -38,7 +40,7 @@ class GiftSequence extends FlameGame {
 
     world.add(gradientBackground);
 
-    GiftAnimation giftAnimation =
+    giftAnimation =
         GiftAnimation(position: Vector2.all(0.0), type: currentType);
 
     world.add(giftAnimation);

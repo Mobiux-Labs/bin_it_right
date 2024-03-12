@@ -3,12 +3,18 @@ import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/app/ui/components/earth_tokens.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
+import 'package:reseacue/game/gift_sequence.dart';
 import 'package:reseacue/overlays/settings_overlay.dart';
 
 class GiftOpenOverlay extends StatelessWidget {
-  const GiftOpenOverlay({super.key, required this.game});
+  const GiftOpenOverlay({
+    super.key,
+    required this.game,
+    required this.mainGame,
+  });
 
-  final Reseacue game;
+  final Reseacue mainGame;
+  final GiftSequence game;
 
   static const String id = 'gift_open_overlay';
 
@@ -20,12 +26,13 @@ class GiftOpenOverlay extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ValueListenableBuilder(
-                  valueListenable: game.storageController.score,
+                  valueListenable: mainGame.storageController.score,
                   builder: (context, score, child) {
                     return EarthTokens(
                       earthPoints: score,
@@ -39,7 +46,7 @@ class GiftOpenOverlay extends StatelessWidget {
                   shadowWidth: 50,
                   screenSize: MediaQuery.of(context).size,
                   onTap: () {
-                    game.overlays.add(SettingsOverlay.id);
+                    mainGame.overlays.add(SettingsOverlay.id);
                   },
                   imagePath: 'assets/images/settings.png',
                   shadowContainerColor:
@@ -52,7 +59,33 @@ class GiftOpenOverlay extends StatelessWidget {
                   ),
                 ),
               ],
-            )
+            ),
+            Column(
+              children: [
+                CustomAnimatedButton(
+                  height: 60,
+                  width: MediaQuery.of(context).size.width / 1.7,
+                  shadowHeight: 50,
+                  shadowWidth: MediaQuery.of(context).size.width / 1.7,
+                  screenSize: MediaQuery.of(context).size,
+                  onTap: () {
+                    game.giftAnimation.openGift();
+                    game.overlays.remove(id);
+                  },
+                  buttonText: 'TAP TO OPEN',
+                  shadowContainerColor: Constants.redButtonShadowContainerColor,
+                  containerColor: Constants.redButtonContainerColor,
+                  shineColor: Constants.redButtonShineColor,
+                  padding: const EdgeInsets.only(
+                    left: 67.0,
+                    top: 10.0,
+                  ),
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+              ],
+            ),
           ],
         ),
       ),

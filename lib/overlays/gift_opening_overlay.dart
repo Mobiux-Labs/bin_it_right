@@ -23,7 +23,8 @@ class GiftOpeningOverlay extends StatelessWidget {
           GiftSequence(gifts: mainGame.giftsCollectedOrder, mainGame: mainGame),
       overlayBuilderMap: {
         SettingsOverlay.id: (_, game) => SettingsOverlay(game: mainGame),
-        GiftOpenOverlay.id: (_, game) => GiftOpenOverlay(game: mainGame),
+        GiftOpenOverlay.id: (_, game) =>
+            GiftOpenOverlay(mainGame: mainGame, game: game),
         GiftCollectOverlay.id: (_, game) =>
             GiftCollectOverlay(game: game, mainGame: mainGame),
       },
