@@ -1,11 +1,14 @@
+import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/app/ui/components/earth_tokens.dart';
 import 'package:reseacue/constants/constants.dart';
+import 'package:reseacue/game/components/token.dart';
 import 'package:reseacue/game/game.dart';
 import 'package:reseacue/game/gift_sequence.dart';
 import 'package:reseacue/overlays/gift_opening_overlay.dart';
 import 'package:reseacue/overlays/settings_overlay.dart';
+import 'package:reseacue/utils/number.dart';
 
 class GiftCollectOverlay extends StatelessWidget {
   const GiftCollectOverlay({
@@ -70,9 +73,10 @@ class GiftCollectOverlay extends StatelessWidget {
                   shadowWidth: MediaQuery.of(context).size.width / 1.7,
                   screenSize: MediaQuery.of(context).size,
                   onTap: () {
+                    game.tokensAnimation();
                     game.updateScoreOnRecycle();
-                    game.overlays.remove(id);
-                    mainGame.overlays.remove(GiftOpeningOverlay.id);
+                    // game.overlays.remove(id);
+                    // mainGame.overlays.remove(GiftOpeningOverlay.id);
                   },
                   buttonText: 'RECYCLE',
                   shadowContainerColor: Constants.redButtonShadowContainerColor,
