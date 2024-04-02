@@ -75,8 +75,8 @@ class GiftCollectOverlay extends StatelessWidget {
                   onTap: () {
                     game.tokensAnimation();
                     game.updateScoreOnRecycle();
-                    // game.overlays.remove(id);
-                    // mainGame.overlays.remove(GiftOpeningOverlay.id);
+                    game.overlays.remove(id);
+                    mainGame.overlays.remove(GiftOpeningOverlay.id);
                   },
                   buttonText: 'RECYCLE',
                   shadowContainerColor: Constants.redButtonShadowContainerColor,
