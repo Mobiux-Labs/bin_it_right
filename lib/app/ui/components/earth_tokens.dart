@@ -47,6 +47,24 @@ class EarthTokens extends StatelessWidget {
   static const Offset imageOffset = Offset(-10, -2.5);
   static const String earthTokenImage = 'assets/images/earth_token.png';
 
+  String formatScore(int score) {
+    if (score < 1000) {
+      return score.toString();
+    } else if (score < 10000) {
+      return '${(score ~/ 1000)}K';
+    } else if (score < 100000) {
+      return '${(score ~/ 1000)}K';
+    } else if (score < 1000000) {
+      return '${(score ~/ 1000)}K';
+    } else if (score < 10000000) {
+      return '${(score ~/ 1000000)}M';
+    } else if (score < 100000000) {
+      return '${(score ~/ 1000000)}M';
+    } else {
+      return 'Max Score Reached';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -118,7 +136,7 @@ class EarthTokens extends StatelessWidget {
                   bottom: 10,
                 ),
                 child: Text(
-                  earthPoints.toString(),
+                  formatScore(earthPoints),
                   style: const TextStyle(
                     fontSize: 27,
                     color: textColor,
