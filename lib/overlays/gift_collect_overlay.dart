@@ -48,7 +48,7 @@ class GiftCollectOverlay extends StatelessWidget {
                   shadowWidth: 50,
                   screenSize: MediaQuery.of(context).size,
                   onTap: () {
-                    game.overlays.add(SettingsOverlay.id);
+                    mainGame.overlays.add(SettingsOverlay.id);
                   },
                   imagePath: 'assets/images/settings.png',
                   shadowContainerColor:
