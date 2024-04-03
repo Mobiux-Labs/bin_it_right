@@ -66,6 +66,7 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
   int selectedTab = 1;
   int appliedSkin = 1;
   double magnetPowerDuration = 5.0;
+  bool showNotEnoughTokensAlert = false;
 
   @override
   void initState() {
@@ -161,6 +162,22 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
     return durations;
   }
 
+  Widget renderNotEnoughTokensAlert() {
+    return const SizedBox(
+        height: 40,
+        child: Padding(
+          padding: EdgeInsets.only(top: 10.0),
+          child: Text(
+            'Not enough tokens to upgrade!',
+            style: TextStyle(
+              fontSize: 17,
+              decoration: TextDecoration.none,
+              fontFamily: 'Digitalt',
+            ),
+          ),
+        ));
+  }
+
   Widget renderPowerupUpgradeLayout() {
     return Column(
       children: [
@@ -185,9 +202,18 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
                 ),
               ],
             )),
-        const SizedBox(
-          height: 40,
-        ),
+        showNotEnoughTokensAlert == false
+            ? const SizedBox(
+                height: 40,
+              )
+            : const SizedBox(
+                height: 0,
+              ),
+        showNotEnoughTokensAlert == true
+            ? renderNotEnoughTokensAlert()
+            : const SizedBox(
+                height: 0,
+              ),
         CustomAnimatedButton(
           height: 100,
           width: MediaQuery.of(context).size.width / 1.7,
@@ -212,6 +238,17 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
             int tokensNeededToUpgrade =
                 getTokensByDuration(magnetPowerDuration);
             if (widget.storageController.score.value < tokensNeededToUpgrade) {
+              setState(() {
+                setState(() {
+                  showNotEnoughTokensAlert = true;
+                });
+                Future.delayed(const Duration(seconds: 2), () {
+                  setState(() {
+                    showNotEnoughTokensAlert = false;
+                  });
+                });
+              });
+
               return;
             }
             widget.storageController.reduceScore(tokensNeededToUpgrade);
