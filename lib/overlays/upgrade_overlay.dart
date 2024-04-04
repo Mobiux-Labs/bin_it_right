@@ -66,7 +66,7 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
   int selectedTab = 1;
   int appliedSkin = 1;
   double magnetPowerDuration = 5.0;
-  bool showNotEnoughTokensAlert = false;
+  bool disableButton = false;
 
   @override
   void initState() {
@@ -173,12 +173,18 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
               fontSize: 17,
               decoration: TextDecoration.none,
               fontFamily: 'Digitalt',
+              color: Colors.white,
             ),
           ),
         ));
   }
 
   Widget renderPowerupUpgradeLayout() {
+    setState(() {
+      if (widget.storageController.score.value < 1000) {
+        disableButton = true;
+      }
+    });
     return Column(
       children: [
         Padding(
@@ -202,18 +208,9 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
                 ),
               ],
             )),
-        showNotEnoughTokensAlert == false
-            ? const SizedBox(
-                height: 40,
-              )
-            : const SizedBox(
-                height: 0,
-              ),
-        showNotEnoughTokensAlert == true
-            ? renderNotEnoughTokensAlert()
-            : const SizedBox(
-                height: 0,
-              ),
+        const SizedBox(
+          height: 40,
+        ),
         CustomAnimatedButton(
           height: 100,
           width: MediaQuery.of(context).size.width / 1.7,
@@ -230,6 +227,7 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
           containerColor: Constants.redButtonContainerColor,
           shineColor: Constants.redButtonShineColor,
           padding: const EdgeInsets.all(10.0),
+          diableButton: disableButton,
           onTap: () {
             if (magnetPowerDuration >= 30) {
               return;
@@ -238,17 +236,6 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
             int tokensNeededToUpgrade =
                 getTokensByDuration(magnetPowerDuration);
             if (widget.storageController.score.value < tokensNeededToUpgrade) {
-              setState(() {
-                setState(() {
-                  showNotEnoughTokensAlert = true;
-                });
-                Future.delayed(const Duration(seconds: 2), () {
-                  setState(() {
-                    showNotEnoughTokensAlert = false;
-                  });
-                });
-              });
-
               return;
             }
             widget.storageController.reduceScore(tokensNeededToUpgrade);
@@ -260,6 +247,11 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
           },
           screenSize: MediaQuery.of(context).size,
         ),
+        disableButton == true
+            ? renderNotEnoughTokensAlert()
+            : const SizedBox(
+                height: 0,
+              ),
       ],
     );
   }
