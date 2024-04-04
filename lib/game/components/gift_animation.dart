@@ -66,12 +66,6 @@ class GiftAnimation extends SpriteAnimationComponent
   }
 
   @override
-  void onTapDown(TapDownEvent event) {
-    super.onTapDown(event);
-    openGift();
-  }
-
-  @override
   void update(double dt) {
     _animationTicker.update(dt);
     super.update(dt);
