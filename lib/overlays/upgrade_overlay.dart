@@ -180,8 +180,9 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
   }
 
   Widget renderPowerupUpgradeLayout() {
+    int tokensNeededToUpgrade = getTokensByDuration(magnetPowerDuration);
     setState(() {
-      if (widget.storageController.score.value < 1000) {
+      if (widget.storageController.score.value < tokensNeededToUpgrade) {
         disableButton = true;
       }
     });
@@ -233,9 +234,11 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
               return;
             }
 
-            int tokensNeededToUpgrade =
-                getTokensByDuration(magnetPowerDuration);
             if (widget.storageController.score.value < tokensNeededToUpgrade) {
+              setState(() {
+                disableButton = true;
+              });
+
               return;
             }
             widget.storageController.reduceScore(tokensNeededToUpgrade);

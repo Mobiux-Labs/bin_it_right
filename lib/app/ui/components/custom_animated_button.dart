@@ -31,7 +31,7 @@ class CustomAnimatedButton extends StatefulWidget {
     this.shadowHeight = 100,
     this.shadowWidth = 100,
     this.textColor = Colors.white,
-    this.diableButton,
+    this.diableButton = false,
   });
 
   @override
@@ -45,6 +45,7 @@ class _CustomAnimatedButtonState extends State<CustomAnimatedButton> {
 
   late double position;
 
+
   @override
   void initState() {
     position = 10;
@@ -53,7 +54,7 @@ class _CustomAnimatedButtonState extends State<CustomAnimatedButton> {
 
   @override
   Widget build(BuildContext context) {
-    return widget.diableButton == null
+    return widget.diableButton == false
         ? GestureDetector(
             onTapDown: (details) {
               setState(() {
