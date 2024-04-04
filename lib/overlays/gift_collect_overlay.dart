@@ -95,7 +95,10 @@ class _GiftCollectOverlayState extends State<GiftCollectOverlay> {
                   color: Colors.white,
                   shadows: <Shadow>[
                     Shadow(
-                      offset: Offset(6, 8),
+                      offset: Offset(
+                        6,
+                        8,
+                      ),
                       blurRadius: 3.0,
                       color: Color.fromRGBO(
                         0,
