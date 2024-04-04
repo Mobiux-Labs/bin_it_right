@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/app/ui/components/earth_tokens.dart';
 import 'package:reseacue/constants/constants.dart';
+import 'package:reseacue/game/components/gift.dart';
 
 import 'package:reseacue/game/game.dart';
 import 'package:reseacue/game/gift_sequence.dart';
 import 'package:reseacue/overlays/gift_opening_overlay.dart';
 import 'package:reseacue/overlays/settings_overlay.dart';
 
-class GiftCollectOverlay extends StatelessWidget {
+import '../utils/number.dart';
+
+class GiftCollectOverlay extends StatefulWidget {
   const GiftCollectOverlay({
     super.key,
     required this.mainGame,
@@ -17,8 +20,28 @@ class GiftCollectOverlay extends StatelessWidget {
 
   final Reseacue mainGame;
   final GiftSequence game;
-
   static const String id = 'gift_collect_overlay';
+
+  @override
+  State<GiftCollectOverlay> createState() => _GiftCollectOverlayState();
+}
+
+class _GiftCollectOverlayState extends State<GiftCollectOverlay> {
+  String earthTokenImage = 'assets/images/earth_token.png';
+  late GiftType giftType;
+  String gift = '';
+  int giftValue = 0;
+
+  getGiftType() {
+    giftType = widget.game.giftAnimation.openGift();
+    gift = giftType.toString().split('.').last;
+    giftValue = getTokensByGiftType(giftType);
+  }
+
+  @override
+  void initState() {
+    getGiftType();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +57,7 @@ class GiftCollectOverlay extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ValueListenableBuilder(
-                  valueListenable: mainGame.storageController.score,
+                  valueListenable: widget.mainGame.storageController.score,
                   builder: (context, score, child) {
                     return EarthTokens(
                       earthPoints: score,
@@ -48,7 +71,7 @@ class GiftCollectOverlay extends StatelessWidget {
                   shadowWidth: 50,
                   screenSize: MediaQuery.of(context).size,
                   onTap: () {
-                    mainGame.overlays.add(SettingsOverlay.id);
+                    widget.mainGame.overlays.add(SettingsOverlay.id);
                   },
                   imagePath: 'assets/images/settings.png',
                   shadowContainerColor:
@@ -62,8 +85,54 @@ class GiftCollectOverlay extends StatelessWidget {
                 ),
               ],
             ),
+            Center(
+              child: Text(
+                gift.toUpperCase(),
+                style: const TextStyle(
+                  decoration: TextDecoration.none,
+                  fontFamily: 'Digitalt',
+                  fontWeight: FontWeight.normal,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+             SizedBox(height: MediaQuery.of(context).size.height/4,),
             Column(
               children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: 5.0,
+                      ),
+                      child: Image(
+                        image: AssetImage(
+                          earthTokenImage,
+                        ),
+                        fit: BoxFit.fill,
+                        height: 30,
+                        width: 30,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 8,
+                    ),
+                    Text(
+                      giftValue.toString(),
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'Digitalt',
+                        decoration: TextDecoration.none,
+                        fontSize: 31,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
                 CustomAnimatedButton(
                   height: 60,
                   width: MediaQuery.of(context).size.width / 1.7,
@@ -71,10 +140,10 @@ class GiftCollectOverlay extends StatelessWidget {
                   shadowWidth: MediaQuery.of(context).size.width / 1.7,
                   screenSize: MediaQuery.of(context).size,
                   onTap: () {
-                    game.tokensAnimation();
-                    game.updateScoreOnRecycle();
-                    game.overlays.remove(id);
-                    mainGame.overlays.remove(GiftOpeningOverlay.id);
+                    widget.game.tokensAnimation();
+                    widget.game.updateScoreOnRecycle();
+                    widget.game.overlays.remove(GiftCollectOverlay.id);
+                    widget.mainGame.overlays.remove(GiftOpeningOverlay.id);
                   },
                   buttonText: 'RECYCLE',
                   shadowContainerColor: Constants.redButtonShadowContainerColor,
@@ -86,7 +155,7 @@ class GiftCollectOverlay extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  height: 40,
+                  height: 60,
                 ),
               ],
             ),
