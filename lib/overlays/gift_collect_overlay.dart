@@ -93,10 +93,24 @@ class _GiftCollectOverlayState extends State<GiftCollectOverlay> {
                   fontFamily: 'Digitalt',
                   fontWeight: FontWeight.normal,
                   color: Colors.white,
+                  shadows: <Shadow>[
+                    Shadow(
+                      offset: Offset(6, 8),
+                      blurRadius: 3.0,
+                      color: Color.fromRGBO(
+                        0,
+                        0,
+                        0,
+                        0.15,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
-             SizedBox(height: MediaQuery.of(context).size.height/4,),
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 4,
+            ),
             Column(
               children: [
                 Row(
