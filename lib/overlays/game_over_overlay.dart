@@ -84,10 +84,9 @@ class GameOverOverlay extends StatelessWidget {
                     game.overlays.add(StartGameOverlay.id);
                   },
                   buttonText: AppLocalizations.of(context)!.continueString,
-                  shadowContainerColor:
-                      Constants.greenButtonShadowContainerColor,
-                  containerColor: Constants.greenButtonContainerColor,
-                  shineColor: Constants.greenButtonShineColor,
+                  shadowContainerColor: Constants.redButtonShadowContainerColor,
+                  containerColor: Constants.redButtonContainerColor,
+                  shineColor: Constants.redButtonShineColor,
                   padding: const EdgeInsets.only(
                     left: 67.0,
                     top: 10.0,

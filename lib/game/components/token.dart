@@ -7,7 +7,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:reseacue/assets.dart';
 
 class Token extends SpriteComponent {
-  Token({super.position});
+  Token({super.position, this.moveToPosition});
+
+  Vector2? moveToPosition;
 
   @override
   FutureOr<void> onLoad() {
@@ -16,7 +18,17 @@ class Token extends SpriteComponent {
 
     add(
       MoveEffect.to(
-        Vector2.all(0.0),
+        moveToPosition ?? Vector2.all(0.0),
+        EffectController(
+          duration: 0.3,
+          curve: Curves.easeIn,
+        ),
+      ),
+    );
+
+    add(
+      OpacityEffect.to(
+        0.0,
         EffectController(
           duration: 0.3,
           curve: Curves.easeIn,
@@ -29,7 +41,13 @@ class Token extends SpriteComponent {
   void update(double dt) {
     super.update(dt);
 
-    if (position.x <= 10.0 && position.y <= 10.0) {
+    Vector2 endPosition = Vector2(10.0, 10.0);
+    if (moveToPosition != null) {
+      endPosition.x = moveToPosition!.x + 10.0;
+      endPosition.y = moveToPosition!.y + 10.0;
+    }
+
+    if (position.x <= endPosition.x && position.y <= endPosition.y) {
       removeFromParent();
     }
   }

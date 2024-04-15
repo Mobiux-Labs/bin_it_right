@@ -56,19 +56,14 @@ class GiftAnimation extends SpriteAnimationComponent
     _animationTicker = animation?.createTicker() as SpriteAnimationTicker;
   }
 
-  void openGift() {
+  openGift() {
     animation = _openAnimation;
     _animationTicker = animation?.createTicker() as SpriteAnimationTicker;
     _animationTicker.onComplete = () {
       game.overlays.remove(GiftOpenOverlay.id);
       game.overlays.add(GiftCollectOverlay.id);
     };
-  }
-
-  @override
-  void onTapDown(TapDownEvent event) {
-    super.onTapDown(event);
-    openGift();
+    return type;
   }
 
   @override

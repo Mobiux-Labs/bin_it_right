@@ -66,6 +66,7 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
   int selectedTab = 1;
   int appliedSkin = 1;
   double magnetPowerDuration = 5.0;
+  bool disableButton = false;
 
   @override
   void initState() {
@@ -161,7 +162,30 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
     return durations;
   }
 
+  Widget renderNotEnoughTokensAlert() {
+    return const SizedBox(
+        height: 40,
+        child: Padding(
+          padding: EdgeInsets.only(top: 10.0),
+          child: Text(
+            'Not enough tokens to upgrade!',
+            style: TextStyle(
+              fontSize: 17,
+              decoration: TextDecoration.none,
+              fontFamily: 'Digitalt',
+              color: Colors.white,
+            ),
+          ),
+        ));
+  }
+
   Widget renderPowerupUpgradeLayout() {
+    int tokensNeededToUpgrade = getTokensByDuration(magnetPowerDuration);
+    setState(() {
+      if (widget.storageController.score.value < tokensNeededToUpgrade) {
+        disableButton = true;
+      }
+    });
     return Column(
       children: [
         Padding(
@@ -204,14 +228,17 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
           containerColor: Constants.redButtonContainerColor,
           shineColor: Constants.redButtonShineColor,
           padding: const EdgeInsets.all(10.0),
+          diableButton: disableButton,
           onTap: () {
             if (magnetPowerDuration >= 30) {
               return;
             }
 
-            int tokensNeededToUpgrade =
-                getTokensByDuration(magnetPowerDuration);
             if (widget.storageController.score.value < tokensNeededToUpgrade) {
+              setState(() {
+                disableButton = true;
+              });
+
               return;
             }
             widget.storageController.reduceScore(tokensNeededToUpgrade);
@@ -223,6 +250,11 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
           },
           screenSize: MediaQuery.of(context).size,
         ),
+        disableButton == true
+            ? renderNotEnoughTokensAlert()
+            : const SizedBox(
+                height: 0,
+              ),
       ],
     );
   }

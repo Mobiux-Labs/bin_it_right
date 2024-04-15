@@ -6,6 +6,7 @@ import 'package:flame/game.dart';
 import 'package:reseacue/assets.dart';
 import 'package:reseacue/game/components/gift.dart';
 import 'package:reseacue/game/components/gift_animation.dart';
+import 'package:reseacue/game/components/token.dart';
 import 'package:reseacue/game/game.dart';
 import 'package:reseacue/utils/number.dart';
 
@@ -25,6 +26,22 @@ class GiftSequence extends FlameGame {
   void updateScoreOnRecycle() {
     mainGame.storageController
         .updateScoreForGreenWins(getTokensByGiftType(currentType));
+  }
+
+  void tokensAnimation() {
+    Vector2 position = Vector2(0, size.y / 2.5);
+    for (int i = 0; i <= 20; i++) {
+      world.add(
+        Token(
+          position: position -
+              Vector2(
+                30.0 * (i + 1),
+                30.0 * (i + 1),
+              ),
+          moveToPosition: Vector2(-size.x / 2 + 25, -size.y / 2),
+        ),
+      );
+    }
   }
 
   @override

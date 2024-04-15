@@ -43,20 +43,14 @@ class _CountDownOverlayState extends State<CountDownOverlay> {
   @override
   Widget build(BuildContext context) {
     return GradientOverlay(
-      child: GestureDetector(
-        onTap: () {
-          widget.game.overlays.add(GamePlayOverlay.id);
-          widget.game.overlays.remove(CountDownOverlay.id);
-        },
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          child: AnimatedSwitcher(
-            duration: const Duration(seconds: 1),
-            child: Image(
-              image: AssetImage(
-                  'assets/images/countdown_${values[_index % values.length]}.png'),
-            ),
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: AnimatedSwitcher(
+          duration: const Duration(seconds: 1),
+          child: Image(
+            image: AssetImage(
+                'assets/images/countdown_${values[_index % values.length]}.png'),
           ),
         ),
       ),

@@ -85,17 +85,17 @@ class OverlayContainer extends StatelessWidget {
                               fontWeight: FontWeight.w500,
                               shadows: [
                                 Shadow(
-                                  blurRadius: 10.0, // shadow blur
+                                  offset: Offset(
+                                    5,
+                                    4,
+                                  ),
+                                  blurRadius: 3.0,
                                   color: Color.fromRGBO(
                                     0,
                                     0,
                                     0,
                                     0.15,
-                                  ), // shadow color
-                                  offset: Offset(
-                                    2.0,
-                                    2.0,
-                                  ), // how much shadow will be shown
+                                  ),
                                 ),
                               ],
                               fontSize: 50,

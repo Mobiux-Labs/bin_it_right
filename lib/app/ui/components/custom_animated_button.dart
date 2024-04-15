@@ -14,6 +14,7 @@ class CustomAnimatedButton extends StatefulWidget {
   final double shadowWidth;
   final double shadowHeight;
   final Color textColor;
+  final bool? diableButton;
 
   const CustomAnimatedButton({
     super.key,
@@ -30,6 +31,7 @@ class CustomAnimatedButton extends StatefulWidget {
     this.shadowHeight = 100,
     this.shadowWidth = 100,
     this.textColor = Colors.white,
+    this.diableButton = false,
   });
 
   @override
@@ -43,6 +45,7 @@ class _CustomAnimatedButtonState extends State<CustomAnimatedButton> {
 
   late double position;
 
+
   @override
   void initState() {
     position = 10;
@@ -51,109 +54,126 @@ class _CustomAnimatedButtonState extends State<CustomAnimatedButton> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTapDown: (details) {
-        setState(() {
-          position = 0;
-        });
-      },
-      onTapUp: (details) {
-        setState(() {
-          position = 10;
-        });
-        widget.onTap();
-      },
-      child: Stack(
-        children: [
-          Container(
-            height: widget.height,
-            width: widget.width,
-            decoration: BoxDecoration(
-              borderRadius: borderRadius,
-              gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  stops: const [
-                    0.2,
-                    0.8,
-                    1
-                  ],
-                  colors: [
-                    Colors.white.withOpacity(0.0),
-                    widget.containerColor,
-                    widget.containerColor
-                  ]),
-            ),
+    return widget.diableButton == false
+        ? GestureDetector(
+            onTapDown: (details) {
+              setState(() {
+                position = 0;
+              });
+            },
+            onTapUp: (details) {
+              setState(() {
+                position = 10;
+              });
+              widget.onTap();
+            },
+            child: renderCustomButton())
+        : renderCustomButton();
+  }
+
+  Widget renderCustomButton() {
+    return Stack(
+      children: [
+        Container(
+          height: widget.height,
+          width: widget.width,
+          decoration: BoxDecoration(
+            borderRadius: borderRadius,
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                stops: const [
+                  0.2,
+                  0.8,
+                  1
+                ],
+                colors: [
+                  Colors.white.withOpacity(0.0),
+                  widget.containerColor,
+                  widget.containerColor
+                ]),
           ),
-          AnimatedPositioned(
-            duration: const Duration(milliseconds: 30),
-            bottom: position,
-            child: ClipPath(
-              clipper: ClipContainer(),
-              child: Container(
-                height: widget.shadowHeight,
-                width: widget.shadowWidth,
-                decoration: BoxDecoration(
-                  borderRadius: borderRadius,
-                  color: widget.shadowContainerColor,
-                ),
+        ),
+        AnimatedPositioned(
+          duration: const Duration(milliseconds: 30),
+          bottom: position,
+          child: ClipPath(
+            clipper: ClipContainer(),
+            child: Container(
+              height: widget.shadowHeight,
+              width: widget.shadowWidth,
+              decoration: BoxDecoration(
+                borderRadius: borderRadius,
+                color: widget.shadowContainerColor,
               ),
             ),
           ),
-          AnimatedPositioned(
-            duration: const Duration(milliseconds: 30),
-            bottom: position,
-            child: ClipPath(
-              clipper: ClipContainer2(),
-              child: Container(
-                height: widget.shadowHeight,
-                width: widget.shadowWidth,
-                decoration: BoxDecoration(
-                  borderRadius: borderRadius,
-                  color: widget.shineColor,
-                ),
+        ),
+        AnimatedPositioned(
+          duration: const Duration(milliseconds: 30),
+          bottom: position,
+          child: ClipPath(
+            clipper: ClipContainer2(),
+            child: Container(
+              height: widget.shadowHeight,
+              width: widget.shadowWidth,
+              decoration: BoxDecoration(
+                borderRadius: borderRadius,
+                color: widget.shineColor,
               ),
             ),
           ),
-          Positioned.fill(
-            bottom: position,
-            child: Center(
-              child: widget.imagePath != null && widget.buttonText == null
-                  ? Image.asset(widget.imagePath as String)
-                  : widget.imagePath == null && widget.buttonText != null
-                      ? Text(
-                          widget.buttonText as String,
-                          style: TextStyle(
-                            fontSize: 30,
-                            color: widget.textColor,
-                            fontFamily: 'Digitalt',
-                            fontWeight: FontWeight.w500,
-                            decoration: TextDecoration.none,
-                          ),
-                        )
-                      : Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset(widget.imagePath as String),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              widget.buttonText as String,
-                              style: TextStyle(
-                                fontSize: 30,
-                                color: widget.textColor,
-                                fontFamily: 'Digitalt',
-                                fontWeight: FontWeight.w500,
-                                decoration: TextDecoration.none,
-                              ),
-                            )
-                          ],
+        ),
+        Positioned.fill(
+          bottom: position,
+          child: Center(
+            child: widget.imagePath != null && widget.buttonText == null
+                ? Image.asset(widget.imagePath as String)
+                : widget.imagePath == null && widget.buttonText != null
+                    ? Text(
+                        widget.buttonText as String,
+                        style: TextStyle(
+                          fontSize: 30,
+                          color: widget.textColor,
+                          fontFamily: 'Digitalt',
+                          fontWeight: FontWeight.w500,
+                          decoration: TextDecoration.none,
                         ),
-            ),
+                      )
+                    : Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(widget.imagePath as String),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            widget.buttonText as String,
+                            style: TextStyle(
+                              fontSize: 30,
+                              color: widget.textColor,
+                              fontFamily: 'Digitalt',
+                              fontWeight: FontWeight.w500,
+                              decoration: TextDecoration.none,
+                            ),
+                          )
+                        ],
+                      ),
           ),
-        ],
-      ),
+        ),
+        widget.diableButton == true
+            ? Container(
+                height: widget.height,
+                width: widget.width,
+                decoration: BoxDecoration(
+                  borderRadius: borderRadius,
+                  color: const Color.fromRGBO(255, 255, 255, 0.3),
+                ),
+              )
+            : const SizedBox(
+                height: 0,
+              ),
+      ],
     );
   }
 }
