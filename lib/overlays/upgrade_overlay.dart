@@ -230,13 +230,13 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
               ],
             ),),
         const SizedBox(
-          height: 40,
+          height: 70,
         ),
         CustomAnimatedButton(
-          height: 100,
-          width: MediaQuery.of(context).size.width / 1.7,
-          shadowHeight: 90,
-          shadowWidth: MediaQuery.of(context).size.width / 1.7,
+          height: 60,
+          width: MediaQuery.of(context).size.width / 2,
+          shadowHeight: 50,
+          shadowWidth: MediaQuery.of(context).size.width / 2,
           imagePath: getPathFromAssetString(AssetConstants.earthToken),
           textColor: widget.storageController.score.value <
                   getTokensByDuration(magnetPowerDuration)
