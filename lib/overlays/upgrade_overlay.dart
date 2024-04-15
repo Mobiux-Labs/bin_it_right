@@ -192,23 +192,43 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
             padding: const EdgeInsets.only(left: 20, right: 20),
             child: Column(
               children: [
-                Image.asset(
-                  getPathFromAssetString(AssetConstants.magnet2x),
-                ),
                 Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Row(
-                      children: renderDurations(),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(100),
+                      topRight: Radius.circular(100),
                     ),
                   ),
+                  child: Image.asset(
+                    getPathFromAssetString(AssetConstants.magnet2x),
+                  ),
+                ),
+                Stack(
+                  children: [
+                    Container(
+                      height: 75,
+                      decoration: const BoxDecoration(
+                        color: Color.fromRGBO(0, 0, 0, 0.13,),
+                        borderRadius: BorderRadius.all(Radius.circular(10),),
+                      ),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Row(
+                          children: renderDurations(),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
-            )),
+            ),),
         const SizedBox(
           height: 40,
         ),
