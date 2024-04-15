@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flame/components.dart';
 
+export 'paths.dart';
 
 class Constants {
   Constants._();

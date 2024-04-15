@@ -26,7 +26,7 @@ class SplashScreen extends StatelessWidget {
             if (snapshot.data == true) {
               WidgetsBinding.instance.addPostFrameCallback(
                 (_) {
-                  GoRouter.of(context).replace('/start_game');
+                  GoRouter.of(context).replace(Path.startGameOverlay);
                 },
               );
             }

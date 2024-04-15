@@ -39,14 +39,14 @@ class _AppState extends State<App> {
     final router = GoRouter(
       routes: [
         GoRoute(
-          path: '/',
+          path: Path.root,
           builder: (context, state) => const SplashScreen(
             key: Key(Constants.splashScreenKey),
           ),
           routes: const [],
         ),
         GoRoute(
-          path: '/start_game',
+          path: Path.startGameOverlay,
           pageBuilder: (context, state) => CustomTransitionPage<void>(
             key: state.pageKey,
             child: GameWidget<Reseacue>.controlled(
