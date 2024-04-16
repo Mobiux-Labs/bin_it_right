@@ -100,43 +100,54 @@ class _AppState extends State<App> {
                       ],
                     ),
                   ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  child: Stack(
                     children: [
                       FadeInImage(
                         placeholder: MemoryImage(kTransparentImage),
-                        image: AssetImage(getPathFromAssetString(
-                            AssetConstants.splashLoading)),
-                      ),
-                      renderFunFactContainer(),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 40),
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 20, right: 20),
-                              child: FadeInImage(
-                                placeholder: MemoryImage(kTransparentImage),
-                                image: AssetImage(
-                                  getPathFromAssetString(AssetConstants
-                                      .treeAnimationFortyFifthFrame),
-                                ),
-                              ),
-                            ),
-                            const Text(
-                              'Loading...',
-                              style: TextStyle(
-                                fontSize: 30,
-                                color: Colors.white,
-                                fontFamily: 'Digitalt',
-                                fontWeight: FontWeight.w500,
-                                decoration: TextDecoration.none,
-                              ),
-                            )
-                          ],
+                        image: AssetImage(
+                          getPathFromAssetString(AssetConstants.splashLoading),
                         ),
-                      )
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          renderFunFact(),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 40),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                    left: 20,
+                                    right: 20,
+                                  ),
+                                  child: FadeInImage(
+                                    placeholder: MemoryImage(
+                                      kTransparentImage,
+                                    ),
+                                    image: AssetImage(
+                                      getPathFromAssetString(
+                                        AssetConstants
+                                            .treeAnimationFortyFifthFrame,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                const Text(
+                                  'Loading...',
+                                  style: TextStyle(
+                                    fontSize: 30,
+                                    color: Colors.white,
+                                    fontFamily: 'Digitalt',
+                                    fontWeight: FontWeight.w500,
+                                    decoration: TextDecoration.none,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 );
@@ -205,40 +216,58 @@ class _AppState extends State<App> {
     );
   }
 
-  Widget renderFunFactContainer() {
-    return Stack(
-      children: [
-        Container(
-          height: 105,
-          width: MediaQuery.of(context).size.width/1.2,
-          decoration: const BoxDecoration(
-            color: Color.fromRGBO(
-              105,
-              127,
-              21,
-              0.8,
-
+  Widget renderFunFact() {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width / 1.2,
+      child: Stack(
+        children: [
+          Container(
+            height: 105,
+            width: MediaQuery.of(context).size.width / 1.2,
+            decoration: const BoxDecoration(
+              color: Color.fromRGBO(
+                105,
+                127,
+                21,
+                0.8,
+              ),
+              borderRadius: BorderRadius.all(
+                Radius.circular(16),
+              ),
             ),
-            borderRadius: BorderRadius.all(
-              Radius.circular(16),
+          ),
+          Container(
+            height: 100,
+            width: MediaQuery.of(context).size.width / 1.2,
+            decoration: const BoxDecoration(
+              color: Color.fromRGBO(
+                133,
+                159,
+                30,
+                1,
+              ),
+              borderRadius: BorderRadius.all(
+                Radius.circular(16),
+              ),
             ),
           ),
-        ),
-        Container(
-        height: 100,
-        width: MediaQuery.of(context).size.width/1.2,
-        decoration: const BoxDecoration(
-          color: Color.fromRGBO(
-            133,
-            159,
-            30,
-            1,
+          const Padding(
+            padding: EdgeInsets.all(
+              15.0,
+            ),
+            child: Text(
+              'Fun Fact: Composting food waste reduces greenhouse gases. Let\'s compost for a greener planet! ♻',
+              style: TextStyle(
+                fontSize: 15,
+                color: Colors.white,
+                fontFamily: 'Digitalt',
+                fontWeight: FontWeight.normal,
+                decoration: TextDecoration.none,
+              ),
+            ),
           ),
-          borderRadius: BorderRadius.all(
-            Radius.circular(16),
-          ),
-        ),
-      ),],
+        ],
+      ),
     );
   }
 }
