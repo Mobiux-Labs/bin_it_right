@@ -36,6 +36,7 @@ class GameOverOverlay extends StatelessWidget {
       heading: truncateText(AppLocalizations.of(context)!.binBoss, 10),
       height: MediaQuery.of(context).size.height / 1.8,
       width: MediaQuery.of(context).size.width / 1.15,
+      hideCloseButton: true,
       onClose: () {},
       child: Padding(
         padding: const EdgeInsets.only(

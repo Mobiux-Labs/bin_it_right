@@ -1,4 +1,5 @@
 import 'package:flame/game.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -107,6 +108,7 @@ class _AppState extends State<App> {
                         image: AssetImage(getPathFromAssetString(
                             AssetConstants.splashLoading)),
                       ),
+                      renderFunFactContainer(),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 40),
                         child: Column(
@@ -200,6 +202,43 @@ class _AppState extends State<App> {
               });
         }),
       ),
+    );
+  }
+
+  Widget renderFunFactContainer() {
+    return Stack(
+      children: [
+        Container(
+          height: 105,
+          width: MediaQuery.of(context).size.width/1.2,
+          decoration: const BoxDecoration(
+            color: Color.fromRGBO(
+              105,
+              127,
+              21,
+              0.8,
+
+            ),
+            borderRadius: BorderRadius.all(
+              Radius.circular(16),
+            ),
+          ),
+        ),
+        Container(
+        height: 100,
+        width: MediaQuery.of(context).size.width/1.2,
+        decoration: const BoxDecoration(
+          color: Color.fromRGBO(
+            133,
+            159,
+            30,
+            1,
+          ),
+          borderRadius: BorderRadius.all(
+            Radius.circular(16),
+          ),
+        ),
+      ),],
     );
   }
 }

@@ -128,12 +128,12 @@ class _CustomAnimatedButtonState extends State<CustomAnimatedButton> {
           bottom: position,
           child: Center(
             child: widget.imagePath != null && widget.buttonText == null
-                ? Image.asset(widget.imagePath as String)
+                ? Image.asset(widget.imagePath as String,height: 35,width: 35,)
                 : widget.imagePath == null && widget.buttonText != null
                     ? Text(
                         widget.buttonText as String,
                         style: TextStyle(
-                          fontSize: 30,
+                          fontSize: 25,
                           color: widget.textColor,
                           fontFamily: 'Digitalt',
                           fontWeight: FontWeight.w500,
@@ -143,14 +143,14 @@ class _CustomAnimatedButtonState extends State<CustomAnimatedButton> {
                     : Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Image.asset(widget.imagePath as String),
+                          Image.asset(widget.imagePath as String,height: 35,width: 35,),
                           const SizedBox(
                             width: 10,
                           ),
                           Text(
                             widget.buttonText as String,
                             style: TextStyle(
-                              fontSize: 30,
+                              fontSize: 25,
                               color: widget.textColor,
                               fontFamily: 'Digitalt',
                               fontWeight: FontWeight.w500,

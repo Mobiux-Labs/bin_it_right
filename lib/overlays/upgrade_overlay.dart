@@ -189,34 +189,62 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
     return Column(
       children: [
         Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
-            child: Column(
-              children: [
-                Image.asset(
+          padding: const EdgeInsets.only(left: 20, right: 20),
+          child: Column(
+            children: [
+              Container(
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(100),
+                    topRight: Radius.circular(100),
+                  ),
+                ),
+                child: Image.asset(
                   getPathFromAssetString(AssetConstants.magnet2x),
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Row(
-                      children: renderDurations(),
+              ),
+              Stack(
+                children: [
+                  Container(
+                    height: 75,
+                    decoration: const BoxDecoration(
+                      color: Color.fromRGBO(
+                        0,
+                        0,
+                        0,
+                        0.13,
+                      ),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10),
+                      ),
                     ),
                   ),
-                ),
-              ],
-            )),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Row(
+                        children: renderDurations(),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
         const SizedBox(
-          height: 40,
+          height: 70,
         ),
         CustomAnimatedButton(
-          height: 100,
-          width: MediaQuery.of(context).size.width / 1.7,
-          shadowHeight: 90,
-          shadowWidth: MediaQuery.of(context).size.width / 1.7,
+          height: 60,
+          width: MediaQuery.of(context).size.width / 2,
+          shadowHeight: 50,
+          shadowWidth: MediaQuery.of(context).size.width / 2,
           imagePath: getPathFromAssetString(AssetConstants.earthToken),
           textColor: widget.storageController.score.value <
                   getTokensByDuration(magnetPowerDuration)

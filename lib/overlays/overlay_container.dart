@@ -13,6 +13,7 @@ class OverlayContainer extends StatelessWidget {
     required this.id,
     required this.game,
     required this.onClose,
+    this.hideCloseButton,
   });
 
   final String heading;
@@ -22,9 +23,11 @@ class OverlayContainer extends StatelessWidget {
   final String id;
   final Reseacue game;
   final Function onClose;
+  final bool? hideCloseButton;
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
@@ -108,33 +111,38 @@ class OverlayContainer extends StatelessWidget {
               ],
             ),
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).size.height * 0.04,
-              ),
-              child: CustomAnimatedButton(
-                height: MediaQuery.of(context).size.height / 13,
-                width: MediaQuery.of(context).size.width / 6,
-                shadowHeight: MediaQuery.of(context).size.height / 15,
-                shadowWidth: MediaQuery.of(context).size.width / 6,
-                screenSize: MediaQuery.of(context).size,
-                onTap: () {
-                  onClose();
-                  game.overlays.remove(id);
-                },
-                imagePath: 'assets/images/close.png',
-                shadowContainerColor: Constants.redButtonShadowContainerColor,
-                containerColor: Constants.redButtonContainerColor,
-                shineColor: Constants.redButtonShineColor,
-                padding: const EdgeInsets.only(
-                  left: 67.0,
-                  top: 10.0,
+          hideCloseButton == null || hideCloseButton == false
+              ? Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).size.height * 0.04,
+                    ),
+                    child: CustomAnimatedButton(
+                      height: MediaQuery.of(context).size.height / 13,
+                      width: MediaQuery.of(context).size.width / 6,
+                      shadowHeight: MediaQuery.of(context).size.height / 15,
+                      shadowWidth: MediaQuery.of(context).size.width / 6,
+                      screenSize: MediaQuery.of(context).size,
+                      onTap: () {
+                        onClose();
+                        game.overlays.remove(id);
+                      },
+                      imagePath: 'assets/images/close.png',
+                      shadowContainerColor:
+                          Constants.redButtonShadowContainerColor,
+                      containerColor: Constants.redButtonContainerColor,
+                      shineColor: Constants.redButtonShineColor,
+                      padding: const EdgeInsets.only(
+                        left: 67.0,
+                        top: 10.0,
+                      ),
+                    ),
+                  ),
+                )
+              : const SizedBox(
+                  width: 0,
                 ),
-              ),
-            ),
-          ),
         ],
       ),
     );
