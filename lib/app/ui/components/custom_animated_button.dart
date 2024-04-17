@@ -14,7 +14,7 @@ class CustomAnimatedButton extends StatefulWidget {
   final double shadowWidth;
   final double shadowHeight;
   final Color textColor;
-  final bool? diableButton;
+  final bool? disableButton;
 
   const CustomAnimatedButton({
     super.key,
@@ -31,7 +31,7 @@ class CustomAnimatedButton extends StatefulWidget {
     this.shadowHeight = 100,
     this.shadowWidth = 100,
     this.textColor = Colors.white,
-    this.diableButton = false,
+    this.disableButton = false,
   });
 
   @override
@@ -54,7 +54,7 @@ class _CustomAnimatedButtonState extends State<CustomAnimatedButton> {
 
   @override
   Widget build(BuildContext context) {
-    return widget.diableButton == false
+    return widget.disableButton == false
         ? GestureDetector(
             onTapDown: (details) {
               setState(() {
@@ -161,7 +161,7 @@ class _CustomAnimatedButtonState extends State<CustomAnimatedButton> {
                       ),
           ),
         ),
-        widget.diableButton == true
+        widget.disableButton == true
             ? Container(
                 height: widget.height,
                 width: widget.width,

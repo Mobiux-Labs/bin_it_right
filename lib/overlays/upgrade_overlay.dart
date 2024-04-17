@@ -256,7 +256,7 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
           containerColor: Constants.redButtonContainerColor,
           shineColor: Constants.redButtonShineColor,
           padding: const EdgeInsets.all(10.0),
-          diableButton: disableButton,
+          disableButton: disableButton,
           onTap: () {
             if (magnetPowerDuration >= 30) {
               return;
