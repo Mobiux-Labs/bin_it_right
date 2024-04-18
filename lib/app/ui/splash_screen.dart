@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -13,6 +14,8 @@ class SplashScreen extends StatelessWidget {
   SplashScreen({super.key});
 
   ValueNotifier<double> loadedAssetsPercentage = ValueNotifier<double>(-1.0);
+  int factIndex = getRandomIntegrerInRange(0, 10);
+  int changeFactIndex = 0;
 
   Future<bool> preloadImages(context) async {
     int totalAssets = AssetConstants.assets.length + sprites.length;
@@ -81,6 +84,25 @@ class SplashScreen extends StatelessWidget {
                         padding: const EdgeInsets.only(bottom: 40),
                         child: Column(
                           children: [
+                            ValueListenableBuilder(
+                                valueListenable: loadedAssetsPercentage,
+                                builder: (context, value, child) {
+                                  if (loadedAssetsPercentage.value.round() %
+                                          25 ==
+                                      0) {
+                                    if (changeFactIndex <
+                                        loadedAssetsPercentage.value.round()) {
+                                      factIndex =
+                                          getRandomIntegrerInRange(0, 10);
+                                      changeFactIndex =
+                                          loadedAssetsPercentage.value.round();
+                                    }
+                                  }
+                                  return renderFunFact(
+                                    context,
+                                    factIndex,
+                                  );
+                                }),
                             Padding(
                               padding: const EdgeInsets.only(
                                 left: 20,
@@ -135,6 +157,61 @@ class SplashScreen extends StatelessWidget {
               ),
             );
           }),
+    );
+  }
+
+  Widget renderFunFact(context, factIndex) {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width / 1.2,
+      child: Stack(
+        children: [
+          Container(
+            height: 105,
+            width: MediaQuery.of(context).size.width / 1.2,
+            decoration: const BoxDecoration(
+              color: Color.fromRGBO(
+                105,
+                127,
+                21,
+                0.8,
+              ),
+              borderRadius: BorderRadius.all(
+                Radius.circular(16),
+              ),
+            ),
+          ),
+          Container(
+            height: 100,
+            width: MediaQuery.of(context).size.width / 1.2,
+            decoration: const BoxDecoration(
+              color: Color.fromRGBO(
+                133,
+                159,
+                30,
+                1,
+              ),
+              borderRadius: BorderRadius.all(
+                Radius.circular(16),
+              ),
+            ),
+            child: Padding(
+                padding: const EdgeInsets.all(
+                  15.0,
+                ),
+                child: AutoSizeText(
+                  Constants.recyclingFacts[factIndex],
+                  style: const TextStyle(
+                    fontSize: 15,
+                    color: Colors.white,
+                    fontFamily: 'Digitalt',
+                    fontWeight: FontWeight.normal,
+                    decoration: TextDecoration.none,
+                  ),
+                  maxLines: 5,
+                )),
+          ),
+        ],
+      ),
     );
   }
 }

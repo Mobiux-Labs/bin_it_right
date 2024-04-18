@@ -24,6 +24,7 @@ dependencies:
   url_launcher: ^6.2.5
   uuid: ^4.3.3
   vibration: ^1.8.4
+  auto_size_text: ^3.0.0
 
 dev_dependencies:
   flutter_test:
