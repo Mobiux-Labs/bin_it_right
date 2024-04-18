@@ -248,10 +248,6 @@ class Reseacue extends FlameGame {
     leftSpawnPoint = Vector2(0.0, 0.0);
     rightSpawnPoint = Vector2(size.x, 0.0);
 
-    _log.info('Loading assets');
-    await Flame.images.loadAll(sprites);
-    _log.info('Loaded all assets successfully');
-
     hasVibration = await Vibration.hasVibrator();
 
     _log.info('Setting camera viewfinder to top left');
