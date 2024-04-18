@@ -42,8 +42,8 @@ class _AppState extends State<App> {
       routes: [
         GoRoute(
           path: Path.root,
-          builder: (context, state) => const SplashScreen(
-            key: Key(Constants.splashScreenKey),
+          builder: (context, state) => SplashScreen(
+            key: const Key(Constants.splashScreenKey),
           ),
           routes: const [],
         ),
@@ -121,7 +121,6 @@ class _AppState extends State<App> {
                       Column(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          renderFunFact(),
                           Padding(
                             padding: const EdgeInsets.only(bottom: 40),
                             child: Column(
@@ -144,9 +143,9 @@ class _AppState extends State<App> {
                                   ),
                                 ),
                                 const Text(
-                                  'Loading...',
+                                  'Setting up the game, please wait...',
                                   style: TextStyle(
-                                    fontSize: 30,
+                                    fontSize: 20,
                                     color: Colors.white,
                                     fontFamily: 'Digitalt',
                                     fontWeight: FontWeight.w500,
@@ -222,61 +221,6 @@ class _AppState extends State<App> {
                 );
               });
         }),
-      ),
-    );
-  }
-
-  Widget renderFunFact() {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width / 1.2,
-      child: Stack(
-        children: [
-          Container(
-            height: 105,
-            width: MediaQuery.of(context).size.width / 1.2,
-            decoration: const BoxDecoration(
-              color: Color.fromRGBO(
-                105,
-                127,
-                21,
-                0.8,
-              ),
-              borderRadius: BorderRadius.all(
-                Radius.circular(16),
-              ),
-            ),
-          ),
-          Container(
-            height: 100,
-            width: MediaQuery.of(context).size.width / 1.2,
-            decoration: const BoxDecoration(
-              color: Color.fromRGBO(
-                133,
-                159,
-                30,
-                1,
-              ),
-              borderRadius: BorderRadius.all(
-                Radius.circular(16),
-              ),
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.all(
-              15.0,
-            ),
-            child: Text(
-              'Fun Fact: Composting food waste reduces greenhouse gases. Let\'s compost for a greener planet! ♻',
-              style: TextStyle(
-                fontSize: 15,
-                color: Colors.white,
-                fontFamily: 'Digitalt',
-                fontWeight: FontWeight.normal,
-                decoration: TextDecoration.none,
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }

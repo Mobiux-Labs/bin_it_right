@@ -266,14 +266,14 @@ class AssetConstants {
   static const String greenWins = 'green_win.png';
   static const String greenWinsHeading = 'green_wins.png';
 
-  static const String greenWinsCard= 'card.png';
-  static const String greenWinsGlow= 'glowing.png';
-  static const String greenWinsBolt= 'screw.png';
-  static const String greenWinsBattery= 'battery.png';
-  static const String greenWinsCan= 'can.png';
-  static const String greenWinsBulb= 'bulb.png';
-  static const String greenWinsBottle= 'bottle.png';
-  static const String greenWinsMobile= 'mobile.png';
+  static const String greenWinsCard = 'card.png';
+  static const String greenWinsGlow = 'glowing.png';
+  static const String greenWinsBolt = 'screw.png';
+  static const String greenWinsBattery = 'battery.png';
+  static const String greenWinsCan = 'can.png';
+  static const String greenWinsBulb = 'bulb.png';
+  static const String greenWinsBottle = 'bottle.png';
+  static const String greenWinsMobile = 'mobile.png';
 
   static const String gradientBackground = 'gradient_background.png';
 
@@ -361,7 +361,6 @@ class AssetConstants {
     magnetProgress20,
     magnetProgress10,
     gradientBackground,
-    treeAnimationFortyFifthFrame,
     greenWins,
     greenWinsHeading,
     greenWinsCard,
