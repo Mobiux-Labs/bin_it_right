@@ -1,17 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:reseacue/app/audio/audio_controller.dart';
 import 'package:reseacue/app/audio/sounds.dart';
 import 'package:reseacue/app/storage/storage.dart';
 import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/app/ui/components/earth_tokens.dart';
+import 'package:reseacue/assets.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
 import 'package:reseacue/overlays/overlays.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:reseacue/overlays/upgrade_overlay.dart';
+import 'package:reseacue/utils/images.dart';
+
+import 'green_wins_gallery.dart';
 
 class StartGameOverlay extends StatelessWidget {
   static String id = 'start_game_overlay';
@@ -71,6 +76,25 @@ class StartGameOverlay extends StatelessWidget {
                     ),
                     const SizedBox(
                       width: 10,
+                    ),
+                    CustomAnimatedButton(
+                      height: 50,
+                      width: 50,
+                      shadowHeight: 40,
+                      shadowWidth: 50,
+                      screenSize: MediaQuery.of(context).size,
+                      onTap: () {
+                        GoRouter.of(context).push(Path.greenWinsGallery);
+                      },
+                      imagePath: getPathFromAssetString(AssetConstants.greenWinsGallery),
+                      shadowContainerColor:
+                      Constants.yellowButtonShadowContainerColor,
+                      containerColor: Constants.yellowButtonContainerColor,
+                      shineColor: Constants.yellowButtonShineColor,
+                      padding: const EdgeInsets.only(
+                        left: 50,
+                        top: 10.0,
+                      ),
                     ),
                     const SizedBox(
                       width: 10,

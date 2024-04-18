@@ -63,6 +63,7 @@ class Constants {
   static const String startGameOverlayKey = 'main_menu';
   static const String splashScreenKey = 'SplashScreen';
   static const String homeScreenKey = 'HomeScreen';
+  static const String greenWinsGalleryKey = 'GreenWinsGallery';
 
   static const Color backgroundColor = Color(0xFFE7DFC1);
 
