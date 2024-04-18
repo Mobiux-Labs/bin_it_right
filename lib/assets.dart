@@ -349,6 +349,5 @@ class AssetConstants {
     magnetProgress20,
     magnetProgress10,
     gradientBackground,
-    treeAnimationFortyFifthFrame,
   ];
 }

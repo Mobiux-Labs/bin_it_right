@@ -41,8 +41,8 @@ class _AppState extends State<App> {
       routes: [
         GoRoute(
           path: Path.root,
-          builder: (context, state) => const SplashScreen(
-            key: Key(Constants.splashScreenKey),
+          builder: (context, state) => SplashScreen(
+            key: const Key(Constants.splashScreenKey),
           ),
           routes: const [],
         ),
