@@ -45,7 +45,6 @@ class _CustomAnimatedButtonState extends State<CustomAnimatedButton> {
 
   late double position;
 
-
   @override
   void initState() {
     position = 10;
@@ -66,6 +65,11 @@ class _CustomAnimatedButtonState extends State<CustomAnimatedButton> {
                 position = 10;
               });
               widget.onTap();
+            },
+            onTapCancel: () {
+              setState(() {
+                position = 10;
+              });
             },
             child: renderCustomButton())
         : renderCustomButton();
@@ -128,7 +132,11 @@ class _CustomAnimatedButtonState extends State<CustomAnimatedButton> {
           bottom: position,
           child: Center(
             child: widget.imagePath != null && widget.buttonText == null
-                ? Image.asset(widget.imagePath as String,height: 35,width: 35,)
+                ? Image.asset(
+                    widget.imagePath as String,
+                    height: 35,
+                    width: 35,
+                  )
                 : widget.imagePath == null && widget.buttonText != null
                     ? Text(
                         widget.buttonText as String,
@@ -143,7 +151,11 @@ class _CustomAnimatedButtonState extends State<CustomAnimatedButton> {
                     : Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Image.asset(widget.imagePath as String,height: 35,width: 35,),
+                          Image.asset(
+                            widget.imagePath as String,
+                            height: 35,
+                            width: 35,
+                          ),
                           const SizedBox(
                             width: 10,
                           ),
