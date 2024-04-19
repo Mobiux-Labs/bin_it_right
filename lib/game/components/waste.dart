@@ -116,9 +116,9 @@ class Waste extends SpriteAnimationComponent
       game.drawPath(
         Vector2(position.x - size.x / 4, position.y),
         Vector2(position.x + size.x / 4, position.y),
-        Vector2(game.vehicle.x - game.vehicle.width / 3,
+        Vector2(game.vehicle.x - game.vehicle.width / 4,
             type == WasteType.wet ? wetWasteTopBound : dryWasteTopBound),
-        Vector2(game.vehicle.x + game.vehicle.width / 3,
+        Vector2(game.vehicle.x + game.vehicle.width / 4,
             type == WasteType.wet ? wetWasteTopBound : dryWasteTopBound),
         type as WasteType,
       );
