@@ -8,6 +8,7 @@ import 'package:reseacue/assets.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/utils/images.dart';
 import 'package:reseacue/utils/number.dart';
+import 'package:reseacue/utils/utils.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -45,6 +46,23 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScreenSize screenSizeType =
+        getScreenSizeType(MediaQuery.of(context).size.width);
+
+    double loaderContainerWidthFactor = 1.2;
+    if (screenSizeType == ScreenSize.medium) {
+      loaderContainerWidthFactor = 3;
+    } else if (screenSizeType == ScreenSize.large) {
+      loaderContainerWidthFactor = 6;
+    } else if (screenSizeType == ScreenSize.extraLarge) {
+      loaderContainerWidthFactor = 8;
+    }
+
+    String logo = AssetConstants.splashLoading;
+    if (screenSizeType == ScreenSize.medium) {
+      logo = AssetConstants.splashLoadingXl;
+    }
+
     return Scaffold(
       body: FutureBuilder(
           future: preloadImages(context),
@@ -71,88 +89,89 @@ class SplashScreen extends StatelessWidget {
               ),
               child: Stack(
                 children: [
-                  FadeInImage(
-                    placeholder: MemoryImage(kTransparentImage),
-                    image: AssetImage(
-                      getPathFromAssetString(AssetConstants.splashLoading),
-                    ),
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 40),
-                        child: Column(
-                          children: [
-                            ValueListenableBuilder(
-                                valueListenable: loadedAssetsPercentage,
-                                builder: (context, value, child) {
-                                  if (loadedAssetsPercentage.value.round() %
-                                          25 ==
-                                      0) {
-                                    if (changeFactIndex <
-                                        loadedAssetsPercentage.value.round()) {
-                                      factIndex =
-                                          getRandomIntegrerInRange(0, 10);
-                                      changeFactIndex =
-                                          loadedAssetsPercentage.value.round();
-                                    }
-                                  }
-                                  return renderFunFact(
-                                    context,
-                                    factIndex,
-                                  );
-                                }),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                left: 20,
-                                right: 20,
-                              ),
-                              child: ValueListenableBuilder(
-                                valueListenable: loadedAssetsPercentage,
-                                builder: ((context, value, child) {
-                                  return FadeInImage(
-                                    placeholder: MemoryImage(
-                                      kTransparentImage,
-                                    ),
-                                    image: loadedAssetsPercentage.value == -1.0
-                                        ? AssetImage(
-                                            getPathFromAssetString(
-                                              AssetConstants
-                                                  .treeAnimationFirstFrame,
-                                            ),
-                                          )
-                                        : AssetImage(
-                                            getPathFromAssetString(
-                                              'Tree animation_${getFromRange(loadedAssetsPercentage.value.round(), 0, 100, 1, 45).round()}.png',
-                                            ),
-                                          ),
-                                  );
-                                }),
-                              ),
-                            ),
-                            ValueListenableBuilder(
-                              valueListenable: loadedAssetsPercentage,
-                              builder: ((context, value, child) {
-                                return Text(
-                                  loadedAssetsPercentage.value == -1.0
-                                      ? '0.0 %'
-                                      : '${loadedAssetsPercentage.value.toStringAsFixed(2)} %',
-                                  style: const TextStyle(
-                                    fontSize: 30,
-                                    color: Colors.white,
-                                    fontFamily: 'Digitalt',
-                                    fontWeight: FontWeight.w500,
-                                    decoration: TextDecoration.none,
-                                  ),
-                                );
-                              }),
-                            ),
-                          ],
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height,
+                    width: MediaQuery.of(context).size.width,
+                    child: FittedBox(
+                      fit: BoxFit.fitHeight,
+                      child: FadeInImage(
+                        placeholder: MemoryImage(kTransparentImage),
+                        image: AssetImage(
+                          getPathFromAssetString(
+                            AssetConstants.splashLoadingXl,
+                          ),
                         ),
                       ),
-                    ],
+                    ),
                   ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        ValueListenableBuilder(
+                          valueListenable: loadedAssetsPercentage,
+                          builder: (context, value, child) {
+                            if (loadedAssetsPercentage.value.round() % 25 ==
+                                0) {
+                              if (changeFactIndex <
+                                  loadedAssetsPercentage.value.round()) {
+                                factIndex = getRandomIntegrerInRange(0, 10);
+                                changeFactIndex =
+                                    loadedAssetsPercentage.value.round();
+                              }
+                            }
+                            return renderFunFact(
+                              context,
+                              factIndex,
+                              screenSizeType,
+                            );
+                          },
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width /
+                              loaderContainerWidthFactor,
+                          child: ValueListenableBuilder(
+                            valueListenable: loadedAssetsPercentage,
+                            builder: ((context, value, child) {
+                              return FadeInImage(
+                                  placeholder: MemoryImage(
+                                    kTransparentImage,
+                                  ),
+                                  image: AssetImage(
+                                    getPathFromAssetString(loadedAssetsPercentage
+                                                .value ==
+                                            -1.0
+                                        ? AssetConstants
+                                            .treeAnimationSecondFrame
+                                        : 'Tree animation_${getFromRange(loadedAssetsPercentage.value.round(), 0, 100, 1, 45).round()}.png'),
+                                  ));
+                            }),
+                          ),
+                        ),
+                        ValueListenableBuilder(
+                          valueListenable: loadedAssetsPercentage,
+                          builder: ((context, value, child) {
+                            return Text(
+                              loadedAssetsPercentage.value == -1.0
+                                  ? '0.0 %'
+                                  : '${loadedAssetsPercentage.value.toStringAsFixed(2)} %',
+                              style: const TextStyle(
+                                fontSize: 30,
+                                color: Colors.white,
+                                fontFamily: 'Digitalt',
+                                fontWeight: FontWeight.w500,
+                                decoration: TextDecoration.none,
+                              ),
+                            );
+                          }),
+                        ),
+                      ],
+                    ),
+                  )
                 ],
               ),
             );
@@ -160,14 +179,19 @@ class SplashScreen extends StatelessWidget {
     );
   }
 
-  Widget renderFunFact(context, factIndex) {
+  Widget renderFunFact(context, factIndex, screenSizeType) {
+    double containerWidthFactor = 1.2;
+    if (screenSizeType == ScreenSize.extraLarge) {
+      containerWidthFactor = 3;
+    }
+
     return SizedBox(
-      width: MediaQuery.of(context).size.width / 1.2,
+      width: MediaQuery.of(context).size.width / containerWidthFactor,
       child: Stack(
         children: [
           Container(
-            height: 105,
-            width: MediaQuery.of(context).size.width / 1.2,
+            height: (MediaQuery.of(context).size.height / 8) + 5,
+            width: MediaQuery.of(context).size.width / containerWidthFactor,
             decoration: const BoxDecoration(
               color: Color.fromRGBO(
                 105,
@@ -181,8 +205,8 @@ class SplashScreen extends StatelessWidget {
             ),
           ),
           Container(
-            height: 100,
-            width: MediaQuery.of(context).size.width / 1.2,
+            height: MediaQuery.of(context).size.height / 8,
+            width: MediaQuery.of(context).size.width / containerWidthFactor,
             decoration: const BoxDecoration(
               color: Color.fromRGBO(
                 133,
@@ -194,21 +218,25 @@ class SplashScreen extends StatelessWidget {
                 Radius.circular(16),
               ),
             ),
-            child: Padding(
+            child: Align(
+              alignment: Alignment.center,
+              child: Padding(
                 padding: const EdgeInsets.all(
                   15.0,
                 ),
                 child: AutoSizeText(
                   Constants.recyclingFacts[factIndex],
                   style: const TextStyle(
-                    fontSize: 15,
                     color: Colors.white,
                     fontFamily: 'Digitalt',
                     fontWeight: FontWeight.normal,
                     decoration: TextDecoration.none,
                   ),
                   maxLines: 5,
-                )),
+                  minFontSize: 10,
+                ),
+              ),
+            ),
           ),
         ],
       ),

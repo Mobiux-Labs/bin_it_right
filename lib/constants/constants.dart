@@ -148,6 +148,11 @@ class Constants {
   static const double defaultPowerUpLifespan = 5.0;
   static const double powerUpGameSpeed = 5.0;
 
+  static const double minimumSmallScreenWidth = 320;
+  static const double minimumMediumScreenWidth = 641;
+  static const double minimumLargeScreenWidth = 1008;
+  static const double minimumExtraLargeScreenWidth = 2000;
+
   static List<String> recyclingFacts = [
     "Recycling one ton of paper saves 17 trees, 7,000 gallons of water, and 380 gallons of oil.",
     "Plastic bottles can take up to 450 years to decompose in a landfill, but recycling them can save energy equivalent to powering a house for 6 months.",
