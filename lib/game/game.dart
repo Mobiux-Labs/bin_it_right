@@ -154,6 +154,10 @@ class Reseacue extends FlameGame {
       world.remove(gift);
     }
 
+    try {
+      world.remove(magneticField);
+    } catch (e) {}
+
     removedBuildings = [];
     removedWastes = [];
     buildingsGenerated = [];

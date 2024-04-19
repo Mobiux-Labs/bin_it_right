@@ -143,7 +143,7 @@ class Constants {
 
   static const double giftSpawnInterval = 45.0;
 
-  static const double powerUpInterval = 45.0;
+  static const double powerUpInterval = 53.0;
   static const double powerUpAvailableTimeInSeconds = 3.0;
   static const double defaultPowerUpLifespan = 5.0;
   static const double powerUpGameSpeed = 5.0;
