@@ -23,7 +23,6 @@ import 'package:reseacue/game/components/waste.dart';
 import 'package:reseacue/overlays/gift_opening_overlay.dart';
 import 'package:reseacue/overlays/overlays.dart';
 import 'package:reseacue/utils/utils.dart';
-import 'package:vibration/vibration.dart';
 
 class Reseacue extends FlameGame {
   SettingsController settingsController;
@@ -244,11 +243,9 @@ class Reseacue extends FlameGame {
   }
 
   @override
-  FutureOr<void> onLoad() async {
+  FutureOr<void> onLoad() {
     leftSpawnPoint = Vector2(0.0, 0.0);
     rightSpawnPoint = Vector2(size.x, 0.0);
-
-    hasVibration = await Vibration.hasVibrator();
 
     _log.info('Setting camera viewfinder to top left');
     camera.viewfinder.anchor = Anchor.topLeft;

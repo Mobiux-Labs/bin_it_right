@@ -16,7 +16,6 @@ import 'package:reseacue/game/game.dart';
 import 'package:reseacue/utils/images.dart';
 import 'package:reseacue/utils/utils.dart';
 import 'package:uuid/uuid.dart';
-import 'package:vibration/vibration.dart';
 
 enum WasteType {
   wet,
@@ -162,16 +161,8 @@ class Waste extends SpriteAnimationComponent
     };
   }
 
-  Future<void> vibrate() async {
-    if (settingsController.vibrationOn.value == true &&
-        (game.hasVibration != null || game.hasVibration == true)) {
-      Vibration.vibrate(pattern: [30, 100, 30, 100]);
-    }
-  }
-
   void wasteMissed() {
     audioController.playSfx(SfxType.miss);
-    vibrate();
     game.reduceLife();
   }
 
@@ -190,7 +181,6 @@ class Waste extends SpriteAnimationComponent
           position.y < wetWasteBottomBound) {
         successfulDrop(WasteType.wet, position);
       } else {
-        vibrate();
         add(
           MoveEffect.to(
             spawnedPosition,
@@ -209,7 +199,6 @@ class Waste extends SpriteAnimationComponent
           position.y < dryWasteBottomBound) {
         successfulDrop(WasteType.dry, position);
       } else {
-        vibrate();
         add(
           MoveEffect.to(
             spawnedPosition,
