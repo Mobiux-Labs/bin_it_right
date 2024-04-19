@@ -12,6 +12,7 @@ import 'package:reseacue/app/storage/storage.dart';
 import 'package:reseacue/assets.dart';
 import 'package:reseacue/game/game.dart';
 import 'package:reseacue/overlays/gift_opening_overlay.dart';
+import 'package:reseacue/overlays/green_wins_gallery.dart';
 import 'package:reseacue/overlays/overlays.dart';
 import 'package:reseacue/app/ui/splash_screen.dart';
 import 'package:reseacue/constants/constants.dart';
@@ -43,6 +44,14 @@ class _AppState extends State<App> {
           path: Path.root,
           builder: (context, state) => SplashScreen(
             key: const Key(Constants.splashScreenKey),
+          ),
+          routes: const [],
+        ),
+        GoRoute(
+          path: Path.greenWinsGallery,
+          builder: (context, state) =>  GreenWinsGalleryOverlay(
+            key: const Key(Constants.greenWinsGalleryKey),
+            storageController: Provider.of<StorageController>(context),
           ),
           routes: const [],
         ),
@@ -79,8 +88,9 @@ class _AppState extends State<App> {
                       storageController:
                           Provider.of<StorageController>(context),
                     ),
-                GiftOpeningOverlay.id: (_, game) =>
-                    GiftOpeningOverlay(mainGame: game),
+                GiftOpeningOverlay.id: (_, game) => GiftOpeningOverlay(
+                      mainGame: game,
+                    ),
               },
               initialActiveOverlays: [
                 StartGameOverlay.id,

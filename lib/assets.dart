@@ -250,6 +250,8 @@ class AssetConstants {
 
   static const String upgrade = 'upgrade.png';
 
+  static const String greenWinsGallery = 'gallery.png';
+
   static const String magnetProgress100 = 'magnet_progress_100.png';
   static const String magnetProgress90 = 'magnet_progress_90.png';
   static const String magnetProgress80 = 'magnet_progress_80.png';
@@ -262,6 +264,16 @@ class AssetConstants {
   static const String magnetProgress10 = 'magnet_progress_10.png';
 
   static const String greenWins = 'green_win.png';
+  static const String greenWinsHeading = 'green_wins.png';
+
+  static const String greenWinsCard = 'card.png';
+  static const String greenWinsGlow = 'glowing.png';
+  static const String greenWinsBolt = 'screw.png';
+  static const String greenWinsBattery = 'battery.png';
+  static const String greenWinsCan = 'can.png';
+  static const String greenWinsBulb = 'bulb.png';
+  static const String greenWinsBottle = 'bottle.png';
+  static const String greenWinsMobile = 'mobile.png';
 
   static const String gradientBackground = 'gradient_background.png';
 
@@ -349,5 +361,16 @@ class AssetConstants {
     magnetProgress20,
     magnetProgress10,
     gradientBackground,
+    greenWins,
+    greenWinsHeading,
+    greenWinsCard,
+    greenWinsGlow,
+    greenWinsBolt,
+    greenWinsBattery,
+    greenWinsCan,
+    greenWinsBulb,
+    greenWinsBottle,
+    greenWinsMobile,
+    greenWinsGallery,
   ];
 }
