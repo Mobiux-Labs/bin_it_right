@@ -33,7 +33,8 @@ class StartGameOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     StorageController storageController = context.watch<StorageController>();
-    final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenHeight = MediaQuery.of(context).size.width;
+    final double screenWidth = MediaQuery.of(context).size.height;
     return GradientOverlay(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -51,15 +52,11 @@ class StartGameOverlay extends StatelessWidget {
                     builder: (context, score, child) {
                       return EarthTokens(
                         earthPoints: score,
-                        containerHeight: Responsive.isSmallScreen(context)
-                            ? screenWidth * 0.15
-                            : screenWidth * 0.05,
+                        containerHeight: 50,
                         containerWidth: Responsive.isSmallScreen(context)
                             ? screenWidth * 0.4
                             : screenWidth * 0.2,
-                        shadowContainerHeight: Responsive.isSmallScreen(context)
-                            ? screenWidth * 0.13
-                            : screenWidth * 0.5,
+                        shadowContainerHeight: 40,
                         shadowContainerWidth: Responsive.isSmallScreen(context)
                             ? screenWidth * 0.4
                             : screenWidth * 0.2,
@@ -141,9 +138,9 @@ class StartGameOverlay extends StatelessWidget {
               bottom: 80,
             ),
             child: CustomAnimatedButton(
-              height: MediaQuery.of(context).size.height / 13,
+              height: 50,
               width: MediaQuery.of(context).size.width / 2.2,
-              shadowHeight: MediaQuery.of(context).size.height / 15,
+              shadowHeight: 40,
               shadowWidth: MediaQuery.of(context).size.width / 2.2,
               screenSize: MediaQuery.of(context).size,
               onTap: () {
