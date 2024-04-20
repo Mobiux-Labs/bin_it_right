@@ -7,11 +7,10 @@ import 'package:go_router/go_router.dart';
 import 'package:reseacue/assets.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/responsive.dart';
-import 'package:reseacue/utils/images.dart';
-import 'package:reseacue/utils/number.dart';
 import 'package:reseacue/utils/utils.dart';
 import 'package:transparent_image/transparent_image.dart';
 
+// ignore: must_be_immutable
 class SplashScreen extends StatelessWidget {
   SplashScreen({super.key});
 
@@ -54,11 +53,6 @@ class SplashScreen extends StatelessWidget {
       loaderContainerWidthFactor = 6;
     } else if (Responsive.isExtraLargeScreen(context)) {
       loaderContainerWidthFactor = 8;
-    }
-
-    String logo = AssetConstants.splashLoading;
-    if (Responsive.isMediumScreen(context)) {
-      logo = AssetConstants.splashLoadingXl;
     }
 
     return Scaffold(

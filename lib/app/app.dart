@@ -1,5 +1,4 @@
 import 'package:flame/game.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -49,7 +48,7 @@ class _AppState extends State<App> {
         ),
         GoRoute(
           path: Path.greenWinsGallery,
-          builder: (context, state) =>  GreenWinsGalleryOverlay(
+          builder: (context, state) => GreenWinsGalleryOverlay(
             key: const Key(Constants.greenWinsGalleryKey),
             storageController: Provider.of<StorageController>(context),
           ),

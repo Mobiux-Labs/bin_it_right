@@ -33,7 +33,6 @@ class StartGameOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     StorageController storageController = context.watch<StorageController>();
-    final double screenHeight = MediaQuery.of(context).size.height;
     final double screenWidth = MediaQuery.of(context).size.width;
     return GradientOverlay(
       child: Column(

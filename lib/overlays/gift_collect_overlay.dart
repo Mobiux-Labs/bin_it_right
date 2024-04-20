@@ -41,11 +41,11 @@ class _GiftCollectOverlayState extends State<GiftCollectOverlay> {
   @override
   void initState() {
     getGiftType();
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    final double screenHeight = MediaQuery.of(context).size.height;
     final double screenWidth = MediaQuery.of(context).size.width;
     return SizedBox(
       height: MediaQuery.of(context).size.height,
