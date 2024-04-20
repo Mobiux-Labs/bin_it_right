@@ -5,6 +5,7 @@ import 'package:reseacue/app/ui/components/lives_container.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
 import 'package:reseacue/overlays/overlays.dart';
+import 'package:reseacue/responsive.dart';
 
 class GamePlayOverlay extends StatelessWidget {
   static const String id = 'gameplay_overlay';
@@ -14,6 +15,8 @@ class GamePlayOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double screenHeight = MediaQuery.of(context).size.height;
+    final double screenWidth = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.only(
         right: 15.0,
@@ -27,6 +30,18 @@ class GamePlayOverlay extends StatelessWidget {
               builder: (context, int value, child) {
                 return EarthTokens(
                   earthPoints: value,
+                  containerHeight: Responsive.isSmallScreen(context)
+                      ? screenWidth * 0.15
+                      : screenWidth * 0.2,
+                  containerWidth: Responsive.isSmallScreen(context)
+                      ? screenWidth * 0.4
+                      : screenWidth * 0.2,
+                  shadowContainerHeight: Responsive.isSmallScreen(context)
+                      ? screenWidth * 0.13
+                      : screenWidth * 0.2,
+                  shadowContainerWidth: Responsive.isSmallScreen(context)
+                      ? screenWidth * 0.4
+                      : screenWidth * 0.2,
                 );
               }),
           ValueListenableBuilder(

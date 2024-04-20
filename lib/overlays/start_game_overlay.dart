@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:reseacue/app/audio/audio_controller.dart';
@@ -12,11 +13,9 @@ import 'package:reseacue/assets.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
 import 'package:reseacue/overlays/overlays.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:reseacue/overlays/upgrade_overlay.dart';
-import 'package:reseacue/utils/images.dart';
-
-import 'green_wins_gallery.dart';
+import 'package:reseacue/responsive.dart';
+import 'package:reseacue/utils/utils.dart';
 
 class StartGameOverlay extends StatelessWidget {
   static String id = 'start_game_overlay';
@@ -34,7 +33,8 @@ class StartGameOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     StorageController storageController = context.watch<StorageController>();
-
+    final double screenHeight = MediaQuery.of(context).size.height;
+    final double screenWidth = MediaQuery.of(context).size.width;
     return GradientOverlay(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -45,16 +45,51 @@ class StartGameOverlay extends StatelessWidget {
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ValueListenableBuilder(
                     valueListenable: storageController.score,
                     builder: (context, score, child) {
                       return EarthTokens(
                         earthPoints: score,
+                        containerHeight: Responsive.isSmallScreen(context)
+                            ? screenWidth * 0.15
+                            : screenWidth * 0.05,
+                        containerWidth: Responsive.isSmallScreen(context)
+                            ? screenWidth * 0.4
+                            : screenWidth * 0.2,
+                        shadowContainerHeight: Responsive.isSmallScreen(context)
+                            ? screenWidth * 0.13
+                            : screenWidth * 0.5,
+                        shadowContainerWidth: Responsive.isSmallScreen(context)
+                            ? screenWidth * 0.4
+                            : screenWidth * 0.2,
                       );
                     }),
-                Row(
+                Column(
                   children: [
+                    CustomAnimatedButton(
+                      height: 50,
+                      width: 50,
+                      shadowHeight: 40,
+                      shadowWidth: 50,
+                      screenSize: MediaQuery.of(context).size,
+                      onTap: () {
+                        game.overlays.add(SettingsOverlay.id);
+                      },
+                      imagePath: 'assets/images/settings.png',
+                      shadowContainerColor:
+                          Constants.yellowButtonShadowContainerColor,
+                      containerColor: Constants.yellowButtonContainerColor,
+                      shineColor: Constants.yellowButtonShineColor,
+                      padding: const EdgeInsets.only(
+                        left: 50,
+                        top: 10.0,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     CustomAnimatedButton(
                       height: 50,
                       width: 50,
@@ -75,7 +110,7 @@ class StartGameOverlay extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(
-                      width: 10,
+                      height: 10,
                     ),
                     CustomAnimatedButton(
                       height: 50,
@@ -86,29 +121,8 @@ class StartGameOverlay extends StatelessWidget {
                       onTap: () {
                         GoRouter.of(context).push(Path.greenWinsGallery);
                       },
-                      imagePath: getPathFromAssetString(AssetConstants.greenWinsGallery),
-                      shadowContainerColor:
-                      Constants.yellowButtonShadowContainerColor,
-                      containerColor: Constants.yellowButtonContainerColor,
-                      shineColor: Constants.yellowButtonShineColor,
-                      padding: const EdgeInsets.only(
-                        left: 50,
-                        top: 10.0,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    CustomAnimatedButton(
-                      height: 50,
-                      width: 50,
-                      shadowHeight: 40,
-                      shadowWidth: 50,
-                      screenSize: MediaQuery.of(context).size,
-                      onTap: () {
-                        game.overlays.add(SettingsOverlay.id);
-                      },
-                      imagePath: 'assets/images/settings.png',
+                      imagePath: getPathFromAssetString(
+                          AssetConstants.greenWinsGallery),
                       shadowContainerColor:
                           Constants.yellowButtonShadowContainerColor,
                       containerColor: Constants.yellowButtonContainerColor,

@@ -6,6 +6,7 @@ import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
 import 'package:reseacue/game/gift_sequence.dart';
 import 'package:reseacue/overlays/settings_overlay.dart';
+import 'package:reseacue/responsive.dart';
 
 class GiftOpenOverlay extends StatelessWidget {
   const GiftOpenOverlay({
@@ -21,6 +22,8 @@ class GiftOpenOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double screenHeight = MediaQuery.of(context).size.height;
+    final double screenWidth = MediaQuery.of(context).size.width;
     return SizedBox(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
@@ -37,6 +40,18 @@ class GiftOpenOverlay extends StatelessWidget {
                   builder: (context, score, child) {
                     return EarthTokens(
                       earthPoints: score,
+                      containerHeight: Responsive.isSmallScreen(context)
+                          ? screenWidth * 0.15
+                          : screenWidth * 0.2,
+                      containerWidth: Responsive.isSmallScreen(context)
+                          ? screenWidth * 0.4
+                          : screenWidth * 0.2,
+                      shadowContainerHeight: Responsive.isSmallScreen(context)
+                          ? screenWidth * 0.13
+                          : screenWidth * 0.2,
+                      shadowContainerWidth: Responsive.isSmallScreen(context)
+                          ? screenWidth * 0.4
+                          : screenWidth * 0.2,
                     );
                   },
                 ),

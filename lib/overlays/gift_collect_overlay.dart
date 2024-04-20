@@ -3,11 +3,11 @@ import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/app/ui/components/earth_tokens.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/components/gift.dart';
-
 import 'package:reseacue/game/game.dart';
 import 'package:reseacue/game/gift_sequence.dart';
 import 'package:reseacue/overlays/gift_opening_overlay.dart';
 import 'package:reseacue/overlays/settings_overlay.dart';
+import 'package:reseacue/responsive.dart';
 
 import '../utils/number.dart';
 
@@ -45,6 +45,8 @@ class _GiftCollectOverlayState extends State<GiftCollectOverlay> {
 
   @override
   Widget build(BuildContext context) {
+    final double screenHeight = MediaQuery.of(context).size.height;
+    final double screenWidth = MediaQuery.of(context).size.width;
     return SizedBox(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
@@ -61,6 +63,18 @@ class _GiftCollectOverlayState extends State<GiftCollectOverlay> {
                   builder: (context, score, child) {
                     return EarthTokens(
                       earthPoints: score,
+                      containerHeight: Responsive.isSmallScreen(context)
+                          ? screenWidth * 0.15
+                          : screenWidth * 0.2,
+                      containerWidth: Responsive.isSmallScreen(context)
+                          ? screenWidth * 0.4
+                          : screenWidth * 0.2,
+                      shadowContainerHeight: Responsive.isSmallScreen(context)
+                          ? screenWidth * 0.13
+                          : screenWidth * 0.2,
+                      shadowContainerWidth: Responsive.isSmallScreen(context)
+                          ? screenWidth * 0.4
+                          : screenWidth * 0.2,
                     );
                   },
                 ),
