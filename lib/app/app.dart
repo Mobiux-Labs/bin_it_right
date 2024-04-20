@@ -16,6 +16,7 @@ import 'package:reseacue/overlays/overlays.dart';
 import 'package:reseacue/app/ui/splash_screen.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/overlays/upgrade_overlay.dart';
+import 'package:reseacue/responsive.dart';
 import 'package:reseacue/utils/images.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -114,7 +115,11 @@ class _AppState extends State<App> {
                       FadeInImage(
                         placeholder: MemoryImage(kTransparentImage),
                         image: AssetImage(
-                          getPathFromAssetString(AssetConstants.splashLoading),
+                          getPathFromAssetString(
+                            Responsive.isSmallScreen(context)
+                                ? AssetConstants.splashLoading
+                                : AssetConstants.splashLoadingXl,
+                          ),
                         ),
                       ),
                       const Column(
