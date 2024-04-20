@@ -90,7 +90,9 @@ class SplashScreen extends StatelessWidget {
                         placeholder: MemoryImage(kTransparentImage),
                         image: AssetImage(
                           getPathFromAssetString(
-                            AssetConstants.splashLoadingXl,
+                            Responsive.isSmallScreen(context)
+                                ? AssetConstants.splashLoading
+                                : AssetConstants.splashLoadingXl,
                           ),
                         ),
                       ),
