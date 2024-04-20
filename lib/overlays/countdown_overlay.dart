@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:reseacue/overlays/overlays.dart';
+import 'package:reseacue/responsive.dart';
 
 import '../game/game.dart';
 
@@ -46,11 +47,17 @@ class _CountDownOverlayState extends State<CountDownOverlay> {
       child: SizedBox(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        child: AnimatedSwitcher(
-          duration: const Duration(seconds: 1),
-          child: Image(
-            image: AssetImage(
-                'assets/images/countdown_${values[_index % values.length]}.png'),
+        child: FittedBox(
+          fit: BoxFit.cover,
+          child: AnimatedSwitcher(
+            duration: const Duration(seconds: 1),
+            child: Image(
+              image: AssetImage(
+                Responsive.isSmallScreen(context)
+                    ? 'assets/images/countdown_${values[_index % values.length]}.png'
+                    : 'assets/images/countdown_${values[_index % values.length]}_xl.png',
+              ),
+            ),
           ),
         ),
       ),
