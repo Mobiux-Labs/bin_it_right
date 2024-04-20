@@ -6,7 +6,6 @@ import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
 import 'package:reseacue/game/gift_sequence.dart';
 import 'package:reseacue/overlays/settings_overlay.dart';
-import 'package:reseacue/responsive.dart';
 
 class GiftOpenOverlay extends StatelessWidget {
   const GiftOpenOverlay({

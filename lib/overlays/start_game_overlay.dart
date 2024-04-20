@@ -14,7 +14,6 @@ import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
 import 'package:reseacue/overlays/overlays.dart';
 import 'package:reseacue/overlays/upgrade_overlay.dart';
-import 'package:reseacue/responsive.dart';
 import 'package:reseacue/utils/utils.dart';
 
 class StartGameOverlay extends StatelessWidget {

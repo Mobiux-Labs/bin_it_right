@@ -7,7 +7,6 @@ import 'package:reseacue/game/game.dart';
 import 'package:reseacue/game/gift_sequence.dart';
 import 'package:reseacue/overlays/gift_opening_overlay.dart';
 import 'package:reseacue/overlays/settings_overlay.dart';
-import 'package:reseacue/responsive.dart';
 
 import '../utils/number.dart';
 
