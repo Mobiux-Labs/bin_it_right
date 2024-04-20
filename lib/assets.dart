@@ -238,6 +238,7 @@ class AssetConstants {
   static const String treeAnimationFortyFifthFrame = 'Tree animation_45.png';
 
   static const String splashLoading = 'splash_loading.png';
+  static const String splashLoadingXl = 'splash_loading_xl.png';
 
   static const String vehicleSkinOne = 'vehicle_skin_1.png';
   static const String vehicleSkinTwo = 'vehicle_skin_2.png';
@@ -341,6 +342,7 @@ class AssetConstants {
     tutorialFifth,
     tutorialSixth,
     splashLoading,
+    splashLoadingXl,
     vehicleSkinOne,
     vehicleSkinTwo,
     vehicleSkinThree,

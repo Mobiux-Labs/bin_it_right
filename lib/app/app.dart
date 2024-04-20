@@ -1,5 +1,4 @@
 import 'package:flame/game.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -17,6 +16,7 @@ import 'package:reseacue/overlays/overlays.dart';
 import 'package:reseacue/app/ui/splash_screen.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/overlays/upgrade_overlay.dart';
+import 'package:reseacue/responsive.dart';
 import 'package:reseacue/utils/images.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -49,7 +49,7 @@ class _AppState extends State<App> {
         ),
         GoRoute(
           path: Path.greenWinsGallery,
-          builder: (context, state) =>  GreenWinsGalleryOverlay(
+          builder: (context, state) => GreenWinsGalleryOverlay(
             key: const Key(Constants.greenWinsGalleryKey),
             storageController: Provider.of<StorageController>(context),
           ),
@@ -115,34 +115,21 @@ class _AppState extends State<App> {
                       FadeInImage(
                         placeholder: MemoryImage(kTransparentImage),
                         image: AssetImage(
-                          getPathFromAssetString(AssetConstants.splashLoading),
+                          getPathFromAssetString(
+                            Responsive.isSmallScreen(context)
+                                ? AssetConstants.splashLoading
+                                : AssetConstants.splashLoadingXl,
+                          ),
                         ),
                       ),
-                      Column(
+                      const Column(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(bottom: 40),
+                            padding: EdgeInsets.only(bottom: 40),
                             child: Column(
                               children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                    left: 20,
-                                    right: 20,
-                                  ),
-                                  child: FadeInImage(
-                                    placeholder: MemoryImage(
-                                      kTransparentImage,
-                                    ),
-                                    image: AssetImage(
-                                      getPathFromAssetString(
-                                        AssetConstants
-                                            .treeAnimationFortyFifthFrame,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                const Text(
+                                Text(
                                   'Setting up the game, please wait...',
                                   style: TextStyle(
                                     fontSize: 20,

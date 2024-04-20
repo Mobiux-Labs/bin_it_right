@@ -156,7 +156,9 @@ class Reseacue extends FlameGame {
 
     try {
       world.remove(magneticField);
-    } catch (e) {}
+    } catch (e) {
+      _log.warning('could not remove magnetic field');
+    }
 
     removedBuildings = [];
     removedWastes = [];
