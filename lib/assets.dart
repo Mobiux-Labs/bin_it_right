@@ -184,12 +184,22 @@ class AssetConstants {
   static const String countdownSecond = 'countdown_2.png';
   static const String countdownThird = 'countdown_3.png';
   static const String liveover = 'life_over.png';
+
   static const String tutorialFirst = 'tutorial_1.png';
   static const String tutorialSecond = 'tutorial_2.png';
   static const String tutorialThird = 'tutorial_3.png';
   static const String tutorialFourth = 'tutorial_4.png';
   static const String tutorialFifth = 'tutorial_5.png';
   static const String tutorialSixth = 'tutorial_6.png';
+  static const String tutorialSeventh = 'tutorial_7.png';
+
+  static const String tutorialFirstXl = 'tutorial_1_xl.png';
+  static const String tutorialSecondXl = 'tutorial_2_xl.png';
+  static const String tutorialThirdXl = 'tutorial_3_xl.png';
+  static const String tutorialFourthXl = 'tutorial_4_xl.png';
+  static const String tutorialFifthXl = 'tutorial_5_xl.png';
+  static const String tutorialSixthXl = 'tutorial_6_xl.png';
+  static const String tutorialSeventhXl = 'tutorial_7_xl.png';
 
   static const String treeAnimationFirstFrame = 'Tree animation_1.png';
   static const String treeAnimationSecondFrame = 'Tree animation_2.png';
@@ -341,6 +351,14 @@ class AssetConstants {
     tutorialFourth,
     tutorialFifth,
     tutorialSixth,
+    tutorialSeventh,
+    tutorialFirstXl,
+    tutorialSecondXl,
+    tutorialThirdXl,
+    tutorialFourthXl,
+    tutorialFifthXl,
+    tutorialSixthXl,
+    tutorialSeventhXl,
     splashLoading,
     splashLoadingXl,
     vehicleSkinOne,

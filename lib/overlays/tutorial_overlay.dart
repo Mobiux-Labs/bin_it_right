@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:reseacue/app/storage/storage.dart';
 import 'package:reseacue/overlays/overlays.dart';
+import 'package:reseacue/responsive.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 import '../game/game.dart';
@@ -60,12 +61,16 @@ class _TutorialOverlayState extends State<TutorialOverlay> {
           width: MediaQuery.of(context).size.width,
           child: Container(
             decoration: BoxDecoration(
-              color: Colors.black.withOpacity(0.6),
+              color: Colors.black.withOpacity(0.8),
             ),
-            child: FadeInImage(
-              placeholder: MemoryImage(kTransparentImage),
-              image: AssetImage(
-                  'assets/images/tutorial_${values[_index % values.length]}.png'),
+            child: FittedBox(
+              fit: BoxFit.contain,
+              child: FadeInImage(
+                placeholder: MemoryImage(kTransparentImage),
+                image: AssetImage(Responsive.isSmallScreen(context)
+                    ? 'assets/images/tutorial_${values[_index % values.length]}.png'
+                    : 'assets/images/tutorial_${values[_index % values.length]}_xl.png'),
+              ),
             ),
           ),
         ),
