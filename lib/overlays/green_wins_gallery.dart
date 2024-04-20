@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:reseacue/app/storage/storage.dart';
-
 import 'package:reseacue/app/ui/components/custom_animated_button.dart';
+import 'package:reseacue/app/ui/components/earth_tokens.dart';
 import 'package:reseacue/assets.dart';
 import 'package:reseacue/constants/constants.dart';
-
-import 'package:reseacue/game/game.dart';
-
-import 'package:reseacue/app/ui/components/earth_tokens.dart';
-import 'package:reseacue/overlays/settings_overlay.dart';
+import 'package:reseacue/responsive.dart';
 import 'package:reseacue/utils/images.dart';
 import 'package:reseacue/utils/utils.dart';
 
@@ -53,6 +49,20 @@ class GreenWinsGalleryOverlay extends StatelessWidget {
                       builder: (context, score, child) {
                         return EarthTokens(
                           earthPoints: score,
+                          containerHeight: Responsive.isSmallScreen(context)
+                              ? screenWidth * 0.15
+                              : screenWidth * 0.2,
+                          containerWidth: Responsive.isSmallScreen(context)
+                              ? screenWidth * 0.4
+                              : screenWidth * 0.2,
+                          shadowContainerHeight:
+                              Responsive.isSmallScreen(context)
+                                  ? screenWidth * 0.13
+                                  : screenWidth * 0.2,
+                          shadowContainerWidth:
+                              Responsive.isSmallScreen(context)
+                                  ? screenWidth * 0.4
+                                  : screenWidth * 0.2,
                         );
                       },
                     ),

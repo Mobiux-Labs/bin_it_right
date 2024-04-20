@@ -6,13 +6,17 @@ class EarthTokens extends StatelessWidget {
   const EarthTokens({
     super.key,
     required this.earthPoints,
+    required this.containerHeight,
+    required this.containerWidth,
+    required this.shadowContainerHeight,
+    required this.shadowContainerWidth,
   });
 
   final int earthPoints;
-  final double containerHeight = 50;
-  final double containerWidth = 130;
-  final double shadowContainerHeight = 44;
-  final double shadowContainerWidth = 130;
+  final double containerHeight;
+  final double containerWidth;
+  final double shadowContainerHeight;
+  final double shadowContainerWidth;
 
   static const Color containerColor = Color.fromRGBO(
     212,
