@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:reseacue/assets.dart';
 import 'package:reseacue/constants/constants.dart';
+import 'package:reseacue/responsive.dart';
 import 'package:reseacue/utils/images.dart';
 import 'package:reseacue/utils/number.dart';
 import 'package:reseacue/utils/utils.dart';
@@ -46,20 +47,17 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ScreenSize screenSizeType =
-        getScreenSizeType(MediaQuery.of(context).size.width);
-
     double loaderContainerWidthFactor = 1.2;
-    if (screenSizeType == ScreenSize.medium) {
+    if (Responsive.isMediumScreen(context)) {
       loaderContainerWidthFactor = 3;
-    } else if (screenSizeType == ScreenSize.large) {
+    } else if (Responsive.isLargeScreen(context)) {
       loaderContainerWidthFactor = 6;
-    } else if (screenSizeType == ScreenSize.extraLarge) {
+    } else if (Responsive.isExtraLargeScreen(context)) {
       loaderContainerWidthFactor = 8;
     }
 
     String logo = AssetConstants.splashLoading;
-    if (screenSizeType == ScreenSize.medium) {
+    if (Responsive.isMediumScreen(context)) {
       logo = AssetConstants.splashLoadingXl;
     }
 
@@ -124,7 +122,6 @@ class SplashScreen extends StatelessWidget {
                             return renderFunFact(
                               context,
                               factIndex,
-                              screenSizeType,
                             );
                           },
                         ),
@@ -179,9 +176,9 @@ class SplashScreen extends StatelessWidget {
     );
   }
 
-  Widget renderFunFact(context, factIndex, screenSizeType) {
+  Widget renderFunFact(context, factIndex) {
     double containerWidthFactor = 1.2;
-    if (screenSizeType == ScreenSize.extraLarge) {
+    if (Responsive.isExtraLargeScreen(context)) {
       containerWidthFactor = 3;
     }
 

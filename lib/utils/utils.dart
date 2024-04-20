@@ -1,6 +1,5 @@
 export 'number.dart';
 export 'images.dart';
-export 'screen.dart';
 
 String truncateText(String text, int maxLength, {String suffix = '...'}) {
   if (text.length <= maxLength) {
