@@ -138,9 +138,8 @@ class SplashScreen extends StatelessWidget {
                                     getPathFromAssetString(loadedAssetsPercentage
                                                 .value ==
                                             -1.0
-                                        ? AssetConstants
-                                            .treeAnimationSecondFrame
-                                        : 'Tree animation_${getFromRange(loadedAssetsPercentage.value.round(), 0, 100, 1, 45).round()}.png'),
+                                        ? AssetConstants.treeAnimationThirdFrame
+                                        : 'Tree animation_${getFromRange(loadedAssetsPercentage.value.round(), 0, 100, 3, 45).round()}.png'),
                                   ));
                             }),
                           ),

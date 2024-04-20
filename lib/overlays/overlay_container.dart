@@ -27,7 +27,6 @@ class OverlayContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
@@ -69,7 +68,6 @@ class OverlayContainer extends StatelessWidget {
                     ),
                   ),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(
@@ -104,7 +102,7 @@ class OverlayContainer extends StatelessWidget {
                               fontSize: 50,
                             )),
                       ),
-                      child,
+                      Expanded(child: child),
                     ],
                   ),
                 ),
@@ -119,9 +117,9 @@ class OverlayContainer extends StatelessWidget {
                       bottom: MediaQuery.of(context).size.height * 0.04,
                     ),
                     child: CustomAnimatedButton(
-                      height: MediaQuery.of(context).size.height / 13,
+                      height: 60,
                       width: MediaQuery.of(context).size.width / 6,
-                      shadowHeight: MediaQuery.of(context).size.height / 15,
+                      shadowHeight: 50,
                       shadowWidth: MediaQuery.of(context).size.width / 6,
                       screenSize: MediaQuery.of(context).size,
                       onTap: () {

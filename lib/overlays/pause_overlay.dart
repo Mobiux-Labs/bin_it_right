@@ -31,6 +31,8 @@ class PauseOverlay extends StatelessWidget {
       width: MediaQuery.of(context).size.width / 1.2,
       onClose: () {
         game.resumeEngine();
+        game.overlays.add(GamePlayOverlay.id);
+        game.overlays.remove(PauseOverlay.id);
       },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -51,8 +53,8 @@ class PauseOverlay extends StatelessWidget {
                   screenSize: MediaQuery.of(context).size,
                   onTap: () {
                     game.resumeEngine();
-                    game.overlays.remove(PauseOverlay.id);
                     game.overlays.add(GamePlayOverlay.id);
+                    game.overlays.remove(PauseOverlay.id);
                   },
                   buttonText: AppLocalizations.of(context)!.play,
                   imagePath: 'assets/images/play.png',
