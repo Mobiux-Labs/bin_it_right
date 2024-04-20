@@ -180,10 +180,13 @@ class AssetConstants {
   static const String magnet2x = 'magnet_2x.png';
   static const String alive = 'alive.png';
   static const String lifeOver = 'life_over.png';
+
   static const String countdownFirst = 'countdown_1.png';
   static const String countdownSecond = 'countdown_2.png';
   static const String countdownThird = 'countdown_3.png';
-  static const String liveover = 'life_over.png';
+  static const String countdownFirstXl = 'countdown_1_xl.png';
+  static const String countdownSecondXl = 'countdown_2_xl.png';
+  static const String countdownThirdXl = 'countdown_3_xl.png';
 
   static const String tutorialFirst = 'tutorial_1.png';
   static const String tutorialSecond = 'tutorial_2.png';
@@ -344,7 +347,9 @@ class AssetConstants {
     countdownFirst,
     countdownSecond,
     countdownThird,
-    liveover,
+    countdownFirstXl,
+    countdownSecondXl,
+    countdownThirdXl,
     tutorialFirst,
     tutorialSecond,
     tutorialThird,
