@@ -33,7 +33,6 @@ class StartGameOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     StorageController storageController = context.watch<StorageController>();
-    final double screenHeight = MediaQuery.of(context).size.width;
     final double screenWidth = MediaQuery.of(context).size.height;
     return GradientOverlay(
       child: Column(
@@ -53,13 +52,9 @@ class StartGameOverlay extends StatelessWidget {
                       return EarthTokens(
                         earthPoints: score,
                         containerHeight: 50,
-                        containerWidth: Responsive.isSmallScreen(context)
-                            ? screenWidth * 0.4
-                            : screenWidth * 0.2,
+                        containerWidth: screenWidth * 0.2,
                         shadowContainerHeight: 40,
-                        shadowContainerWidth: Responsive.isSmallScreen(context)
-                            ? screenWidth * 0.4
-                            : screenWidth * 0.2,
+                        shadowContainerWidth: screenWidth * 0.2,
                       );
                     }),
                 Column(

@@ -63,18 +63,10 @@ class _GiftCollectOverlayState extends State<GiftCollectOverlay> {
                   builder: (context, score, child) {
                     return EarthTokens(
                       earthPoints: score,
-                      containerHeight: Responsive.isSmallScreen(context)
-                          ? screenWidth * 0.15
-                          : screenWidth * 0.2,
-                      containerWidth: Responsive.isSmallScreen(context)
-                          ? screenWidth * 0.4
-                          : screenWidth * 0.2,
-                      shadowContainerHeight: Responsive.isSmallScreen(context)
-                          ? screenWidth * 0.13
-                          : screenWidth * 0.2,
-                      shadowContainerWidth: Responsive.isSmallScreen(context)
-                          ? screenWidth * 0.4
-                          : screenWidth * 0.2,
+                      containerHeight: 50,
+                      containerWidth: screenWidth * 0.2,
+                      shadowContainerHeight: 40,
+                      shadowContainerWidth: screenWidth * 0.2,
                     );
                   },
                 ),
