@@ -4,6 +4,7 @@ import 'package:reseacue/app/ui/components/custom_animated_button.dart';
 import 'package:reseacue/assets.dart';
 import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
+import 'package:reseacue/responsive.dart';
 import 'package:reseacue/utils/images.dart';
 
 class Skin extends StatelessWidget {
@@ -173,7 +174,8 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
               fontSize: 17,
               decoration: TextDecoration.none,
               fontFamily: 'Digitalt',
-              color: Colors.white,
+              fontWeight: FontWeight.w100,
+              color: Constants.redButtonContainerColor,
             ),
           ),
         ));
@@ -187,6 +189,7 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
       }
     });
     return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Padding(
           padding: const EdgeInsets.only(left: 20, right: 20),
@@ -236,9 +239,6 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
               ),
             ],
           ),
-        ),
-        const SizedBox(
-          height: 70,
         ),
         CustomAnimatedButton(
           height: 60,
@@ -292,7 +292,7 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         SizedBox(
-          height: 250,
+          height: Responsive.isSmallScreen(context) ? 250 : 150,
           child: Stack(
             children: [
               Align(
@@ -379,9 +379,6 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
             ),
           ],
         ),
-        const SizedBox(
-          height: 40,
-        ),
         CustomAnimatedButton(
           height: 60,
           width: MediaQuery.of(context).size.width / 1.7,
@@ -419,10 +416,8 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
             child: Stack(
               children: [
                 Container(
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  height: MediaQuery.of(context).size.height *
-                          (selectedTab == 1 ? 0.6 : 0.5) +
-                      6,
+                  width: MediaQuery.of(context).size.width / 1.2,
+                  height: MediaQuery.of(context).size.height / 1.5 + 6,
                   decoration: BoxDecoration(
                     color: const Color.fromRGBO(
                       212,
@@ -436,9 +431,8 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
                   ),
                 ),
                 Container(
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  height: MediaQuery.of(context).size.height *
-                      (selectedTab == 1 ? 0.6 : 0.5),
+                  width: MediaQuery.of(context).size.width / 1.2,
+                  height: MediaQuery.of(context).size.height / 1.5,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(
                       10,
@@ -455,7 +449,13 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
                       Row(
                         children: [
                           Expanded(
-                            child: Container(
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  selectedTab = 1;
+                                });
+                              },
+                              child: Container(
                                 height: 60,
                                 decoration: BoxDecoration(
                                   color: selectedTab == 1
@@ -471,49 +471,44 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
                                     ),
                                   ),
                                 ),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      selectedTab = 1;
-                                    });
-                                  },
-                                  child: const Center(
-                                    child: Text(
-                                      'TRUCK',
-                                      style: TextStyle(
-                                        fontSize: 27,
-                                        color: Colors.white,
-                                        fontFamily: 'Digitalt',
-                                        fontWeight: FontWeight.w500,
-                                        decoration: TextDecoration.none,
-                                      ),
+                                child: const Center(
+                                  child: Text(
+                                    'TRUCK',
+                                    style: TextStyle(
+                                      fontSize: 27,
+                                      color: Colors.white,
+                                      fontFamily: 'Digitalt',
+                                      fontWeight: FontWeight.w500,
+                                      decoration: TextDecoration.none,
                                     ),
-                                  ),
-                                )),
-                          ),
-                          Expanded(
-                            child: Container(
-                              height: 60,
-                              decoration: BoxDecoration(
-                                color: selectedTab == 2
-                                    ? const Color(0xFFFFD217)
-                                    : const Color(0xFFD4AF13),
-                                borderRadius: const BorderRadius.only(
-                                  topRight: Radius.circular(10),
-                                ),
-                                border: const Border(
-                                  bottom: BorderSide(
-                                    color: Color(0xFFD5AF10),
-                                    width: 4.0,
                                   ),
                                 ),
                               ),
-                              child: GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    selectedTab = 2;
-                                  });
-                                },
+                            ),
+                          ),
+                          Expanded(
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  selectedTab = 2;
+                                });
+                              },
+                              child: Container(
+                                height: 60,
+                                decoration: BoxDecoration(
+                                  color: selectedTab == 2
+                                      ? const Color(0xFFFFD217)
+                                      : const Color(0xFFD4AF13),
+                                  borderRadius: const BorderRadius.only(
+                                    topRight: Radius.circular(10),
+                                  ),
+                                  border: const Border(
+                                    bottom: BorderSide(
+                                      color: Color(0xFFD5AF10),
+                                      width: 4.0,
+                                    ),
+                                  ),
+                                ),
                                 child: const Center(
                                   child: Text(
                                     'UPGRADES',
@@ -532,11 +527,13 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
                         ],
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 10,
                       ),
-                      selectedTab == 1
-                          ? renderTruckUpgradeLayout()
-                          : renderPowerupUpgradeLayout()
+                      Expanded(
+                        child: selectedTab == 1
+                            ? renderTruckUpgradeLayout()
+                            : renderPowerupUpgradeLayout(),
+                      ),
                     ],
                   ),
                 ),
@@ -550,9 +547,9 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
                 bottom: MediaQuery.of(context).size.height * 0.04,
               ),
               child: CustomAnimatedButton(
-                height: MediaQuery.of(context).size.height / 13,
+                height: 50,
                 width: MediaQuery.of(context).size.width / 6,
-                shadowHeight: MediaQuery.of(context).size.height / 15,
+                shadowHeight: 40,
                 shadowWidth: MediaQuery.of(context).size.width / 6,
                 screenSize: MediaQuery.of(context).size,
                 onTap: () {

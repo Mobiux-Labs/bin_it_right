@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 class ScoreCard extends StatelessWidget {
@@ -46,6 +47,7 @@ class ScoreCard extends StatelessWidget {
                   padding: EdgeInsets.only(top: padding, bottom: padding),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Image.asset(
                         imagePath,
@@ -54,7 +56,7 @@ class ScoreCard extends StatelessWidget {
                       const SizedBox(
                         width: 10,
                       ),
-                      Text(
+                      AutoSizeText(
                         score,
                         style: TextStyle(
                           fontSize: fontSize,

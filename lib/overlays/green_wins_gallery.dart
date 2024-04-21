@@ -23,22 +23,27 @@ class GreenWinsGalleryOverlay extends StatelessWidget {
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
     final double screenWidth = MediaQuery.of(context).size.width;
-    return SizedBox(
+    return Container(
       height: screenHeight,
       width: screenWidth,
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Color(0xFF51B937),
+            Color(0xFFCBDE81),
+          ],
+        ),
+      ),
       child: Stack(
         children: [
-          const Image(
-            image: AssetImage(
-              'assets/images/gradient_background.png',
-            ),
-          ),
           Padding(
             padding: const EdgeInsets.all(
               20.0,
             ),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 //Earth tokens and settings button in a row
                 Row(
@@ -49,20 +54,10 @@ class GreenWinsGalleryOverlay extends StatelessWidget {
                       builder: (context, score, child) {
                         return EarthTokens(
                           earthPoints: score,
-                          containerHeight: Responsive.isSmallScreen(context)
-                              ? screenWidth * 0.15
-                              : screenWidth * 0.2,
-                          containerWidth: Responsive.isSmallScreen(context)
-                              ? screenWidth * 0.4
-                              : screenWidth * 0.2,
-                          shadowContainerHeight:
-                              Responsive.isSmallScreen(context)
-                                  ? screenWidth * 0.13
-                                  : screenWidth * 0.2,
-                          shadowContainerWidth:
-                              Responsive.isSmallScreen(context)
-                                  ? screenWidth * 0.4
-                                  : screenWidth * 0.2,
+                          containerHeight: 50,
+                          containerWidth: screenWidth * 0.2,
+                          shadowContainerHeight: 40,
+                          shadowContainerWidth: screenWidth * 0.2,
                         );
                       },
                     ),
@@ -120,9 +115,6 @@ class GreenWinsGalleryOverlay extends StatelessWidget {
                           ),
                         ),
                       ],
-                    ),
-                    const SizedBox(
-                      height: 30,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -191,9 +183,6 @@ class GreenWinsGalleryOverlay extends StatelessWidget {
                     top: 10.0,
                   ),
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
               ],
             ),
           ),
@@ -252,22 +241,26 @@ Widget renderEarthTokens(String earthPoints, context) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
-      Image(
-        image: const AssetImage(
-          'assets/images/earth_token.png',
+      const SizedBox(
+        width: 40,
+        height: 40,
+        child: FittedBox(
+          child: Image(
+            image: AssetImage(
+              'assets/images/earth_token.png',
+            ),
+          ),
         ),
-        height: MediaQuery.of(context).size.height * 0.06,
-        width: MediaQuery.of(context).size.width * 0.06,
       ),
       const SizedBox(
-        width: 5,
+        width: 10,
       ),
       Text(
         earthPoints,
         style: TextStyle(
           decoration: TextDecoration.none,
           color: Colors.white,
-          fontSize: MediaQuery.of(context).size.width * 0.06,
+          fontSize: Responsive.isSmallScreen(context) ? 15 : 30,
           fontFamily: 'Digitalt',
           fontWeight: FontWeight.normal,
         ),

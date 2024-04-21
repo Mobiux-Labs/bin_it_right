@@ -30,9 +30,9 @@ class ButtonAndTextColumn extends StatelessWidget {
     return Column(
       children: [
         CustomAnimatedButton(
-          height: MediaQuery.of(context).size.height / 11,
+          height: 60,
           width: MediaQuery.of(context).size.width / 5,
-          shadowHeight: MediaQuery.of(context).size.height / 13,
+          shadowHeight: 50,
           shadowWidth: MediaQuery.of(context).size.width / 5,
           screenSize: MediaQuery.of(context).size,
           onTap: () {
@@ -147,8 +147,8 @@ class SettingsOverlay extends StatelessWidget {
       game: game,
       id: id,
       heading: AppLocalizations.of(context)!.settings,
-      height: MediaQuery.of(context).size.height / 1.8,
-      width: MediaQuery.of(context).size.width / 1.15,
+      height: MediaQuery.of(context).size.height / 1.5,
+      width: MediaQuery.of(context).size.width / 1.2,
       onClose: () {},
       child: Padding(
         padding: const EdgeInsets.only(
@@ -156,6 +156,7 @@ class SettingsOverlay extends StatelessWidget {
           right: 35.0,
         ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -192,9 +193,6 @@ class SettingsOverlay extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(
-              height: 30.0,
-            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -227,54 +225,55 @@ class SettingsOverlay extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(
-              height: 40.0,
+            Column(
+              children: [
+                Text(
+                  truncateText(AppLocalizations.of(context)!.credits, 26),
+                  style: const TextStyle(
+                    decoration: TextDecoration.none,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'Digitalt',
+                    color: Color.fromRGBO(255, 255, 255, 1),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10.0,
+                ),
+                FutureBuilder(
+                    future: getAppVersion(),
+                    initialData: null,
+                    builder: (context, AsyncSnapshot<String?> snapshot) {
+                      if (!snapshot.hasData) {
+                        return const Text(
+                          'Ver 1.0.0',
+                          style: TextStyle(
+                            decoration: TextDecoration.none,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                            fontFamily: 'Digitalt',
+                            color: Color.fromRGBO(255, 255, 255, 1),
+                          ),
+                        );
+                      }
+                      return Padding(
+                        padding: const EdgeInsets.only(
+                          bottom: 20.0,
+                        ),
+                        child: Text(
+                          snapshot.data as String,
+                          style: const TextStyle(
+                            decoration: TextDecoration.none,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                            fontFamily: 'Digitalt',
+                            color: Color.fromRGBO(255, 255, 255, 1),
+                          ),
+                        ),
+                      );
+                    }),
+              ],
             ),
-            Text(
-              truncateText(AppLocalizations.of(context)!.credits, 26),
-              style: const TextStyle(
-                decoration: TextDecoration.none,
-                fontSize: 20,
-                fontWeight: FontWeight.w500,
-                fontFamily: 'Digitalt',
-                color: Color.fromRGBO(255, 255, 255, 1),
-              ),
-            ),
-            const SizedBox(
-              height: 10.0,
-            ),
-            FutureBuilder(
-                future: getAppVersion(),
-                initialData: null,
-                builder: (context, AsyncSnapshot<String?> snapshot) {
-                  if (!snapshot.hasData) {
-                    return const Text(
-                      'Ver 1.0.0',
-                      style: TextStyle(
-                        decoration: TextDecoration.none,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: 'Digitalt',
-                        color: Color.fromRGBO(255, 255, 255, 1),
-                      ),
-                    );
-                  }
-                  return Padding(
-                    padding: const EdgeInsets.only(
-                      bottom: 20.0,
-                    ),
-                    child: Text(
-                      snapshot.data as String,
-                      style: const TextStyle(
-                        decoration: TextDecoration.none,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: 'Digitalt',
-                        color: Color.fromRGBO(255, 255, 255, 1),
-                      ),
-                    ),
-                  );
-                }),
           ],
         ),
       ),

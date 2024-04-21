@@ -27,150 +27,131 @@ class PauseOverlay extends StatelessWidget {
       game: game,
       id: id,
       heading: AppLocalizations.of(context)!.paused,
-      height: MediaQuery.of(context).size.height / 2.7,
+      height: MediaQuery.of(context).size.height / 1.8,
       width: MediaQuery.of(context).size.width / 1.2,
       onClose: () {
         game.resumeEngine();
+        game.overlays.add(GamePlayOverlay.id);
+        game.overlays.remove(PauseOverlay.id);
       },
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Padding(
+          CustomAnimatedButton(
+            height: 60,
+            width: MediaQuery.of(context).size.width / 1.5,
+            shadowHeight: 50,
+            shadowWidth: MediaQuery.of(context).size.width / 1.5,
+            screenSize: MediaQuery.of(context).size,
+            onTap: () {
+              game.resumeEngine();
+              game.overlays.add(GamePlayOverlay.id);
+              game.overlays.remove(PauseOverlay.id);
+            },
+            buttonText: AppLocalizations.of(context)!.play,
+            imagePath: 'assets/images/play.png',
+            shadowContainerColor: Constants.redButtonShadowContainerColor,
+            containerColor: Constants.redButtonContainerColor,
+            shineColor: Constants.redButtonShineColor,
             padding: const EdgeInsets.only(
-              left: 10.0,
-              right: 10.0,
-              bottom: 30.0,
+              left: 67.0,
+              top: 10.0,
             ),
-            child: Column(
-              children: [
-                CustomAnimatedButton(
-                  height: MediaQuery.of(context).size.height / 13,
-                  width: MediaQuery.of(context).size.width / 1.5,
-                  shadowHeight: MediaQuery.of(context).size.height / 15,
-                  shadowWidth: MediaQuery.of(context).size.width / 1.5,
-                  screenSize: MediaQuery.of(context).size,
-                  onTap: () {
-                    game.resumeEngine();
-                    game.overlays.remove(PauseOverlay.id);
-                    game.overlays.add(GamePlayOverlay.id);
-                  },
-                  buttonText: AppLocalizations.of(context)!.play,
-                  imagePath: 'assets/images/play.png',
-                  shadowContainerColor: Constants.redButtonShadowContainerColor,
-                  containerColor: Constants.redButtonContainerColor,
-                  shineColor: Constants.redButtonShineColor,
-                  padding: const EdgeInsets.only(
-                    left: 67.0,
-                    top: 10.0,
-                  ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              CustomAnimatedButton(
+                height: containerHeight,
+                width: containerWidth,
+                shadowHeight: shadowContainerHeight,
+                shadowWidth: containerWidth,
+                screenSize: MediaQuery.of(context).size,
+                onTap: () {
+                  game.overlays.add(SettingsOverlay.id);
+                },
+                imagePath: 'assets/images/settings.png',
+                shadowContainerColor: Constants.redButtonShadowContainerColor,
+                containerColor: Constants.redButtonContainerColor,
+                shineColor: Constants.redButtonShineColor,
+                padding: const EdgeInsets.only(
+                  left: 67.0,
+                  top: 10.0,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    top: 10.0,
-                    left: 20,
-                    right: 20,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      CustomAnimatedButton(
-                        height: containerHeight,
-                        width: containerWidth,
-                        shadowHeight: shadowContainerHeight,
-                        shadowWidth: containerWidth,
-                        screenSize: MediaQuery.of(context).size,
-                        onTap: () {
-                          game.overlays.add(SettingsOverlay.id);
-                        },
-                        imagePath: 'assets/images/settings.png',
-                        shadowContainerColor:
-                            Constants.redButtonShadowContainerColor,
-                        containerColor: Constants.redButtonContainerColor,
-                        shineColor: Constants.redButtonShineColor,
-                        padding: const EdgeInsets.only(
-                          left: 67.0,
-                          top: 10.0,
-                        ),
-                      ),
-                      ValueListenableBuilder(
-                        valueListenable: settingsController.muted,
-                        builder: (context, muted, child) {
-                          return CustomAnimatedButton(
-                            height: containerHeight,
-                            width: containerWidth,
-                            shadowHeight: shadowContainerHeight,
-                            shadowWidth: containerWidth,
-                            screenSize: MediaQuery.of(context).size,
-                            onTap: () {
-                              settingsController.toggleMuted();
-                            },
-                            imagePath: settingsController.muted.value == true
-                                ? 'assets/images/sound_off.png'
-                                : 'assets/images/sound_on.png',
-                            shadowContainerColor:
-                                Constants.redButtonShadowContainerColor,
-                            containerColor: Constants.redButtonContainerColor,
-                            shineColor: Constants.redButtonShineColor,
-                            padding: const EdgeInsets.only(
-                              left: 67.0,
-                              top: 10.0,
-                            ),
-                          );
-                        },
-                      ),
-                      ValueListenableBuilder(
-                        valueListenable: settingsController.vibrationOn,
-                        builder: (context, vibrationOn, child) {
-                          return CustomAnimatedButton(
-                            height: containerHeight,
-                            width: containerWidth,
-                            shadowHeight: shadowContainerHeight,
-                            shadowWidth: containerWidth,
-                            screenSize: MediaQuery.of(context).size,
-                            onTap: () {
-                              settingsController.toggleVibration();
-                            },
-                            imagePath:
-                                settingsController.vibrationOn.value == true
-                                    ? 'assets/images/vibration_on.png'
-                                    : 'assets/images/vibration_off.png',
-                            shadowContainerColor:
-                                Constants.redButtonShadowContainerColor,
-                            containerColor: Constants.redButtonContainerColor,
-                            shineColor: Constants.redButtonShineColor,
-                            padding: const EdgeInsets.only(
-                              left: 67.0,
-                              top: 10.0,
-                            ),
-                          );
-                        },
-                      ),
-                      CustomAnimatedButton(
-                        height: containerHeight,
-                        width: containerWidth,
-                        shadowHeight: shadowContainerHeight,
-                        shadowWidth: containerWidth,
-                        screenSize: MediaQuery.of(context).size,
-                        onTap: () {
-                          game.restart();
-                          game.overlays.remove(PauseOverlay.id);
-                          game.overlays.add(StartGameOverlay.id);
-                        },
-                        imagePath: 'assets/images/home.png',
-                        shadowContainerColor:
-                            Constants.redButtonShadowContainerColor,
-                        containerColor: Constants.redButtonContainerColor,
-                        shineColor: Constants.redButtonShineColor,
-                        padding: const EdgeInsets.only(
-                          left: 67.0,
-                          top: 10.0,
-                        ),
-                      ),
-                    ],
-                  ),
+              ),
+              ValueListenableBuilder(
+                valueListenable: settingsController.muted,
+                builder: (context, muted, child) {
+                  return CustomAnimatedButton(
+                    height: containerHeight,
+                    width: containerWidth,
+                    shadowHeight: shadowContainerHeight,
+                    shadowWidth: containerWidth,
+                    screenSize: MediaQuery.of(context).size,
+                    onTap: () {
+                      settingsController.toggleMuted();
+                    },
+                    imagePath: settingsController.muted.value == true
+                        ? 'assets/images/sound_off.png'
+                        : 'assets/images/sound_on.png',
+                    shadowContainerColor:
+                        Constants.redButtonShadowContainerColor,
+                    containerColor: Constants.redButtonContainerColor,
+                    shineColor: Constants.redButtonShineColor,
+                    padding: const EdgeInsets.only(
+                      left: 67.0,
+                      top: 10.0,
+                    ),
+                  );
+                },
+              ),
+              ValueListenableBuilder(
+                valueListenable: settingsController.vibrationOn,
+                builder: (context, vibrationOn, child) {
+                  return CustomAnimatedButton(
+                    height: containerHeight,
+                    width: containerWidth,
+                    shadowHeight: shadowContainerHeight,
+                    shadowWidth: containerWidth,
+                    screenSize: MediaQuery.of(context).size,
+                    onTap: () {
+                      settingsController.toggleVibration();
+                    },
+                    imagePath: settingsController.vibrationOn.value == true
+                        ? 'assets/images/vibration_on.png'
+                        : 'assets/images/vibration_off.png',
+                    shadowContainerColor:
+                        Constants.redButtonShadowContainerColor,
+                    containerColor: Constants.redButtonContainerColor,
+                    shineColor: Constants.redButtonShineColor,
+                    padding: const EdgeInsets.only(
+                      left: 67.0,
+                      top: 10.0,
+                    ),
+                  );
+                },
+              ),
+              CustomAnimatedButton(
+                height: containerHeight,
+                width: containerWidth,
+                shadowHeight: shadowContainerHeight,
+                shadowWidth: containerWidth,
+                screenSize: MediaQuery.of(context).size,
+                onTap: () {
+                  game.restart();
+                  game.overlays.remove(PauseOverlay.id);
+                  game.overlays.add(StartGameOverlay.id);
+                },
+                imagePath: 'assets/images/home.png',
+                shadowContainerColor: Constants.redButtonShadowContainerColor,
+                containerColor: Constants.redButtonContainerColor,
+                shineColor: Constants.redButtonShineColor,
+                padding: const EdgeInsets.only(
+                  left: 67.0,
+                  top: 10.0,
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ],
       ),

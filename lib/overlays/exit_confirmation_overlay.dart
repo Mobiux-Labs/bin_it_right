@@ -29,9 +29,9 @@ class ExitConfirmationOverlay extends StatelessWidget {
         child: Column(
           children: [
             CustomAnimatedButton(
-              height: MediaQuery.of(context).size.height / 13,
+              height: 50,
               width: MediaQuery.of(context).size.width / 1.5,
-              shadowHeight: MediaQuery.of(context).size.height / 15,
+              shadowHeight: 40,
               shadowWidth: MediaQuery.of(context).size.width / 1.5,
               screenSize: MediaQuery.of(context).size,
               onTap: () {
@@ -50,9 +50,9 @@ class ExitConfirmationOverlay extends StatelessWidget {
               height: 10,
             ),
             CustomAnimatedButton(
-              height: MediaQuery.of(context).size.height / 13,
+              height: 50,
               width: MediaQuery.of(context).size.width / 1.5,
-              shadowHeight: MediaQuery.of(context).size.height / 15,
+              shadowHeight: 40,
               shadowWidth: MediaQuery.of(context).size.width / 1.5,
               screenSize: MediaQuery.of(context).size,
               onTap: () {

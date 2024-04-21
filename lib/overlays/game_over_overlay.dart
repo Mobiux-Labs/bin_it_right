@@ -9,6 +9,7 @@ import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
 import 'package:reseacue/overlays/overlays.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:reseacue/responsive.dart';
 import 'package:reseacue/utils/utils.dart';
 
 class GameOverOverlay extends StatelessWidget {
@@ -34,69 +35,57 @@ class GameOverOverlay extends StatelessWidget {
       game: game,
       id: id,
       heading: truncateText(AppLocalizations.of(context)!.binBoss, 10),
-      height: MediaQuery.of(context).size.height / 1.8,
+      height: Responsive.isSmallScreen(context)
+          ? MediaQuery.of(context).size.height / 1.8
+          : MediaQuery.of(context).size.height / 1.4,
       width: MediaQuery.of(context).size.width / 1.15,
       hideCloseButton: true,
       onClose: () {},
-      child: Padding(
-        padding: const EdgeInsets.only(
-          bottom: 30.0,
-        ),
-        child: Column(
-          children: [
-            ScoreCard(
-              imagePath: 'assets/images/earth_token.png',
-              score: game.score.value.toString(),
-              label: AppLocalizations.of(context)!.score,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          ScoreCard(
+            imagePath: 'assets/images/earth_token.png',
+            score: game.score.value.toString(),
+            label: AppLocalizations.of(context)!.score,
+            heightFactor: 8,
+          ),
+          ScoreCard(
+            imagePath: 'assets/images/earth_token.png',
+            score: game.score.value > storageController.highscore.value
+                ? game.score.value.toString()
+                : storageController.highscore.value.toString(),
+            fontSize: 40,
+            imageSize: 30,
+            label: AppLocalizations.of(context)!.best,
+            labelFontSize: 20,
+            yOffset: 10,
+            heightFactor: 11,
+            padding: 10,
+          ),
+          CustomAnimatedButton(
+            height: containerHeight,
+            width: MediaQuery.of(context).size.width / 1.7,
+            shadowHeight: shadowContainerHeight,
+            shadowWidth: MediaQuery.of(context).size.width / 1.7,
+            screenSize: MediaQuery.of(context).size,
+            onTap: () {
+              storageController.updateScore(game.score.value);
+              game.restart();
+              game.overlays.remove(id);
+              game.overlays.remove(GamePlayOverlay.id);
+              game.overlays.add(StartGameOverlay.id);
+            },
+            buttonText: AppLocalizations.of(context)!.continueString,
+            shadowContainerColor: Constants.redButtonShadowContainerColor,
+            containerColor: Constants.redButtonContainerColor,
+            shineColor: Constants.redButtonShineColor,
+            padding: const EdgeInsets.only(
+              left: 67.0,
+              top: 10.0,
             ),
-            const SizedBox(
-              height: 30.0,
-            ),
-            ScoreCard(
-              imagePath: 'assets/images/earth_token.png',
-              score: game.score.value > storageController.highscore.value
-                  ? game.score.value.toString()
-                  : storageController.highscore.value.toString(),
-              fontSize: 40,
-              imageSize: 30,
-              label: AppLocalizations.of(context)!.best,
-              labelFontSize: 20,
-              yOffset: 10,
-              heightFactor: 11,
-              padding: 10,
-            ),
-            const SizedBox(
-              height: 60.0,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                CustomAnimatedButton(
-                  height: containerHeight,
-                  width: MediaQuery.of(context).size.width / 1.7,
-                  shadowHeight: shadowContainerHeight,
-                  shadowWidth: MediaQuery.of(context).size.width / 1.7,
-                  screenSize: MediaQuery.of(context).size,
-                  onTap: () {
-                    storageController.updateScore(game.score.value);
-                    game.restart();
-                    game.overlays.remove(id);
-                    game.overlays.remove(GamePlayOverlay.id);
-                    game.overlays.add(StartGameOverlay.id);
-                  },
-                  buttonText: AppLocalizations.of(context)!.continueString,
-                  shadowContainerColor: Constants.redButtonShadowContainerColor,
-                  containerColor: Constants.redButtonContainerColor,
-                  shineColor: Constants.redButtonShineColor,
-                  padding: const EdgeInsets.only(
-                    left: 67.0,
-                    top: 10.0,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
