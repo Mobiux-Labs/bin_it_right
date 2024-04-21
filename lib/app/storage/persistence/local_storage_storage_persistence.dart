@@ -67,4 +67,76 @@ class LocalStorageStoragePersistence extends StoragePersistence {
     final prefs = await instanceFuture;
     await prefs.setDouble('magnetPowerDuration', value);
   }
+
+  @override
+  Future<bool> getBoltLockedState({required bool defaultValue}) async {
+    final prefs = await instanceFuture;
+    return prefs.getBool('isBoltLocked') ?? defaultValue;
+  }
+
+  @override
+  Future<void> unlockBolt(bool value) async {
+    final prefs = await instanceFuture;
+    await prefs.setBool('isBoltLocked', value);
+  }
+
+  @override
+  Future<bool> getBatteryLockedState({required bool defaultValue}) async {
+    final prefs = await instanceFuture;
+    return prefs.getBool('isBatteryLocked') ?? defaultValue;
+  }
+
+  @override
+  Future<void> unlockBattery(bool value) async {
+    final prefs = await instanceFuture;
+    await prefs.setBool('isBatteryLocked', value);
+  }
+
+  @override
+  Future<bool> getCanLockedState({required bool defaultValue}) async {
+    final prefs = await instanceFuture;
+    return prefs.getBool('isCanLocked') ?? defaultValue;
+  }
+
+  @override
+  Future<void> unlockCan(bool value) async {
+    final prefs = await instanceFuture;
+    await prefs.setBool('isCanLocked', value);
+  }
+
+  @override
+  Future<bool> getBulbLockedState({required bool defaultValue}) async {
+    final prefs = await instanceFuture;
+    return prefs.getBool('isBulbLocked') ?? defaultValue;
+  }
+
+  @override
+  Future<void> unlockBulb(bool value) async {
+    final prefs = await instanceFuture;
+    await prefs.setBool('isBulbLocked', value);
+  }
+
+  @override
+  Future<bool> getBottleLockedState({required bool defaultValue}) async {
+    final prefs = await instanceFuture;
+    return prefs.getBool('isBottleLocked') ?? defaultValue;
+  }
+
+  @override
+  Future<void> unlockBottle(bool value) async {
+    final prefs = await instanceFuture;
+    await prefs.setBool('isBottleLocked', value);
+  }
+
+  @override
+  Future<bool> getPhoneLockedState({required bool defaultValue}) async {
+    final prefs = await instanceFuture;
+    return prefs.getBool('isPhoneLocked') ?? defaultValue;
+  }
+
+  @override
+  Future<void> unlockPhone(bool value) async {
+    final prefs = await instanceFuture;
+    await prefs.setBool('isPhoneLocked', value);
+  }
 }

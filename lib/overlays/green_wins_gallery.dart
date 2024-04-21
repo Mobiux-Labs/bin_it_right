@@ -55,9 +55,9 @@ class GreenWinsGalleryOverlay extends StatelessWidget {
                         return EarthTokens(
                           earthPoints: score,
                           containerHeight: 50,
-                          containerWidth: screenWidth * 0.2,
+                          containerWidth: screenHeight * 0.2,
                           shadowContainerHeight: 40,
-                          shadowContainerWidth: screenWidth * 0.2,
+                          shadowContainerWidth: screenHeight * 0.2,
                         );
                       },
                     ),
@@ -82,6 +82,7 @@ class GreenWinsGalleryOverlay extends StatelessWidget {
                                 getPathFromAssetString(
                                     AssetConstants.greenWinsBolt),
                                 context,
+                                storageController.isBoltLocked.value,
                               ),
                               renderEarthTokens('500', context),
                             ],
@@ -96,6 +97,7 @@ class GreenWinsGalleryOverlay extends StatelessWidget {
                                   AssetConstants.greenWinsBattery,
                                 ),
                                 context,
+                                storageController.isBatteryLocked.value,
                               ),
                               renderEarthTokens('1000', context),
                             ],
@@ -109,6 +111,7 @@ class GreenWinsGalleryOverlay extends StatelessWidget {
                                 getPathFromAssetString(
                                     AssetConstants.greenWinsCan),
                                 context,
+                                storageController.isCanLocked.value,
                               ),
                               renderEarthTokens('2000', context),
                             ],
@@ -116,6 +119,7 @@ class GreenWinsGalleryOverlay extends StatelessWidget {
                         ),
                       ],
                     ),
+                    const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -127,6 +131,7 @@ class GreenWinsGalleryOverlay extends StatelessWidget {
                                 getPathFromAssetString(
                                     AssetConstants.greenWinsBulb),
                                 context,
+                                storageController.isBulbLocked.value,
                               ),
                               renderEarthTokens(
                                 '4000',
@@ -143,6 +148,7 @@ class GreenWinsGalleryOverlay extends StatelessWidget {
                                 getPathFromAssetString(
                                     AssetConstants.greenWinsBottle),
                                 context,
+                                storageController.isBottleLocked.value,
                               ),
                               renderEarthTokens('6000', context),
                             ],
@@ -156,6 +162,7 @@ class GreenWinsGalleryOverlay extends StatelessWidget {
                                 getPathFromAssetString(
                                     AssetConstants.greenWinsMobile),
                                 context,
+                                storageController.isPhoneLocked.value,
                               ),
                               renderEarthTokens('8000', context),
                             ],
@@ -192,7 +199,7 @@ class GreenWinsGalleryOverlay extends StatelessWidget {
   }
 }
 
-Widget renderGalleryItems(String imagePath, context) {
+Widget renderGalleryItems(String imagePath, context, bool isLocked) {
   return SizedBox(
     height: 100,
     width: MediaQuery.of(context).size.width * 0.5,
@@ -201,19 +208,27 @@ Widget renderGalleryItems(String imagePath, context) {
       children: [
         Image(
           image: AssetImage(
-            getPathFromAssetString(AssetConstants.greenWinsCard),
+            getPathFromAssetString(
+              isLocked
+                  ? AssetConstants.greenWinsLockedCard
+                  : AssetConstants.greenWinsCard,
+            ),
           ),
         ),
-        Image(
-          image: AssetImage(
-            getPathFromAssetString(AssetConstants.glow),
-          ),
-        ),
-        Image(
-          image: AssetImage(
-            getPathFromAssetString(AssetConstants.greenWinsGlow),
-          ),
-        ),
+        isLocked
+            ? const SizedBox()
+            : Image(
+                image: AssetImage(
+                  getPathFromAssetString(AssetConstants.glow),
+                ),
+              ),
+        isLocked
+            ? const SizedBox()
+            : Image(
+                image: AssetImage(
+                  getPathFromAssetString(AssetConstants.greenWinsGlow),
+                ),
+              ),
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.12,
           width: MediaQuery.of(context).size.height * 0.12,
@@ -224,6 +239,7 @@ Widget renderGalleryItems(String imagePath, context) {
                 top: MediaQuery.of(context).size.height / 65,
               ),
               child: Image(
+                opacity: AlwaysStoppedAnimation(isLocked ? 0.5 : 1),
                 image: AssetImage(
                   imagePath,
                 ),
