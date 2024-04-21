@@ -464,6 +464,12 @@ class Reseacue extends FlameGame {
   }
 
   void updateGiftCollectedSequence(GiftType type) {
+    if (type == GiftType.mobile) {
+      storageController.unlockPhone();
+    }
+    if (type == GiftType.battery) {
+      storageController.unlockBattery();
+    }
     giftsCollectedOrder.add(type);
   }
 

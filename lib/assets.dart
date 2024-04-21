@@ -281,6 +281,7 @@ class AssetConstants {
   static const String greenWinsHeading = 'green_wins.png';
 
   static const String greenWinsCard = 'card.png';
+  static const String greenWinsLockedCard = 'locked_card.png';
   static const String greenWinsGlow = 'glowing.png';
   static const String greenWinsBolt = 'screw.png';
   static const String greenWinsBattery = 'battery.png';
