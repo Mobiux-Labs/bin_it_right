@@ -54,70 +54,71 @@ class _GiftCollectOverlayState extends State<GiftCollectOverlay> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Column(
               children: [
-                ValueListenableBuilder(
-                  valueListenable: widget.mainGame.storageController.score,
-                  builder: (context, score, child) {
-                    return EarthTokens(
-                      earthPoints: score,
-                      containerHeight: 50,
-                      containerWidth: screenWidth * 0.2,
-                      shadowContainerHeight: 40,
-                      shadowContainerWidth: screenWidth * 0.2,
-                    );
-                  },
-                ),
-                CustomAnimatedButton(
-                  height: 50,
-                  width: 50,
-                  shadowHeight: 40,
-                  shadowWidth: 50,
-                  screenSize: MediaQuery.of(context).size,
-                  onTap: () {
-                    widget.mainGame.overlays.add(SettingsOverlay.id);
-                  },
-                  imagePath: 'assets/images/settings.png',
-                  shadowContainerColor:
-                      Constants.yellowButtonShadowContainerColor,
-                  containerColor: Constants.yellowButtonContainerColor,
-                  shineColor: Constants.yellowButtonShineColor,
-                  padding: const EdgeInsets.only(
-                    left: 50,
-                    top: 10.0,
-                  ),
-                ),
-              ],
-            ),
-            Center(
-              child: Text(
-                gift.toUpperCase(),
-                style: const TextStyle(
-                  decoration: TextDecoration.none,
-                  fontFamily: 'Digitalt',
-                  fontWeight: FontWeight.normal,
-                  color: Colors.white,
-                  shadows: <Shadow>[
-                    Shadow(
-                      offset: Offset(
-                        6,
-                        8,
-                      ),
-                      blurRadius: 3.0,
-                      color: Color.fromRGBO(
-                        0,
-                        0,
-                        0,
-                        0.15,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ValueListenableBuilder(
+                      valueListenable: widget.mainGame.storageController.score,
+                      builder: (context, score, child) {
+                        return EarthTokens(
+                          earthPoints: score,
+                          containerHeight: 50,
+                          containerWidth: screenWidth * 0.2,
+                          shadowContainerHeight: 40,
+                          shadowContainerWidth: screenWidth * 0.2,
+                        );
+                      },
+                    ),
+                    CustomAnimatedButton(
+                      height: 50,
+                      width: 50,
+                      shadowHeight: 40,
+                      shadowWidth: 50,
+                      screenSize: MediaQuery.of(context).size,
+                      onTap: () {
+                        widget.mainGame.overlays.add(SettingsOverlay.id);
+                      },
+                      imagePath: 'assets/images/settings.png',
+                      shadowContainerColor:
+                          Constants.yellowButtonShadowContainerColor,
+                      containerColor: Constants.yellowButtonContainerColor,
+                      shineColor: Constants.yellowButtonShineColor,
+                      padding: const EdgeInsets.only(
+                        left: 50,
+                        top: 10.0,
                       ),
                     ),
                   ],
                 ),
-              ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 4,
+                Center(
+                  child: Text(
+                    gift.toUpperCase(),
+                    style: const TextStyle(
+                      decoration: TextDecoration.none,
+                      fontFamily: 'Digitalt',
+                      fontWeight: FontWeight.normal,
+                      color: Colors.white,
+                      shadows: <Shadow>[
+                        Shadow(
+                          offset: Offset(
+                            6,
+                            8,
+                          ),
+                          blurRadius: 3.0,
+                          color: Color.fromRGBO(
+                            0,
+                            0,
+                            0,
+                            0.15,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
             Column(
               children: [
@@ -175,9 +176,6 @@ class _GiftCollectOverlayState extends State<GiftCollectOverlay> {
                     left: 67.0,
                     top: 10.0,
                   ),
-                ),
-                const SizedBox(
-                  height: 60,
                 ),
               ],
             ),
