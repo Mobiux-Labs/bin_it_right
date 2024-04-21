@@ -9,6 +9,8 @@ import 'package:reseacue/responsive.dart';
 import 'package:reseacue/utils/images.dart';
 import 'package:reseacue/utils/utils.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class GreenWinsGalleryOverlay extends StatelessWidget {
   final StorageController storageController;
 
@@ -181,7 +183,7 @@ class GreenWinsGalleryOverlay extends StatelessWidget {
                   onTap: () {
                     GoRouter.of(context).pop();
                   },
-                  buttonText: 'BACK TO MENU',
+                  buttonText: AppLocalizations.of(context)!.backtoMenu,
                   shadowContainerColor: Constants.redButtonShadowContainerColor,
                   containerColor: Constants.redButtonContainerColor,
                   shineColor: Constants.redButtonShineColor,

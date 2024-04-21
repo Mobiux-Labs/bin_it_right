@@ -7,6 +7,8 @@ import 'package:reseacue/game/game.dart';
 import 'package:reseacue/game/gift_sequence.dart';
 import 'package:reseacue/overlays/gift_opening_overlay.dart';
 import 'package:reseacue/overlays/settings_overlay.dart';
+import 'package:reseacue/utils/utils.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../utils/number.dart';
 
@@ -94,7 +96,10 @@ class _GiftCollectOverlayState extends State<GiftCollectOverlay> {
                 ),
                 Center(
                   child: Text(
-                    gift.toUpperCase(),
+                    giftType == GiftType.battery
+                        ? truncateText(
+                            AppLocalizations.of(context)!.battery, 26)
+                        : truncateText(AppLocalizations.of(context)!.phone, 26),
                     style: const TextStyle(
                       decoration: TextDecoration.none,
                       fontFamily: 'Digitalt',
@@ -168,7 +173,7 @@ class _GiftCollectOverlayState extends State<GiftCollectOverlay> {
                     widget.game.overlays.remove(GiftCollectOverlay.id);
                     widget.mainGame.overlays.remove(GiftOpeningOverlay.id);
                   },
-                  buttonText: 'RECYCLE',
+                  buttonText: AppLocalizations.of(context)!.recycle,
                   shadowContainerColor: Constants.redButtonShadowContainerColor,
                   containerColor: Constants.redButtonContainerColor,
                   shineColor: Constants.redButtonShineColor,

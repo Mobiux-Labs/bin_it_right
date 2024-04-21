@@ -16,5 +16,15 @@
   "continueString": "CONTINUE",
   "resetQuestion": "RESET?",
   "yes": "YES",
-  "no": "NO"
+  "no": "NO",
+  "battery": "BATTERY",
+  "phone": "MOBILE",
+  "lowTokens": "NOT ENOUGH TOKENS TO UPGRADE!",
+  "truck": "TRUCK",
+  "upgrades": "UPGRADES",
+  "recycle": "RECYCLE",
+  "tapToOpen": "TAP TO OPEN",
+  "backtoMenu": "BACK TO MENU",
+  "select": "SELECT",
+  "selected": "SELECTED"
 }

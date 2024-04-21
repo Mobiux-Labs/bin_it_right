@@ -16,5 +16,15 @@
   "continueString": "WEITER",
   "resetQuestion": "ZURÜCKSETZEN?",
   "yes": "JA",
-  "no": "NEIN"
+  "no": "NEIN",
+  "battery": "Batterie",
+  "phone": "Telefon",
+  "lowTokens": "NICHT GENUG JETONS FÜR EIN UPGRADE!",
+  "truck": "Lastwagen",
+  "upgrades": "Upgrades",
+  "recycle": "RECYCLING",
+  "tapToOpen": "ANTIPPEN, UM ZU ÖFFNEN",
+  "backtoMenu": "ZURÜCK ZUM MENÜ",
+  "select": "AUSWÄHLEN",
+  "selected": "AUSGEWÄHLT"
 }

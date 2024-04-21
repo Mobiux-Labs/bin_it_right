@@ -16,5 +16,15 @@
   "continueString": "CONTINUER",
   "resetQuestion": "RÉINITIALISER ?",
   "yes": "OUI",
-  "no": "NON"
+  "no": "NON",
+  "battery": "Batterie",
+  "phone": "Téléphone",
+  "lowTokens": "PAS ASSEZ DE DE JETONS POUR AMÉLIORER!",
+  "truck": "Camion",
+  "upgrades": "Améliorations",
+  "recycle": "RECYCLER",
+  "tapToOpen": "TOUCHEZ POUR OUVRIR",
+  "backtoMenu": "RETOUR AU MENU",
+  "select": "SÉLECTIONNER",
+  "selected": "SÉLECTIONNÉ"
 }

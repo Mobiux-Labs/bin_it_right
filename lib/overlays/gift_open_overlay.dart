@@ -6,6 +6,7 @@ import 'package:reseacue/constants/constants.dart';
 import 'package:reseacue/game/game.dart';
 import 'package:reseacue/game/gift_sequence.dart';
 import 'package:reseacue/overlays/settings_overlay.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class GiftOpenOverlay extends StatelessWidget {
   const GiftOpenOverlay({
@@ -79,7 +80,7 @@ class GiftOpenOverlay extends StatelessWidget {
                     game.giftAnimation.openGift();
                     game.overlays.remove(id);
                   },
-                  buttonText: 'TAP TO OPEN',
+                  buttonText: AppLocalizations.of(context)!.tapToOpen,
                   shadowContainerColor: Constants.redButtonShadowContainerColor,
                   containerColor: Constants.redButtonContainerColor,
                   shineColor: Constants.redButtonShineColor,

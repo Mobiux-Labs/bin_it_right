@@ -7,6 +7,8 @@ import 'package:reseacue/game/game.dart';
 import 'package:reseacue/responsive.dart';
 import 'package:reseacue/utils/images.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class Skin extends StatelessWidget {
   const Skin({
     super.key,
@@ -164,13 +166,13 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
   }
 
   Widget renderNotEnoughTokensAlert() {
-    return const SizedBox(
+    return SizedBox(
         height: 40,
         child: Padding(
-          padding: EdgeInsets.only(top: 10.0),
+          padding: const EdgeInsets.only(top: 10.0),
           child: Text(
-            'Not enough tokens to upgrade!',
-            style: TextStyle(
+            AppLocalizations.of(context)!.lowTokens,
+            style: const TextStyle(
               fontSize: 17,
               decoration: TextDecoration.none,
               fontFamily: 'Digitalt',
@@ -384,7 +386,9 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
           width: MediaQuery.of(context).size.width / 1.7,
           shadowHeight: 50,
           shadowWidth: MediaQuery.of(context).size.width / 1.7,
-          buttonText: appliedSkin == selectedSkinIndex ? 'SELECTED' : 'SELECT',
+          buttonText: appliedSkin == selectedSkinIndex
+              ? AppLocalizations.of(context)!.selected
+              : AppLocalizations.of(context)!.select,
           shadowContainerColor: Constants.greenButtonShadowContainerColor,
           containerColor: Constants.greenButtonContainerColor,
           shineColor: Constants.greenButtonShineColor,
@@ -471,10 +475,10 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
                                     ),
                                   ),
                                 ),
-                                child: const Center(
+                                child: Center(
                                   child: Text(
-                                    'TRUCK',
-                                    style: TextStyle(
+                                    AppLocalizations.of(context)!.truck,
+                                    style: const TextStyle(
                                       fontSize: 27,
                                       color: Colors.white,
                                       fontFamily: 'Digitalt',
@@ -509,10 +513,10 @@ class _UpgradeOverlayState extends State<UpgradeOverlay> {
                                     ),
                                   ),
                                 ),
-                                child: const Center(
+                                child: Center(
                                   child: Text(
-                                    'UPGRADES',
-                                    style: TextStyle(
+                                    AppLocalizations.of(context)!.upgrades,
+                                    style: const TextStyle(
                                       fontSize: 27,
                                       color: Colors.white,
                                       fontFamily: 'Digitalt',

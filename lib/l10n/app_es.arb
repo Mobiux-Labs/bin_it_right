@@ -16,5 +16,15 @@
   "continueString": "CONTINUAR",
   "resetQuestion": "¿REINICIAR?",
   "yes": "SÍ",
-  "no": "NO"
+  "no": "NO",
+  "battery": "Batería",
+  "phone": "Teléfono",
+  "lowTokens": "¡NO TIENES SUFICIENTES TOKENS PARA ACTUALIZAR!",
+  "truck": "Camión",
+  "upgrades": "Actualizaciones",
+  "recycle": "RECICLAR",
+  "tapToOpen": "TOQUE PARA ABRIR",
+  "backtoMenu": "VOLVER AL MENÚ",
+  "select": "SELECCIONAR",
+  "selected": "SELECCIONADO"
 }
