@@ -29,12 +29,6 @@ class SplashScreen extends StatelessWidget {
     loadedAssets = 0;
     loadedAssetsPercentage.value = 0;
 
-    for (String asset in AssetConstants.assets) {
-      await precacheImage(AssetImage(getPathFromAssetString(asset)), context);
-      loadedAssets += 1;
-      loadedAssetsPercentage.value = (loadedAssets / totalAssets) * 100;
-    }
-
     for (String sprite in sprites) {
       await Flame.images.load(sprite);
       loadedAssets += 1;
@@ -60,6 +54,7 @@ class SplashScreen extends StatelessWidget {
           future: preloadImages(context),
           builder: (context, AsyncSnapshot<bool> snapshot) {
             if (snapshot.data == true) {
+              imageCache.clear();
               WidgetsBinding.instance.addPostFrameCallback(
                 (_) {
                   GoRouter.of(context).replace(Path.startGameOverlay);
