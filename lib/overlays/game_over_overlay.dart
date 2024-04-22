@@ -44,6 +44,19 @@ class GameOverOverlay extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
+          const Padding(
+            padding: EdgeInsets.only(left: 8, right: 8),
+            child: Text(
+              'Segregating waste may seem small, but it makes a big impact on making our Earth greener. Keep it up!',
+              style: TextStyle(
+                fontSize: 15,
+                color: Colors.white,
+                fontFamily: 'Digitalt',
+                fontWeight: FontWeight.w100,
+                decoration: TextDecoration.none,
+              ),
+            ),
+          ),
           ScoreCard(
             imagePath: 'assets/images/earth_token.png',
             score: game.score.value.toString(),
