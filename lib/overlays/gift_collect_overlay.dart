@@ -10,8 +10,6 @@ import 'package:reseacue/overlays/settings_overlay.dart';
 import 'package:reseacue/utils/utils.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../utils/number.dart';
-
 class GiftCollectOverlay extends StatefulWidget {
   const GiftCollectOverlay({
     super.key,
@@ -47,7 +45,7 @@ class _GiftCollectOverlayState extends State<GiftCollectOverlay> {
 
   @override
   Widget build(BuildContext context) {
-    final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenHeight = MediaQuery.of(context).size.height;
     return SizedBox(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
@@ -67,9 +65,9 @@ class _GiftCollectOverlayState extends State<GiftCollectOverlay> {
                         return EarthTokens(
                           earthPoints: score,
                           containerHeight: 50,
-                          containerWidth: screenWidth * 0.2,
+                          containerWidth: screenHeight * 0.2,
                           shadowContainerHeight: 40,
-                          shadowContainerWidth: screenWidth * 0.2,
+                          shadowContainerWidth: screenHeight * 0.2,
                         );
                       },
                     ),

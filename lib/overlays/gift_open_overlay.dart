@@ -22,7 +22,7 @@ class GiftOpenOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenHeight = MediaQuery.of(context).size.height;
     return SizedBox(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
@@ -40,9 +40,9 @@ class GiftOpenOverlay extends StatelessWidget {
                     return EarthTokens(
                       earthPoints: score,
                       containerHeight: 50,
-                      containerWidth: screenWidth * 0.2,
+                      containerWidth: screenHeight * 0.2,
                       shadowContainerHeight: 40,
-                      shadowContainerWidth: screenWidth * 0.2,
+                      shadowContainerWidth: screenHeight * 0.2,
                     );
                   },
                 ),
