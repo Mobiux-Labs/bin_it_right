@@ -14,7 +14,7 @@ class GamePlayOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenWidth = MediaQuery.of(context).size.height;
     return Padding(
       padding: const EdgeInsets.only(
         right: 15.0,

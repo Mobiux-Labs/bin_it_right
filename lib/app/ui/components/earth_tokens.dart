@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -55,15 +56,15 @@ class EarthTokens extends StatelessWidget {
     if (score < 1000) {
       return score.toString();
     } else if (score < 10000) {
-      return '${(score ~/ 1000)}K';
+      return '${(score / 1000).toStringAsFixed(2)}K';
     } else if (score < 100000) {
-      return '${(score ~/ 1000)}K';
+      return '${(score / 1000).toStringAsFixed(2)}K';
     } else if (score < 1000000) {
-      return '${(score ~/ 1000)}K';
+      return '${(score / 1000).toStringAsFixed(2)}K';
     } else if (score < 10000000) {
-      return '${(score ~/ 1000000)}M';
+      return '${(score / 1000000).toStringAsFixed(2)}M';
     } else if (score < 100000000) {
-      return '${(score ~/ 1000000)}M';
+      return '${(score / 1000000).toStringAsFixed(2)}M';
     } else {
       return 'Max Score Reached';
     }
@@ -139,7 +140,7 @@ class EarthTokens extends StatelessWidget {
                 padding: const EdgeInsets.only(
                   bottom: 10,
                 ),
-                child: Text(
+                child: AutoSizeText(
                   formatScore(earthPoints),
                   style: const TextStyle(
                     fontSize: 27,
