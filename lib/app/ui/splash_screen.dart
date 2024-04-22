@@ -120,25 +120,27 @@ class SplashScreen extends StatelessWidget {
                           height: 20,
                         ),
                         SizedBox(
-                          width: MediaQuery.of(context).size.width /
-                              loaderContainerWidthFactor,
-                          child: ValueListenableBuilder(
-                            valueListenable: loadedAssetsPercentage,
-                            builder: ((context, value, child) {
-                              return FadeInImage(
-                                  placeholder: MemoryImage(
-                                    kTransparentImage,
-                                  ),
-                                  image: AssetImage(
-                                    getPathFromAssetString(loadedAssetsPercentage
-                                                .value ==
-                                            -1.0
-                                        ? AssetConstants.treeAnimationThirdFrame
-                                        : 'Tree animation_${getFromRange(loadedAssetsPercentage.value.round(), 0, 100, 3, 45).round()}.png'),
-                                  ));
-                            }),
-                          ),
-                        ),
+                            width: MediaQuery.of(context).size.width /
+                                loaderContainerWidthFactor,
+                            child: FittedBox(
+                              child: ValueListenableBuilder(
+                                valueListenable: loadedAssetsPercentage,
+                                builder: ((context, value, child) {
+                                  return FadeInImage(
+                                      placeholderFit: BoxFit.scaleDown,
+                                      placeholder: MemoryImage(
+                                        kTransparentImage,
+                                      ),
+                                      image: AssetImage(
+                                        getPathFromAssetString(
+                                            loadedAssetsPercentage.value == -1.0
+                                                ? AssetConstants
+                                                    .treeAnimationFirstFrame
+                                                : 'Tree animation_${getFromRange(loadedAssetsPercentage.value.round(), 0, 100, 1, 45).round()}.png'),
+                                      ));
+                                }),
+                              ),
+                            )),
                         ValueListenableBuilder(
                           valueListenable: loadedAssetsPercentage,
                           builder: ((context, value, child) {
